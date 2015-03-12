@@ -8,20 +8,33 @@ class SophKApp extends Sophk{
 
 	protected $viewName;
 
+	protected $loader;
+	protected $template;
+	public $KTE;
+
 	public function __construct(){
 		parent::__construct();
 		$this->setHtaccess("SophK");
 
-		$this->appName 		= "My app";
-		$this->appView 		= new AppView();
-		$this->appModel 	= new AppModel();
-		$this->appController = new AppController($this->appModel);
+		$this->appName 			= "My app";
+		$this->appView 			= new AppView(); // use KTE instead of the view ?
+		$this->loader 			= new SophKTELoader();
+		$this->appModel 		= new AppModel();
+		$this->appController 	= new AppController($this->appModel);
 
 		$this->setViewData('h1', 'Setup config file');
 		$config = parent::getConfig();
 		if(!$config){
-			$this->callView('config');
-			// die();
+			// $this->callView('config');
+			$template = $this->loader->loadFromFile("template/config.tpl");
+			$this->KTE = new SophKTEParser($template,$data = [
+				'title' =>  'Setup config file',
+				'h1' =>  'Setup config file',
+				'header' =>  'Setup config file',
+				'base' => 'template/css/base/base.css',
+				'forms' => 'template/css/forms/forms.css',
+				'buttons' => 'template/css/buttons/buttons.css',
+			]);
 		}
 	}
 	
