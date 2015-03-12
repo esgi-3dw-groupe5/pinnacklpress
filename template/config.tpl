@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title><?php $this->printOut('title'); ?></title>
+		<title>{{title}}</title>
 		<meta name="description" content="">
 		<link rel="stylesheet" href="">
 		<style type="text/css">
@@ -74,9 +74,6 @@
 				border-radius: 2px;
 			}
 		</style>
-		<script>
-			var plop = 'plop';
-		</script>
 	</head>
 	<body>
 		<header>
@@ -86,7 +83,7 @@
 		<section>
 			<form action="" method="post">
 			<fieldset>
-		  	<legend><h1><?php $this->printOut('h1') ?></h1></legend>
+		  	<legend><h1>{{h1}}</h1></legend>
 				<label for="db_host"><span>db_host : </span></label><input id="db_host" class="" type="text" name="db_host">
 				<label for="db_name"><span>db_name : </span></label><input id="db_name" class="" type="text" name="db_name">
 				<label for="db_login"><span>db_login : </span></label><input id="db_login" class="" type="text" name="db_login">

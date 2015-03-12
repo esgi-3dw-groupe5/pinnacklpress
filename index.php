@@ -1,5 +1,6 @@
 <?php
 require_once('sophk/core.sophk.php');
+require_once('sophk/sophk.te.php');
 // require('app.formValidate.php');
 
 /*
@@ -10,7 +11,7 @@ require_once('sophk/core.sophk.php');
  *		- appView class
  */
 $Sophk = new Sophk();
-$app = new SophKApp();
+// $app = new SophKApp();
 
 // --
 // $rule = new NotEmptyValidationRule('db_host');SophK::debug($rule);
@@ -28,8 +29,8 @@ $app = new SophKApp();
 // die();
 // --
 
-$controller = $app->appController;
-	  $page = $controller->page;
+// $controller = $app->appController;
+	  // $page = $controller->page;
 
 /*
  *	Get the data from the database from appModel class
@@ -49,7 +50,7 @@ $controller = $app->appController;
 // --
 
 
-$app->callView('index');
+// $app->callView('index');
 
 /*
  *	Uncomment to tryout
@@ -71,3 +72,12 @@ $app->callView('index');
 // echo $plop1;
 // echo $plop2;
 // echo $plop3;  
+
+$loader = new SophKTELoader();
+$template = $loader->loadFromFile("template/config.tpl");
+$KTE = new SophKTEParser($template,$data = [
+	'title' =>  'Setup config file',
+	'h1' =>  'Setup config file',
+	'header' =>  'Setup config file',
+]);
+echo $KTE->parseTemplate();
