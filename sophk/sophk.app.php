@@ -33,6 +33,13 @@ class SophKApp extends Sophk{
 				'header' =>  'Setup config file',
 			]);
 		}
+		else{
+			$template = $this->loader->loadFromFile("template/index.tpl");
+			$this->KTE = new SophKTEParser($template,$data = [
+				'title' =>  'My first SophK App',
+				'h1' =>  'Hello World',
+			]);
+		}
 	}
 	
 	public function __set($param, $value) {

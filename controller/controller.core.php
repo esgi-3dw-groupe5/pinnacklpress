@@ -6,23 +6,28 @@ class Core {
 	private $displayErr;
 
 	function __construct(){
-		$action = null;
-		$displayErr = null;
+		$this->action = null;
+		$this->displayErr = null;
 	}
 
-	public function setAction($_POST){
+	public function setAction($POST){
 
-		if( isset($_POST['db_submit']) 
-			&& !empty($_POST['db_submit']) ) {
+		if( array_key_exists('db_submit',$_POST) ) {
 
-    	$action = $_POST['db_submit'];
+    		$this->action = 'db_submit';
 
 		}
 
-		return $action;
+		return $this->action;
 	}
 
-	public function 
+	public function sendAction($action,$POST){
+		if ($action == 'db_submit'){
+			$this->displayErr = Sophk::setConfig($POST);
+		}
+		
+		return $this->displayErr;
+	}
 }
 
 ?>

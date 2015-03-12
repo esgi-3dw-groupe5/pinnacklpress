@@ -53,21 +53,22 @@ class Sophk {
 		if( !file_exists('config.local.php') ){
 			return false;
 		}
-		require_once(dirname(__FILE__).'/config.local.php');
+		require_once(dirname(__FILE__).'/../config.local.php');
 		return true;
 	}
 
-	public function setConfig($POST){
+	public static function setConfig($POST){
 		$handle = fopen('config.local.php', "w+");
-		$text = "<?php\n$config = array(\n
-					'db_host' => '',\n
-					'db_name' => '',\n
-					'db_login' => '',\n
-					'db_password' => '',\n
-					);
-		";
+		$text = "<?php\n\$config = array(\n
+		'db_host' => '".$POST['db_host']."',\n
+		'db_name' => '".$POST['db_name']."',\n
+		'db_login' => '".$POST['db_login']."',\n
+		'db_password' => '".$POST['db_password']."',\n
+		);
+		 ";
 		fwrite($handle, $text);
 		fclose($handle);
 		require_once(dirname(__FILE__).'/../config.local.php');
 	}
 }
+

@@ -89,7 +89,7 @@ class SophKTEParser{
 			eval("\$rule = \"$rule\";");
 			$this->template = preg_replace($rule, $value, $this->template);
 		}
-		ob_clean();
+		//ob_clean();
 		return $this->template;
 	}
 }
