@@ -11,7 +11,8 @@ require_once('sophk/sophk.te.php');
  *		- appView class
  */
 $Sophk = new Sophk();
-// $app = new SophKApp();
+$app = new SophKApp();
+echo $app->KTE->parseTemplate();
 
 // --
 // $rule = new NotEmptyValidationRule('db_host');SophK::debug($rule);
@@ -73,11 +74,11 @@ $Sophk = new Sophk();
 // echo $plop2;
 // echo $plop3;  
 
-$loader = new SophKTELoader();
-$template = $loader->loadFromFile("template/config.tpl");
-$KTE = new SophKTEParser($template,$data = [
-	'title' =>  'Setup config file',
-	'h1' =>  'Setup config file',
-	'header' =>  'Setup config file',
-]);
-echo $KTE->parseTemplate();
+// $loader = new SophKTELoader();
+// $template = $loader->loadFromFile("template/config.tpl");
+// $KTE = new SophKTEParser($template,$data = [
+// 	'title' =>  'Setup config file',
+// 	'h1' =>  'Setup config file',
+// 	'header' =>  'Setup config file',
+// ]);
+// echo $KTE->parseTemplate();
