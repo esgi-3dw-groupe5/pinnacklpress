@@ -11,7 +11,8 @@ require_once('sophk/sophk.te.php');
  *		- appView class
  */
 $Sophk = new Sophk();
-// $app = new SophKApp();
+$app = new SophKApp();
+echo $app->KTE->parseTemplate();
 
 // --
 // $rule = new NotEmptyValidationRule('db_host');SophK::debug($rule);
