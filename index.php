@@ -79,5 +79,6 @@ $KTE = new SophKTEParser($template,$data = [
 	'title' =>  'Setup config file',
 	'h1' =>  'Setup config file',
 	'header' =>  'Setup config file',
+	'url' => dirname(__FILE__).,
 ]);
 echo $KTE->parseTemplate();

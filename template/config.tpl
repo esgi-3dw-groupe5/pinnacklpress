@@ -88,7 +88,7 @@
 				<label for="db_name"><span>db_name : </span></label><input id="db_name" class="" type="text" name="db_name">
 				<label for="db_login"><span>db_login : </span></label><input id="db_login" class="" type="text" name="db_login">
 				<label for="db_password"><span>db_password : </span></label><input id="db_password" class="" type="password" name="db_password">
-				<button type="submit">Envoyer</button>
+				<button type="submit" name="db_submit">Envoyer</button>
 			</fieldset>
 			</form>
 		</section>
