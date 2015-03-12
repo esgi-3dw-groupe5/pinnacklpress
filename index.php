@@ -72,14 +72,4 @@ echo $app->KTE->parseTemplate();
 
 // echo $plop1;
 // echo $plop2;
-// echo $plop3;  
-
-$loader = new SophKTELoader();
-$template = $loader->loadFromFile("template/config.tpl");
-$KTE = new SophKTEParser($template,$data = [
-	'title' =>  'Setup config file',
-	'h1' =>  'Setup config file',
-	'header' =>  'Setup config file',
-	'url' => dirname(__FILE__).,
-]);
-echo $KTE->parseTemplate();
+// echo $plop3;
