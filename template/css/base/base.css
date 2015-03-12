@@ -1,11 +1,12 @@
 /*csslint important:false*/
 
 /* ==========================================================================
-   Pure Base Extras
+   pinnackl Base Extras
+   This is a fork from PureCSS
    ========================================================================== */
 
 /**
- * Extra rules that Pure adds on top of Normalize.css
+ * Extra rules that pinnackl adds on top of Normalize.css
  */
 
 /**
@@ -21,8 +22,11 @@
  * Add this class to an image to make it fit within it's fluid parent wrapper while maintaining
  * aspect ratio.
  */
-.pure-img {
+.pinnackl-img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+.pinnackl-background-body {
+	background-color: #F8F8F8;
 }

@@ -1,6 +1,6 @@
 /*csslint regex-selectors:false, known-properties:false, duplicate-properties:false*/
 
-.pure-g {
+.pinnackl-g {
     letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
     *letter-spacing: normal; /* reset IE < 8 */
     *word-spacing: -0.43em; /* IE < 8: collapse white-space between units */
@@ -8,9 +8,9 @@
 
     /*
     Sets the font stack to fonts known to work properly with the above letter
-    and word spacings. See: https://github.com/yahoo/pure/issues/41/
+    and word spacings. See: https://github.com/yahoo/pinnackl/issues/41/
 
-    The following font stack makes Pure Grids work on all known environments.
+    The following font stack makes pinnackl Grids work on all known environments.
 
     * FreeSans: Ships with many Linux distros, including Ubuntu
 
@@ -49,11 +49,11 @@
    and is not required in markup.
 */
 .opera-only :-o-prefocus,
-.pure-g {
+.pinnackl-g {
     word-spacing: -0.43em;
 }
 
-.pure-u {
+.pinnackl-u {
     display: inline-block;
     *display: inline; /* IE < 8: fake inline-block */
     zoom: 1;
@@ -67,6 +67,6 @@
 Resets the font family back to the OS/browser's default sans-serif font,
 this the same font stack that Normalize.css sets for the `body`.
 */
-.pure-g [class *= "pure-u"] {
+.pinnackl-g [class *= "pinnackl-u"] {
     font-family: sans-serif;
 }

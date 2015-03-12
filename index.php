@@ -76,8 +76,11 @@ $Sophk = new Sophk();
 $loader = new SophKTELoader();
 $template = $loader->loadFromFile("template/config.tpl");
 $KTE = new SophKTEParser($template,$data = [
+	'base' => 'template/css/base/base.css',
+	'forms' => 'template/css/forms/forms.css',
+	'buttons' => 'template/css/buttons/buttons.css',
 	'title' =>  'Setup config file',
 	'h1' =>  'Setup config file',
-	'header' =>  'Setup config file',
+	'header' =>  'Setup config file'
 ]);
 echo $KTE->parseTemplate();
