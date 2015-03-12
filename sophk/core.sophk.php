@@ -11,10 +11,10 @@ function autoloader($file){
 }
 
 try{
-	autoloader(dirname(__FILE__).'/sophk.app.php');
-    autoloader(dirname(__FILE__).'/app.view.php');
-    autoloader(dirname(__FILE__).'/app.controller.php');
-    autoloader(dirname(__FILE__).'/app.model.php');
+	autoloader('sophk.app.php');
+    autoloader('app.view.php');
+    autoloader('app.controller.php');
+    autoloader('app.model.php');
 }
 catch(Exception $e) {
 	die("Fatal error : ".$e->getMessage());
