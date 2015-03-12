@@ -12,9 +12,9 @@ function autoloader($file){
 
 try{
 	autoloader('sophk.app.php');
-	autoloader('app.view.php');
-	autoloader('app.controller.php');
-	autoloader('app.model.php');
+    autoloader('app.view.php');
+    autoloader('app.controller.php');
+    autoloader('app.model.php');
 }
 catch(Exception $e) {
 	die("Fatal error : ".$e->getMessage());
