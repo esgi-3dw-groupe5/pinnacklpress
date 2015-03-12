@@ -87,9 +87,32 @@ class SophKTEParser{
 			$rule = $this->rule;
 			$value = htmlspecialchars($value); // default escaping
 			eval("\$rule = \"$rule\";");
-			$this->template = preg_replace($rule, $value, $this->template);
+			$this->replaceBlock($rule, $value);
+			$this->replaceOne($rule, $value);
 		}
-		//ob_clean();
+		ob_clean();
 		return $this->template;
+	}
+
+	public function replaceOne($rule, $value){
+		$this->template = preg_replace($rule, $value, $this->template);
+	}
+
+	public function replaceBlock($rule, $value){
+		// preg_match("/{% macro|(.*) %}(.*){% endmacro %}/s", $this->template, $match);
+		// sophk::debug($match);
+		// match if any macro block was created
+		preg_match("/{% macro %}(.*){% endmacro %}/s", $this->template, $match);
+		// if so get the matched result
+		// use the simple value parser to replace the tag
+		// then replace in the template the macro block with the right data in the template
+		$block = "";
+		if(isset($match[1])){
+			for($i=0;$i<2;$i++){
+				$block .= $match[1];
+			}
+			$block = preg_replace($rule, $value, $block);
+			$this->template = preg_replace("/({% macro %})(.*)({% endmacro %})/s", $block, $this->template);
+		}
 	}
 }

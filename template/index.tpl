@@ -17,7 +17,10 @@
 		</section>
 		<aside>
 		</aside>
+		{% macro %}
 		<footer>
+			{{footer}}
 		</footer>
+		{% endmacro %}
 	</body>
 </html>

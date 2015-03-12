@@ -7,7 +7,7 @@ $config = array(
 
 		'db_login' => 'root',
 
-		'db_password' => 'root',
+		'db_password' => '',
 
 		);
 		 

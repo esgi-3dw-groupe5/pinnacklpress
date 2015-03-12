@@ -38,6 +38,7 @@ class SophKApp extends Sophk{
 			$this->KTE = new SophKTEParser($template,$data = [
 				'title' =>  'My first SophK App',
 				'h1' =>  'Hello World',
+				'footer' =>  'Here is my footer',
 			]);
 		}
 	}
