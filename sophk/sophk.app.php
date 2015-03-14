@@ -25,7 +25,6 @@ class SophKApp extends Sophk{
 		$this->setViewData('h1', 'Setup config file');
 		$config = parent::getConfig();
 		if(!$config){
-			// $this->callView('config');
 			$template = $this->loader->loadFromFile("template/config.tpl");
 			$this->KTE = new SophKTEParser($template,$data = [
 				'title' =>  'Setup config file',
@@ -34,6 +33,16 @@ class SophKApp extends Sophk{
 				'base' => 'template/css/base/base.css',
 				'forms' => 'template/css/forms/forms.css',
 				'buttons' => 'template/css/buttons/buttons.css',
+			]);
+		}
+		else{
+			$template = $this->loader->loadFromFile("template/index.tpl");
+			$this->KTE = new SophKTEParser($template,$data = [
+				'title' =>  'My first SophK App',
+				'menu' =>  ['menu1','menu2','menu3','menu4','menu5', ],
+				'my element' =>  'articles',
+				'h1' =>  'Hello World',
+				'footer' =>  'Here is my footer',
 			]);
 		}
 	}

@@ -30,7 +30,12 @@ class SophKTELexer{
 	public function __construct(){
 		$this->rules = [];
 		$this->addLexerRule('variable', '/{{({$key})}}/');
-		$this->addLexerRule('block', '/({% macro %})(.*)({% endmacro %})/s');
+
+		$this->addLexerRule('macro', '/{% macro %}(.*){% endmacro %}/s');
+		$this->addLexerRule('macro-capture', '/({% macro %})(.*)({% endmacro %})/s');
+
+		$this->addLexerRule('macros', '/{% macros %}(.*){% endmacros %}/s');
+		$this->addLexerRule('macros-capture', '/({% macros %})(.*)({% endmacros %})/s');
 	}
 	public function __get($param){
 		return $this->$param;
@@ -85,11 +90,49 @@ class SophKTEParser{
 		ob_start();
 		foreach ($this->data as $key => $value) {
 			$rule = $this->rule;
-			$value = htmlspecialchars($value); // default escaping
 			eval("\$rule = \"$rule\";");
-			$this->template = preg_replace($rule, $value, $this->template);
+			if(gettype($value) == "array"){
+				$this->replaceBlockArray($rule, $value);
+			}
+			else{
+				$value = htmlspecialchars($value); // default escaping
+				$this->replaceBlock($rule, $value);
+				$this->replaceOne($rule, $value);
+			}
 		}
-		ob_clean();
+		// ob_clean();
 		return $this->template;
+	}
+
+	public function replaceOne($rule, $value){
+		$this->template = preg_replace($rule, $value, $this->template);
+	}
+
+	public function replaceBlock($rule, $value){
+		// match if any macro block was created
+		// if so get the matched result
+		// use the simple value parser to replace the tag
+		// then replace in the template the macro block with the right data in the template
+		preg_match($this->lexer->getRule('macro')[0], $this->template, $match);
+		if(isset($match[1])){
+			$block = trim($match[1]);
+			$block = preg_replace($rule, $value, $block);
+			$this->template = preg_replace($this->lexer->getRule('macro-capture')[0], $block, $this->template);
+		}
+	}
+
+	public function replaceBlockArray($rule, $value){
+
+		preg_match($this->lexer->getRule('macros')[0], $this->template, $match);
+
+		$block = "";
+		if(isset($match[1])){
+			for($i=0;$i<sizeof($value);$i++){
+				$block .= trim($match[1]);
+				$value[$i] = htmlspecialchars($value[$i]); // default escaping
+				$block = preg_replace($rule, $value[$i], $block);
+			}
+			$this->template = preg_replace($this->lexer->getRule('macros-capture')[0], $block, $this->template);
+		}
 	}
 }

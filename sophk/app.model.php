@@ -1,6 +1,7 @@
 <?php
 
 class AppModel extends SophKApp{
+
 	protected $data;
 	public function __construct(){
 		$this->data = [
@@ -17,7 +18,7 @@ class AppModel extends SophKApp{
 
 	}
 
-	public function initDatabase(){
+	public function connectDatabase(){
 		try{
 			$link = new PDO('mysql:host='.$db_host.';dbname='.$db_name,$db_login,$db_password,
 			array(
@@ -30,5 +31,54 @@ class AppModel extends SophKApp{
 		}
 		return $link;
 	}
+    
+    public function createDatabase($host, $root, $root_pswd, $user, $user_pswd, $new_db)
+    {
+        try {
+            $db = new PDO("mysql:host=$host", $root, $root_pswd);
+
+            $db->exec("CREATE DATABASE `$new_db`;
+                CREATE USER '$user'@'$host' IDENTIFIED BY '$pass';
+                GRANT ALL ON `$db`.* TO '$user'@'$host';
+                FLUSH PRIVILEGES;") 
+                or die(print_r($db->errorInfo(), true));
+
+        } catch (PDOException $e) {
+            die("DB ERROR: ". $e->getMessage());
+        }
+    }
+    
+    function createUser($link, $gender, $name, $firstname, $email, $password, $pseudo, $date, $cle){
+        try{
+            $req = $link -> prepare("INSERT INTO pp_users 
+			(gender, firstname, name, pseudo, email, password, birth_date,cle)
+			VALUES( :gender,
+					:firstname,
+					:name,
+					:pseudo,
+					:email,
+					:password,
+					:birth_date,
+                    :cle) ");
+            $success = $req->execute(array(
+                ':gender' => $gender,
+                ':firstname' => $firstname,
+                ':name' => $name,
+                ':pseudo' => $pseudo,
+                ':email' => $email,
+                ':password' => $password,
+                ':birth_date' => $date,
+                ':cle' => $cle
+            ));
+            return $success;
+        }
+        catch( PDOException $e ){
+
+            debug($e);
+            die();
+        }
+
+
+    }
 
 }
