@@ -30,7 +30,9 @@
 				<div class="pinnackl-control-group">
 					<label for="db_password"><span>db_password : </span></label><input id="db_password" class="pinnackl-form" type="password" name="db_password">
 				</div>
-				<input type="submit" name="db_submit" value="Envoyer">
+				<div class="pinnackl-controls">
+					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="db_submit" value="Envoyer">
+				</di>
 			</fieldset>
 			</form>
 		</section>
