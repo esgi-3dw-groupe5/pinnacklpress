@@ -25,7 +25,6 @@ class SophKApp extends Sophk{
 		$this->setViewData('h1', 'Setup config file');
 		$config = parent::getConfig();
 		if(!$config){
-			// $this->callView('config');
 			$template = $this->loader->loadFromFile("template/config.tpl");
 			$this->KTE = new SophKTEParser($template,$data = [
 				'title' =>  'Setup config file',
