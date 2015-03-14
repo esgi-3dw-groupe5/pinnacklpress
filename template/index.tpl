@@ -10,17 +10,23 @@
 	<body>
 		<header>
 			<nav>
+				<ul>
+					{% macros %}
+					<li>{{menu}}</li>
+					{% endmacros %}
+				</ul>
 			</nav>
 		</header>
 		<section>
 			<h1>{{h1}}</h1>
+			{% macro %}
+				<div>{{my element}}</div>
+			{% endmacro %}
 		</section>
 		<aside>
 		</aside>
-		{% macro %}
 		<footer>
 			{{footer}}
 		</footer>
-		{% endmacro %}
 	</body>
 </html>

@@ -37,6 +37,8 @@ class SophKApp extends Sophk{
 			$template = $this->loader->loadFromFile("template/index.tpl");
 			$this->KTE = new SophKTEParser($template,$data = [
 				'title' =>  'My first SophK App',
+				'menu' =>  ['menu1','menu2','menu3','menu4','menu5', ],
+				'my element' =>  'articles',
 				'h1' =>  'Hello World',
 				'footer' =>  'Here is my footer',
 			]);
