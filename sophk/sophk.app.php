@@ -2,6 +2,7 @@
 
 class SophKApp extends Sophk{
 	public $appName;
+	public $config;
 	public $appView;
 	public $appModel;
 	public $appController;
@@ -23,8 +24,8 @@ class SophKApp extends Sophk{
 		$this->appController 	= new AppController($this->appModel);
 
 		$this->setViewData('h1', 'Setup config file');
-		$config = parent::getConfig();
-		if(!$config){
+		$this->config = parent::getConfig();
+		if(!$this->config){
 			$template = $this->loader->loadFromFile("template/config.tpl");
 			$this->KTE = new SophKTEParser($template,$data = [
 				'title' =>  'Setup config file',

@@ -54,7 +54,7 @@ class Sophk {
 			return false;
 		}
 		require_once(dirname(__FILE__).'/../config.local.php');
-		return true;
+		return $config;
 	}
 
 	public static function setConfig($POST){
