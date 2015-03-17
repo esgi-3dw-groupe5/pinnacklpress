@@ -2,8 +2,8 @@
 // echo "Split Object PHP Framework - SOPHK";
 // Autoloader
 function autoloader($file){
-	if(file_exists('sophk/'.$file)){
- 		require_once('sophk/'.$file);
+	if(file_exists(dirname(__FILE__).'/'.$file)){
+ 		require_once(dirname(__FILE__).'/'.$file);
 	}
 	else{
 		throw new Exception(' not found');
@@ -17,6 +17,7 @@ try{
     autoloader('app.model.php');
 }
 catch(Exception $e) {
+	echo 'plop';
 	die("Fatal error : ".$e->getMessage());
 }
 
@@ -50,6 +51,7 @@ class Sophk {
 	}
 
 	public function getConfig(){
+		$config = null;
 		if( !file_exists('config.local.php') ){
 			return false;
 		}

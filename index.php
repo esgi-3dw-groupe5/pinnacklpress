@@ -17,11 +17,11 @@ $Sophk = new Sophk();
 $app = new SophKApp();
 $KDM = new SophKDM($app->config);
 
-$controller = $app->appController = new AppController($KDM) ;
-$user = $KDM->create('pp_user');
-	Sophk::debug($user);
+// $controller = $app->appController = new AppController($KDM) ;
+// $user = $KDM->create('pp_user');
+	// Sophk::debug($user);
 $controller = $app->appController;
 	  $page = $controller->page;
 	  
 // use KTE to render the template
-// echo $app->KTE->parseTemplate();
+echo $app->KTE->parseTemplate();

@@ -15,7 +15,7 @@ class SophKApp extends Sophk{
 
 	public function __construct(){
 		parent::__construct();
-		$this->setHtaccess("SophK");
+		$this->setHtaccess("pinnacklpress");
 
 		$this->appName 			= "My app";
 		$this->appView 			= new AppView(); // use KTE instead of the view ?
@@ -25,8 +25,11 @@ class SophKApp extends Sophk{
 
 		$this->setViewData('h1', 'Setup config file');
 		$this->config = parent::getConfig();
+
 		if(!$this->config){
-			$template = $this->loader->loadFromFile("template/config.tpl");
+			if($this->appController->page == 'index')
+				header('Location: http://127.0.0.1/pinnacklpress/config');
+			$template = $this->loader->loadFromFile("template/".$this->appController->page.".tpl");
 			$this->KTE = new SophKTEParser($template,$data = [
 				'title' =>  'Setup config file',
 				'h1' =>  'Setup config file',
@@ -37,7 +40,9 @@ class SophKApp extends Sophk{
 			]);
 		}
 		else{
-			$template = $this->loader->loadFromFile("template/index.tpl");
+			if($this->appController->page == 'config')
+				header('Location: http://127.0.0.1/pinnacklpress/');
+			$template = $this->loader->loadFromFile("template/".$this->appController->page.".tpl");
 			$this->KTE = new SophKTEParser($template,$data = [
 				'title' =>  'My first SophK App',
 				'menu' =>  ['menu1','menu2','menu3','menu4','menu5', ],
