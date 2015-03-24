@@ -21,9 +21,9 @@ catch(Exception $e) {
 	die("Fatal error : ".$e->getMessage());
 }
 
-class Sophk {
-	private $name 		= "SophK";
-	private $description 	= "Split Object PHP Framework - SophK";
+class Sophwork {
+	private $name 		= "sophwork";
+	private $description 	= "Split Object PHP Framework - Sophwork";
 	private $version 		= "0.1.0";
 
 	public function __construct(){

@@ -1,6 +1,6 @@
 <?php
 
-class SophKDM{
+class SophworkDM{
 	public $link;
 	public $config;
 
@@ -56,7 +56,7 @@ class SophKDM{
 	}
 }
 
-class SophKDMEntities extends SophKDM{
+class SophworkDMEntities extends SophworkDM{
 	protected $data;
 
 	public function __construct(){

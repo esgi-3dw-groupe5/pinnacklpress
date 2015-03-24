@@ -1,6 +1,6 @@
 <?php
 
-class AppView extends SophKApp{
+class AppView extends SophworkApp{
 	private $viewData = [];
 
 	public function __construct() {

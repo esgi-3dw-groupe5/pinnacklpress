@@ -1,6 +1,6 @@
 <?php
 
-class SophKTELoader{
+class SophworkTELoader{
 	protected $template;
 
 	public function __construct(){ // FIXME : add the loading of multiple template in 1 loader (array)
@@ -21,7 +21,7 @@ class SophKTELoader{
 	}
 }
 
-class SophKTELexer{
+class SophworkTELexer{
 	public $token;
 	public $rules;
 	public $environment;
@@ -63,7 +63,7 @@ class SophKTELexer{
 	}
 }
 
-class SophKTEParser{
+class SophworkTEParser{
 	protected $template;
 	protected $lexer;
 	protected $data;
@@ -73,7 +73,7 @@ class SophKTEParser{
 	public function __construct($template, $data=null){
 			$this->addData($data);
 			$this->template = $template;
-			$this->lexer = new SophKTELexer();
+			$this->lexer = new SophworkTELexer();
 			$this->useRule('variable');
 			// $this->useRule('variable-lower');
 	}

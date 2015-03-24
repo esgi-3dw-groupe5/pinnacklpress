@@ -1,6 +1,6 @@
 <?php
 
-class SophKApp extends Sophk{
+class SophworkApp extends Sophwork{
 	public $appName;
 	public $config;
 	public $appView;
@@ -15,11 +15,10 @@ class SophKApp extends Sophk{
 
 	public function __construct(){
 		parent::__construct();
-		$this->setHtaccess("pinnacklpress");
 
 		$this->appName 			= "My app";
 		$this->appView 			= new AppView(); // use KTE instead of the view ?
-		$this->loader 			= new SophKTELoader();
+		$this->loader 			= new SophworkTELoader();
 		$this->appModel 		= new AppModel();
 		$this->appController 	= new AppController($this->appModel);
 
@@ -30,7 +29,7 @@ class SophKApp extends Sophk{
 			if($this->appController->page == 'index')
 				header('Location: http://127.0.0.1/pinnacklpress/config');
 			$template = $this->loader->loadFromFile("template/".$this->appController->page.".tpl");
-			$this->KTE = new SophKTEParser($template,$data = [
+			$this->KTE = new SophworkTEParser($template,$data = [
 				'title' =>  'Setup config file',
 				'h1' =>  'Setup config file',
 				'header' =>  'Setup config file',
@@ -43,7 +42,7 @@ class SophKApp extends Sophk{
 			if($this->appController->page == 'config')
 				header('Location: http://127.0.0.1/pinnacklpress/');
 			$template = $this->loader->loadFromFile("template/".$this->appController->page.".tpl");
-			$this->KTE = new SophKTEParser($template,$data = [
+			$this->KTE = new SophworkTEParser($template,$data = [
 				'title' =>  'My first SophK App',
 				'menu' =>  ['menu1','menu2','index','menu4','menu5', ],
 				'active' => ['active'],

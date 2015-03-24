@@ -1,17 +1,14 @@
 <?php
-interface test {
 
-}
-
-class AppController extends SophKApp{
+class AppController extends SophworkApp{
 	protected $page;
 	protected $article;
 
 	public $appModel;
 
 	public function __construct($appModel = null){
-		$this->page 	= SophK::getParam('p','index');
-		$this->article 	= SophK::getParam('a','');
+		$this->page 	= Sophwork::getParam('p','index');
+		$this->article 	= Sophwork::getParam('a','');
 		$this->appModel = $appModel;
 	}
 

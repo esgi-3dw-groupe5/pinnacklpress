@@ -1,12 +1,12 @@
 <?php
 
-class AppModel extends SophKApp{
+class AppModel extends SophworkApp{
 
 	protected $data;
 	public function __construct(){
 		$this->data = [
 			"name" => "index",
-			"title" => "My First SophK App",
+			"title" => "My First Sophwork App",
 			"h1" => "Hello World",
 		];
 	}

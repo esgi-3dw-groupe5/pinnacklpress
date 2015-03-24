@@ -1,7 +1,7 @@
 <?php
-require_once('sophk/core.sophk.php');
-require_once('sophk/sophk.te.php');
-require_once('sophk/sophk.dm.php');
+require_once('sophwork/core.sophk.php');
+require_once('sophwork/sophk.te.php');
+require_once('sophwork/sophk.dm.php');
 require_once('controller/controller.core.php');
 require('controller/controller.form.php');
 // require('app.formValidate.php');
@@ -13,9 +13,9 @@ require('controller/controller.form.php');
  *		- appModel class
  *		- appView class or use the template engine sophKTE
  */
-$Sophk = new Sophk();
-$app = new SophKApp();
-$KDM = new SophKDM($app->config);
+$sophwork = new Sophwork();
+$app = new SophworkApp();
+$KDM = new SophworkDM($app->config);
 
 // $controller = $app->appController = new AppController($KDM) ;
 // $user = $KDM->create('pp_user');
