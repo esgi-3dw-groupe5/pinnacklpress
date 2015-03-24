@@ -207,29 +207,41 @@ class SophKTEParser{
 		$block = "";
 		if(isset($match[1])){
 			preg_match_all("/{{(\\w+)}}/", trim($match[1]), $matches);
-			if(isset($matches[1][0]) && $matches[1][0] != $key)
-				return;
-			
-			for($i=0;$i<sizeof($value);$i++){
-				$block .= trim($match[1]);
+			for($j=0;$j<sizeof($matches[1]);$j++){
+				for($i=0;$i<sizeof($value);$i++){
+				if(isset($matches[1][$j]) && $matches[1][$j] != $key)
+					continue;
+						$node = trim($match[1]);
+							$node = $this->setActiveMenu($node, $value[$i]);
 
-				$this->useRule('variable');
-				$rule = $this->rule;
-				$value[$i] = $this->optionalModifier($value[$i],'');
-				$block = $this->replaceOne($rule, $key, $value[$i], $block);
+						$block .= $node;
+						
+						$this->useRule('variable');
+						$rule = $this->rule;
+						$value[$i] = $this->optionalModifier($value[$i],'');
+						$block = $this->replaceOne($rule, $key, $value[$i], $block);
 
-				$this->useRule('variable-lower');
-				$rule = $this->rule;
-				$value[$i] = $this->optionalModifier($value[$i],'lower');
-				$block = $this->replaceOne($rule, $key, $value[$i], $block);
-				
-				$this->useRule('variable-upper');
-				$rule = $this->rule;
-				$value[$i] = $this->optionalModifier($value[$i],'upper');
-				$block = $this->replaceOne($rule, $key, $value[$i], $block);
+						$this->useRule('variable-lower');
+						$rule = $this->rule;
+						$value[$i] = $this->optionalModifier($value[$i],'lower');
+						$block = $this->replaceOne($rule, $key, $value[$i], $block);
+						
+						$this->useRule('variable-upper');
+						$rule = $this->rule;
+						$value[$i] = $this->optionalModifier($value[$i],'upper');
+						$block = $this->replaceOne($rule, $key, $value[$i], $block);
 
-			}
+					}
+				}
 			$this->template = preg_replace($this->lexer->getRule('macros-capture')[0], $block, $this->template);
 		}
+	}
+
+	public function setActiveMenu($node, $value){
+		$cont = new appController(); $page = $cont->page; // greedy to use appController class ?
+		$this->useRule('variable'); $rule = $this->rule;
+		if($page == $this->optionalModifier($value,''))
+			return $this->replaceOne($rule, 'active', $this->optionalModifier('active',''), $node);
+		return $this->replaceOne($rule, 'active', $this->optionalModifier('',''), $node);
 	}
 }

@@ -12,7 +12,7 @@
 			<nav>
 				<ul>
 					{% macros %}
-					<li>{{menu}}</li>
+					<li class="{{active}}"><a href='/pinnacklpress/{{menu}[L]}'>{{menu}}</a></li>
 					{% endmacros %}
 				</ul>
 			</nav>
