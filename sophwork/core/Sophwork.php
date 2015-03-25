@@ -1,25 +1,6 @@
 <?php
 // echo "Split Object PHP Framework - SOPHK";
-// Autoloader
-function autoloader($file){
-	if(file_exists(dirname(__FILE__).'/'.$file)){
- 		require_once(dirname(__FILE__).'/'.$file);
-	}
-	else{
-		throw new Exception(' not found');
-	}
-}
-
-try{
-	autoloader('sophk.app.php');
-    autoloader('app.view.php');
-    autoloader('app.controller.php');
-    autoloader('app.model.php');
-}
-catch(Exception $e) {
-	echo 'plop';
-	die("Fatal error : ".$e->getMessage());
-}
+namespace sophwork\core;
 
 class Sophwork {
 	private $name 		= "sophwork";
