@@ -60,5 +60,34 @@ class Sophwork {
 		fclose($handle);
 		require_once(dirname(__FILE__).'/../config.local.php');
 	}
+	
+	public static function redirect($parameters = null){
+		$s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+		$protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
+		$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
+
+		// correspond to this specific case
+		$URI = preg_split("/\//",$_SERVER['REQUEST_URI']);
+		$c = count($URI);
+		if($c < 3)
+			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] ."/" .$parameters;
+		else
+			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] ."/". $URI[1] ."/" .$parameters;
+		header("Location: ".$localUrl);
+	}
+
+	public static function getUrl($parameters = null){
+		$s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+		$protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
+		$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
+
+		// correspond to this specific case
+		$URI = preg_split("/\//",$_SERVER['REQUEST_URI']);
+		$c = count($URI);
+		if($c < 3)
+			return $protocol . "://" . $_SERVER['SERVER_NAME'] ."/" .$parameters;
+		else
+			return $protocol . "://" . $_SERVER['SERVER_NAME'] ."/". $URI[1] ."/" .$parameters;
+	}
 }
 

@@ -46,7 +46,7 @@ $app = new SophworkApp();
 // $loader = new SophworkTELoader();
 // if(!$app->config){
 // 	if($app->appController->page == 'index')
-// 		header('Location: http://127.0.0.1/pinnacklpress/config'); //FIXME : use a redirect method
+// 		Sophwork::redirect('config');
 // 	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
 // 	$KTE = new SophworkTEParser($template,$data = [
 // 		'title' =>  'Setup config file',
@@ -59,7 +59,7 @@ $app = new SophworkApp();
 // }
 // else{
 // 	if($app->appController->page == 'config')
-// 		header('Location: http://127.0.0.1/pinnacklpress/'); //FIXME : use a redirect method
+// 		Sophwork::redirect();
 // 	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
 // 	$KTE = new SophworkTEParser($template,$data = [
 // 		'title' =>  'My first SophK App',

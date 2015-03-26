@@ -28,7 +28,7 @@ class Core {
 	public function sendAction($action,$POST){
 		if ($action == 'db_submit'){
 			$this->displayErr = Sophwork::setConfig($POST);
-			header('Location: http://127.0.0.1/pinnacklpress/'); //FIXME : use a redirect method
+			Sophwork::redirect();
 		}
 		
 		return $this->displayErr;

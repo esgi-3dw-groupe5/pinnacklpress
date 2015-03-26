@@ -9,7 +9,7 @@
  *	feel free to edit it or recreate your own for your project.
  *	NOTE : Uncomment the exemples bellow to see it works
  */
-echo "<h1><b><u>Welcome to Sophwork</u></b><h1>";
+echo "<h1><b><u>Welcome to Sophwork</u></b></h1>";
 require_once('sophwork/autoloader.php');
 // require_once('controller/controller.core.php');
 // require('controller/controller.form.php');
@@ -43,34 +43,34 @@ $app = new SophworkApp();
 // 	$appView->renderView('config');
 
 // use KTE to render the template
-// $loader = new SophworkTELoader();
-// if(!$app->config){
-// 	if($app->appController->page == 'index')
-// 		header('Location: http://127.0.0.1/pinnacklpress/config'); //FIXME : use a redirect method
-// 	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
-// 	$KTE = new SophworkTEParser($template,$data = [
-// 		'title' =>  'Setup config file',
-// 		'h1' =>  'Setup config file',
-// 		'header' =>  'Setup config file',
-// 		'base' => 'template/css/base/base.css',
-// 		'forms' => 'template/css/forms/forms.css',
-// 		'buttons' => 'template/css/buttons/buttons.css',
-// 	]);
-// }
-// else{
-// 	if($app->appController->page == 'config')
-// 		header('Location: http://127.0.0.1/pinnacklpress/'); //FIXME : use a redirect method
-// 	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
-// 	$KTE = new SophworkTEParser($template,$data = [
-// 		'title' =>  'My first SophK App',
-// 		'menu' =>  ['menu1','menu2','index','menu4','menu5', ],
-// 		'active' => ['active'],
-// 		'my element' =>  'articles',
-// 		'h1' =>  'Hello World',
-// 		'footer' =>  'Here is my footer',
-// 	]);
-// }
-// echo $KTE->parseTemplate();
+$loader = new SophworkTELoader();
+if(!$app->config){
+	if($app->appController->page == 'index')
+		Sophwork::redirect('config');
+	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
+	$KTE = new SophworkTEParser($template,$data = [
+		'title' =>  'Setup config file',
+		'h1' =>  'Setup config file',
+		'header' =>  'Setup config file',
+		'base' => 'template/css/base/base.css',
+		'forms' => 'template/css/forms/forms.css',
+		'buttons' => 'template/css/buttons/buttons.css',
+	]);
+}
+else{
+	if($app->appController->page == 'config')
+		Sophwork::redirect();
+	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
+	$KTE = new SophworkTEParser($template,$data = [
+		'title' =>  'My first SophK App',
+		'menu' =>  ['menu1','menu2','index','menu4','menu5', ],
+		'active' => ['active'],
+		'my element' =>  'articles',
+		'h1' =>  'Hello World',
+		'footer' =>  'Here is my footer',
+	]);
+}
+echo $KTE->parseTemplate();
 
 $controller = $app->appController;
 	$page = $controller->page;
