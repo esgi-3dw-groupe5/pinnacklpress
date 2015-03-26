@@ -1,34 +1,81 @@
 <?php
+/*
+ *	This file is a part of the sophwork project
+ *	@Tested version : Sophwork.0.2.0
+ *	@author : Syu93
+ *	--
+ *	This file if for exemple purpose
+ *	It's show you the way to use the Sophwork framework basises
+ *	feel free to edit it or recreate your own for your project.
+ *	NOTE : Uncomment the exemples bellow to see it works
+ */
+echo "<h1><b><u>Welcome to Sophwork</u></b><h1>";
 require_once('sophwork/autoloader.php');
-// require_once('sophwork/core.sophk.php');
-// require_once('sophwork/sophk.te.php');
-// require_once('sophwork/sophk.dm.php');
 // require_once('controller/controller.core.php');
 // require('controller/controller.form.php');
-// require('app.formValidate.php');
 
 use sophwork\core\Sophwork;
-use sophwork\app\SophworkApp;
-use sophwork\app\controller\appContrller;
-use sophwork\app\model\appModel;
-use sophwork\app\view\appView;
+use sophwork\app\app\SophworkApp;
+use sophwork\app\controller\AppController;
+use sophwork\app\view\AppView;
+use sophwork\app\model\AppModel;
+
+// use modules
+	// KTE
+use sophwork\modules\kte\SophworkTELoader;
+use sophwork\modules\kte\SophworkTELexer;
+use sophwork\modules\kte\SophworkTEParser;
+	// KDM
+use sophwork\modules\kdm\SophworkDM;
+use sophwork\modules\kdm\SophworkDMEntities;
 
 /*
- *	Create a new applicaion with the SophApp class
+ *	Create a new applicaion with the Sophwork class
  *	It will create 3 new class :
- *		- appContrller class
+ *		- appController class
  *		- appModel class
- *		- appView class or use the template engine sophKTE
+ *		- appView class
  */
 $sophwork = new Sophwork();
 $app = new SophworkApp();
-// $KDM = new SophworkDM($app->config);
+// This case use the default appView class to render the view
+// $appView = $app->appView;
+// 	$appView->renderView('config');
 
-// // $controller = $app->appController = new AppController($KDM) ;
-// // $user = $KDM->create('pp_user');
-// 	// Sophk::debug($user);
-// $controller = $app->appController;
-// 	  echo $page = $controller->page;
-	  
-// // use KTE to render the template
-// echo $app->KTE->parseTemplate();
+// use KTE to render the template
+// $loader = new SophworkTELoader();
+// if(!$app->config){
+// 	if($app->appController->page == 'index')
+// 		header('Location: http://127.0.0.1/pinnacklpress/config'); //FIXME : use a redirect method
+// 	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
+// 	$KTE = new SophworkTEParser($template,$data = [
+// 		'title' =>  'Setup config file',
+// 		'h1' =>  'Setup config file',
+// 		'header' =>  'Setup config file',
+// 		'base' => 'template/css/base/base.css',
+// 		'forms' => 'template/css/forms/forms.css',
+// 		'buttons' => 'template/css/buttons/buttons.css',
+// 	]);
+// }
+// else{
+// 	if($app->appController->page == 'config')
+// 		header('Location: http://127.0.0.1/pinnacklpress/'); //FIXME : use a redirect method
+// 	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
+// 	$KTE = new SophworkTEParser($template,$data = [
+// 		'title' =>  'My first SophK App',
+// 		'menu' =>  ['menu1','menu2','index','menu4','menu5', ],
+// 		'active' => ['active'],
+// 		'my element' =>  'articles',
+// 		'h1' =>  'Hello World',
+// 		'footer' =>  'Here is my footer',
+// 	]);
+// }
+// echo $KTE->parseTemplate();
+
+$controller = $app->appController;
+	$page = $controller->page;
+
+// $KDM = new SophworkDM($app->config);
+// $user = $KDM->create('pp_user');
+
+// $controller = $app->appController = new AppController($KDM) ;

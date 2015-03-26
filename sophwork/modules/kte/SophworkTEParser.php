@@ -1,6 +1,16 @@
 <?php
+/*
+ *	This file is a part of the sophwork project
+ *	@Tested version : Sophwork.0.2.0
+ *	@author : Syu93
+ *	--
+ *	Sophpkwork module : Template Engine
+ *	Parser class
+ */
 
-namespace sophwork\kte;
+namespace sophwork\modules\kte;
+
+use sophwork\app\controller\appController;
 
 class SophworkTEParser{
 	protected $template;
@@ -14,7 +24,6 @@ class SophworkTEParser{
 			$this->template = $template;
 			$this->lexer = new SophworkTELexer();
 			$this->useRule('variable');
-			// $this->useRule('variable-lower');
 	}
 
 	public function __get($param){
@@ -35,12 +44,11 @@ class SophworkTEParser{
 
 	public function parseTemplate($option = null){
 		ob_start();
-		// $obj = $this->convert($this->data);
 		if(preg_match_all($this->lexer->getRule('variable-search')[0], $this->template)){
 			$this->useRule('variable');
 			$this->observer();
 		}
-		// ob_clean();
+		ob_clean();
 		return $this->template;
 	}
 

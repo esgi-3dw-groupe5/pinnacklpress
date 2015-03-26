@@ -1,6 +1,18 @@
 <?php
+/*
+ *	This file is a part of the sophwork project
+ *	@Tested version : Sophwork.0.2.0
+ *	@author : Syu93
+ *	--
+ *	Main view class
+ */
+
+namespace sophwork\app\view;
+
+use sophwork\app\app\SophworkApp;
 
 class AppView extends SophworkApp{
+
 	private $viewData = [];
 
 	public function __construct() {
@@ -26,7 +38,7 @@ class AppView extends SophworkApp{
 	}
 
 	public function renderView($template){
-		require(dirname(__FILE__).'/../template/'.$template.'.tpl');
+		include(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
 	}
 
 	public function printOut($value){
@@ -34,7 +46,7 @@ class AppView extends SophworkApp{
 			echo "";
 		}
 		else{
-			echo $this->viewData[$value];
+			echo htmlspecialchars($this->viewData[$value]);
 		}
 	}
 }

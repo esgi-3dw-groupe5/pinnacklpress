@@ -1,67 +1,16 @@
 <?php
+/*
+ *	This file is a part of the sophwork project
+ *	@Tested version : Sophwork.0.2.0
+ *	@author : Syu93
+ *	--
+ *	Sophpkwork module : Template Engine
+ *	Parser class
+ */
 
-class SophworkTELoader{
-	protected $template;
+namespace sophwork\modules\kte;
 
-	public function __construct(){ // FIXME : add the loading of multiple template in 1 loader (array)
-
-	}
-
-	public function __get($param){
-		return $template;
-	}
-
-	public function loadFromArray($template){
-		// not used yet
-	}
-
-	public function loadFromFile($template){
-		if(file_exists($template))
-			return $this->template = file_get_contents($template);
-	}
-}
-
-class SophworkTELexer{
-	public $token;
-	public $rules;
-	public $environment;
-
-
-	public function __construct(){
-		$this->rules = [];
-		$this->addLexerRule('variable-search', '/{{(\w+)}}/');
-		$this->addLexerRule('variable', '/{{($key)}}/');
-		
-		$this->addLexerRule('variable-lower-search', '/{{(.*)}\\[L]}/');
-		$this->addLexerRule('variable-lower', '/{{($key)}\\[L]}/');
-		
-		$this->addLexerRule('variable-upper-search', '/{{(.*)}\\[U]}/');
-		$this->addLexerRule('variable-upper', '/{{($key)}\\[U]}/');
-
-		$this->addLexerRule('macro-search', '/{% macro %}(.*){% endmacro %}/s');
-		$this->addLexerRule('macro-capture', '/({% macro %})(.*)({% endmacro %})/s');
-
-		$this->addLexerRule('macros-search', '/{% macros %}(.*){% endmacros %}/s');
-		$this->addLexerRule('macros-capture', '/({% macros %})(.*)({% endmacros %})/s');
-	}
-	public function __get($param){
-		return $this->$param;
-	}
-
-	public function getRule($rulename){
-		return $this->rules[$rulename];
-	}
-
-	public function addEnvironment($environment){
-		$this->environment = $environment;
-	}
-
-	// NOTE !: If you pute variable in your rule beware that they no be interpreted use single quote '' and encapsule with {}
-	public function addLexerRule($rulename, $rule){
-		$this->rules[$rulename] = [];
-		$this->rules[$rulename][] = $rule; 
-	}
-}
+use sophwork\app\controller\appController;
 
 class SophworkTEParser{
 	protected $template;
@@ -75,7 +24,6 @@ class SophworkTEParser{
 			$this->template = $template;
 			$this->lexer = new SophworkTELexer();
 			$this->useRule('variable');
-			// $this->useRule('variable-lower');
 	}
 
 	public function __get($param){
@@ -96,12 +44,11 @@ class SophworkTEParser{
 
 	public function parseTemplate($option = null){
 		ob_start();
-		// $obj = $this->convert($this->data);
 		if(preg_match_all($this->lexer->getRule('variable-search')[0], $this->template)){
 			$this->useRule('variable');
 			$this->observer();
 		}
-		// ob_clean();
+		ob_clean();
 		return $this->template;
 	}
 

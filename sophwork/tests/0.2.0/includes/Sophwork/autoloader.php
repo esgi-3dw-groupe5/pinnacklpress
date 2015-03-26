@@ -9,9 +9,9 @@
 
 function __autoload($c){
 // Autoloader
-	// echo "<pre>";
-	// echo dirname(__FILE__)."/..".__NAMESPACE__ . "/". $c . ".php";
-	// echo "</pre>";
+	echo "<pre>";
+	echo dirname(__FILE__)."/..".__NAMESPACE__ . "/". $c . ".php";
+	echo "</pre>";
 	try{
 		if(file_exists(dirname(__FILE__) . "/.." . __NAMESPACE__ . "/". $c . ".php"))
 			require_once dirname(__FILE__) . "/.." . __NAMESPACE__ . "/". $c . ".php";
