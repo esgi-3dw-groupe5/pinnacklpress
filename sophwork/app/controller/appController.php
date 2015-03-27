@@ -13,6 +13,7 @@ use sophwork\core\Sophwork;
 use sophwork\app\app\SophworkApp;
 
 class AppController extends SophworkApp{
+	protected $action;
 	protected $page;
 	protected $article;
 
@@ -37,5 +38,20 @@ class AppController extends SophworkApp{
 
 	public function getDataFromModel(){
 		return $this->appModel->data;
+	}
+
+	public function setConfigAction($POST){
+
+		if(array_key_exists('db_submit',$POST))
+    		return $this->action = 'db_submit';
+	}
+
+	public function sendConfigAction($action,$POST){
+		if ($action == 'db_submit'){
+			$this->displayErr = Sophwork::setConfig($POST);
+			Sophwork::redirect();
+		}
+		
+		return $this->displayErr;
 	}
 }

@@ -42,6 +42,12 @@ $app = new SophworkApp();
 // $appView = $app->appView;
 // 	$appView->renderView('config');
 
+// get the config form
+$controller = $app->appController;
+	$action = $controller->setConfigAction($_POST);
+
+$controller->sendConfigAction($action, $_POST);
+
 // use KTE to render the template
 $loader = new SophworkTELoader();
 if(!$app->config){
@@ -72,10 +78,17 @@ else{
 }
 echo $KTE->parseTemplate();
 
-$controller = $app->appController;
-	$page = $controller->page;
-
-// $KDM = new SophworkDM($app->config);
-// $user = $KDM->create('pp_user');
+$KDM = new SophworkDM($app->config);
+$user = $KDM->create('pp_user');
+$user->user_gender = 1;
+$user->user_pseudo = 'Syu93';
+$user->user_email = 'herve.tutuaku@gmail.com';
+$user->user_name = 'Hervé';
+$user->user_firstname = 'Tutuaku';
+$user->user_bdate = '1993-01-23';
+$user->save();
+echo'<pre>';
+var_dump($user);
+echo'</pre>';
 
 // $controller = $app->appController = new AppController($KDM) ;

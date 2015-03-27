@@ -10,9 +10,13 @@
 
 namespace sophwork\modules\kdm;
 
+use sophwork\core\Sophwork;
 use sophwork\modules\kdm\SophworkDM;
 
 class SophworkDMEntities extends SophworkDM{
+	protected $table;
+	protected $primaryKey;
+	public $link;
 	protected $data;
 
 	public function __construct(){
@@ -35,5 +39,38 @@ class SophworkDMEntities extends SophworkDM{
 		' on line ' . $trace[0]['line'],
 		E_USER_NOTICE);
 		return null;
+	}
+
+	public function setLink($link){
+		$this->link = $link;
+	}
+
+	public function getLink(){
+		return $this->link;
+	}
+	
+	public function setPk($primaryKey){
+		$this->primaryKey = $primaryKey;
+	}
+
+	public function getPk(){
+		return $this->primaryKey;
+	}
+	
+	public function setTable($table){
+		$this->table = $table;
+	}
+
+	public function getTable(){
+		return $this->table;
+	}
+
+	public function save(){
+		if($this->user_id == null)
+			$this->insert($this->table, $this->data);
+		else{
+			$pk = $this->getPk(); $pkValue = $this->$pk;
+			$this->update($this->table, $this->data, "$pk = $pkValue");
+		}
 	}
 }
