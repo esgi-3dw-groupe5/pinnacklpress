@@ -21,14 +21,32 @@ class Core {
     		$this->action = 'db_submit';
 
 		}
+		else{
+			// get all form
+			$formList = getAllForm();
+			while($data = $formList -> fetch()){
+				if( array_key_exists($data['form_name'], $POST)){
+
+					$this->action = $data['form_id'];
+
+				}
+			}
+		}
 
 		return $this->action;
 	}
 
 	public function sendAction($action,$POST){
-		if ($action == 'db_submit'){
+
+		if ( $action == 'db_submit' ){
+
 			$this->displayErr = Sophwork::setConfig($POST);
 			Sophwork::redirect();
+
+		}
+		else{
+			$fields = getFields($action);
+			$this->displayErr = Temp::control($fields,$POST);
 		}
 		
 		return $this->displayErr;
