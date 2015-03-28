@@ -40,10 +40,10 @@ class Sophwork {
 
 	public function getConfig(){
 		$config = null;
-		if( !file_exists('config.local.php') ){
+		if( !file_exists(dirname(dirname(__FILE__)) . '/../config.local.php') ){
 			return false;
 		}
-		require_once(dirname(dirname(__FILE__)).'/../config.local.php');
+		require_once(dirname(dirname(__FILE__)) . '/../config.local.php');
 		return $config;
 	}
 
@@ -58,7 +58,7 @@ class Sophwork {
 		 ";
 		fwrite($handle, $text);
 		fclose($handle);
-		require_once(dirname(__FILE__).'/../config.local.php');
+		require_once(dirname(dirname(__FILE__)) . '/../config.local.php');
 	}
 	
 	public static function redirect($parameters = null){
