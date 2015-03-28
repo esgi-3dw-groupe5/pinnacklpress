@@ -69,25 +69,29 @@ class SophworkDM{
 		$req3 = $this->link->query("SHOW KEYS FROM ".$entityName." WHERE Key_name = 'PRIMARY'");
 			$primaryKey = $req3->fetch();
 				$entity->setPk($primaryKey['Column_name']);
+		$req4 = $this->link->query("SHOW KEYS FROM ".$entityName);
+			while($uniqueKeys = $req4->fetch()){$entity->uniqueKeys[] = $uniqueKeys['Column_name'];}
 		$entity->setLink($this->link);
 		return $entity;
 	}
 
+	// FIXME : create a query object to use parameter on query string
     public function select($table, $where = '', $fields = '*', $order = '', $limit = null, $offset = null){
         $query = 'SELECT ' . $fields . ' FROM ' . $table
                . (($where) ? ' WHERE ' . $where : '')
                . (($limit) ? ' LIMIT ' . $limit : '')
                . (($offset && $limit) ? ' OFFSET ' . $offset : '')
                . (($order) ? ' ORDER BY ' . $order : '');
-        $req = $this->query($query);
-        return $req->rowCount();
+        return $req = $this->link->query($query);
+        // return $req->rowCount(); // Create a method to return the num of row selected instead?
     }
 
     public function insert($table, array $data){
         $fields = implode(',', array_keys($data));
-        $values = implode(',', array_map('preg_quote', array_values($data)));
-        $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (' . $values . ')';
-        $req = $this->link->query($query);
+        $values = implode('\', \'', array_values( $data ));
+        $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (\'' . $values . '\')';
+        var_dump($query);
+		$req = $this->link->query($query);
         return $this->link->lastInsertId();
     }
 

@@ -16,11 +16,13 @@ use sophwork\modules\kdm\SophworkDM;
 class SophworkDMEntities extends SophworkDM{
 	protected $table;
 	protected $primaryKey;
+	protected $uniqueKeys;
 	public $link;
 	protected $data;
 
 	public function __construct(){
 		$this->data = [];
+		$this->uniqueKeys = [];
 	}
 
 	public function __set($param, $value) {
@@ -65,12 +67,28 @@ class SophworkDMEntities extends SophworkDM{
 		return $this->table;
 	}
 
-	public function save(){
+	public function save(){ //	FIXME : execute the query
 		if($this->user_id == null)
 			$this->insert($this->table, $this->data);
 		else{
 			$pk = $this->getPk(); $pkValue = $this->$pk;
 			$this->update($this->table, $this->data, "$pk = $pkValue");
 		}
+	}
+
+	public function findOne($value){
+		$criteria = '';
+		for($i=0;$i<sizeof($this->uniqueKeys);$i++) {
+			($i < 1)? $criteria .= $this->uniqueKeys[$i] . "=" . "'". $value ."'"
+				: $criteria .= " OR " . $this->uniqueKeys[$i] . "=" . "'". $value ."'";
+		}
+		$result = $this->select($this->table, $criteria)->fetch();
+		foreach ($this->data as $key => $value) {
+			$this->data[$key] = $result[$key];
+		}
+	}
+
+	public function find(){
+
 	}
 }
