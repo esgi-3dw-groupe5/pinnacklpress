@@ -38,7 +38,7 @@ class Sophwork {
 		fclose($handle);
 	}
 
-	public function getConfig(){
+	public static function getConfig(){
 		$config = null;
 		if( !file_exists(dirname(dirname(__FILE__)) . '/../config.local.php') ){
 			return false;

@@ -43,6 +43,10 @@ class SophworkDMEntities extends SophworkDM{
 		return null;
 	}
 
+	public function getData(){
+		return $this->data;
+	}
+
 	public function setLink($link){
 		$this->link = $link;
 	}
@@ -88,7 +92,18 @@ class SophworkDMEntities extends SophworkDM{
 		}
 	}
 
-	public function find(){
-
+	public function find($value){
+		$criteria = '';
+		for($i=0;$i<sizeof($this->uniqueKeys);$i++) {
+			($i < 1)? $criteria .= $this->uniqueKeys[$i] . "=" . "'". $value ."'"
+				: $criteria .= " OR " . $this->uniqueKeys[$i] . "=" . "'". $value ."'";
+		}
+		$result = $this->select($this->table, $criteria)->fetchAll();
+		$i = 0;
+		$this->data = [];
+		foreach ($this->data as $key => $value) {
+			$this->data[$i][$key] = $result[$i][$key];
+			$i++;
+		}
 	}
 }

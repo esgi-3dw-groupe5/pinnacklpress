@@ -28,6 +28,8 @@ use sophwork\modules\kte\SophworkTEParser;
 	// KDM
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
+use controller\form\Validator;
+use controller\form\Form;
 
 /*
  *	Create a new applicaion with the Sophwork class
@@ -89,8 +91,15 @@ $user = $KDM->create('pp_user');
 // $user->save();
 
 $user->findOne('herve.tutuaku@gmail.com');
-echo'<pre>';
+/*echo'<pre>';
 var_dump($user);
-echo'</pre>';
+echo'</pre>';*/
+
+$test = new Validator($app->config);
+$form = new Form('test',$app->config);
+
+
+/*var_dump($test);
+var_dump($form);*/
 
 // $controller = $app->appController = new AppController($KDM) ;
