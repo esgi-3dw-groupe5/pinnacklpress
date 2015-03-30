@@ -96,10 +96,10 @@ class SophworkDMEntities extends SophworkDM{
 
 	public function save(){
 		if($this->__getData($this->getPk()) == null){
-			// echo 'Insert';
+			echo 'Insert';
 			$this->insert($this->table, $this->data);
 		}else{
-			// echo 'Update';
+			echo 'Update';
 			$pk = $this->getPk(); $pkValue = $this->__getData($pk);
 			$this->update($this->table, $this->data, "$pk = $pkValue");
 		}

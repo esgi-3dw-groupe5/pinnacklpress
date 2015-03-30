@@ -81,30 +81,16 @@ else{
 echo $KTE->parseTemplate();
 
 $KDM = new SophworkDM($app->config);
-$user = $KDM->create('pp_user');
-$user->setUsergender(1);
-$user->setUserPseudo('Syu93');
-$user->setUserEmail('herve.tutuaku@gmail.com');
-$user->setUserName('Hervé');
-$user->setFirstName('Tutuaku');
-$user->setUserBdate ('1993-01-23');
-$user->save();
-
-// $user->findOne('herve.tutuaku@gmail.com');
-// echo'<pre>';
-// var_dump($user);
-// echo'</pre>';
-
-$user->setUserPseudo('Syu93');
-echo'<pre>';
-var_dump($user->getData());
-echo'</pre>';
 
 // $test = new Validator($app->config);
 // $form = new Form('inscription',$app->config);
 
+$field = $KDM->create('pp_field');
+$field->findOne(1);
+$field->setFieldName('name');
+$field->setFieldDomname('name');
+$field->save();
 
-/*var_dump($test);
-var_dump($form);*/
-
-// $controller = $app->appController = new AppController($KDM) ;
+// echo'<pre>';
+// var_dump($field);
+// echo'</pre>';

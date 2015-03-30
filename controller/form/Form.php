@@ -24,7 +24,6 @@ class Form{
 		$data = $rs->getData();
 
 		// Create a new field object wich math to the created form
-		// FIXME : Loop to get all field from the current form
 		$field = $this->KDM->create('pp_field');
 		foreach ($data['field_id'] as $key => $value) {
 			$field->findFieldId($data['field_id'][$key]);

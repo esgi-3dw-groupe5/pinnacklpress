@@ -84,6 +84,7 @@ class SophworkDM{
 		return $entity;
 	}
 
+	// FIXME : create a query object to use parameter on query string
     public function select($table, $where = '', $fields = '*', $order = '', $limit = null, $offset = null){
         $query = 'SELECT ' . $fields . ' FROM ' . $table
                . (($where) ? ' WHERE ' . $where : '')
@@ -91,31 +92,31 @@ class SophworkDM{
                . (($offset && $limit) ? ' OFFSET ' . $offset : '')
                . (($order) ? ' ORDER BY ' . $order : '');
         return $req = $this->link->query($query);
+        // return $req->rowCount(); // Create a method to return the num of row selected instead?
     }
 
     public function insert($table, array $data){
         $fields = implode(',', array_keys($data));
-        $prepare = ':' . implode(', :', array_keys($data));
-        $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (' . $prepare . ')';
-		$req = $this->link->prepare($query);
-		$req->execute($data);
-        $this->data[$this->getPk()] = $this->link->lastInsertId();
+        $values = implode('\', \'', array_values( $data ));
+        $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (\'' . $values . '\')';
+        var_dump($query);
+		$req = $this->link->query($query);
+        return $this->link->lastInsertId();
     }
 
     public function update($table, array $data, $where = ''){
         $set = array();
         foreach ($data as $field => $value) {
-            $set[] = $field . '= :' . $field;
+            $set[] = $field . '=' . $this->quoteValue($value);
         }
         $set = implode(',', $set);
         $query = 'UPDATE ' . $table . ' SET ' . $set
                . (($where) ? ' WHERE ' . $where : '');
-        $req = $this->link->prepare($query);
-        $req->execute($data);
+        $req = $this->link->query($query);
         return $req->rowCount();
     }
 
-    public function delete($table, $where = ''){	// FIXME : To test
+    public function delete($table, $where = ''){
         $query = 'DELETE FROM ' . $table
                . (($where) ? ' WHERE ' . $where : '');
         $req = $this->link->query($query);
