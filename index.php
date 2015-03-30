@@ -82,21 +82,26 @@ echo $KTE->parseTemplate();
 
 $KDM = new SophworkDM($app->config);
 $user = $KDM->create('pp_user');
-// $user->user_gender = 1;
-// $user->user_pseudo = 'Syu93';
-// $user->user_email = 'herve.tutuaku@gmail.com';
-// $user->user_name = 'Hervé';
-// $user->user_firstname = 'Tutuaku';
-// $user->user_bdate = '1993-01-23';
-// $user->save();
+$user->setUsergender(1);
+$user->setUserPseudo('Syu93');
+$user->setUserEmail('herve.tutuaku@gmail.com');
+$user->setUserName('Hervé');
+$user->setFirstName('Tutuaku');
+$user->setUserBdate ('1993-01-23');
+$user->save();
 
-$user->findOne('herve.tutuaku@gmail.com');
-/*echo'<pre>';
-var_dump($user);
-echo'</pre>';*/
+// $user->findOne('herve.tutuaku@gmail.com');
+// echo'<pre>';
+// var_dump($user);
+// echo'</pre>';
 
-$test = new Validator($app->config);
-$form = new Form('test',$app->config);
+$user->setUserPseudo('Syu93');
+echo'<pre>';
+var_dump($user->getData());
+echo'</pre>';
+
+// $test = new Validator($app->config);
+// $form = new Form('inscription',$app->config);
 
 
 /*var_dump($test);

@@ -1,7 +1,7 @@
 <?php
 /*
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.0
+ *	@Tested version : Sophwork.0.2.1
  *	@author : Syu93
  *	--
  *	Split Object PHP Framework - Sophwork
@@ -12,7 +12,7 @@ namespace sophwork\core;
 class Sophwork {
 	private $name 		= "sophwork";
 	private $description 	= "Split Object PHP Framework - Sophwork";
-	private $version 		= "0.2.0";
+	private $version 		= "0.2.1";
 
 	public function __construct(){
 

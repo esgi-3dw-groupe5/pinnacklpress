@@ -12,27 +12,23 @@ class Form{
 
 	public function __construct($name,$config){
 		$this->KDM = new SophworkDM($config);
+		// Create a new form object by the form unique name
 		$form = $this->KDM->create('pp_form');
-		$form->findOne('inscription');
+		$form->findOne($name);
 		$data = $form->getData();
-		var_dump($data);
 
-		foreach ($data as $key => $value) {
-			$field = $this->KDM->create('pp_form_rs');
-			$field->find($data['form_id']);
-			$this->fields[] = $field;
+		// Create a new form relationship table
+		$rs = $this->KDM->create('pp_form_rs');
+		// Search in the rs table for the form link to field
+		$rs->findFormId($data['form_id']);
+		$data = $rs->getData();
+
+		// Create a new field object wich math to the created form
+		// FIXME : Loop to get all field from the current form
+		$field = $this->KDM->create('pp_field');
+		foreach ($data['field_id'] as $key => $value) {
+			$field->findFieldId($data['field_id'][$key]);
+			$fields[] = $field->getData();
 		}
-		var_dump($this->fields);
-		
 	}
-
-	public function createField($name){
-		$field = $KDM->create('pp_field');
-		$field->findOne($name);
-		var_dump($field);
-	}	
-
-
-
-
 }

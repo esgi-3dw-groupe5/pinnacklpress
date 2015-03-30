@@ -1,7 +1,7 @@
 <?php
 /*
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.0
+ *	@Tested version : Sophwork.0.2.1
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -59,19 +59,28 @@ class SophworkDM{
 	public function create($entityName){
 		$entity = new SophworkDMEntities();
 			$entity->setTable($entityName);
-		$req1 = $this->link->query("show tables where Tables_in_sophk = '".$entityName."'");
+		$req1 = $this->link->query("show tables where Tables_in_".$this->config['db_name']." = '".$entityName."'");
 		while($table = $req1->fetch()){
-			$req2 = $this->link->query("SHOW COLUMNS FROM ".$table['Tables_in_sophk']);
+			$req2 = $this->link->query("SHOW COLUMNS FROM ".$table['Tables_in_'.$this->config['db_name']]);
 			while($columns = $req2->fetch()){
-				$entity->$columns['Field'] = null;
+				$entity->__setData($columns['Field'] , null);
 			}
 		}
 		$req3 = $this->link->query("SHOW KEYS FROM ".$entityName." WHERE Key_name = 'PRIMARY'");
 			$primaryKey = $req3->fetch();
 				$entity->setPk($primaryKey['Column_name']);
 		$req4 = $this->link->query("SHOW KEYS FROM ".$entityName);
-			while($uniqueKeys = $req4->fetch()){$entity->uniqueKeys[] = $uniqueKeys['Column_name'];}
+			while($indexes = $req4->fetch()){$entity->indexes[] = $indexes['Column_name'];}
 		$entity->setLink($this->link);
+		
+		foreach ($entity->data as $key => $value) {
+			$entity->setSetterMethod($key);
+			$entity->setGetterMethod($key);
+		}
+		
+		foreach ($entity->indexes as $key => $value) {
+			$entity->setKeyMethod($value);
+		}
 		return $entity;
 	}
 
@@ -87,12 +96,15 @@ class SophworkDM{
     }
 
     public function insert($table, array $data){
-        $fields = implode(',', array_keys($data));
-        $values = implode('\', \'', array_values( $data ));
-        $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (\'' . $values . '\')';
+        $fields = implode(', ', array_keys($data));
+        $prepare = ':' . implode(', :', array_keys($data));
+        $values = implode(',', array_values( $data ));
+        // var_dump($fields);
+        $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (' . $prepare . ')';
         var_dump($query);
-		$req = $this->link->query($query);
-        return $this->link->lastInsertId();
+		// FEXME : prepar exec request
+		$req = $this->link->prepare($query);
+        // return $this->link->lastInsertId();
     }
 
     public function update($table, array $data, $where = ''){

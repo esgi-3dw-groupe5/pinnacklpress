@@ -1,7 +1,7 @@
 <?php
 /*
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.0
+ *	@Tested version : Sophwork.0.2.1
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -14,22 +14,33 @@ use sophwork\core\Sophwork;
 use sophwork\modules\kdm\SophworkDM;
 
 class SophworkDMEntities extends SophworkDM{
+	public $link;
 	protected $table;
 	protected $primaryKey;
-	protected $uniqueKeys;
-	public $link;
+	protected $indexes;
 	protected $data;
+
+
+
 
 	public function __construct(){
 		$this->data = [];
-		$this->uniqueKeys = [];
+		$this->indexes = [];
 	}
 
-	public function __set($param, $value) {
+	public function __call($method, $args){
+        if (isset($this->$method)) {
+            $func = $this->$method;
+            return call_user_func_array($func, $args);
+        }
+	}
+
+	// FIXME Create dynamic getseter
+	public function __setData($param, $value) {
 		$this->data[$param] = $value;
 	}
 	
-	public function __get($param) {
+	public function __getData($param) {
 		if (array_key_exists($param, $this->data)) {
 			return $this->data[$param];
 		}
@@ -43,8 +54,20 @@ class SophworkDMEntities extends SophworkDM{
 		return null;
 	}
 
+	public function __set($param, $value) {
+		$this->$param = $value;
+	}
+	
+	public function __get($param) {
+		return $this->$param;
+	}
+
 	public function getData(){
 		return $this->data;
+	}
+
+	public function getIndexes(){
+		return $this->indexes;
 	}
 
 	public function setLink($link){
@@ -72,7 +95,7 @@ class SophworkDMEntities extends SophworkDM{
 	}
 
 	public function save(){ //	FIXME : execute the query
-		if($this->user_id == null)
+		if($this->__getData('user_id') == null)
 			$this->insert($this->table, $this->data);
 		else{
 			$pk = $this->getPk(); $pkValue = $this->$pk;
@@ -82,9 +105,9 @@ class SophworkDMEntities extends SophworkDM{
 
 	public function findOne($value){
 		$criteria = '';
-		for($i=0;$i<sizeof($this->uniqueKeys);$i++) {
-			($i < 1)? $criteria .= $this->uniqueKeys[$i] . "=" . "'". $value ."'"
-				: $criteria .= " OR " . $this->uniqueKeys[$i] . "=" . "'". $value ."'";
+		for($i=0;$i<sizeof($this->indexes);$i++) {
+			($i < 1)? $criteria .= $this->indexes[$i] . "=" . "'". $value ."'"
+				: $criteria .= " OR " . $this->indexes[$i] . "=" . "'". $value ."'";
 		}
 		$result = $this->select($this->table, $criteria)->fetch();
 		foreach ($this->data as $key => $value) {
@@ -94,16 +117,47 @@ class SophworkDMEntities extends SophworkDM{
 
 	public function find($value){
 		$criteria = '';
-		for($i=0;$i<sizeof($this->uniqueKeys);$i++) {
-			($i < 1)? $criteria .= $this->uniqueKeys[$i] . "=" . "'". $value ."'"
-				: $criteria .= " OR " . $this->uniqueKeys[$i] . "=" . "'". $value ."'";
+		for($i=0;$i<sizeof($this->indexes);$i++) {
+			($i < 1)? $criteria .= $this->indexes[$i] . "=" . "'". $value ."'"
+				: $criteria .= " OR " . $this->indexes[$i] . "=" . "'". $value ."'";
 		}
 		$result = $this->select($this->table, $criteria)->fetchAll();
-		$i = 0;
-		$this->data = [];
-		foreach ($this->data as $key => $value) {
-			$this->data[$i][$key] = $result[$i][$key];
-			$i++;
+		foreach ($result as $key1 => $value1) {
+			foreach ($this->data as $key2 => $value2) {
+				$this->data[$key2][$key1] = $result[$key1][$key2];
+			}
 		}
+	}
+
+	public function setKeyMethod($key){
+		$find = 'find';
+		$method = $$find.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
+		
+		$this->$method = function($value) use ($key){
+			$criteria = $key . '=' . $value;
+			$result = $this->select($this->table, $criteria)->fetchAll();
+			foreach ($result as $key1 => $value1) {
+				foreach ($this->data as $key2 => $value2) {
+					$this->data[$key2][$key1] = $result[$key1][$key2];
+				}
+			}
+		};
+	}
+	
+	public function setSetterMethod($key){
+		$set = 'set';
+		$method = $$set.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
+		$this->$method = function($value) use ($key){
+			$this->__setData($key, $value);
+		};
+	}
+
+	public function setGetterMethod($key){
+		$get = 'get';
+		$method = $$get.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
+		
+		$this->$method = function() use ($key){
+			return $this->__getData($key);
+		};
 	}
 }
