@@ -5,6 +5,9 @@ also have border and padding. This is done because some browsers don't render
 the padding. We explicitly set the box-model for select elements to border-box,
 so we can ignore the csslint warning.
 */
+section {
+    text-align: center;
+}
 
 .pinnackl-form input[type="text"],
 .pinnackl-form input[type="password"],

@@ -13,6 +13,11 @@
  * Always hide an element when it has the `hidden` HTML attribute.
  */
 
+ html, body {
+ 	height: 100%;
+	width: 100%;	
+ }
+
 .hidden,
 [hidden] {
     display: none !important;
@@ -29,4 +34,6 @@
 }
 .pinnackl-background-body {
 	background-color: #F8F8F8;
+	height: 100%;
+	width: 100%;
 }

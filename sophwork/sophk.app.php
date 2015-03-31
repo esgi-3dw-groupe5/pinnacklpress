@@ -30,12 +30,14 @@ class SophworkApp extends Sophwork{
 				header('Location: http://127.0.0.1/pinnacklpress/config');
 			$template = $this->loader->loadFromFile("template/".$this->appController->page.".tpl");
 			$this->KTE = new SophworkTEParser($template,$data = [
-				'title' =>  'Setup config file',
-				'h1' =>  'Setup config file',
-				'header' =>  'Setup config file',
-				'base' => 'template/css/base/base.css',
-				'forms' => 'template/css/forms/forms.css',
-				'buttons' => 'template/css/buttons/buttons.css',
+				'title'		=> 'Setup config file',
+				'h1'		=> 'Setup config file',
+				'header'	=> 'Setup config file',
+				'menu'		=> 'template/css/menus/menus-horizontal.css',
+				'sidebar'	=> 'template/css/sidebar/blog.css',
+				'base'		=> 'template/css/base/base.css',
+				'forms'		=> 'template/css/forms/forms.css',
+				'buttons'	=> 'template/css/buttons/buttons.css',
 			]);
 		}
 		else{

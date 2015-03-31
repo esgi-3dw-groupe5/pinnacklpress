@@ -21,7 +21,7 @@ $KDM = new SophworkDM($app->config);
 // $user = $KDM->create('pp_user');
 	// Sophk::debug($user);
 $controller = $app->appController;
-	  echo $page = $controller->page;
+	  // echo $page = $controller->page;
 	  
 // use KTE to render the template
 echo $app->KTE->parseTemplate();
