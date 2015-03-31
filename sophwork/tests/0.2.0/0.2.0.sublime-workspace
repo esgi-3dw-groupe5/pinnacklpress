@@ -422,7 +422,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"D:\\Developpement\\EasyPHP-DevServer\\data\\localweb\\pinnacklpress",
@@ -523,7 +523,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
