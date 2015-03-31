@@ -1,0 +1,11 @@
+.sidebar{
+	background: #191818!important; 
+}
+
+.header{
+	margin:3em 1em !important;
+}
+
+@media (min-width: 48em) .header{
+	margin:0!important;
+}

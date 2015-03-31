@@ -18,7 +18,8 @@ $controller = $app->appController;
 $loader = new SophworkTELoader();
 $template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
 $KTE = new SophworkTEParser($template, [
-	'css' => ['base/base', 'buttons/buttons'],
+	'css' => ['base/base', 'buttons/buttons', 'menus/menus-horizontal', 'sidebar/blog', 'menus/extend', 'sidebar/extend'],
+	// 'menu' => ['base/base'],
 ]);
 print $KTE->parseTemplate();
 
