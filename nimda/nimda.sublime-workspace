@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"so",
+				"sophwork"
+			],
+			[
 				"exec",
 				"execute"
 			],
@@ -287,7 +291,7 @@
 			"file": "template/index.tpl",
 			"settings":
 			{
-				"buffer_size": 407,
+				"buffer_size": 1169,
 				"line_ending": "Windows"
 			}
 		},
@@ -300,11 +304,51 @@
 			}
 		},
 		{
+			"file": "template/css/sidebar/blog.css",
+			"settings":
+			{
+				"buffer_size": 2685,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "template/css/sidebar/extend.css",
+			"settings":
+			{
+				"buffer_size": 142,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "template/css/menus/extend.css",
+			"settings":
+			{
+				"buffer_size": 82,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "template/header.tpl",
+			"settings":
+			{
+				"buffer_size": 1128,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 704,
+				"buffer_size": 1101,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".htaccess",
+			"settings":
+			{
+				"buffer_size": 249,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -332,6 +376,14 @@
 	},
 	"file_history":
 	[
+		"/C/Users/syu93/AppData/Local/Temp/Rar$DRa0.221/index.html",
+		"/D/Developpement/EasyPHP-DevServer/data/localweb/onepage/pure.css",
+		"/D/Developpement/EasyPHP-DevServer/data/localweb/onepage/pure-min.css",
+		"/D/Developpement/EasyPHP-DevServer/data/localweb/pinnacklpress/nimda/template/css/base/base.css",
+		"/D/Developpement/EasyPHP-DevServer/data/localweb/pinnacklpress/nimda/template/css/menus/side-menu.css",
+		"/D/Developpement/EasyPHP-DevServer/data/localweb/pinnacklpress/nimda/template/css/menus/side-menu-old-ie.css",
+		"/C/Users/syu93/AppData/Local/Temp/Rar$DRa0.794/css/layouts/side-menu.css",
+		"/C/Users/syu93/AppData/Local/Temp/Rar$DRa0.794/css/layouts/side-menu-old-ie.css",
 		"/D/Developpement/EasyPHP-DevServer/data/localweb/pinnacklpress/pinnackl-admin/index.php",
 		"/D/Developpement/EasyPHP-DevServer/data/localweb/Sophwork/sophwork/index.php",
 		"/D/Developpement/EasyPHP-DevServer/data/localweb/pinnacklpress/sophwork/tests/0.2.1/includes/Sophwork/autoloader.php",
@@ -451,15 +503,7 @@
 		"/C/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg",
 		"/C/Users/Public/Pictures/Sample Pictures/img",
 		"/C/Users/Public/Pictures/Sample Pictures/img.jpg",
-		"/C/Users/Public/Pictures/Sample Pictures/Lighthouse.jpg",
-		"/C/Users/syu93/Documents/EasyPHP-DevServer/data/localweb/wpdatabase01.sql",
-		"/C/Users/syu93/AppData/Local/Temp/fz3temp-1/wpdatabase01.sql",
-		"/C/Users/syu93/Documents/EasyPHP-DevServer/data/localweb/bddConnect.php",
-		"/C/Users/syu93/Documents/EasyPHP-DevServer/data/localweb/wordpress/wp-config.php",
-		"/C/Users/syu93/Documents/EasyPHP-DevServer/data/localweb/wordpress/wp-settings.php",
-		"/C/Users/syu93/Documents/EasyPHP-DevServer/data/localweb/wordpress/wp-admin/user/profile.php",
-		"/C/Users/syu93/Documents/EasyPHP-DevServer/data/localweb/wordpress/wp-admin/user/user-edit.php",
-		"/C/Users/syu93/Documents/EasyPHP-DevServer/data/localweb/wordpress/wp-admin/user/admin.php"
+		"/C/Users/Public/Pictures/Sample Pictures/Lighthouse.jpg"
 	],
 	"find":
 	{
@@ -470,6 +514,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"D:\\Developpement\\EasyPHP-DevServer\\data\\localweb\\pinnacklpress\\nimda",
 			"D:\\Developpement\\EasyPHP-DevServer\\data\\localweb\\pinnacklpress",
 			""
 		]
@@ -479,6 +524,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pure",
+			"pinnackl-menu-list",
+			"pinnackl-menu-item",
+			"pinnackl-g",
+			"pinnackl-menu-list",
 			"header",
 			"header('L",
 			"this",
@@ -540,6 +590,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"pinnackl",
 			"app",
 			"subValue",
 			"unread",
@@ -572,7 +623,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -580,15 +631,15 @@
 					"file": "template/index.tpl",
 					"settings":
 					{
-						"buffer_size": 407,
+						"buffer_size": 1169,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								333,
-								333
+								1129,
+								1129
 							]
 						],
 						"settings":
@@ -597,7 +648,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 180.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -628,6 +679,117 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "template/css/sidebar/blog.css",
+					"settings":
+					{
+						"buffer_size": 2685,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								250,
+								250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "template/css/sidebar/extend.css",
+					"settings":
+					{
+						"buffer_size": 142,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9,
+								9
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "template/css/menus/extend.css",
+					"settings":
+					{
+						"buffer_size": 82,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36,
+								36
+							],
+							[
+								69,
+								69
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "template/header.tpl",
+					"settings":
+					{
+						"buffer_size": 1128,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								501,
+								501
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		},
@@ -636,24 +798,51 @@
 			"sheets":
 			[
 				{
-					"buffer": 2,
+					"buffer": 6,
 					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 704,
+						"buffer_size": 1101,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								599,
-								599
+								954,
+								954
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": ".htaccess",
+					"settings":
+					{
+						"buffer_size": 249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								70,
+								70
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -692,7 +881,7 @@
 		"cols":
 		[
 			0.0,
-			0.327301136364,
+			0.954545454545,
 			1.0
 		],
 		"rows":

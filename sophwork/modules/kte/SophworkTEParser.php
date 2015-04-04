@@ -187,7 +187,7 @@ class SophworkTEParser{
 	public function setActiveMenu($node, $value){
 		$cont = new appController(); $page = $cont->page; // greedy to use appController class ?
 		$this->useRule('variable'); $rule = $this->rule;
-		if($page == $this->optionalModifier($value,''))
+		if($page == $this->optionalModifier($value,'lower'))
 			return $this->replaceOne($rule, 'active', $this->optionalModifier('active',''), $node);
 		return $this->replaceOne($rule, 'active', $this->optionalModifier('',''), $node);
 	}

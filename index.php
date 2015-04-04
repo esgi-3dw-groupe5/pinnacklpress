@@ -19,6 +19,8 @@ use sophwork\app\app\SophworkApp;
 use sophwork\app\controller\AppController;
 use sophwork\app\view\AppView;
 use sophwork\app\model\AppModel;
+use sophwork\controller\form\Form;
+use sophwork\controller\form\Field;
 
 // use modules
 	// KTE

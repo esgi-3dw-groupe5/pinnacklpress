@@ -31,8 +31,10 @@ class Sophwork {
 		}    
 		return $param_value;
 	}
-	public function setHtaccess($root){
+	public function setHtaccess($root, $path = null){
 		$handle = fopen(dirname(__FILE__).'/../.htaccess', "w+");
+		if($path != null)
+			$handle = fopen($path . '/.htaccess', "w+");
 		$text = "Options -MultiViews\nRewriteEngine On\nRewriteBase /".$root."/\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteCond %{REQUEST_FILENAME} !-d\n#	article categorie access\nRewriteRule    ^([a-z0-9_-]+)/?([a-z0-9_-]*)/?$    	index.php?p=$1&a=$2	[NC,L]\n";
 		fwrite($handle, $text);
 		fclose($handle);
