@@ -25,6 +25,7 @@
     <div id="menu">
         <div class="pinnackl-menu">
             <a class="pinnackl-menu-heading" href="../nimda/">Pinnackl Press</a>
+            <!-- <a class="pinnackl-menu-heading" href="../">Your site</a> -->
             <ul class="pinnackl-menu-list">
         	{% macros %}
             <li class="pinnackl-menu-item {{active}}"><a href="../nimda/{{menu}[L]}" class="pinnackl-menu-link">{{menu}}</a></li>

@@ -31,7 +31,7 @@ use sophwork\modules\kte\SophworkTEParser;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 use controller\form\Validator;
-use controller\form\Form;
+// use controller\form\Form;
 
 /*
  *	Create a new applicaion with the Sophwork class
