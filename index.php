@@ -83,13 +83,8 @@ echo $KTE->parseTemplate();
 $KDM = new SophworkDM($app->config);
 
 // $test = new Validator($app->config);
-// $form = new Form('inscription',$app->config);
-
-$field = $KDM->create('pp_field');
-$field->findOne(1);
-$field->setFieldName('name');
-$field->setFieldDomname('name');
-$field->save();
+$form = new Form();
+$form->getForm('inscription',$app->config);
 
 // echo'<pre>';
 // var_dump($field);
