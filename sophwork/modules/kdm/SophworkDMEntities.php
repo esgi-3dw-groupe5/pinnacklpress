@@ -95,13 +95,17 @@ class SophworkDMEntities extends SophworkDM{
 	}
 
 	public function save(){
-		if($this->__getData($this->getPk()) == null){
+		echo'<pre>';
+		var_dump($this->data);
+		// var_dump($this->__getData($this->primaryKey));
+		echo'</pre>';
+		if($this->__getData($this->primaryKey) === NULL){
 			// echo 'Insert';
 			$this->insert($this->table, $this->data);
 		}else{
 			// echo 'Update';
-			$pk = $this->getPk(); $pkValue = $this->__getData($pk);
-			$this->update($this->table, $this->data, "$pk = $pkValue");
+			$pkValue = $this->__getData($this->primaryKey);
+			$this->update($this->table, $this->data, "$this->primaryKey = \"$pkValue\" ");
 		}
 	}
 
@@ -136,7 +140,7 @@ class SophworkDMEntities extends SophworkDM{
 		$method = $$find.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
 		
 		$this->$method = function($value) use ($key){
-			$criteria = $key . '=' . $value;
+			$criteria = $key . '=' . "\"" . $value . "\"";
 			$result = $this->select($this->table, $criteria)->fetchAll();
 			foreach ($result as $key1 => $value1) {
 				foreach ($this->data as $key2 => $value2) {

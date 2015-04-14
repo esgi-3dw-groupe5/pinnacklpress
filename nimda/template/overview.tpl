@@ -18,7 +18,7 @@
                     <input id="{{input_3}}" name="{{input_3}}" type="{{type_3}}"
                                             class="pinnackl-input-1-2" value="{{value_3}}" placeholder="{{label_3}}">
                 </fieldset>
-                <input class="pinnackl-button pinnackl-input-1-2 pinnackl-button-primary" type="submit" name="cfg_submit" value="Submit">
+                <input class="pinnackl-button pinnackl-input-1-2 pinnackl-button-primary" type="submit" name="_overview" value="Submit">
             </form>
         </div>
     <!-- </section> -->

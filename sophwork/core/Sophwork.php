@@ -78,6 +78,11 @@ class Sophwork {
 		header("Location: ".$localUrl);
 	}
 
+	public static function redirectFromRef($referer){
+		header('Location: '.$referer);
+		exit;
+	}
+
 	public static function getUrl($parameters = null){
 		$s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
 		$protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;

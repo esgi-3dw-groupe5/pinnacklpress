@@ -20,30 +20,33 @@ class Overview extends \sophwork\app\view\AppView{
 		$this->fields = [];
 
 		$KDM = new SophworkDM($config);
+		$fields = $KDM->create('pp_option');
 
 		$nameField = $KDM->create('pp_field');
-		$nameField->setFieldName('nimda-site-name');
-		$nameField->setFieldType('text');
-		$nameField->setFieldDomname('name');
-		$nameField->setFieldDomid('name');
-		$nameField->setFieldValue('');
-		$nameField->setFieldPlaceholder('Site name');
+			$nameField->setFieldName('nimda-site-sitename');
+			$nameField->setFieldType('text');
+			$nameField->setFieldDomname('sitename');
+			$nameField->setFieldDomid('sitename');
+				$fields->findOptionName('sitename');
+			$nameField->setFieldValue($fields->getOptionValue()[0]);
+			$nameField->setFieldPlaceholder('Site name');
 
 		$descriptionField = $KDM->create('pp_field');
-		$descriptionField->setFieldName('nimda-site-description');
-		$descriptionField->setFieldType('text');
-		$descriptionField->setFieldDomname('description');
-		$descriptionField->setFieldDomid('description');
-		$descriptionField->setFieldValue('');
-		$descriptionField->setFieldPlaceholder('Description');
+			$descriptionField->setFieldName('nimda-site-sitedescription');
+			$descriptionField->setFieldType('text');
+			$descriptionField->setFieldDomname('sitedescription');
+			$descriptionField->setFieldDomid('sitedescription');
+				$fields->findOptionName('sitedescription');
+			$descriptionField->setFieldValue($fields->getOptionValue()[0]);
+			$descriptionField->setFieldPlaceholder('Description');
 
 		$addressField = $KDM->create('pp_field');
-		$addressField->setFieldName('nimda-site-address');
-		$addressField->setFieldType('url');
-		$addressField->setFieldDomname('address');
-		$addressField->setFieldDomid('address');
-		$addressField->setFieldValue(Sophwork::getUrl());
-		$addressField->setFieldPlaceholder('Site name');
+			$addressField->setFieldName('nimda-site-siteurl');
+			$addressField->setFieldType('url');
+			$addressField->setFieldDomname('siteurl');
+			$addressField->setFieldDomid('siteurl');
+			$addressField->setFieldValue(Sophwork::getUrl()); // Get the URL what ever is set in the database
+			$addressField->setFieldPlaceholder('Site address');
 
 		$this->__setFields('nameField',$nameField);
 		$this->__setFields('descriptionField',$descriptionField);

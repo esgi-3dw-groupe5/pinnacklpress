@@ -89,10 +89,10 @@ $KDM = new SophworkDM($app->config);
 
 $field = $KDM->create('pp_field');
 $field->findOne(1);
-$field->setFieldName('name');
-$field->setFieldDomname('name');
-$field->save();
+// $field->setFieldName('name');
+// $field->setFieldDomname('name');
+// $field->save();
 
-// echo'<pre>';
-// var_dump($field);
-// echo'</pre>';
+echo'<pre>';
+var_dump($field->data);
+echo'</pre>';
