@@ -19,9 +19,6 @@ use sophwork\app\app\SophworkApp;
 use sophwork\app\controller\AppController;
 use sophwork\app\view\AppView;
 use sophwork\app\model\AppModel;
-use sophwork\controller\form\Form;
-use sophwork\controller\form\Field;
-
 // use modules
 	// KTE
 use sophwork\modules\kte\SophworkTELoader;
@@ -31,7 +28,7 @@ use sophwork\modules\kte\SophworkTEParser;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 use controller\form\Validator;
-// use controller\form\Form;
+use controller\form\Form;
 
 /*
  *	Create a new applicaion with the Sophwork class
