@@ -12,9 +12,17 @@ class Validator{
 	protected $rule;
 	protected $KDM;
 
-	public function __construct($config){
-		$this->rule = [];
-		$this->KDM = new SophworkDM($config);
+	public function __construct(){
+
+	}
+
+	public function getRules($idValidators,$kdm){
+		$validator = $kdm->create('pp_validator');
+		foreach ($idValidators as $key => $value) {
+			$validator->findValidatorId($idValidators[$key]);
+			$validators[] = $validator->getData();
+		}
+		return $validators;
 	}
 
 	public function validateForm($form){
