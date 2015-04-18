@@ -16,18 +16,35 @@ class Validator{
 
 	}
 
-	public function getRules($idValidators,$kdm){
+	public function getRules($idValidators,$kdm,$formArray){
+
 		$validator = $kdm->create('pp_validator');
 		foreach ($idValidators as $key => $value) {
-			$validator->findValidatorId($idValidators[$key]);
-			$validators[] = $validator->getData();
+			$idRsField = $value['field_id'];
+			foreach ($formArray as $key1 => $value) {
+				$idField = $value['field_id'];
+				if($idRsField == $idField){
+					$validator->findValidatorId($idField[0]);
+					$validators = $validator->getData();
+					$formArray[$key1]['validator_rule'] = $validators['validator_rule'];
+				}
+			}
 		}
-		return $validators;
+		return $formArray;
+
 	}
 
-	public function validateForm($form){
-		$this->form = $form;
-		$this->rule = new Rule;
+	public function validateForm($form,$POST){
+		$rule = new Rule();
+		foreach ($form as $key => $value) {
+			if(array_key_exists('validator_rule', $value)){
+				$validator_rule = $value['validator_rule'][0];
+				$fieldName = $value['field_name'][0];
+				$fieldValue = $POST[$fieldName];
+				$rule->$validator_rule($fieldValue);
+			}
+		}
+		return $rule;
 	}
 
 	public function __get($param){

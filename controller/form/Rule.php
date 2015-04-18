@@ -12,7 +12,7 @@ class Rule{
 		$this->msg = [];
 	}
 
-	public function isEmail($value){
+	public function isMail($value){
 		if(!filter_var($value, FILTER_VALIDATE_EMAIL)){
 				$this->msg[] = "Vous devez saisir une adresse email valide.";
 				return false;
@@ -21,11 +21,11 @@ class Rule{
 	}
 
 	public function isPassword($value){
-		if (!preg_match("/.*^(?=.{8,20})(?=.*[a-z])(?=.*[0-9])(?=.*\W).*$/",$parm1) 
-			|| strlen($parm1)<8
-			|| strlen($parm1)>20){
+		if (!preg_match("/.*^(?=.{8,20})(?=.*[a-z])(?=.*[0-9])(?=.*\W).*$/",$value) 
+			|| strlen($value)<8
+			|| strlen($value)>20){
 
-				$this->msg[] = "Le mot de passe ne respecte pas les carractère requis";
+				$this->msg[] = "Le mot de passe ne respecte pas les caractères requis";
 				return false;
 			}
 		return true;

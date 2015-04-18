@@ -91,9 +91,26 @@ $field->findOne(1);
 // $field->setFieldDomname('name');
 // $field->save();
 
-$form = new Form();
-$form->getForm('inscription',$app->config);
 
-echo'<pre>';
-var_dump($field->data);
-echo'</pre>';
+//var_dump($_POST);
+if(!empty($_POST)){
+	end($_POST);
+	$formName = key($_POST);
+	$form = new Form();
+	$arrayForm = $form->getForm($formName,$app->config);
+	$validator = new Validator();
+	$msgError = $validator->validateForm($arrayForm,$_POST);
+	var_dump($msgError);
+}
+
+// echo'<pre>';
+// var_dump($field->data);
+// echo'</pre>';
+?>
+<html>
+	<form action="index.php" method="post">
+		<input type="text" name="name" value="alexis.thorel@gmail.com">
+		<input type="password" name="password" value="plopplopplop">
+		<input type="submit" name="inscription">
+	</form>
+</html>
