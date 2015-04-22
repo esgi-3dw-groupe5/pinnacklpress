@@ -40,10 +40,12 @@ class Validator{
 		$rule = new Rule();
 		foreach ($form as $key => $value) {
 			if(array_key_exists('validator_rule', $value)){
-				$validator_rule = $value['validator_rule'][0];
-				$fieldName = $value['field_name'][0];
-				$fieldValue = $POST[$fieldName];
-				$rule->$validator_rule($fieldValue);
+				foreach ($value['validator_rule'] as $key1 => $value1) {
+					$validator_rule = $value['validator_rule'][$key1];
+					$fieldName = $value['field_name'][0];
+					$fieldValue = $POST[$fieldName];
+					$rule->$validator_rule($fieldValue);
+				}
 			}
 		}
 		return $rule;
