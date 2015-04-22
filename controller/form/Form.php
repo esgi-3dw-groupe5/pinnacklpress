@@ -53,7 +53,11 @@ class Form{
 		for($i = 0 ; $i < count($data['field_id']) ; $i++){
 			$rsField->findFieldId($data['field_id'][$i]);
 			$dataField = $rsField->getData();
-			array_push($this->fields, $dataField);
+			for($j = 0 ; $j < count($dataField['validator_id']) ; $j++) {
+				$tempArray['field_id'] = $dataField['field_id'][$j];
+				$tempArray['validator_id'] = $dataField['validator_id'][$j];
+				$this->fields[] = $tempArray;
+			}			
 		}
 		$formArray = $validator->getRules($this->fields,$this->KDM,$fieldArray);
 

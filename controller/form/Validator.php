@@ -17,16 +17,18 @@ class Validator{
 	}
 
 	public function getRules($idValidators,$kdm,$formArray){
-
 		$validator = $kdm->create('pp_validator');
+
 		foreach ($idValidators as $key => $value) {
 			$idRsField = $value['field_id'];
+			$rule = $value['validator_id'];
+
 			foreach ($formArray as $key1 => $value) {
 				$idField = $value['field_id'];
-				if($idRsField == $idField){
-					$validator->findValidatorId($idField[0]);
+				if($idRsField == $idField[0]){
+					$validator->findValidatorId($rule);
 					$validators = $validator->getData();
-					$formArray[$key1]['validator_rule'] = $validators['validator_rule'];
+					$formArray[$key1]['validator_rule'][] = $validators['validator_rule'][0];
 				}
 			}
 		}
