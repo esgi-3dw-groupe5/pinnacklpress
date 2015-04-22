@@ -21,9 +21,9 @@ use sophwork\app\view\AppView;
 use sophwork\app\model\AppModel;
 // use modules
 	// KTE
-use sophwork\modules\kte\SophworkTELoader;
-use sophwork\modules\kte\SophworkTELexer;
-use sophwork\modules\kte\SophworkTEParser;
+// use sophwork\modules\kte\SophworkTELoader;
+// use sophwork\modules\kte\SophworkTELexer;
+// use sophwork\modules\kte\SophworkTEParser;
 	// KDM
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
@@ -48,69 +48,3 @@ $controller = $app->appController;
 	$action = $controller->setConfigAction($_POST);
 
 $controller->sendConfigAction($action, $_POST);
-
-// use KTE to render the template
-$loader = new SophworkTELoader();
-if(!$app->config){
-	if($app->appController->page == 'index')
-		Sophwork::redirect('config');
-	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
-	$KTE = new SophworkTEParser($template,$data = [
-		'title' =>  'Setup config file',
-		'h1' =>  'Setup config file',
-		'header' =>  'Setup config file',
-		'base' => 'template/css/base/base.css',
-		'forms' => 'template/css/forms/forms.css',
-		'buttons' => 'template/css/buttons/buttons.css',
-	]);
-}
-else{
-	if($app->appController->page == 'config')
-		Sophwork::redirect();
-	$template = $loader->loadFromFile("template/".$app->appController->page.".tpl");
-	$KTE = new SophworkTEParser($template,$data = [
-		'title' =>  'My first SophK App',
-		'menu' =>  ['menu1','menu2','index','menu4','menu5', ],
-		'active' => ['active'],
-		'my element' =>  'articles',
-		'h1' =>  'Hello World',
-		'footer' =>  'Here is my footer',
-	]);
-}
-echo $KTE->parseTemplate();
-
-$KDM = new SophworkDM($app->config);
-
-// $test = new Validator($app->config);
-
-// $form = new Form('inscription',$app->config);
-
-$field = $KDM->create('pp_field');
-$field->findOne(1);
-// $field->setFieldName('name');
-// $field->setFieldDomname('name');
-// $field->save();
-
-
-//var_dump($_POST);
-if(!empty($_POST)){
-	end($_POST);
-	$formName = key($_POST);
-	$form = new Form();
-	$arrayForm = $form->getForm($formName,$app->config);
-	$validator = new Validator();
-	$msgError = $validator->validateForm($arrayForm,$_POST);
-	var_dump($msgError);
-}
-
-// echo'<pre>';
-// var_dump($field->data);
-// echo'</pre>';
-?>
-<html>
-	<form action="index.php" method="post">
-		<input type="text" name="name" value="alexis.thorel@gmail.com">
-		<input type="password" name="password" value="plopplopplop">
-		<input type="submit" name="inscription">
-	</form>
-</html>
