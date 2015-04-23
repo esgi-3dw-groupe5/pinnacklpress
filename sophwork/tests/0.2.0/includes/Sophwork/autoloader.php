@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *	This file is a part of the sophwork project
  *	@Tested version : Sophwork.0.2.0
  *	@author : Syu93
