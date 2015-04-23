@@ -25,17 +25,16 @@ class SophworkApp extends Sophwork{
 
 	public function __construct(){
 		parent::__construct();
+		$this->config = parent::getConfig();
 
 		$this->appName 			= "My app";
 		$this->appView 			= new AppView();
-		$this->appModel 		= new AppModel();
+		$this->appModel 		= new AppModel($this->config);
 		$this->appController 	= new AppController($this->appModel);
-		$this->setViewData('h1', 'Setup config file');
-		$this->config = parent::getConfig();
 	}
 	
 	public function __set($param, $value) {
-		$this->viewData[$param] = $value;
+		$this->$param = $value;
 	}
 
 	public function __get($param){

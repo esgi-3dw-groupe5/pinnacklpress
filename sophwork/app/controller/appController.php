@@ -29,9 +29,13 @@ class AppController extends SophworkApp{
 		$this->article 	= Sophwork::getParam('a','');
 		$this->appModel = $appModel;
 		
+
+		$action = $this->setConfigAction($_POST);
+		$this->sendConfigAction($action, $_POST);
+
 		// use KTE to render the template
 		$loader = new SophworkTELoader();
-		// // if(!$app->config){
+
 		if(!Sophwork::getConfig()){
 			if($this->page == 'index')
 				Sophwork::redirect('config');

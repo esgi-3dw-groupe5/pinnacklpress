@@ -13,24 +13,33 @@ use sophwork\app\app\SophworkApp;
 
 class AppModel extends SophworkApp{
 
+    public $config;
 	protected $data;
+    protected $link;
 
-	public function __construct(){
-		$this->data = [
-			"name" => "index",
-			"title" => "My First Sophwork App",
-			"h1" => "Hello World",
-		];
+	public function __construct($config = null){
+        if(!is_null($config) && $config != false)
+            $this->config = $config;
+        else
+            $this->config = [
+                'db_host' => null,
+                'db_name' => null,
+                'db_login' => null,
+                'db_password' => null,
+            ];
+        $this->link = $this->connectDatabase();
 	}
-	public function __get($data){
-		return $this->data;
+
+	public function __get($param){
+		return $this->$param;
 	}
 
 	public function __set($param, $value){
-
+        $this->$param = $value;
 	}
 
 	public function connectDatabase(){
+        extract($this->config);
 		try{
 			$link = new \PDO('mysql:host='.$db_host.';dbname='.$db_name,$db_login,$db_password,
 			array(
@@ -44,6 +53,9 @@ class AppModel extends SophworkApp{
 		return $link;
 	}
     
+    /**
+     *  deprecated !
+     */
     public function createDatabase($host, $root, $root_pswd, $user, $user_pswd, $new_db)
     {
         try {
@@ -59,42 +71,4 @@ class AppModel extends SophworkApp{
             die("DB ERROR: ". $e->getMessage());
         }
     }
-
-    /*  ^              ^  */
-    /* /!\ DEPRECATED /!\ */
-    /* ___            ___ */
-    //FIXME : Use simple CRUD method instead
-    function createUser($link, $gender, $name, $firstname, $email, $password, $pseudo, $date, $cle){
-        try{
-            $req = $link -> prepare("INSERT INTO pp_users 
-			(gender, firstname, name, pseudo, email, password, birth_date,cle)
-			VALUES( :gender,
-					:firstname,
-					:name,
-					:pseudo,
-					:email,
-					:password,
-					:birth_date,
-                    :cle) ");
-            $success = $req->execute(array(
-                ':gender' => $gender,
-                ':firstname' => $firstname,
-                ':name' => $name,
-                ':pseudo' => $pseudo,
-                ':email' => $email,
-                ':password' => $password,
-                ':birth_date' => $date,
-                ':cle' => $cle
-            ));
-            return $success;
-        }
-        catch( PDOException $e ){
-
-            debug($e);
-            die();
-        }
-
-
-    }
-
 }

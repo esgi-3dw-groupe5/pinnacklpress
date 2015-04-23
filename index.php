@@ -19,9 +19,6 @@ use sophwork\app\controller\AppController;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
-use controller\form\Validator;
-use controller\form\Form;
-
 /**
  *	Create a new applicaion with the Sophwork class
  *	It will create 3 new class :
@@ -33,6 +30,3 @@ $sophwork = new Sophwork();
 $app = new SophworkApp();
 
 $controller = $app->appController;
-
-	$action = $controller->setConfigAction($_POST);
-$controller->sendConfigAction($action, $_POST);

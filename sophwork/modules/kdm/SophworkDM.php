@@ -39,10 +39,7 @@ class SophworkDM{
 
 	public function dbConnect(){
 		if(sizeof($this->config) >= 4){
-			$db_host 		= $this->config['db_host'];
-			$db_name 		= $this->config['db_name'];
-			$db_login 		= $this->config['db_login'];
-			$db_password 	= $this->config['db_password'];
+			extract($this->config);
 			try{
 				$link = new \PDO('mysql:host='.$db_host.';dbname='.$db_name,$db_login, $db_password,
 				array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION)

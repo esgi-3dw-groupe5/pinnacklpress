@@ -45,7 +45,7 @@ class Sophwork {
 		if( !file_exists(dirname(dirname(__FILE__)) . '/../config.local.php') ){
 			return false;
 		}
-		require_once(dirname(dirname(__FILE__)) . '/../config.local.php');
+		require(dirname(dirname(__FILE__)) . '/../config.local.php');
 		return $config;
 	}
 
