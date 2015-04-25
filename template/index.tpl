@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>{{title}}</title>
+		<title>{{name}} - {{title}}</title>
 		<meta name="description" content="">
 		<link rel="stylesheet" href="">
 	</head>
@@ -12,7 +12,7 @@
 			<nav>
 				<ul>
 					{% macros %}
-					<li class="{{active}}"><a href='/pinnacklpress/{{menu}[L]}'>{{menu}}</a></li>
+					<li class="{{active}}"><a href='/pinnacklpress/{{menu}[L]}'>{{menus}}</a></li>
 					{% endmacros %}
 				</ul>
 			</nav>

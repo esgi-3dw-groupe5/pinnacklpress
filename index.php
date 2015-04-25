@@ -13,11 +13,12 @@ require_once('sophwork/autoloader.php');
 
 use sophwork\core\Sophwork;
 use sophwork\app\app\SophworkApp;
-use sophwork\app\controller\AppController;
 // use modules
 	// KDM
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
+
+use controller\controllers\core\Controllers;
 
 /**
  *	Create a new applicaion with the Sophwork class
@@ -30,3 +31,10 @@ $sophwork = new Sophwork();
 $app = new SophworkApp();
 
 $controller = $app->appController;
+$pageController = new Controllers();
+
+// $options = $kdm->create('pp_option');
+// echo'<pre style="background:#ffffff">';
+// $options->findOptionName("sitedescription");
+// var_dump( $options->getData() );
+// echo'</pre>';
