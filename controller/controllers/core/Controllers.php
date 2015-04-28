@@ -35,14 +35,8 @@ class Controllers extends AppController{
 			'name' =>  $sitename,
 			'title' =>  $sitedescription,
 			'url' => $siteurl,
-			'menus' =>  $pageArray,
-			'menu' =>  ['menu1','menu2'],
-			'active' => ['active'],
-			'my element' =>  'articles',
-			'h1' =>  'Hello World',
-			'footer' =>  'Here is my footer',
 		];
-		$this->callView($this->page);
+		$this->callView('index');
 	}
 
 	public function __get($param){

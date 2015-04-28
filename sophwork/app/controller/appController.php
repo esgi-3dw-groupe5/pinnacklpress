@@ -34,6 +34,7 @@ class AppController extends SophworkApp{
 	protected $KDM;
 
 	public function __construct($appModel = null){
+		parent::__construct();
 		// FIXME : Get all these param dynamicaly
 		$this->page 	= Sophwork::getParam('p','index');
 		$this->article 	= Sophwork::getParam('a','');
@@ -89,14 +90,5 @@ class AppController extends SophworkApp{
 			Sophwork::setConfig($POST);
 			Sophwork::redirect();
 		}
-	}
-
-	public function callView($name = null){
-			$this->loader = new SophworkTELoader();
-			$this->template = $this->loader->loadFromFile("template/".$this->page.".tpl");
-			if(!is_null($name))
-				$this->template = $this->loader->loadFromFile("template/".$name.".tpl");
-			$this->KTE = new SophworkTEParser($this->template, $this->data);
-			echo $this->KTE->parseTemplate();
 	}
 }

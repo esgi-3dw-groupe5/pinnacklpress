@@ -41,12 +41,16 @@ class AppView extends SophworkApp{
 		include(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
 	}
 
-	public function printOut($value){
-		if(!isset($this->viewData[$value])){
-			echo "";
-		}
-		else{
-			echo htmlspecialchars($this->viewData[$value]);
-		}
+	protected static $modifiers = [
+		'S' => 'htmlspecialchars',
+		'U' => 'strtoupper',
+		'L' => 'strtolower',
+		'FU' => 'ucfirst',
+		'FL' => 'lcfirst',
+	];
+
+	public static function e($value, $modifier = 'S'){
+		$method = self::$modifiers[$modifier];
+		echo $method($value);
 	}
 }

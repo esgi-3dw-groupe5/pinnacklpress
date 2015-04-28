@@ -1,22 +1,20 @@
-<!-- Default Index Tempalte -->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>{{name}} - {{title}}</title>
+		<title> Title </title>
 		<meta name="description" content="">
 		<link rel="stylesheet" href="">
 	</head>
 	<body>
 		<header>
 			<nav>
-				<ul>
-					<?php $this->e('plop'); ?>
-					<li class=""><a href='/pinnacklpress/'>menu</a></li>
-				</ul>
 			</nav>
 		</header>
 		<section>
+			<?php foreach($items as $key => $value): ?>
+				<a href="<?php KTE::e($value->url)?>"><?php KTE::e($value->caption)?></a>
+			<?php endforeach; ?>
 		</section>
 		<aside>
 		</aside>

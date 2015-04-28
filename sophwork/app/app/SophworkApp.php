@@ -14,8 +14,8 @@ use sophwork\app\view\AppView;
 use sophwork\app\model\AppModel;
 use sophwork\app\controller\AppController;
 
-class SophworkApp extends Sophwork{
-	public $appName;
+class SophworkApp{
+	// public $appName;
 	public $config;
 	public $appView;
 	public $appModel;
@@ -24,13 +24,14 @@ class SophworkApp extends Sophwork{
 	protected $viewName;
 
 	public function __construct(){
-		parent::__construct();
-		$this->config = parent::getConfig();
+		// parent::__construct();
+		$this->config = Sophwork::getConfig();
 
-		$this->appName 			= "My app";
+		$this->appName 			= "Pinnackl";
 		$this->appView 			= new AppView();
 		$this->appModel 		= new AppModel($this->config);
-		$this->appController 	= new AppController($this->appModel);
+		if(!($this instanceof AppController))
+			$this->appController 	= new AppController($this->appModel);
 	}
 	
 	public function __set($param, $value) {
