@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>{{name}} - {{title}}</title>
+		<title><?php $this->e('plop'); ?> - <?php $this->e('plop'); ?></title>
 		<meta name="description" content="">
 		<link rel="stylesheet" href="">
 	</head>

@@ -27,9 +27,10 @@ class SophworkApp{
 		// parent::__construct();
 		$this->config = Sophwork::getConfig();
 
-		$this->appName 			= "Pinnackl";
-		$this->appView 			= new AppView();
-		$this->appModel 		= new AppModel($this->config);
+		$this->appName 			 = "Pinnackl";
+		$this->appView 			 = new AppView();
+		$this->appView->viewData = new \StdClass();
+		$this->appModel 		 = new AppModel($this->config);
 		if(!($this instanceof AppController))
 			$this->appController 	= new AppController($this->appModel);
 	}
@@ -42,8 +43,14 @@ class SophworkApp{
 		return $this->$param;
 	}
 
-	public function setViewData($param, $value){
-		$this->appView->__set($param, $value);
+	public function setViewData($item, $values){
+		$this->appView->viewData->$item = new \StdClass();
+		if(gettype($values) == 'array'){
+			
+		}
+		echo'<pre style="background:#ffffff">';
+		var_dump($this->appView->viewData);
+		echo'</pre>';
 	}
 
 	public function callView($name = null){

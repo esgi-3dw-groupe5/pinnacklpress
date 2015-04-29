@@ -13,28 +13,18 @@ use sophwork\app\app\SophworkApp;
 
 class AppView extends SophworkApp{
 
-	private $viewData = [];
+	private static $viewData;
 
 	public function __construct() {
 
 	}
 
 	public function __set($param, $value) {
-		$this->viewData[$param] = $value;
+		$this->$param = $value;
 	}
 	
 	public function __get($param) {
-		if (array_key_exists($param, $this->viewData)) {
-			return $this->viewData[$param];
-		}
-
-		$trace = debug_backtrace();
-		trigger_error(
-		'Undefined property via __get(): ' . $param .
-		' in ' . $trace[0]['file'] .
-		' on line ' . $trace[0]['line'],
-		E_USER_NOTICE);
-		return null;
+		return $this->$param;
 	}
 
 	public function renderView($template){

@@ -36,7 +36,8 @@ class Controllers extends AppController{
 			'title' =>  $sitedescription,
 			'url' => $siteurl,
 		];
-		$this->callView('index');
+		$this->setViewData('index');
+		// $this->callView('index');
 	}
 
 	public function __get($param){
