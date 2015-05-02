@@ -13,7 +13,14 @@ use sophwork\app\app\SophworkApp;
 
 class AppView extends SophworkApp{
 
-	private static $viewData;
+	public $modifiers = [
+		'S' => 'htmlspecialchars',
+		'U' => 'strtoupper',
+		'L' => 'strtolower',
+		'FU' => 'ucfirst',
+		'FL' => 'lcfirst',
+	];
+	public $viewData;
 
 	public function __construct() {
 
@@ -31,16 +38,16 @@ class AppView extends SophworkApp{
 		include(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
 	}
 
-	protected static $modifiers = [
-		'S' => 'htmlspecialchars',
-		'U' => 'strtoupper',
-		'L' => 'strtolower',
-		'FU' => 'ucfirst',
-		'FL' => 'lcfirst',
-	];
 
-	public static function e($value, $modifier = 'S'){
-		$method = self::$modifiers[$modifier];
-		echo $method($value);
+	public function show($value, $item = null, $modifier = 'S'){
+		$method = $this->modifiers[$modifier];
+		if(!is_null($item)){
+			if(isset($value->$item))
+				echo $method($value->$item);
+			return;
+		}
+		if(isset($this->viewData->$value))
+			echo $method($this->viewData->$value);
+		return;
 	}
 }

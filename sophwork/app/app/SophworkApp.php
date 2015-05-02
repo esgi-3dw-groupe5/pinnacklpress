@@ -14,7 +14,7 @@ use sophwork\app\view\AppView;
 use sophwork\app\model\AppModel;
 use sophwork\app\controller\AppController;
 
-class SophworkApp{
+class SophworkApp extends Sophwork{
 	// public $appName;
 	public $config;
 	public $appView;
@@ -24,12 +24,13 @@ class SophworkApp{
 	protected $viewName;
 
 	public function __construct(){
-		// parent::__construct();
+		parent::__construct();
 		$this->config = Sophwork::getConfig();
 
 		$this->appName 			 = "Pinnackl";
 		$this->appView 			 = new AppView();
-		$this->appView->viewData = new \StdClass();
+		$this->appView
+			->viewData 			 = new \StdClass();
 		$this->appModel 		 = new AppModel($this->config);
 		if(!($this instanceof AppController))
 			$this->appController 	= new AppController($this->appModel);
@@ -43,20 +44,37 @@ class SophworkApp{
 		return $this->$param;
 	}
 
-	public function setViewData($item, $values){
-		$this->appView->viewData->$item = new \StdClass();
-		if(gettype($values) == 'array'){
-			
+	public function setViewData($itemName, $values, $arrayKey = null){
+		if(gettype($values) == 'string'){
+			$this->appView
+				->viewData->$itemName = $values;
 		}
-		echo'<pre style="background:#ffffff">';
-		var_dump($this->appView->viewData);
-		echo'</pre>';
+
+		if(gettype($values) == 'array' && !is_null($arrayKey)){
+			$menu = new \StdClass();
+			if(isset($this->appView->viewData->$itemName)){
+				$menu = $this->appView->viewData->$itemName;
+			}
+			
+			foreach ($values[$arrayKey] as $key => $value) {
+				$itemObj = new \StdClass();
+				$subItemName = $itemName.$key;
+				if(isset($this->appView->viewData->$itemName->$subItemName)){
+					$itemObj = $this->appView->viewData->$itemName->$subItemName;
+				}
+				$itemObj->$arrayKey = $value;
+				// add
+				$menu->$subItemName = $itemObj;
+			}
+			// add
+			$this->appView->viewData->$itemName = $menu;
+		}
 	}
 
 	public function callView($name = null){
-		if( $name !== null )
+		if( !is_null($name) )
 			$this->viewName = $name;
-		
-		$this->appView->renderView($this->viewName);
+		$this->appView
+			->renderView($this->viewName);
 	}
 }

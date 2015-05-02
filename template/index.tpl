@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title><?php $this->e('plop'); ?> - <?php $this->e('plop'); ?></title>
+		<title><?php $this->show('sitename'); ?> - <?php $this->show('sitedescription'); ?></title>
 		<meta name="description" content="">
 		<link rel="stylesheet" href="">
 	</head>
@@ -11,8 +11,13 @@
 		<header>
 			<nav>
 				<ul>
-					<?php $this->e('plop'); ?>
-					<li class=""><a href='/pinnacklpress/'>menu</a></li>
+					<?php foreach ($this->viewData->menu as $key => $value) :?>
+						<li class="">
+							<a href="/pinnacklpress/<?php $this->show($value, 'page_tag'); ?>">
+								<?php $this->show($value, 'page_name'); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
 				</ul>
 			</nav>
 		</header>
