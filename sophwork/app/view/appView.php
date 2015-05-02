@@ -35,6 +35,8 @@ class AppView extends SophworkApp{
 	}
 
 	public function renderView($template){
+		if(is_null($template))
+			$template = 'index';
 		include(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
 	}
 

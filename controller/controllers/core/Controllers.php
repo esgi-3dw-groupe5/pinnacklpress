@@ -37,7 +37,7 @@ class Controllers extends AppController{
 		$this->setViewData('menu', $pages->getData(), 'page_tag');
 		$this->setViewData('menu', $pages->getData(), 'page_name');
 
-		$this->callView($this->page);
+		$this->callView();
 	}
 
 	public function __get($param){
