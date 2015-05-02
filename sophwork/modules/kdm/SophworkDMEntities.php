@@ -121,12 +121,14 @@ class SophworkDMEntities extends SophworkDM{
 		}
 	}
 
-	public function find($value){
+	public function find($value = null){
 		$criteria = '';
 		for($i=0;$i<sizeof($this->indexes);$i++) {
 			($i < 1)? $criteria .= $this->indexes[$i] . "=" . "'". $value ."'"
 				: $criteria .= " OR " . $this->indexes[$i] . "=" . "'". $value ."'";
 		}
+		if(is_null($value))
+			$criteria = $value;
 		$result = $this->select($this->table, $criteria)->fetchAll();
 		foreach ($result as $key1 => $value1) {
 			foreach ($this->data as $key2 => $value2) {

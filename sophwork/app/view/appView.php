@@ -34,10 +34,14 @@ class AppView extends SophworkApp{
 		return $this->$param;
 	}
 
-	public function renderView($template){
+	public function renderView($template, $path = null){
 		if(is_null($template))
 			$template = 'index';
-		include(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
+		if(!is_null($path)){
+			include_once(dirname(dirname(__FILE__)) . '/..' .'/../' . $path . 'template/'.$template.'.tpl');
+			return;
+		}
+		include_once(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
 	}
 
 

@@ -71,10 +71,10 @@ class SophworkApp extends Sophwork{
 		}
 	}
 
-	public function callView($name = null){
+	public function callView($name = null, $path = null){
 		if( !is_null($name) )
 			$this->viewName = $name;
 		$this->appView
-			->renderView($this->viewName);
+			->renderView($this->viewName, $path);
 	}
 }

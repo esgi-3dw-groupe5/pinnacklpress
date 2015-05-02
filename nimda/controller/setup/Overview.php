@@ -16,6 +16,7 @@ class Overview extends \sophwork\app\view\AppView{
 	protected $fields;
 
 	public function __construct($config = null){
+		parent::__construct();
 		$this->forms = [];
 		$this->fields = [];
 
@@ -77,7 +78,7 @@ class Overview extends \sophwork\app\view\AppView{
 		$this->fields[$param] = $value;
 	}
 
-	public function renderView($page = null){
+	public function renderView($page = null, $path = null){
 		// Get fields
 		$nameField = $this->__getFields('nameField');
 		$descriptionField = $this->__getFields('descriptionField');

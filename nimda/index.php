@@ -26,15 +26,21 @@ $app = new SophworkApp();
 
 $controller = $app->appController;
 	$page = $controller->page;
+	$KDM = $controller->KDM;
 
 if($page == 'index')
 	Sophwork::redirect('nimda/overview');
+
+$options = $KDM->create('pp_option');
+$options->findOptionName("siteurl");
+$siteurl = $options->getOptionValue()[0];
 
 // Header template
 $loader = new SophworkTELoader();
 $template = $loader->loadFromFile("template/header.tpl");
 $KTE = new SophworkTEParser($template, [
 	'title' => 'Nimda',
+	'siteurl' => $siteurl,
 	'menu' => ['Overview','Pages'],
 	'active' => ['active'],
 ]);
@@ -42,6 +48,7 @@ print $KTE->parseTemplate();
 
 $control = 'nimda\controller\setup\\' . ucfirst($page);
 $pageController = $controller->pageController = new $control($app->config);
+var_dump($app->getParam('e', ''));
 	$pageController->renderView($page);
 
 echo '</div></body></html>'; // Layout
