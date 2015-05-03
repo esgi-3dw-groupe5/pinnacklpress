@@ -34,6 +34,11 @@ class AppView extends SophworkApp{
 		return $this->$param;
 	}
 
+	public function isActive($page, $level = 'p'){
+		if($page == $_GET[$level])
+			echo' active';
+	}
+
 	public function renderView($template, $path = null){
 		if(is_null($template))
 			$template = 'index';
@@ -50,10 +55,10 @@ class AppView extends SophworkApp{
 		if(!is_null($item)){
 			if(isset($value->$item))
 				echo $method($value->$item);
-			return;
+			return $method($value->$item);
 		}
 		if(isset($this->viewData->$value))
 			echo $method($this->viewData->$value);
-		return;
+		return $method($this->viewData->$value);
 	}
 }
