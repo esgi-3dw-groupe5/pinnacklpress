@@ -22,8 +22,7 @@
 
     <tbody>
         <?php foreach ($this->viewData->pages as $key => $value) : ?>
-        <tr>
-        <?php var_dump($this->show($value, 'page_active'))?>           
+        <tr>          
             <td><?php echo ( empty( $this->show($value, 'page_id')      )? '-' : null ) ?></td>
             <td><?php echo ( empty( $this->show($value, 'page_tag')     )? '-' : null ) ?></td>
             <td><?php echo ( empty( $this->show($value, 'page_name')    )? '-' : null ) ?></td>
