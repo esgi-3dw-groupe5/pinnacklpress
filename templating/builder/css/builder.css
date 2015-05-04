@@ -20,10 +20,20 @@ body{
 	background: #1b98f8;
 	border: dashed 5px #777;
 	border-radius: 15px;
-	width: 267px;
-	height: 267px;
+	width: 246px;
+	height: 246px;
 	float: left;
 	margin: 5px;
+	font-weight: bold;
+	font-size: 2em;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.builder-section:hover{
+	cursor: pointer;
+	opacity: 0.6;
+	border: 5px dashed #fff;
 }
 
 /*DnD*/

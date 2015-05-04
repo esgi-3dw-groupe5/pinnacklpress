@@ -31,25 +31,15 @@
 		<section>
 			<div class="content">
 				<div class="builder-section" draggable="true">plop1</div>
-					<input type="checkbox" name="link-1-3">
 				<div class="builder-section" draggable="true">plop2</div>
-					<input type="checkbox" name="link-1-3">
 				<div class="builder-section" draggable="true">plop3</div>
-					
-					<input type="checkbox" name="link-1-3">
-					<input type="checkbox" name="link-1-3">
-					<input type="checkbox" name="link-1-3">
 
 				<div class="builder-section" draggable="true">plop4</div>
-					<input type="checkbox" name="link-1-3">
 				<div class="builder-section" draggable="true">plop5</div>
-					<input type="checkbox" name="link-1-3">
 				<div class="builder-section" draggable="true">plop6</div>
 				
 				<div class="builder-section" draggable="true">plop7</div>
-					<input type="checkbox" name="link-1-3">
 				<div class="builder-section" draggable="true">plop8</div>
-					<input type="checkbox" name="link-1-3">
 				<div class="builder-section" draggable="true">plop9</div>
 			</div>
 		</section>
