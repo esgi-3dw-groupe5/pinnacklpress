@@ -20,8 +20,8 @@ body{
 	background: #1b98f8;
 	border: dashed 5px #777;
 	border-radius: 15px;
-	width: 280px;
-	height: 280px;
+	width: 267px;
+	height: 267px;
 	float: left;
 	margin: 5px;
 }
@@ -43,8 +43,8 @@ body{
 		background: #1b98f8;
 		border: dashed 5px #777;
 		border-radius: 15px;
-		width: 180px;
-		height: 180px;
+		width: 167px;
+		height: 167px;
 		float: left;
 		margin: 5px;
 	}
@@ -84,4 +84,11 @@ body{
 	/* Required to make elements draggable in old WebKit */
 	-khtml-user-drag: element;
 	-webkit-user-drag: element;
+}
+
+/*Checkbox*/
+
+input[type=checkbox]{
+	margin-top: 85px;
+	float: left;
 }

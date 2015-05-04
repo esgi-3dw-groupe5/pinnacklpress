@@ -6,30 +6,51 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<link rel="stylesheet" href="css/builder.css">
+		<link rel="stylesheet" href="/pinnacklpress/nimda/template/css/base/base.css">
+		<link rel="stylesheet" href="/pinnacklpress/nimda/template/css/grids/grids-core.css">
+		<link rel="stylesheet" href="/pinnacklpress/nimda/template/css/menus/menus-core.css">
+		<link rel="stylesheet" href="/pinnacklpress/nimda/template/css/menus/extend.css">
+		<link rel="stylesheet" href="/pinnacklpress/nimda/template/css/menus/side-menu.css">
 	</head>
 	<body>
+		<div id="layout">
+			<div id="menu">
+			    <div class="pinnackl-menu">
+					<a class="pinnackl-menu-heading" href="../nimda/">Pinnackl Press</a>
+					<!-- <a class="pinnackl-menu-heading" href="../">Your site</a> -->
+					<ul class="pinnackl-menu-list">
+						<li class="pinnackl-menu-item items" draggable="true"><a class="pinnackl-menu-link">Menu1</a></li>
+						<li class="pinnackl-menu-item items" draggable="true"><a class="pinnackl-menu-link">Menu2</a></li>
+					</ul>
+				</div>
+			</div>
 		<header>
 			<nav>
 			</nav>
 		</header>
 		<section>
-			<div id="columns">
-				<div class="column" draggable="true"><header>A</header></div>
-				<div class="column" draggable="true"><header>B</header></div>
-				<div class="column" draggable="true"><header>C</header></div>
-			</div>
 			<div class="content">
-				<div class="builder-section" draggable="true">plop</div>
-				<div class="builder-section" draggable="true">plop</div>
-				<div class="builder-section" draggable="true">plop</div>
-	
-				<div class="builder-section" draggable="true">plop</div>
-				<div class="builder-section" draggable="true">plop</div>
-				<div class="builder-section" draggable="true">plop</div>
+				<div class="builder-section" draggable="true">plop1</div>
+					<input type="checkbox" name="link-1-3">
+				<div class="builder-section" draggable="true">plop2</div>
+					<input type="checkbox" name="link-1-3">
+				<div class="builder-section" draggable="true">plop3</div>
+					
+					<input type="checkbox" name="link-1-3">
+					<input type="checkbox" name="link-1-3">
+					<input type="checkbox" name="link-1-3">
+
+				<div class="builder-section" draggable="true">plop4</div>
+					<input type="checkbox" name="link-1-3">
+				<div class="builder-section" draggable="true">plop5</div>
+					<input type="checkbox" name="link-1-3">
+				<div class="builder-section" draggable="true">plop6</div>
 				
-				<div class="builder-section" draggable="true">plop</div>
-				<div class="builder-section" draggable="true">plop</div>
-				<div class="builder-section" draggable="true">plop</div>
+				<div class="builder-section" draggable="true">plop7</div>
+					<input type="checkbox" name="link-1-3">
+				<div class="builder-section" draggable="true">plop8</div>
+					<input type="checkbox" name="link-1-3">
+				<div class="builder-section" draggable="true">plop9</div>
 			</div>
 		</section>
 		<aside>
@@ -96,7 +117,7 @@
 			});
 		}
 
-		var draggers = document.querySelectorAll('#columns .column');
+		var draggers = document.querySelectorAll('.items');
 		[].forEach.call(draggers, function(dragger) {
 			dragger.addEventListener('dragstart', handleDragStart, false);
 			dragger.addEventListener('dragenter', handleDragEnter, false);
@@ -117,5 +138,6 @@
 			col.addEventListener('dragend', handleDragEnd, false);
 		});
 	</script>
+	</div>
 	</body>
 </html>

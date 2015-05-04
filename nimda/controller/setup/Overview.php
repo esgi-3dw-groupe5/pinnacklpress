@@ -89,7 +89,7 @@ class Overview extends \sophwork\app\view\AppView{
 		$KTE = new SophworkTEParser($template, [
 			'h1' => 'Pinnackl Press',
 			'h2' => 'Global configuration',
-			'legend' => 'Site configuation',
+			'legend' => 'Site Setup',
 			// input-1
 			'label_1' => $nameField->getFieldPlaceholder(),
 			'input_1' => $nameField->getFieldDomname(),
