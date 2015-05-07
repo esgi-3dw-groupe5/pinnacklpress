@@ -1,0 +1,15 @@
+.custom-menu-top{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+#menu .active{
+	background: #1f8dd6;
+}
+#menu .pinnackl-menu li.active a:hover, #menu .pinnackl-menu li.active a:focus{
+	background: none;
+}
+
+#menu .active a{
+	color: #ffffff;
+}

@@ -10,16 +10,16 @@ use sophwork\modules\kte\SophworkTELoader;
 use sophwork\modules\kte\SophworkTELexer;
 use sophwork\modules\kte\SophworkTEParser;
 
-class Pages extends \sophwork\app\view\AppView{
+class Pages extends \sophwork\app\controller\AppController{
 	public $config;
 	protected $forms;
 	protected $fields;
 
 	public function __construct($config = null){
+		parent::__construct();
+		$this->config = $config;
 		$this->forms = [];
 		$this->fields = [];
-
-		$KDM = new SophworkDM($config);
 	}
 
 	public function __get($param){
@@ -46,7 +46,27 @@ class Pages extends \sophwork\app\view\AppView{
 		$this->fields[$param] = $value;
 	}
 
-	public function renderView($page){
-		echo 'My page is ' . $page;
+	public function renderView($page = null){
+		$KDM = new SophworkDM($this->config);
+		$pages = $KDM->create('pp_option');
+		$pages->findOptionName("siteurl");
+		$siteurl = $pages->getOptionValue()[0];
+		
+		$this->setViewData('siteurl', $siteurl);
+
+		$pages = $KDM->create('pp_page');
+		$pages->find();
+		
+		$this->setViewData('h1', 'Pinnackl Press');
+		$this->setViewData('h2', 'Pages configuration');
+		$this->setViewData('pages', $pages->getData(), 'page_id');
+		$this->setViewData('pages', $pages->getData(), 'page_tag');
+		$this->setViewData('pages', $pages->getData(), 'page_name');
+		$this->setViewData('pages', $pages->getData(), 'page_order');
+		$this->setViewData('pages', $pages->getData(), 'page_display');
+		$this->setViewData('pages', $pages->getData(), 'page_active');
+		$this->setViewData('pages', $pages->getData(), 'page_type');
+
+		$this->callView($page, 'nimda/');
 	}
 }

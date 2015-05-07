@@ -48,15 +48,18 @@ class AppController extends SophworkApp{
 			if($this->page == 'index')
 				Sophwork::redirect('config');
 			// use KTE to render the template
-			$this->data = [
+			$loader = new SophworkTELoader();
+			$template = $loader->loadFromFile("template/".$this->page.".tpl");
+			$KTE = new SophworkTEParser($template,$data = [
 				'title' =>  'Setup config file',
-				'h1' =>  'Setup config file',
+				'h1' =>  'Setup config file',	
 				'header' =>  'Setup config file',
 				'base' => 'template/css/base/base.css',
 				'forms' => 'template/css/forms/forms.css',
-				'buttons' => 'template/css/buttons/buttons.css',
-			];
-			$this->callView();
+				'buttons' => 'template/css/buttons/buttons.css','template/css/buttons/buttons.css',
+			]);
+			echo $KTE->parseTemplate();
+			exit;
 		}
 		else{
 			if($this->page == 'config')
