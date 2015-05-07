@@ -23,13 +23,13 @@
     <tbody>
         <?php foreach ($this->viewData->pages as $key => $value) : ?>
         <tr>          
-            <td><?php echo ( empty( $this->show($value, 'page_id')      )? '-' : null ) ?></td>
-            <td><?php echo ( empty( $this->show($value, 'page_tag')     )? '-' : null ) ?></td>
-            <td><?php echo ( empty( $this->show($value, 'page_name')    )? '-' : null ) ?></td>
-            <td><?php $this->show($value, 'page_order')?></td>
-            <td><?php echo ( empty( $this->show($value, 'page_display') )? '-' : null ) ?></td>
-            <td><?php echo ( empty( $this->show($value, 'page_active')  )? '-' : null ) ?></td>
-            <td><?php echo ( empty( $this->show($value, 'page_type')    )? '-' : null ) ?></td>
+            <td><?php $this->show($value, 'page_id')      ?></td>
+            <td><?php $this->show($value, 'page_tag')     ?></td>
+            <td><?php $this->show($value, 'page_name')    ?></td>
+            <td><?php $this->show($value, 'page_order')   ?></td>
+            <td><?php $this->show($value, 'page_display') ?></td>
+            <td><?php $this->show($value, 'page_active')  ?></td>
+            <td><?php $this->show($value, 'page_type')    ?></td>
             <td>
                 <a class="pinnackl-button pinnackl-button-primary"
                 href="<?php $this->show('siteurl')?>nimda/pages/edit/<?php $this->show($value, 'page_tag')?>">Edit</a>
