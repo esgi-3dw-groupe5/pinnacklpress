@@ -1,0 +1,18 @@
+.pinnackl-form input[type="checkbox"]{
+	display: inline-block;
+	margin-right: 10px !important;
+	top: 1px;
+	margin-left: 10px;
+}
+
+label{
+	display: inline-block;
+}
+
+.pinnackl-form input[type="text"]{
+	display: block;
+}
+
+.pinnackl-form fieldset{
+	padding: 0.35em 0 0;
+}

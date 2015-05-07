@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="template/css/menus/extend.css">
 <link rel="stylesheet" href="template/css/menus/side-menu.css">
 <link rel="stylesheet" href="template/css/forms/forms.css">
+<link rel="stylesheet" href="template/css/forms/extend.css">
 <link rel="stylesheet" href="template/css/buttons/buttons.css">
 </head>
 <body>

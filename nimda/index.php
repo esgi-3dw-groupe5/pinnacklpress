@@ -35,7 +35,7 @@ $loader = new SophworkTELoader();
 $template = $loader->loadFromFile("template/header.tpl");
 $KTE = new SophworkTEParser($template, [
 	'title' => 'Nimda',
-	'menu' => ['Overview','Pages'],
+	'menu' => ['Overview','Pages','Formulaires'],
 	'active' => ['active'],
 ]);
 print $KTE->parseTemplate();

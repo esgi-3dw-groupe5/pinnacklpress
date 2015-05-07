@@ -23,16 +23,63 @@ $controller = $app->appController;
 
 $optionPageController = preg_split("#/#", $_POST['pp-referer']);
 	$optionPage = $optionPageController[count($optionPageController)-1];
+if($optionPage == 'overview'){
+	$KDM = new SophworkDM($app->config);
+	foreach ($options[$optionPage] as $key => $value) {
+		$$value = $KDM->create('pp_option');
+			// Find if this property already exist, it will determine insert or update by the auto id
+			$$value->findOne($value);
+			
+			$$value->setOptionName($value);
+			$$value->setOptionValue($_POST[$value]);
+			$$value->save();
+	}	
+}elseif($optionPage == 'formulaires'){
 
-$KDM = new SophworkDM($app->config);
-foreach ($options[$optionPage] as $key => $value) {
-	$$value = $KDM->create('pp_option');
-		// Find if this property already exist, it will determine insert or update by the auto id
-		$$value->findOne($value);
+	var_dump($_POST);
+	$formName = $_POST['form-name'];
+	$KDM = new SophworkDM($app->config);
+	$form = $KDM->create('pp_form');
+	$form->findOne($formName);
+
+	if(is_null($form->getData()['form_id'])){
+		echo 'succes';
+		//INSERT INTO FORM TABLE
+		$form = $KDM->create('pp_form');
+		$form->setFormName($_POST['form-name']);
+		$form->setFormAction('');
+		$form->setFormMethod('post');
+		$form->setFormTarget('');
+		$form->setFormEnctype('');
 		
-		$$value->setOptionName($value);
-		$$value->setOptionValue($_POST[$value]);
-		$$value->save();
+		//$form->save();
+		$form->findOne($formName);
+
+		//INSERT INTO FIELD TABLE
+		
+		foreach ($_POST as $key => $value) {
+			var_dump($value);
+			if(is_array($value)){
+				$fieldName = $value['field-name']; // ok
+				$fieldType = $value['field-type']; // ok
+				$field = $KDM->create('pp_field');
+				$field->setFieldName($fieldName);
+				$field->setFieldType($fieldType);
+				$field->setFieldDomname($fieldName);
+				$field->setFieldDommid($fieldType);
+				//$field->save();
+				foreach ($value as $keyValidator => $valueValidator) {
+					var_dump($keyValidator); // TO DO : get validation
+				}
+			}
+		}
+		
+
+	}
+	else{
+		echo 'echec';
+	}
+	exit;
 }
 
 // Redirect to the settings page from referer
