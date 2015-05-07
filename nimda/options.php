@@ -52,24 +52,49 @@ if($optionPage == 'overview'){
 		$form->setFormTarget('');
 		$form->setFormEnctype('');
 		
-		//$form->save();
-		$form->findOne($formName);
+		$form->save();
+		$idForm = $form->getData()['form_id'];
 
 		//INSERT INTO FIELD TABLE
 		
 		foreach ($_POST as $key => $value) {
-			var_dump($value);
 			if(is_array($value)){
-				$fieldName = $value['field-name']; // ok
-				$fieldType = $value['field-type']; // ok
+				$fieldName = $value['field-name']; 
+				$fieldType = $value['field-type']; 
 				$field = $KDM->create('pp_field');
 				$field->setFieldName($fieldName);
 				$field->setFieldType($fieldType);
 				$field->setFieldDomname($fieldName);
-				$field->setFieldDommid($fieldType);
-				//$field->save();
+				$field->setFieldDomid($fieldType);
+				$field->setFieldValue("");
+				$field->setFieldPlaceholder("");
+				$field->save();
+				$idField = $field->getData()['field_id'];
+
+				//INSERT INTO FORM RS
+
+				$formRs = $KDM->create('pp_form_rs');
+				$formRs->setFormId($idForm);
+				$formRs->setFieldId($idField);
+				$formRs->save();
+
+				$incr = 0;
 				foreach ($value as $keyValidator => $valueValidator) {
-					var_dump($keyValidator); // TO DO : get validation
+					$incr++;
+					if($incr>2){
+						$rule = "is".ucfirst($keyValidator);
+						$validator = $KDM->create('pp_validator');
+						$validator->setValidatorRule($rule);
+						$validator->save();
+						$idValidator = $validator->getData()['validator_id'];
+
+						//INSERT INTO FIELD RS
+						var_dump($idValidator);
+						$fieldRs = $KDM->create('pp_field_rs');
+						$fieldRs->setFieldId($idField);
+						$fieldRs->setValidatorId($idValidator);
+						$fieldRs->save();
+					}
 				}
 			}
 		}

@@ -9,6 +9,10 @@ label{
 	display: inline-block;
 }
 
+select{
+	border-radius: 0 4px 0 0 !important;
+}
+
 .pinnackl-form input[type="text"]{
 	display: block;
 }
@@ -16,3 +20,7 @@ label{
 .pinnackl-form fieldset{
 	padding: 0.35em 0 0;
 }
+
+select:required:invalid { color: gray; }  
+option[value=""][disabled] { display: none; }  
+option { color: black; }
