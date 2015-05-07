@@ -89,7 +89,7 @@ if($optionPage == 'overview'){
 						$idValidator = $validator->getData()['validator_id'];
 
 						//INSERT INTO FIELD RS
-						var_dump($idValidator);
+
 						$fieldRs = $KDM->create('pp_field_rs');
 						$fieldRs->setFieldId($idField);
 						$fieldRs->setValidatorId($idValidator);
@@ -98,15 +98,11 @@ if($optionPage == 'overview'){
 				}
 			}
 		}
-		
-
 	}
 	else{
 		echo 'echec';
 	}
-	exit;
 }
 
 // Redirect to the settings page from referer
 Sophwork::redirectFromRef($_POST['pp-referer']);
-exit;
