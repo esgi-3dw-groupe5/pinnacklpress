@@ -12,6 +12,9 @@ function __autoload($c){
 	// echo "<pre>";
 	// echo dirname(__FILE__)."/..".__NAMESPACE__ . "/". $c . ".php";
 	// echo "</pre>";
+
+	$c = preg_replace("(\\\\)", DIRECTORY_SEPARATOR, $c);
+	
 	try{
 		if(file_exists(dirname(__FILE__) . "/.." . __NAMESPACE__ . "/". $c . ".php"))
 			require_once dirname(__FILE__) . "/.." . __NAMESPACE__ . "/". $c . ".php";
