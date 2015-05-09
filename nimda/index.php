@@ -34,7 +34,11 @@ if($page == 'index')
 $options = $KDM->create('pp_option');
 $options->findOptionName("siteurl");
 $siteurl = $options->getOptionValue()[0];
-
+$options->findOptionName('sitename');
+$sitename = $options->getOptionValue()[0];
+$options->findOptionName('sitedescription');
+$sitedescription = $options->getOptionValue()[0];  
+$controller->setViewData('siteurl', $siteurl);
 // Header template
 // $loader = new SophworkTELoader();
 // $template = $loader->loadFromFile("template/header.tpl");
@@ -57,6 +61,7 @@ $menu = [
 	],
 ];
 
+$controller->setViewData('title', $sitename.' '.$sitedescription);
 $controller->setViewData('siteurl', $siteurl);
 $controller->setViewData('menu', $menu, 'page_tag');
 $controller->setViewData('menu', $menu, 'page_name');

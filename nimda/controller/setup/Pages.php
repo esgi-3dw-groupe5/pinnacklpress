@@ -48,15 +48,15 @@ class Pages extends \sophwork\app\controller\AppController{
 
 	public function renderView($page = null){
 		$KDM = new SophworkDM($this->config);
-		$pages = $KDM->create('pp_option');
-		$pages->findOptionName("siteurl");
-		$siteurl = $pages->getOptionValue()[0];
-		
-		$this->setViewData('siteurl', $siteurl);
+		$action = Sophwork::getParam('a', '');
+		$options = $KDM->create('pp_option');
+		$options->findOptionName('siteurl');
+		$siteurl = $options->getOptionValue()[0];
 
 		$pages = $KDM->create('pp_page');
 		$pages->find();
 		
+		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Pages configuration');
 		$this->setViewData('pages', $pages->getData(), 'page_id');
@@ -67,6 +67,9 @@ class Pages extends \sophwork\app\controller\AppController{
 		$this->setViewData('pages', $pages->getData(), 'page_active');
 		$this->setViewData('pages', $pages->getData(), 'page_type');
 
-		$this->callView($page, 'nimda/');
+		if($action == 'edit')
+			$this->callView($page.'-edit', 'nimda/');
+		else
+			$this->callView($page, 'nimda/');
 	}
 }
