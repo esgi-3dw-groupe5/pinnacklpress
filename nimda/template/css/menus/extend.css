@@ -13,3 +13,11 @@
 #menu .active a{
 	color: #ffffff;
 }
+
+.pinnackl-menu-children{
+	display: block;
+}
+
+a:hover{
+	color: #2ea2cc;
+}

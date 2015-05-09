@@ -4,26 +4,27 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-    <title><?php $this->show('title') ?></title>
-<!-- page builder css -->
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder-grid.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/grid-resize.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/grid-list.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/module-list.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder-range.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/ui/trumbowyg.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
     
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/base/base.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/grids/grids-core.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/menus-core.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/extend.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/side-menu.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/forms/forms.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/buttons/buttons.css">
-<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/tables/extend.css">
+    <title><?php $this->show('title') ?></title>
+    <!-- page builder css -->
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder-grid.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/grid-resize.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/grid-list.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/module-list.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder-range.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/ui/trumbowyg.min.css">
+        
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/base/base.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/grids/grids-core.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/menus-core.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/extend.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/side-menu.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/forms/forms.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/buttons/buttons.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/tables/extend.css">
 
 </head>
 <body>

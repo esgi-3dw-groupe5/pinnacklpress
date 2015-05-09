@@ -40,6 +40,7 @@ $options->findOptionName('sitedescription');
 $sitedescription = $options->getOptionValue()[0];  
 $controller->setViewData('siteurl', $siteurl);
 // Header template
+
 // $loader = new SophworkTELoader();
 // $template = $loader->loadFromFile("template/header.tpl");
 // $KTE = new SophworkTEParser($template, [
