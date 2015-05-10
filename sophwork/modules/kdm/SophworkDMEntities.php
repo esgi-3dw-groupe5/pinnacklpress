@@ -95,10 +95,6 @@ class SophworkDMEntities extends SophworkDM{
 	}
 
 	public function save(){
-		echo'<pre>';
-		var_dump($this->data);
-		// var_dump($this->__getData($this->primaryKey));
-		echo'</pre>';
 		if($this->__getData($this->primaryKey) === NULL){
 			// echo 'Insert';
 			$this->insert($this->table, $this->data);

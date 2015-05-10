@@ -44,10 +44,7 @@ if($optionPage == 'overview'){
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
 	$page->findPageTag($edit);
-	echo'<pre style="background:#ffffff">';
-	var_dump($_POST);
-	echo'</pre>';
-	
+
 	$page->setPageTag($_POST['page_tag']);
 	$page->setPageName($_POST['page_name']);
 	$page->setPageOrder($_POST['page_order']);
@@ -56,10 +53,10 @@ if($optionPage == 'overview'){
 	$page->setPageActive($_POST['page_active']);
 	$page->setPageType($_POST['page_type']);
 	$page->save();
-	exit;
 	if(array_key_exists('pageBuilder', $_POST)){
 		$pageCotent = $KDM->create('pp_pagemeta');
 		$pageCotent->findPageId($page->getPageId()[0]);
+		
 		$pageCotent->setPageId($page->getPageId()[0]);
 		$pageCotent->setPmetaName('content');
 		$pageCotent->setPmetaValue($_POST['pageBuilder']);

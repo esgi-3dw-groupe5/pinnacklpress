@@ -62,16 +62,7 @@ class Pages extends \sophwork\app\controller\AppController{
 		$this->setViewData('h2', 'Pages configuration');
 
 		if($action == 'edit'){
-			$edit;
 			$pages->findPageTag($edit);
-
-			$test = $KDM->create('pp_connected');
-			$test->findConnectedId(1);
-			$test->setConnectedStatus(['plop2']);
-			// echo'<pre style="background:#ffffff">';
-			// var_dump($test);
-			// echo'</pre>';
-			$test->save();
 
 			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
 			$this->setViewData('page_name', ''.$pages->getPageName()[0]);

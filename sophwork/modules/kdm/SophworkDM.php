@@ -96,18 +96,14 @@ class SophworkDM{
         $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (' . $prepare . ')';
 		$req = $this->link->prepare($query);
         foreach ($data as $key => $value) {
-        	$data[$key] = $value[0];
+        	if(getType($value) == 'array')
+        		$data[$key] = $value[0];
         }
 		$req->execute($data);
         $this->data[$this->getPk()] = $this->link->lastInsertId();
     }
 
     public function update($table, array $data, $where = ''){
-        echo'<pre style="background:#ffffff">';
-        var_dump($data);
-        var_dump($where);
-        echo'</pre>';
-        // exit;
         $set = array();
         foreach ($data as $field => $value) {
             $set[] = $field . '= :' . $field;
@@ -117,9 +113,11 @@ class SophworkDM{
                . (($where) ? ' WHERE ' . $where : '');
         $req = $this->link->prepare($query);
         foreach ($data as $key => $value) {
-        	$data[$key] = $value[0];
+        	if(getType($value) == 'array')
+        		$data[$key] = $value[0];
         }
         $req->execute($data);
+
         return $req->rowCount();
     }
 
