@@ -44,23 +44,24 @@ if($optionPage == 'overview'){
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
 	$page->findPageTag($edit);
-
-	$page->setPageTag($_POST['page_tag']);
-	$page->setPageName($_POST['page_name']);
-	$page->setPageOrder($_POST['page_order']);
-	$page->setPageDisplay($_POST['page_display']);
-	$page->setPageConnected($_POST['page_connected']);
-	$page->setPageActive($_POST['page_active']);
-	$page->setPageType($_POST['page_type']);
-	$page->save();
 	if(array_key_exists('pageBuilder', $_POST)){
 		$pageCotent = $KDM->create('pp_pagemeta');
 		$pageCotent->findPageId($page->getPageId()[0]);
-		
+
 		$pageCotent->setPageId($page->getPageId()[0]);
 		$pageCotent->setPmetaName('content');
 		$pageCotent->setPmetaValue($_POST['pageBuilder']);
 		$pageCotent->save();
+	}
+	if(!array_key_exists('pageBuilder', $_POST)){
+		$page->setPageTag($_POST['page_tag']);
+		$page->setPageName($_POST['page_name']);
+		$page->setPageOrder($_POST['page_order']);
+		$page->setPageDisplay($_POST['page_display']);
+		$page->setPageConnected($_POST['page_connected']);
+		$page->setPageActive($_POST['page_active']);
+		$page->setPageType($_POST['page_type']);
+		$page->save();
 	}
 }elseif($optionPage == 'formulaires'){
 

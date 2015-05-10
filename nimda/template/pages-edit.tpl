@@ -159,7 +159,7 @@
 						<button id="clear-builder" class="pinnackl-button pinnackl-button-primary">Clear</button>
 						<button id="save-builder" class="pinnackl-button pinnackl-button-primary">Save</button>
 				</div>
-				<div id="canvas"></div>
+				<div id="canvas"><?php $this->viewData->layout->output(); ?></div>
 			</div>
 		</section>
 		<aside>

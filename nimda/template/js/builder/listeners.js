@@ -105,7 +105,9 @@ var listeners = {
 					link+=url+"/";
 			});
 			
-			builderHelper.AJAX(data, function(){}, link+'options.php');
+			builderHelper.AJAX(data, function(){
+				window.location.reload();
+			}, link+'options.php');
 		});
 	},
 	addAutoSaveListener:function(){

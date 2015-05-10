@@ -10,6 +10,9 @@ use sophwork\modules\kte\SophworkTELoader;
 use sophwork\modules\kte\SophworkTELexer;
 use sophwork\modules\kte\SophworkTEParser;
 
+use sophwork\modules\htmlElements\htmlBuilder;
+use sophwork\modules\htmlElements\htmlElement;
+
 class Pages extends \sophwork\app\controller\AppController{
 	public $config;
 	protected $forms;
@@ -56,6 +59,7 @@ class Pages extends \sophwork\app\controller\AppController{
 		$siteurl = $options->getOptionValue()[0];
 
 		$pages = $KDM->create('pp_page');
+		$contents = $KDM->create('pp_pagemeta');
 		
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
@@ -71,7 +75,16 @@ class Pages extends \sophwork\app\controller\AppController{
 			$this->setViewData('page_connected', ''.$pages->getPageConnected()[0]);
 			$this->setViewData('page_active', ''.$pages->getPageActive()[0]);
 			$this->setViewData('page_type', ''.$pages->getPageType()[0]);
-			$this->callView($page.'-edit', 'nimda/');
+			
+			$contents->findPageId($pages->getPageId()[0]);
+			if(!is_null($contents->getPmetaId()[0])){
+					$data = $contents->getData()['pmeta_value'][0];
+					$html = new htmlBuilder($data);
+					$layout = $html->createBuilder();
+					$this->setRawData('layout', $layout);
+			}
+
+			$this->callView($page .'-edit', 'nimda/');
 		}
 		else{
 			$pages->find();

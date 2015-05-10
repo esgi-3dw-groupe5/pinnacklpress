@@ -71,6 +71,10 @@ class SophworkApp extends Sophwork{
 		}
 	}
 
+	public function setRawData($itemName, $value){
+		$this->appView->viewData->$itemName = $value;
+	}
+
 	public function callView($name = null, $path = null){
 		if( !is_null($name) )
 			$this->viewName = $name;

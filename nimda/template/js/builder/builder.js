@@ -31,7 +31,7 @@ var builderHelper = {
 				var cl = grid.getAttribute('data-grid');
 				var md = grid.getAttribute('data-module');
 				var ct = grid.getAttribute('data-content');
-				section = new gridObject(cl, ct);
+				section = new gridObject(cl, md, ct);
 				li.line.push(section);
 				i++;
 			});
@@ -66,7 +66,8 @@ var builderHelper = {
 	//   && (lor.length == 6) ?  lor : co(lor); })('');
  // }
 
- function gridObject(grid, content){
+ function gridObject(grid, module, content){
  	this.gridClass = grid;
+ 	this.gridModule = module;
  	this.gridContent = content;
  }
