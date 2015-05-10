@@ -88,6 +88,69 @@
 			</div>
 			<!-- /Modules -->		
 			<div class="content">
+				<div style="background:#fff; border-radius:8px;padding:2em;margin-bottom:5%;">
+					<form  class="pinnackl-form pinnackl-form-stacked" method="POST"
+						action="<?php $this->show('siteurl')?>nimda/options.php">
+						<fieldset>
+							<label><span>Page Tag :</span>
+								<input class="pinnackl-input-1-2" type="text" name="page_tag" placeholder="Page Tag"
+									value="<?php $this->show('page_tag') ?>">
+							</label>
+							<label><span>Page Name :</span>
+								<input class="pinnackl-input-1-2" type="text" name="page_name" placeholder="Page Name"
+									value="<?php $this->show('page_name') ?>">
+							</label>
+							<label><span>Page Order :</span>
+								<input class="pinnackl-input-1-2" type="text" name="page_order" placeholder="Page Order"
+									value="<?php $this->show('page_order') ?>">
+							</label>
+							<label><span>Page Display :</span>
+								<select class="pinnackl-input-1-2" name="page_display" >
+									<option selected>Yes</option>
+									<option>No</option>
+								</select>
+							</label>
+							<label><span>Page Connected As :</span>
+								<select class="pinnackl-input-1-2" name="page_connected" >
+									<option <?php echo (($this->show('page_connected') == 'visitor')? 'selected' : null) ?>>
+										visitor
+									</option>
+									<option <?php echo (($this->show('page_connected') == 'member')? 'selected' : null) ?>>
+										member
+									</option>
+									<option <?php echo (($this->show('page_connected') == 'author')? 'selected' : null) ?>>
+										author
+									</option>
+									<option <?php echo (($this->show('page_connected') == 'editor')? 'selected' : null) ?>>
+										editor
+									</option>
+									<option <?php echo (($this->show('page_connected') == 'modo')? 'selected' : null) ?>>
+										modo
+									</option>
+									<option <?php echo (($this->show('page_connected') == 'admin')? 'selected' : null) ?>>
+										administrator
+									</option>
+									<option <?php echo (($this->show('page_connected') == 'nimda')? 'selected' : null) ?>>
+										nimda
+									</option>
+								</select>
+							</label>
+							<label><span>Page Active :</span>
+								<select class="pinnackl-input-1-2" name="page_active" >
+									<option selected>Yes</option>
+									<option>No</option>
+								</select>
+							</label>
+							<label><span>Page Type :</span>
+								<input class="pinnackl-input-1-2" type="text"name="page_type" placeholder="Page Type"
+									value="<?php $this->show('page_type') ?>">
+							</label>
+							<div style="text-align:right;">
+								<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
 				<div class="validate-builder">
 						<input class="builder-range" id="add-number" type="range" min="1" max="12" step="1">
 						<input id="number" type="text">
@@ -111,20 +174,5 @@
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/modules.js"></script>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/listeners.js"></script>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/listeners.js"></script>
-	<script>
-		var url = window.location.href;
-		var stop = false;
-		var link = "";
-		urls = url.split('/');
-		[].forEach.call(urls, function (url) {
-			if(url == 'pages'){
-				stop = true;
-				return;
-			}
-			if(!stop)
-				link+=url+"/";
-		});
-		console.log(link);
-	</script>
 	</body>
 </html>

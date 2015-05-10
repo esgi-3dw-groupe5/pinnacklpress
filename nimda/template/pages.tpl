@@ -14,6 +14,7 @@
             <th>Name</th>
             <th>Order</th>
             <th>Display</th>
+            <th>Connected As</th>
             <th>Active</th>
             <th>Type</th>
             <th>Edit</th>
@@ -28,6 +29,7 @@
             <td><?php $this->show($value, 'page_name')    ?></td>
             <td><?php $this->show($value, 'page_order')   ?></td>
             <td><?php $this->show($value, 'page_display') ?></td>
+            <td><?php $this->show($value, 'page_connected') ?></td>
             <td><?php $this->show($value, 'page_active')  ?></td>
             <td><?php $this->show($value, 'page_type')    ?></td>
             <td>

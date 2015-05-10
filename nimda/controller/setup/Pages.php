@@ -49,27 +49,51 @@ class Pages extends \sophwork\app\controller\AppController{
 	public function renderView($page = null){
 		$KDM = new SophworkDM($this->config);
 		$action = Sophwork::getParam('a', '');
+		$edit = Sophwork::getParam('e', '');
+
 		$options = $KDM->create('pp_option');
 		$options->findOptionName('siteurl');
 		$siteurl = $options->getOptionValue()[0];
 
 		$pages = $KDM->create('pp_page');
-		$pages->find();
 		
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Pages configuration');
-		$this->setViewData('pages', $pages->getData(), 'page_id');
-		$this->setViewData('pages', $pages->getData(), 'page_tag');
-		$this->setViewData('pages', $pages->getData(), 'page_name');
-		$this->setViewData('pages', $pages->getData(), 'page_order');
-		$this->setViewData('pages', $pages->getData(), 'page_display');
-		$this->setViewData('pages', $pages->getData(), 'page_active');
-		$this->setViewData('pages', $pages->getData(), 'page_type');
 
-		if($action == 'edit')
+		if($action == 'edit'){
+			$edit;
+			$pages->findPageTag($edit);
+
+			$test = $KDM->create('pp_connected');
+			$test->findConnectedId(1);
+			$test->setConnectedStatus(['plop2']);
+			// echo'<pre style="background:#ffffff">';
+			// var_dump($test);
+			// echo'</pre>';
+			$test->save();
+
+			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
+			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
+			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
+			$this->setViewData('page_display', ''.$pages->getPageDisplay()[0]);
+			$this->setViewData('page_connected', ''.$pages->getPageConnected()[0]);
+			$this->setViewData('page_active', ''.$pages->getPageActive()[0]);
+			$this->setViewData('page_type', ''.$pages->getPageType()[0]);
 			$this->callView($page.'-edit', 'nimda/');
-		else
+		}
+		else{
+			$pages->find();
+			$this->setViewData('pages', $pages->getData(), 'page_id');
+			$this->setViewData('pages', $pages->getData(), 'page_tag');
+			$this->setViewData('pages', $pages->getData(), 'page_name');
+			$this->setViewData('pages', $pages->getData(), 'page_order');
+			$this->setViewData('pages', $pages->getData(), 'page_display');
+			$this->setViewData('pages', $pages->getData(), 'page_connected');
+			$this->setViewData('pages', $pages->getData(), 'page_active');
+			$this->setViewData('pages', $pages->getData(), 'page_type');
+			
 			$this->callView($page, 'nimda/');
+		}
 	}
 }
