@@ -38,11 +38,12 @@ class Validator{
 
 	public function validateForm($form,$POST){
 		$rule = new Rule();
+
 		foreach ($form as $key => $value) {
 			if(array_key_exists('validator_rule', $value)){
 				foreach ($value['validator_rule'] as $key1 => $value1) {
 					$validator_rule = $value['validator_rule'][$key1];
-					$fieldName = $value['field_name'][0];
+					$fieldName = $value['field_name'];
 					$fieldValue = $POST[$fieldName];
 					$rule->$validator_rule($fieldValue);
 				}

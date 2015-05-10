@@ -7,34 +7,18 @@ use sophwork\modules\kdm\SophworkDMEntities;
 use controller\form\Field;
 use controller\form\Validator;
 
-class Form{
+class Form extends \sophwork\app\controller\AppController{
 
 	protected $KDM;
 	protected $fields = [];
 
-/*	public function __construct($name,$config){
-		$this->KDM = new SophworkDM($config);
-		// Create a new form object by the form unique name
-		$form = $this->KDM->create('pp_form');
-		$form->findOne($name);
-		$data = $form->getData();
 
-		// Create a new form relationship table
-		$rs = $this->KDM->create('pp_form_rs');
-		// Search in the rs table for the form link to field
-		$rs->findFormId($data['form_id']);
-		$data = $rs->getData();
+	public function __construct(){
+		parent::__construct();
+	}
 
-		// Create a new field object wich math to the created form
-		$field = $this->KDM->create('pp_field');
-		foreach ($data['field_id'] as $key => $value) {
-			$field->findFieldId($data['field_id'][$key]);
-			$fields[] = $field->getData();
-		}
-	}*/
-
-	public function getForm($name,$config){
-		$this->KDM = new SophworkDM($config);
+	public function getForm($name){
+		$this->KDM = new SophworkDM($this->config);
 		$field = new Field();
 		$validator = new Validator();
 		// Create a new form object by the form unique name

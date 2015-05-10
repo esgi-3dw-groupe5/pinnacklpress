@@ -41,17 +41,17 @@ class Pages extends \sophwork\app\controller\AppController{
 	public function __getFields($param){
 		return $this->fields[$param];
 	}
-
+ 
 	public function __setFields($param, $value){
 		$this->fields[$param] = $value;
 	}
 
 	public function renderView($page = null){
 		$KDM = new SophworkDM($this->config);
-		$pages = $KDM->create('pp_option');
-		$pages->findOptionName("siteurl");
-		$siteurl = $pages->getOptionValue()[0];
-		
+		$options = $KDM->create('pp_option');
+		$options->findOptionName('siteurl');
+		$siteurl = $options->getOptionValue()[0];
+
 		$this->setViewData('siteurl', $siteurl);
 
 		$pages = $KDM->create('pp_page');

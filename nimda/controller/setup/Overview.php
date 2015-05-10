@@ -16,7 +16,6 @@ class Overview extends \sophwork\app\view\AppView{
 	protected $fields;
 
 	public function __construct($config = null){
-		parent::__construct();
 		$this->forms = [];
 		$this->fields = [];
 
@@ -78,7 +77,7 @@ class Overview extends \sophwork\app\view\AppView{
 		$this->fields[$param] = $value;
 	}
 
-	public function renderView($page = null, $path = null){
+	public function renderView($page = null){
 		// Get fields
 		$nameField = $this->__getFields('nameField');
 		$descriptionField = $this->__getFields('descriptionField');
@@ -89,7 +88,7 @@ class Overview extends \sophwork\app\view\AppView{
 		$KTE = new SophworkTEParser($template, [
 			'h1' => 'Pinnackl Press',
 			'h2' => 'Global configuration',
-			'legend' => 'Site Setup',
+			'legend' => 'Site configuation',
 			// input-1
 			'label_1' => $nameField->getFieldPlaceholder(),
 			'input_1' => $nameField->getFieldDomname(),

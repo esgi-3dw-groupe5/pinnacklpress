@@ -16,7 +16,11 @@ class Field extends Validator{
 		$field = $kdm->create('pp_field');
 		foreach ($idFields as $key => $value) {
 			$field->findFieldId($idFields[$key]);
-			$fields[] = $field->getData();
+			$arrayField = $field->getData();
+			foreach ($arrayField as $key => $value) {
+				$arrayField[$key]=$value[0];
+			}
+			$fields[] = $arrayField;
 		}
 		return $fields;
 	}

@@ -49,13 +49,21 @@ class AppView extends SophworkApp{
 		include_once(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
 	}
 
-
+	/** 
+	 *	@param $value : string , object , array 
+	 *	@param $item  : null, string , array
+	 *	@param $modifier : ref public $modifiers[]
+	 */
 	public function show($value, $item = null, $modifier = 'S'){
 		$method = $this->modifiers[$modifier];
 		if(!is_null($item)){
-			if(isset($value->$item))
+			if(getType($value->$item) == "string"){
+				if(isset($value->$item))
 				echo $method($value->$item);
-			return $method($value->$item);
+				return $method($value->$item);
+			}else{
+				return $value->$item;
+			}	
 		}
 		if(isset($this->viewData->$value))
 			echo $method($this->viewData->$value);

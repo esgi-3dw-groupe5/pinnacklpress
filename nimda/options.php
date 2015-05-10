@@ -105,4 +105,5 @@ if($optionPage == 'overview'){
 }
 
 // Redirect to the settings page from referer
+
 Sophwork::redirectFromRef($_POST['pp-referer']);

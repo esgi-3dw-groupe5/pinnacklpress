@@ -13,19 +13,17 @@ use sophwork\modules\kte\SophworkTEParser;
 use controller\form\Form;
 
 
-class Formulaires extends \sophwork\app\view\AppView{
+class Formulaires extends \sophwork\app\controller\AppController{
 	public $config;
 	protected $forms;
 	protected $fields;
 	protected $form;
 
 	public function __construct($config = null){
+		parent::__construct();
+		$this->config = $config;
 		$this->forms = [];
 		$this->fields = [];
-
-		$KDM = new SophworkDM($config);
-		// $forms = $KDM->create('pp_form');
-		// $forms->find();
 	}
 
 	public function __get($param){
@@ -52,15 +50,59 @@ class Formulaires extends \sophwork\app\view\AppView{
 		$this->fields[$param] = $value;
 	}
 
-	public function renderView($page){
+	public function renderView($page = null){
 
-		$loader = new SophworkTELoader();
-		$template = $loader->loadFromFile("template/". $page .".tpl");
-		$KTE = new SophworkTEParser($template, [
-			'h1' => 'Formulaire',
-			'h2' => 'Creation d\'un formulaire',
+		// $loader = new SophworkTELoader();
+		// $template = $loader->loadFromFile("template/". $page .".tpl");
+		// $KTE = new SophworkTEParser($template, [
+		// 	'h1' => 'Formulaire',
+		// 	'h2' => 'Creation d\'un formulaire',
 			
-		]);
-		print $KTE->parseTemplate();
+		// ]);
+		// print $KTE->parseTemplate();
+		$KDM = new SophworkDM($this->config);
+		$action = Sophwork::getParam('a','');
+
+		if($action == 'edit'){
+			$page = 'form-edit';
+			$formName = Sophwork::getParam('e','');	
+
+			$form = new Form;
+			$arrayForm = $form->getForm($formName);
+			
+			$plop = [];
+			foreach ($arrayForm as $ke => $v) {
+				foreach ($arrayForm[$ke] as $k => $val) {
+						$plop[$k][] = $val;					
+				}	
+			}
+
+			$this->setViewData('form_name',$formName);
+			$this->setViewData('form', $plop, 'field_id');
+			$this->setViewData('form', $plop, 'field_name');
+			$this->setViewData('form', $plop, 'field_type');
+			$this->setViewData('form', $plop, 'validator_rule');
+
+			$this->setViewData('h1', 'Edit form');
+
+			$this->callView($page, 'nimda/');
+		}else{
+			$options = $KDM->create('pp_option');
+			$options->findOptionName('siteurl');
+			$siteurl = $options->getOptionValue()[0];
+	
+			$this->setViewData('siteurl', $siteurl);
+	
+			$forms = $KDM->create('pp_form');
+			$forms->find();
+
+			$this->setViewData('h1', 'Formulaire');
+			$this->setViewData('h2-create', 'Create form');
+			$this->setViewData('h2-list', 'Forms list');
+			$this->setViewData('forms', $forms->getData(), 'form_id');
+			$this->setViewData('forms', $forms->getData(), 'form_name');
+	
+			$this->callView($page, 'nimda/');
+		}
 	}
 }

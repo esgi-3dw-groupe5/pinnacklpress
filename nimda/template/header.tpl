@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/extend.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/side-menu.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/forms/forms.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/forms/extend.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/buttons/buttons.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/tables/extend.css">
 </head>

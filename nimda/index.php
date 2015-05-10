@@ -34,6 +34,10 @@ if($page == 'index')
 $options = $KDM->create('pp_option');
 $options->findOptionName("siteurl");
 $siteurl = $options->getOptionValue()[0];
+$options->findOptionName('sitename');
+$sitename = $options->getOptionValue()[0];
+$options->findOptionName('sitedescription');
+$sitedescription = $options->getOptionValue()[0];
 
 // Header template
 
@@ -51,13 +55,16 @@ $menu = [
 	'page_tag' => [
 		'overview',
 		'pages',
+		'formulaires',
 	],
 	'page_name' => [
 		'Overview',
 		'Pages',
+		'Formulaires',
 	],
 ];
 
+$controller->setViewData('title', $sitename.' '.$sitedescription);
 $controller->setViewData('siteurl', $siteurl);
 $controller->setViewData('menu', $menu, 'page_tag');
 $controller->setViewData('menu', $menu, 'page_name');
