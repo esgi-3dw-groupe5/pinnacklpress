@@ -37,7 +37,9 @@ $siteurl = $options->getOptionValue()[0];
 $options->findOptionName('sitename');
 $sitename = $options->getOptionValue()[0];
 $options->findOptionName('sitedescription');
+
 $sitedescription = $options->getOptionValue()[0];
+
 
 // Header template
 

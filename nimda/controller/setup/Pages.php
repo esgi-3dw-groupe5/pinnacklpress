@@ -10,6 +10,9 @@ use sophwork\modules\kte\SophworkTELoader;
 use sophwork\modules\kte\SophworkTELexer;
 use sophwork\modules\kte\SophworkTEParser;
 
+use sophwork\modules\htmlElements\htmlBuilder;
+use sophwork\modules\htmlElements\htmlElement;
+
 class Pages extends \sophwork\app\controller\AppController{
 	public $config;
 	protected $forms;
@@ -48,25 +51,47 @@ class Pages extends \sophwork\app\controller\AppController{
 
 	public function renderView($page = null){
 		$KDM = new SophworkDM($this->config);
-		$options = $KDM->create('pp_option');
-		$options->findOptionName('siteurl');
-		$siteurl = $options->getOptionValue()[0];
-
-		$this->setViewData('siteurl', $siteurl);
 
 		$pages = $KDM->create('pp_page');
-		$pages->find();
+		$contents = $KDM->create('pp_pagemeta');
 		
+		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Pages configuration');
-		$this->setViewData('pages', $pages->getData(), 'page_id');
-		$this->setViewData('pages', $pages->getData(), 'page_tag');
-		$this->setViewData('pages', $pages->getData(), 'page_name');
-		$this->setViewData('pages', $pages->getData(), 'page_order');
-		$this->setViewData('pages', $pages->getData(), 'page_display');
-		$this->setViewData('pages', $pages->getData(), 'page_active');
-		$this->setViewData('pages', $pages->getData(), 'page_type');
 
-		$this->callView($page, 'nimda/');
+		if($action == 'edit'){
+			$pages->findPageTag($edit);
+
+			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
+			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
+			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
+			$this->setViewData('page_display', ''.$pages->getPageDisplay()[0]);
+			$this->setViewData('page_connected', ''.$pages->getPageConnected()[0]);
+			$this->setViewData('page_active', ''.$pages->getPageActive()[0]);
+			$this->setViewData('page_type', ''.$pages->getPageType()[0]);
+			
+			$contents->findPageId($pages->getPageId()[0]);
+			if(!is_null($contents->getPmetaId()[0])){
+					$data = $contents->getData()['pmeta_value'][0];
+					$html = new htmlBuilder($data);
+					$layout = $html->createBuilder();
+					$this->setRawData('layout', $layout);
+			}
+
+			$this->callView($page .'-edit', 'nimda/');
+		}
+		else{
+			$pages->find();
+			$this->setViewData('pages', $pages->getData(), 'page_id');
+			$this->setViewData('pages', $pages->getData(), 'page_tag');
+			$this->setViewData('pages', $pages->getData(), 'page_name');
+			$this->setViewData('pages', $pages->getData(), 'page_order');
+			$this->setViewData('pages', $pages->getData(), 'page_display');
+			$this->setViewData('pages', $pages->getData(), 'page_connected');
+			$this->setViewData('pages', $pages->getData(), 'page_active');
+			$this->setViewData('pages', $pages->getData(), 'page_type');
+			
+			$this->callView($page, 'nimda/');
+		}
 	}
 }

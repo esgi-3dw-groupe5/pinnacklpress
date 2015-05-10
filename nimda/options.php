@@ -11,10 +11,6 @@ use sophwork\modules\kdm\SophworkDMEntities;
 
 $_POST['pp-referer'] = $_SERVER['HTTP_REFERER'];
 
-$options = [
-	'overview' => ['sitename', 'sitedescription', 'siteurl'],
-	'pages' => '',
-];
 
 $sophwork = new Sophwork();
 $app = new SophworkApp();
@@ -22,8 +18,18 @@ $controller = $app->appController;
 	$page = $controller->page;
 
 $optionPageController = preg_split("#/#", $_POST['pp-referer']);
+if(in_array('edit', $optionPageController)){ //FIXME : IS the level will alaway be 3 ?
+	$optionPage = $optionPageController[count($optionPageController)-3];
+	$edit = $optionPageController[count($optionPageController)-1];
+}else{
 	$optionPage = $optionPageController[count($optionPageController)-1];
+	$edit = $optionPageController[count($optionPageController)-1];
+}
+
 if($optionPage == 'overview'){
+	$options = [
+		'overview' => ['sitename', 'sitedescription', 'siteurl'],
+	];
 	$KDM = new SophworkDM($app->config);
 	foreach ($options[$optionPage] as $key => $value) {
 		$$value = $KDM->create('pp_option');
@@ -34,6 +40,29 @@ if($optionPage == 'overview'){
 			$$value->setOptionValue($_POST[$value]);
 			$$value->save();
 	}	
+}elseif($optionPage == 'pages'){
+	$KDM = new SophworkDM($app->config);
+	$page = $KDM->create('pp_page');
+	$page->findPageTag($edit);
+	if(array_key_exists('pageBuilder', $_POST)){
+		$pageCotent = $KDM->create('pp_pagemeta');
+		$pageCotent->findPageId($page->getPageId()[0]);
+
+		$pageCotent->setPageId($page->getPageId()[0]);
+		$pageCotent->setPmetaName('content');
+		$pageCotent->setPmetaValue($_POST['pageBuilder']);
+		$pageCotent->save();
+	}
+	if(!array_key_exists('pageBuilder', $_POST)){
+		$page->setPageTag($_POST['page_tag']);
+		$page->setPageName($_POST['page_name']);
+		$page->setPageOrder($_POST['page_order']);
+		$page->setPageDisplay($_POST['page_display']);
+		$page->setPageConnected($_POST['page_connected']);
+		$page->setPageActive($_POST['page_active']);
+		$page->setPageType($_POST['page_type']);
+		$page->save();
+	}
 }elseif($optionPage == 'formulaires'){
 
 	var_dump($_POST);

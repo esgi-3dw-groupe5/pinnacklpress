@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.1
+ *	@Tested version : Sophwork.0.2.2
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -95,6 +95,10 @@ class SophworkDM{
         $prepare = ':' . implode(', :', array_keys($data));
         $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . ' VALUES (' . $prepare . ')';
 		$req = $this->link->prepare($query);
+        foreach ($data as $key => $value) {
+        	if(getType($value) == 'array')
+        		$data[$key] = $value[0];
+        }
 		$req->execute($data);
         $this->data[$this->getPk()] = $this->link->lastInsertId();
     }
@@ -108,7 +112,12 @@ class SophworkDM{
         $query = 'UPDATE ' . $table . ' SET ' . $set
                . (($where) ? ' WHERE ' . $where : '');
         $req = $this->link->prepare($query);
+        foreach ($data as $key => $value) {
+        	if(getType($value) == 'array')
+        		$data[$key] = $value[0];
+        }
         $req->execute($data);
+
         return $req->rowCount();
     }
 
