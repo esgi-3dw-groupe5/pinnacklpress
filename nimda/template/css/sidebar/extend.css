@@ -6,6 +6,11 @@
 	margin:3em 1em !important;
 }
 
+#layout{
+	min-height: 100%;
+	
+}
+
 @media (min-width: 48em) .header{
 	margin:0!important;
 }

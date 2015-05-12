@@ -39,7 +39,7 @@ section{
 	margin: 0 auto !important;
 }
 
-.line{
+.builder-line{
 	width: 100%;
 	position: relative;
 	clear: both;
@@ -52,7 +52,7 @@ section{
 	z-index: 10;
 }
 
-.line header{
+.builder-line header{
 	background: lightgrey;
 	padding: 5px;
 	-webkit-box-shadow: 0px 3px 5px 0 #7D7D7D;
@@ -60,7 +60,7 @@ section{
 	margin-bottom: 8px;
 }
 
-.line header i{
+.builder-line header i{
 	color: #fff;
 	display: inline-block;
 	font-style: normal;
@@ -73,11 +73,11 @@ section{
 	vertical-align: middle;
 }
 
-.line header i:before{
+.builder-line header i:before{
 	content: "\2716";
 }
 
-.line header i:hover{
+.builder-line header i:hover{
 	color:  grey;
 	cursor: pointer;
 }

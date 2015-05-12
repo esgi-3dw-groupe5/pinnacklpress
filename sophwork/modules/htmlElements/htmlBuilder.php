@@ -7,15 +7,26 @@ class htmlBuilder extends htmlElement{
 	protected $layout;
 	
 	public function __construct($data){
+		$this->layout = [];
 		$this->data = json_decode($data);
 	}
 
 	public function createBuilder(){
-		$layout = new htmlElement('div');
+		// $layout = new htmlElement('div');
 		foreach ($this->data as $key => $value) { // Foreach lines
-			$line = new htmlElement('div');
-			$line->set('class', 'line');
 			$i = 1;
+			$line = new htmlElement('div');
+			$line->set('id', $i);
+			$line->set('class', 'builder-line');
+			
+			$header = new htmlElement('header');
+			$icone = new htmlElement('i');
+			$icone->set('class', 'close');
+			$icone->set('data', $i);
+			
+			$header->inject($icone);
+			$line->inject($header);
+
 			foreach ($value->line as $key => $subValue) { // Foreach sections
 				$section = new htmlElement('div');
 				$section->set('class', 'builder-section ' . str_replace('grid', 'gd', $subValue->gridClass));
@@ -29,16 +40,16 @@ class htmlBuilder extends htmlElement{
 				$line->inject($section);
 				$i++;
 			}
-			$layout->inject($line);
+			$this->layout[] = $line;
 		}
-		return $layout;
+		return $this;
 	}
 
 	public function createPage(){
 		$layout = new htmlElement('div');
 		foreach ($this->data as $key => $value) { // Foreach lines
 			$line = new htmlElement('div');
-			$line->set('class', 'line');
+			$line->set('class', 'builder-line');
 			foreach ($value->line as $key => $subValue) { // Foreach sections
 				$section = new htmlElement('div');
 				$section->set('class', $subValue->gridClass);
@@ -49,5 +60,11 @@ class htmlBuilder extends htmlElement{
 			$layout->inject($line);
 		}
 		return $layout;
+	}
+
+	public function render(){
+		foreach ($this->layout as $key => $value) {
+			$value->output();
+		}
 	}
 }

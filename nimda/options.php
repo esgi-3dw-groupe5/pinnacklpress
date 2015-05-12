@@ -18,10 +18,16 @@ $controller = $app->appController;
 	$page = $controller->page;
 
 $optionPageController = preg_split("#/#", $_POST['pp-referer']);
-if(in_array('edit', $optionPageController)){ //FIXME : IS the level will alaway be 3 ?
+/**
+ *	Page
+ */
+if(in_array('edit', $optionPageController) 
+	|| in_array('new', $optionPageController) 
+	|| in_array('delete', $optionPageController)){ //FIXME : IS the level will alaway be 3 ?
 	$optionPage = $optionPageController[count($optionPageController)-3];
 	$edit = $optionPageController[count($optionPageController)-1];
-}else{
+}
+else{
 	$optionPage = $optionPageController[count($optionPageController)-1];
 	$edit = $optionPageController[count($optionPageController)-1];
 }
@@ -40,10 +46,12 @@ if($optionPage == 'overview'){
 			$$value->setOptionValue($_POST[$value]);
 			$$value->save();
 	}	
-}elseif($optionPage == 'pages'){
+}
+
+elseif($optionPage == 'pages'){
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
-	$page->findPageTag($edit);
+	$page->findOne($edit);
 	if(array_key_exists('pageBuilder', $_POST)){
 		$pageCotent = $KDM->create('pp_pagemeta');
 		$pageCotent->findPageId($page->getPageId()[0]);
@@ -53,7 +61,8 @@ if($optionPage == 'overview'){
 		$pageCotent->setPmetaValue($_POST['pageBuilder']);
 		$pageCotent->save();
 	}
-	if(!array_key_exists('pageBuilder', $_POST)){
+	if(!array_key_exists('pageBuilder', $_POST)
+		&& !in_array('delete', $optionPageController)){
 		$page->setPageTag($_POST['page_tag']);
 		$page->setPageName($_POST['page_name']);
 		$page->setPageOrder($_POST['page_order']);
@@ -63,7 +72,21 @@ if($optionPage == 'overview'){
 		$page->setPageType($_POST['page_type']);
 		$page->save();
 	}
-}elseif($optionPage == 'formulaires'){
+	if(in_array('new', $optionPageController)){
+		$optionPageController[count($optionPageController)-1] = $page->getPageTag();
+		$optionPageController[count($optionPageController)-2] = 'edit';
+		echo $url = implode('/', $optionPageController);
+		Sophwork::redirectFromRef($url);
+		exit;
+	}
+	if(in_array('delete', $optionPageController)){
+		$page->erase();
+		Sophwork::redirect('nimda/pages');
+		exit;
+	}
+}
+
+elseif($optionPage == 'formulaires'){
 
 	var_dump($_POST);
 	$formName = $_POST['form-name'];
@@ -134,4 +157,4 @@ if($optionPage == 'overview'){
 }
 
 // Redirect to the settings page from referer
-Sophwork::redirectFromRef($_POST['pp-referer']);
+Sophwork::redirectFromRef($_POST['pp-referer']); // why not ::redirect() ?

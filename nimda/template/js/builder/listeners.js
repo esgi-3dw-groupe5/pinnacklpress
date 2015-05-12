@@ -3,26 +3,30 @@ var listeners = {
 	addNewLineListener : function(){
 		var btn1 = document.getElementById('add-button-obo');
 		var range = document.getElementById('add-number');
-		var number = range.value;
-		btn1.addEventListener('click', function(){
-			gridHelper.addGridLines(number);
-		}, false);
-		range.addEventListener('input', function(){
-			number = range.value;
-		 	document.getElementById('number').value=number;
-		});
+		if(range !== null){
+			var number = range.value;
+			btn1.addEventListener('click', function(){
+				gridHelper.addGridLines(number);
+			}, false);
+			range.addEventListener('input', function(){
+				number = range.value;
+			 	document.getElementById('number').value=number;
+			});
+		}
 	},
 	addGroupModalListener : function(){
 		var btn2 = document.getElementById('add-button-grp');
-		btn2.addEventListener('click', function(){
-			document.getElementsByClassName('overlay')[0].style.display = "block";
-			document.getElementsByClassName('grid-list')[0].style.display = "block";
+		if(btn2 !== null){
+			btn2.addEventListener('click', function(){
+				document.getElementsByClassName('overlay')[0].style.display = "block";
+				document.getElementsByClassName('grid-list')[0].style.display = "block";
 
-			document.getElementById('close-gl').addEventListener('click',function(){
-				document.getElementsByClassName('overlay')[0].style.display = "none";
-				document.getElementsByClassName('grid-list')[0].style.display = "none";
-			});
-		}, false);
+				document.getElementById('close-gl').addEventListener('click',function(){
+					document.getElementsByClassName('overlay')[0].style.display = "none";
+					document.getElementsByClassName('grid-list')[0].style.display = "none";
+				});
+			}, false);
+		}
 	},
 	addMuduleModalListener : function(e){
 			activeSection = e;
@@ -46,7 +50,7 @@ var listeners = {
 		});
 	},
 	addLineListener : function(){
-		var lines = document.querySelectorAll('.line');
+		var lines = document.querySelectorAll('.builder-line');
 		[].forEach.call(lines, function(line) {
 			// line.addEventListener('dragstart', handleDragStart, false);
 			// line.addEventListener('dragenter', handleDragEnter, false);
@@ -87,28 +91,30 @@ var listeners = {
 		});
 	},
 	addSaveBuilderListener:function(){
-		document.getElementById('save-builder').addEventListener('click',function(){
-			console.log("Save page builder");
-			var save = builderHelper.saveBuilder();
-			var data = {pageBuilder:save};
-			// get the right url
-			var url = window.location.href;
-			var stop = false;
-			var link = "";
-			urls = url.split('/');
-			[].forEach.call(urls, function (url) {
-				if(url == 'pages'){
-					stop = true;
-					return;
-				}
-				if(!stop)
-					link+=url+"/";
+		if(document.getElementById('save-builder') !== null){
+			document.getElementById('save-builder').addEventListener('click',function(){
+				console.log("Save page builder");
+				var save = builderHelper.saveBuilder();
+				var data = {pageBuilder:save};
+				// get the right url
+				var url = window.location.href;
+				var stop = false;
+				var link = "";
+				urls = url.split('/');
+				[].forEach.call(urls, function (url) {
+					if(url == 'pages'){
+						stop = true;
+						return;
+					}
+					if(!stop)
+						link+=url+"/";
+				});
+				
+				builderHelper.AJAX(data, function(){
+					window.location.reload();
+				}, link+'options.php');
 			});
-			
-			builderHelper.AJAX(data, function(){
-				window.location.reload();
-			}, link+'options.php');
-		});
+		}
 	},
 	addAutoSaveListener:function(){
 		document.getElementById('save-builder').addEventListener('click',function(){
@@ -118,11 +124,13 @@ var listeners = {
 		});
 	},
 	addClearBuilderListener:function(){
-		document.getElementById('clear-builder').addEventListener('click',function(){
-			if(confirm("All content created in the Page Builder will be lost.\n\nDo you want to proceed?")){
-				builderHelper.clearBuilder();
-			}
-		});
+		if(document.getElementById('save-builder') !== null){
+			document.getElementById('clear-builder').addEventListener('click',function(){
+				if(confirm("All content created in the Page Builder will be lost.\n\nDo you want to proceed?")){
+					builderHelper.clearBuilder();
+				}
+			});
+		}
 	},
 };
 

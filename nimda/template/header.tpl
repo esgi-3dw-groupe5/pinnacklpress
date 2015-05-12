@@ -22,10 +22,12 @@
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/menus-core.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/extend.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/menus/side-menu.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/footer/footer.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/forms/forms.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/buttons/buttons.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/tables/extend.css">
 
+    <script src="<?php $this->show('siteurl')?>nimda/template/js/libs/sophwork.js"></script>
 </head>
 <body>
 <div id="layout">
