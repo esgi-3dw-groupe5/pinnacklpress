@@ -73,7 +73,7 @@ elseif($optionPage == 'pages'){
 		$page->save();
 	}
 	if(in_array('new', $optionPageController)){
-		$optionPageController[count($optionPageController)-1] = $page->getPageTag();
+		$optionPageController[count($optionPageController)-1] = $page->getPageId();
 		$optionPageController[count($optionPageController)-2] = 'edit';
 		$url = implode('/', $optionPageController);
 		Sophwork::redirectFromRef($url);
