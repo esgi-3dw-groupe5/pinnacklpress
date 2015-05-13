@@ -106,7 +106,7 @@ class SophworkDMEntities extends SophworkDM{
 	}
 
 	public function erase(){
-		$pkValue = $this->__getData($this->primaryKey)[0];
+		$pkValue = $this->__getData($this->primaryKey);
 		$this->delete($this->table, "$this->primaryKey = \"$pkValue\" ");
 	}
 
