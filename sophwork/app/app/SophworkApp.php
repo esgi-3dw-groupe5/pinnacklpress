@@ -22,7 +22,20 @@ class SophworkApp extends Sophwork{
 	public $appController;
 
 	protected $viewName;
-
+	/**
+	 *	@param none
+	 *	instanciate all sophwork classes :
+	 *		AppView
+	 *		AppController
+	 *		AppModel
+	 *
+	 * 	This class is the base of the sophork architecture.
+	 * 	All you need to do is instanciate this class in your index file
+	 * 	and then, acccess throught it to all the others class
+	 *
+	 * 	Beacause all others classes and controllers inherite from this class
+	 * 	appController is use as a singleton
+	 */
 	public function __construct(){
 		parent::__construct();
 		$this->config = Sophwork::getConfig();
@@ -44,6 +57,13 @@ class SophworkApp extends Sophwork{
 		return $this->$param;
 	}
 
+	/**
+	 * As we access to the AppvView class using this class
+	 * the setViewData is usefull to fill the view class with data to display
+	 * @param itemName : is the name reference for retrieving the data
+	 * @param values : is the value to associate to the item name | it can be an associative array in which case the third param is used
+	 * @param arrayKey (optonal) : is the associative key to get data from values array
+	 */
 	public function setViewData($itemName, $values, $arrayKey = null){
 		if(gettype($values) == 'string'){
 			$this->appView
@@ -75,10 +95,20 @@ class SophworkApp extends Sophwork{
 		}
 	}
 
+	/**
+	 * When having to use unformated data and wanted to retrieved it from template
+	 * @param itemName : is the name reference for retrieving the data
+	 * @param values : is the value to associate to the item name
+	 */
 	public function setRawData($itemName, $value){
 		$this->appView->viewData->$itemName = $value;
 	}
 
+	/**
+	 * Use to render template of the specified page
+	 * @param  name (optional) : template name to render (using index as default. See AppView->renderView)
+	 * @param  path (optional) : path to the temple (using template folder by default. See AppView->renderView)
+	 */
 	public function callView($name = null, $path = null){
 		if( !is_null($name) )
 			$this->viewName = $name;
