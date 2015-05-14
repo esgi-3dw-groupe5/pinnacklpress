@@ -20,6 +20,15 @@ use sophwork\modules\kdm\SophworkDMEntities;
 
 use controller\controllers\core\Controllers;
 
+use sophwork\modules\htmlElements\htmlForm;
+use controller\form\Form;
+
+$form = new Form();
+$form = $form->getForm('inscription');
+$element = new htmlForm($form);
+$element->createForm();
+
+
 /**
  *	Create a new applicaion with the Sophwork class
  *	It will create 3 new class :
