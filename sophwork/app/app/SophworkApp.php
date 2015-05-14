@@ -49,25 +49,29 @@ class SophworkApp extends Sophwork{
 			$this->appView
 				->viewData->$itemName = $values;
 		}
-
+		
+		$list = new \StdClass();
 		if(gettype($values) == 'array' && !is_null($arrayKey)){
-			$menu = new \StdClass();
 			if(isset($this->appView->viewData->$itemName)){
-				$menu = $this->appView->viewData->$itemName;
+				$list = $this->appView->viewData->$itemName;
 			}
-			
-			foreach ($values[$arrayKey] as $key => $value) {
-				$itemObj = new \StdClass();
-				$subItemName = $itemName.$key;
-				if(isset($this->appView->viewData->$itemName->$subItemName)){
-					$itemObj = $this->appView->viewData->$itemName->$subItemName;
+			if(!is_null($values[$arrayKey])){
+				foreach ($values[$arrayKey] as $key => $value) {
+					$itemObj = new \StdClass();
+					$subItemName = $itemName.$key;
+					if(isset($this->appView->viewData->$itemName->$subItemName)){
+						$itemObj = $this->appView->viewData->$itemName->$subItemName;
+					}
+					$itemObj->$arrayKey = $value;
+					// add
+					$list->$subItemName = $itemObj;
 				}
-				$itemObj->$arrayKey = $value;
 				// add
-				$menu->$subItemName = $itemObj;
+				$this->appView->viewData->$itemName = $list;
 			}
-			// add
-			$this->appView->viewData->$itemName = $menu;
+			else{
+				$this->appView->viewData->$itemName = $list;
+			}
 		}
 	}
 

@@ -2,11 +2,13 @@ var nbLines = 0;
 var gridHelper = {
 
 	addGridLines : function(nbGrid){
+		nbLines = document.getElementById('canvas').childNodes.length;
 		nbLines++;
+		
 		if(nbGrid == 0)
 			nbGrid = 1;
 		var line = document.createElement('div');
-		line.classList.add('line');
+		line.classList.add('builder-line');
 		line.setAttribute('id', nbLines);
 		// line.setAttribute('draggable', 'true');
 
@@ -43,9 +45,11 @@ var gridHelper = {
 		var data = e.getAttribute('data');
 		var grids = data.split(",");
 
+		nbLines = document.getElementById('canvas').childNodes.length;
 		nbLines++;
+
 		var line = document.createElement('div');
-		line.classList.add('line');
+		line.classList.add('builder-line');
 		line.setAttribute('id', nbLines);
 		// line.setAttribute('draggable', 'true');
 

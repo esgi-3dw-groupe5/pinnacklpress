@@ -105,6 +105,11 @@ class SophworkDMEntities extends SophworkDM{
 		}
 	}
 
+	public function erase(){
+		$pkValue = $this->__getData($this->primaryKey);
+		$this->delete($this->table, "$this->primaryKey = \"$pkValue\" ");
+	}
+
 	public function findOne($value){
 		$criteria = '';
 		for($i=0;$i<sizeof($this->indexes);$i++) {

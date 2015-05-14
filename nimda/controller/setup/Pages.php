@@ -59,8 +59,21 @@ class Pages extends \sophwork\app\controller\AppController{
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Pages configuration');
 
-		if($action == 'edit'){
-			$pages->findPageTag($edit);
+		if($action == 'delete'){
+			$pages->find();
+			$this->setViewData('pages', $pages->getData(), 'page_id');
+			$this->setViewData('pages', $pages->getData(), 'page_tag');
+			$this->setViewData('pages', $pages->getData(), 'page_name');
+			$this->setViewData('pages', $pages->getData(), 'page_order');
+			$this->setViewData('pages', $pages->getData(), 'page_display');
+			$this->setViewData('pages', $pages->getData(), 'page_connected');
+			$this->setViewData('pages', $pages->getData(), 'page_active');
+			$this->setViewData('pages', $pages->getData(), 'page_type');
+			
+			$this->callView($page, 'nimda/');
+		}
+		elseif($action == 'edit'){
+			$pages->findPageId($edit);
 
 			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
 			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
@@ -77,8 +90,26 @@ class Pages extends \sophwork\app\controller\AppController{
 					$layout = $html->createBuilder();
 					$this->setRawData('layout', $layout);
 			}
+			else{
+				$html = new htmlBuilder('[]');
+				$layout = $html->createBuilder();
+				$this->setRawData('layout', $layout);
+			}
 
 			$this->callView($page .'-edit', 'nimda/');
+		}
+		elseif($action == 'new'){
+			$pages->findPageId($edit);
+
+			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
+			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
+			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
+			$this->setViewData('page_display', ''.$pages->getPageDisplay()[0]);
+			$this->setViewData('page_connected', ''.$pages->getPageConnected()[0]);
+			$this->setViewData('page_active', ''.$pages->getPageActive()[0]);
+			$this->setViewData('page_type', ''.$pages->getPageType()[0]);
+
+			$this->callView($page .'-new', 'nimda/');
 		}
 		else{
 			$pages->find();

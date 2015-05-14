@@ -80,4 +80,4 @@ $pageController = $controller->pageController = new $control($app->config);
 // var_dump($app->getParam('e', ''));
 	$pageController->renderView($page);
 
-echo '</div></body></html>'; // Layout
+include('template/footer.tpl');
