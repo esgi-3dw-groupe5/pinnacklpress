@@ -31,7 +31,7 @@ class SophworkApp extends Sophwork{
 		$this->appView 			 = new AppView();
 		$this->appView
 			->viewData 			 = new \StdClass();
-		$this->appModel 		 = new AppModel($this->config);
+		//$this->appModel 		 = new AppModel($this->config);
 		if(!($this instanceof AppController))
 			$this->appController 	= new AppController($this->appModel);
 	}
