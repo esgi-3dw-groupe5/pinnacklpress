@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Ttag</th>
+                            <th>Tag</th>
                             <th>Name</th>
                             <th>Order</th>
                             <th>Display</th>

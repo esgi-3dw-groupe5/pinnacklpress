@@ -49,8 +49,14 @@ class Pages extends \sophwork\app\controller\AppController{
 		$this->fields[$param] = $value;
 	}
 
-	public function renderView($page = null){
+	public function renderView($page = null, $path = null){
 		$KDM = new SophworkDM($this->config);
+		$action = Sophwork::getParam('a', '');
+		$edit = Sophwork::getParam('e', '');
+		
+		$options = $KDM->create('pp_option');
+		$options->findOptionName('siteurl');
+		$siteurl = $options->getOptionValue()[0];
 
 		$pages = $KDM->create('pp_page');
 		$contents = $KDM->create('pp_pagemeta');

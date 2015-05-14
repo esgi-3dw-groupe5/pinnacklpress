@@ -50,7 +50,7 @@ class Formulaires extends \sophwork\app\controller\AppController{
 		$this->fields[$param] = $value;
 	}
 
-	public function renderView($page = null){
+	public function renderView($page = null, $path = null){
 
 		// $loader = new SophworkTELoader();
 		// $template = $loader->loadFromFile("template/". $page .".tpl");

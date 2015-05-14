@@ -77,7 +77,7 @@ class Overview extends \sophwork\app\view\AppView{
 		$this->fields[$param] = $value;
 	}
 
-	public function renderView($page = null){
+	public function renderView($page = null, $path = null){
 		// Get fields
 		$nameField = $this->__getFields('nameField');
 		$descriptionField = $this->__getFields('descriptionField');
