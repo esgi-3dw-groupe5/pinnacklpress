@@ -1,5 +1,9 @@
+#sidebar {
+	height: 90%;
+	background-color: #696969;
+}
 .sidebar{
-	background: #191818!important; 
+	background: #191818!important;
 }
 
 .header{

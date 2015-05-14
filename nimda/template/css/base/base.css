@@ -38,3 +38,10 @@
 	height: 100%;
 	width: 100%;
 }
+#content {
+  height: 90%;
+  background-color: white;
+}
+input {
+  margin: 2%;
+}
