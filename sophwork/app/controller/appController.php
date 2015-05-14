@@ -62,8 +62,11 @@ class AppController extends SophworkApp{
 			exit;
 		}
 		else{
-			if($this->page == 'config')
+			if($this->page == 'config') {
+				$this->KDM = new SophworkDM(Sophwork::getConfig());
+				include('database/sophkdatabase.php');
 				Sophwork::redirect();
+			}
 		}
 
 		$this->KDM = new SophworkDM(Sophwork::getConfig());
