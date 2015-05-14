@@ -23,11 +23,6 @@ use controller\controllers\core\Controllers;
 use sophwork\modules\htmlElements\htmlForm;
 use controller\form\Form;
 
-$form = new Form();
-$form = $form->getForm('inscription');
-$element = new htmlForm($form);
-$element->createForm();
-
 
 /**
  *	Create a new applicaion with the Sophwork class
@@ -42,6 +37,14 @@ $app = new SophworkApp();
 $controller = $app->appController;
 $pageController = new Controllers();
 
+
+$form = new Form();
+$form = $form->getForm('inscription');
+$element = new htmlForm($form);
+$layout = $element->createForm();
+
+$pageController->setRawData('layout', $layout);
+$pageController->callView('index');
 // $options = $kdm->create('pp_option');
 // echo'<pre style="background:#ffffff">';
 // $options->findOptionName("sitedescription");

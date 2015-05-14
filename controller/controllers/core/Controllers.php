@@ -11,6 +11,7 @@ use sophwork\modules\kte\SophworkTEParser;
 
 class Controllers extends AppController{
 
+
 	public function __construct(){
 		parent::__construct();
 		// echo 'Your are on the ' . $this->page . ' controller';
@@ -36,8 +37,6 @@ class Controllers extends AppController{
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('menu', $pages->getData(), 'page_tag');
 		$this->setViewData('menu', $pages->getData(), 'page_name');
-
-		$this->callView();
 	}
 
 	public function __get($param){

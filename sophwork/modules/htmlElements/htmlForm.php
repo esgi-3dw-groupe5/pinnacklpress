@@ -11,8 +11,17 @@ class htmlForm extends htmlElement{
 	}
 
 	public function createForm(){
-		var_dump($this->data);
+		//var_dump($)
 		$layout = new htmlElement('div');
+		foreach ($this->data as $key => $value) {
+			$line = new htmlElement('div');
+			$line->set('class','line');
+
+			$input = new htmlElement('input');
+			$input->set('type',$this->data[$key]['field_type']);
+			//var_dump($this->data[$key]['field_type']);
+			$layout->inject($input);
+		}
 		// $layout = new htmlElement('div');
 		// foreach ($this->data as $key => $value) { // Foreach lines
 		// 	$line = new htmlElement('div');
@@ -26,6 +35,6 @@ class htmlForm extends htmlElement{
 		// 	}
 		// 	$layout->inject($line);
 		// }
-		// return $layout;
+		return $layout;
 	}
 }

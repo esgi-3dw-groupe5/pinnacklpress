@@ -27,5 +27,6 @@
 		</aside>
 		<footer>
 		</footer>
+		<?php $this->viewData->layout->output(); ?>
 	</body>
 </html>
