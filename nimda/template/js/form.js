@@ -1,4 +1,5 @@
-var numberLine = 0;
+//console.log(document.getElementById('field-1').length);
+var numberLine = document.getElementsByTagName('fieldset').length;
 
 	function removeField(){
 		id = this.id;

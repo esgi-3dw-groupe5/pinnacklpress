@@ -35,5 +35,5 @@
 		</table>
     </div>
 </div>
-<script src="template/js/form.js"></script>
+<script src="/pinnacklpress/nimda/template/js/form.js"></script>
 	

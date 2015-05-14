@@ -76,6 +76,7 @@ class Formulaires extends \sophwork\app\controller\AppController{
 						$plop[$k][] = $val;					
 				}	
 			}
+			//var_dump($plop);
 
 			$this->setViewData('form_name',$formName);
 			$this->setViewData('form', $plop, 'field_id');

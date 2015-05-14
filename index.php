@@ -39,8 +39,7 @@ $pageController = new Controllers();
 
 
 $form = new Form();
-$form = $form->getForm('inscription');
-$element = new htmlForm($form);
+$element = new htmlForm($form->getForm('inscription'),'inscription');
 $layout = $element->createForm();
 
 $pageController->setRawData('layout', $layout);
