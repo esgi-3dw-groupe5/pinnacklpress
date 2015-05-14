@@ -5,11 +5,11 @@
 		<meta charset="UTF-8">
 		<title><?php $this->show('sitename'); ?> - <?php $this->show('sitedescription'); ?></title>
 		<meta name="description" content="">
-		<link rel="stylesheet" href="template/css/builder/builder-grid.css">
-		<link rel="stylesheet" href="template/css/menus/extend.css">
-		<link rel="stylesheet" href="template/css/sidebar/extend.css">
-		<link rel="stylesheet" href="template/css/base/base.css">
-		<link rel="stylesheet" href="template/css/footer/footer.css">
+		<link rel="stylesheet" href="nimda/template/css/builder/builder-grid.css">
+		<link rel="stylesheet" href="nimda/template/css/menus/extend.css">
+		<link rel="stylesheet" href="nimda/template/css/sidebar/extend.css">
+		<link rel="stylesheet" href="nimda/template/css/base/base.css">
+		<link rel="stylesheet" href="nimda/template/css/footer/footer.css">
 	</head>
 	<body>
 		<header id="menu" class="grid-12">
