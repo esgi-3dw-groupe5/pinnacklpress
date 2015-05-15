@@ -54,9 +54,9 @@ elseif($optionPage == 'pages'){
 	$page->findOne($edit);
 	if(array_key_exists('pageBuilder', $_POST)){
 		$pageCotent = $KDM->create('pp_pagemeta');
-		$pageCotent->findPageId($page->getPageId()[0]);
+		$pageCotent->findPageId($page->getPageId());
 
-		$pageCotent->setPageId($page->getPageId()[0]);
+		$pageCotent->setPageId($page->getPageId());
 		$pageCotent->setPmetaName('content');
 		$pageCotent->setPmetaValue($_POST['pageBuilder']);
 		$pageCotent->save();

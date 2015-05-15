@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/forms/forms.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/forms/extend.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/buttons/buttons.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/buttons/extend.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/tables/extend.css">
 
     <script src="<?php $this->show('siteurl')?>nimda/template/js/libs/sophwork.js"></script>
@@ -37,11 +38,16 @@
         <!-- Hamburger icon -->
         <span></span>
     </a>
-
+    <div class="pinnackl-header-menu">
+        <span>Welcome, <b>Admin</b></span>
+        <a class="pinnackl-button pinnackl-button-white btn-70" href="<?php $this->show('siteurl')?>">
+            Back to your website
+        </a>
+    </div>
     <div id="menu">
         <div class="pinnackl-menu">
             <a class="pinnackl-menu-heading" href="../nimda/">Pinnackl Press</a>
-            <!-- <a class="pinnackl-menu-heading" href="../">Your site</a> -->
+            <!-- <a class="pinnackl-menu-heading" href="<?php $this->show('siteurl')?>">Your site</a> -->
             <ul class="pinnackl-menu-list">
         	<?php foreach ($this->viewData->menu as $key => $value) : ?>
             <li class="pinnackl-menu-item <?php $this->isActive($this->show($value, 'page_tag'))?>">

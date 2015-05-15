@@ -17,7 +17,7 @@ var builderHelper = {
 		var builderSave = [];
 		var save = [];
 		// Iterate on lines
-		var lines = document.querySelectorAll('.line');
+		var lines = document.querySelectorAll('.builder-line');
 		[].forEach.call(lines, function(line) {
 			// save the builder
 			builderSave.push(line);

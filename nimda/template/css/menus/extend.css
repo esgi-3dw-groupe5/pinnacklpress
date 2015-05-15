@@ -21,3 +21,18 @@
 a:hover{
 	color: #2ea2cc;
 }
+
+/*- custom header menu -*/
+
+.pinnackl-header-menu{
+	background: #2d3e50 none repeat scroll 0 0;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+	display: block;
+	font-size: 110%;
+	left: -155px;
+	padding: 10px 5px 10px 150px;
+	position: fixed;
+	text-align: right;
+	width: 100%;
+}
