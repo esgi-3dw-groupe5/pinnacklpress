@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 28 Avril 2015 à 00:23
--- Version du serveur :  5.6.15-log
--- Version de PHP :  5.5.8
+-- Généré le :  Sam 16 Mai 2015 à 19:19
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -182,6 +182,20 @@ CREATE TABLE IF NOT EXISTS `pp_hstatus` (
   `hstatus_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`hstatus_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pp_mail`
+--
+
+CREATE TABLE IF NOT EXISTS `pp_mail` (
+  `mail_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail_name` varchar(128) NOT NULL,
+  `mail_subject` varchar(255) NOT NULL,
+  `mail_content` text NOT NULL,
+  PRIMARY KEY (`mail_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
