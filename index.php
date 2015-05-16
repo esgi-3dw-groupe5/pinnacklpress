@@ -25,6 +25,8 @@ use controller\controllers\core\Controllers;
 use sophwork\modules\htmlElements\htmlForm;
 use controller\form\Form;
 
+use controller\utils\Users;
+
 
 /**
  *	Create a new applicaion with the Sophwork class
@@ -51,3 +53,7 @@ $pageController->callView('index');
 // $options->findOptionName("sitedescription");
 // var_dump( $options->getData() );
 // echo'</pre>';
+
+$user = new Users('');
+
+//var_dump($user);

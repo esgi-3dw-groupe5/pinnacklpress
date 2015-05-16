@@ -18,7 +18,7 @@ class htmlForm extends htmlElement{
 		$form = new htmlElement('form');
 		$form->set('name',$this->formName);
 		$form->set('method','POST');
-		$form->set('action','/controller/controllers/listener/listeners.php');
+		$form->set('action','controller/controllers/listener/listeners.php');
 
 		foreach ($this->data as $key => $value) {
 
@@ -35,7 +35,7 @@ class htmlForm extends htmlElement{
 			$form->inject($input);
 		}
 		$submit = new htmlElement('input');
-		$submit->set('type','button');
+		$submit->set('type','submit');
 		$submit->set('name','__'.$this->formName);
 		$submit->set('value','Submit');
 		$line = new htmlElement('br');
