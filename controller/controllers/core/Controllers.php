@@ -9,12 +9,14 @@ use sophwork\modules\kte\SophworkTELoader;
 use sophwork\modules\kte\SophworkTELexer;
 use sophwork\modules\kte\SophworkTEParser;
 
+use sophwork\modules\htmlElements\htmlElement;
+use sophwork\modules\htmlElements\htmlPage;
+
 class Controllers extends AppController{
 
 
 	public function __construct(){
 		parent::__construct();
-		// echo 'Your are on the ' . $this->page . ' controller';
 		$view = $this->appView; // Class variable ?
 
 		// Get option for all pages
@@ -27,16 +29,20 @@ class Controllers extends AppController{
 
 		$options->findOptionName("siteurl");
 		$siteurl = $options->getOptionValue()[0];
-		
-		$pages = $this->KDM->create('pp_page');
-		$pages->findPageDisplay('yes');
-			$tags = $pages->getPageTag();
 
 		$this->setViewData('sitename', $sitename);
 		$this->setViewData('sitedescription', $sitedescription);
 		$this->setViewData('siteurl', $siteurl);
-		$this->setViewData('menu', $pages->getData(), 'page_tag');
-		$this->setViewData('menu', $pages->getData(), 'page_name');
+
+		$page = $this->KDM->create('pp_page');
+		$page->findPageTag($this->page);
+		$pageContent = $this->KDM->create('pp_pagemeta');
+		$pageContent->findPageId($page->getPageId()[0]);
+
+		$data = $pageContent->getPmetaValue()[0];
+		$html = new htmlPage($data);
+		$layout = $html->createPage();
+		$this->setRawData('page', $layout);
 	}
 
 	public function __get($param){

@@ -15,20 +15,14 @@
 		<header id="header" class="grid-12">
 			<nav>
 				<ul>
-					<?php foreach ($this->viewData->menu as $key => $value) :?>
-						<li class="menu">
-							<a href="/pinnacklpress/<?php $this->show($value, 'page_tag'); ?>">
-								<?php $this->show($value, 'page_name'); ?>
-							</a>
-						</li>
-					<?php endforeach; ?>
 				</ul>
 			</nav>
 		</header>
 		<aside id="sidebar" class="grid-2">
 		</aside>
 		<section id="content" class="grid-10">
-			<?php $this->viewData->layout->output(); ?>
+			<?php $this->viewData->page->render(); ?>
+
 		</section>
 		
 		<footer class="grid-12">

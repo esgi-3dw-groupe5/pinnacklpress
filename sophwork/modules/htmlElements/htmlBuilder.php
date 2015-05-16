@@ -46,10 +46,10 @@ class htmlBuilder extends htmlElement{
 	}
 
 	public function createPage(){
-		$layout = new htmlElement('div');
+		$this->layout = new htmlElement('div');
 		foreach ($this->data as $key => $value) { // Foreach lines
 			$line = new htmlElement('div');
-			$line->set('class', 'builder-line');
+			$line->set('class', 'line');
 			foreach ($value->line as $key => $subValue) { // Foreach sections
 				$section = new htmlElement('div');
 				$section->set('class', $subValue->gridClass);
@@ -57,9 +57,9 @@ class htmlBuilder extends htmlElement{
 					$section->set('text', $subValue->gridContent);
 				$line->inject($section);
 			}
-			$layout->inject($line);
+			$this->layout->inject($line);
 		}
-		return $layout;
+		return $this;
 	}
 
 	public function render(){
