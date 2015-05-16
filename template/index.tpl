@@ -21,6 +21,7 @@
 		<aside id="sidebar" class="grid-2">
 		</aside>
 		<section id="content" class="grid-10">
+			<?php $this->viewData->layout->output(); ?>
 			<?php $this->viewData->page->render(); ?>
 
 		</section>
