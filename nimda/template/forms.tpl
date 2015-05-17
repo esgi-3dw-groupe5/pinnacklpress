@@ -18,6 +18,7 @@
 		            <th>#</th>
 		            <th>Name</th>
 		            <th>Edit</th>
+		            <th>Delete</th>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -27,8 +28,12 @@
 		            <td><?php $this->show($value, 'form_name')    ?></td>
 		            <td>
 		                <a class="pinnackl-button pinnackl-button-primary"
-		                href="<?php $this->show('siteurl')?>nimda/formulaires/edit/<?php $this->show($value, 'form_name')		?>">Edit</a>
+		                href="<?php $this->show('siteurl')?>nimda/forms/edit/<?php $this->show($value, 'form_name')		?>">Edit</a>
 		            </td>
+		            <td>
+                        <a class="pinnackl-button pinnackl-button-error"
+                        href="<?php $this->show('siteurl')?>nimda/pages/delete/<?php $this->show($value, 'form_name')?>">Delete</a>
+                    </td>
 		        </tr>
 		        <?php endforeach; ?>
 		    </tbody>
@@ -36,4 +41,22 @@
     </div>
 </div>
 <script src="/pinnacklpress/nimda/template/js/form.js"></script>
+<script>
+Sophwork.ready(function(){
+    (function(){
+        var e = window.location.href;
+        var s = e.split('/');
+        var l = s.length;
+
+        if(s.indexOf('delete') != -1 && s.indexOf('delete') == l-2){
+            if(confirm('Are you sure ?\nYou want to delete this form')){
+                window.location = Sophwork.getUrl() + "nimda/options.php";
+            }
+            else{
+                window.location = Sophwork.getUrl() + "nimda/forms";
+            }
+        }
+    })();
+});
+</script>
 	

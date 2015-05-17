@@ -13,7 +13,7 @@ use sophwork\modules\kte\SophworkTEParser;
 use controller\form\Form;
 
 
-class Formulaires extends \sophwork\app\controller\AppController{
+class Forms extends \sophwork\app\controller\AppController{
 	public $config;
 	protected $forms;
 	protected $fields;

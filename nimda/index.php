@@ -57,12 +57,12 @@ $menu = [
 	'page_tag' => [
 		'overview',
 		'pages',
-		'formulaires',
+		'forms',
 	],
 	'page_name' => [
 		'Overview',
 		'Pages',
-		'Formulaires',
+		'Forms',
 	],
 ];
 

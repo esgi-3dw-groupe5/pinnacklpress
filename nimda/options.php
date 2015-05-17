@@ -86,16 +86,21 @@ elseif($optionPage == 'pages'){
 	}
 }
 
-elseif($optionPage == 'formulaires'){
+elseif($optionPage == 'forms'){
 
-	var_dump($_POST);
 	$formName = $_POST['form-name'];
 	$KDM = new SophworkDM($app->config);
 	$form = $KDM->create('pp_form');
 	$form->findOne($formName);
 
+	if(in_array('delete', $optionPageController)){
+		$form->erase();
+		Sophwork::redirect('nimda/forms');
+		exit;
+	}
+
 	if(is_null($form->getData()['form_id'])){
-		echo 'succes';
+
 		//INSERT INTO FORM TABLE
 		$form = $KDM->create('pp_form');
 		$form->setFormName($_POST['form-name']);

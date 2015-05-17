@@ -47,6 +47,10 @@ $element = new htmlForm($form->getForm('inscription'),'inscription');
 $layout = $element->createForm();
 
 $pageController->setRawData('layout', $layout);
+// $element1 = new htmlForm($form->getForm('post'),'post');
+// $layout1 = $element1->createForm();
+
+// $pageController->setRawData('layout1', $layout1);
 $pageController->callView('index');
 // $options = $kdm->create('pp_option');
 // echo'<pre style="background:#ffffff">';

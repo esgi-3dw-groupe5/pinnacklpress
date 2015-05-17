@@ -10,9 +10,9 @@ use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
 use controller\utils\Users;
+use controller\posts\Post;
 
 $_POST['pp-referer'] = $_SERVER['HTTP_REFERER'];
-
 
 $sophwork = new Sophwork();
 $app = new SophworkApp();
@@ -45,4 +45,10 @@ if($forms->getFormId()[0]!=null)
         $user->$optionPage($_POST);
     }
 
+}
+
+if(array_key_exists('__post', $_POST)){
+	var_dump($_POST);
+	$post = new Post();
+	$post->createPost($_POST);
 }
