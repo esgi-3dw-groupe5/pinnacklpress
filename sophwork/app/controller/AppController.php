@@ -45,7 +45,7 @@ class AppController extends SophworkApp{
 		$this->sendConfigAction($action, $_POST);
 
 		if(!Sophwork::getConfig()){
-			if($this->page == 'index')
+			if($this->page != 'config')
 				Sophwork::redirect('config');
 			// use KTE to render the template
 			$loader = new SophworkTELoader();
@@ -56,19 +56,16 @@ class AppController extends SophworkApp{
 				'header' =>  'Setup config file',
 				'base' => 'template/css/base/base.css',
 				'forms' => 'template/css/forms/forms.css',
-				'buttons' => 'template/css/buttons/buttons.css','template/css/buttons/buttons.css',
+				'buttons' => 'template/css/buttons/buttons.css',
 			]);
 			echo $KTE->parseTemplate();
 			exit;
 		}
 		else{
-			if($this->page == 'config') {
-				$this->KDM = new SophworkDM(Sophwork::getConfig());
+			$this->KDM = new SophworkDM(Sophwork::getConfig());
+			if(file_exists('database/sophkdatabase.php'))
 				include('database/sophkdatabase.php');
-				Sophwork::redirect();
-			}
 		}
-
 		$this->KDM = new SophworkDM(Sophwork::getConfig());
 	}
 

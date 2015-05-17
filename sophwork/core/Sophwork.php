@@ -49,11 +49,16 @@ class Sophwork {
 		return $config;
 	}
 
+	/**
+	 * Create the config file containing database credential
+	 * Need to lowercase database name
+	 * @param $POST
+	 */
 	public static function setConfig($POST){
 		$handle = fopen('config.local.php', "w+");
 		$text = "<?php\n\$config = array(\n
 		'db_host' => '".$POST['db_host']."',\n
-		'db_name' => '".$POST['db_name']."',\n
+		'db_name' => '".strtolower($POST['db_name'])."',\n
 		'db_login' => '".$POST['db_login']."',\n
 		'db_password' => '".$POST['db_password']."',\n
 		);
