@@ -14,9 +14,12 @@ class Mail {
 
     public fonction sendMail($pseudo,$email,$nameEmail,$cle){
         
-        $where = "mail_name = '".$nameEmail."'"
         
-        $content = $this->KDM->select('pp_mail',$where,'mail_content');
+        
+        $content = $this->KDM->create('pp_mail');
+        $content->findMailName($nameEmail);
+        //TODO : SELECT mail_content WHERE mail_name = nameEmail
+        $this->setViewData('mail-content', $content);
         
         ob_start(); // turn on output buffering
         include('template/mail.tpl');
