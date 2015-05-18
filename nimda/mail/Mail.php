@@ -18,8 +18,10 @@ class Mail {
         
         $content = $this->KDM->create('pp_mail');
         $content->findMailName($nameEmail);
-        //TODO : SELECT mail_content WHERE mail_name = nameEmail
-        $this->setViewData('mail-content', $content);
+        if($content->getMailId()[0]!=null)
+        {
+            $this->setViewData('mail-content', $content->getMailContent()[0]);
+        }
         
         ob_start(); // turn on output buffering
         include('template/mail.tpl');
