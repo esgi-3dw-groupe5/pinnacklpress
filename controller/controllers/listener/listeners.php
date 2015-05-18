@@ -6,6 +6,8 @@ use sophwork\core\Sophwork;
 use sophwork\app\app\SophworkApp;
 use sophwork\app\controller\AppController;
 
+use controller\controllers\core\Controllers;
+
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
@@ -18,10 +20,12 @@ $sophwork = new Sophwork();
 $app = new SophworkApp();
 $controller = $app->appController;
 $page = $controller->page;
+$pageController = new Controllers();
+
 
 $optionPageController = preg_split("#/#", $_POST['pp-referer']);
 
-var_dump($optionPageController);
+//var_dump($optionPageController);
 /**
  *	Page
  */
@@ -43,6 +47,7 @@ if($forms->getFormId()[0]!=null)
     {
         $user = new Users();
         $user->$optionPage($_POST);
+        var_dump($_SESSION);
     }
 
 }

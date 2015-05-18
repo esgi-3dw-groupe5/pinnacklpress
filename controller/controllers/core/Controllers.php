@@ -12,12 +12,17 @@ use sophwork\modules\kte\SophworkTEParser;
 use sophwork\modules\htmlElements\htmlElement;
 use sophwork\modules\htmlElements\htmlPage;
 
+use controller\utils\Users;
+    
 class Controllers extends AppController{
 
 
 	public function __construct(){
 		parent::__construct();
 		$view = $this->appView; // Class variable ?
+        
+        session_start();
+        $this->initUser();
 
 		// Get option for all pages
 		$options = $this->KDM->create('pp_option');
@@ -52,4 +57,12 @@ class Controllers extends AppController{
 	public function __set($param, $value){
 		$this->$param = $value;
 	}
+    
+    
+    public function initUser(){
+        $_SESSION['pseudo']=null;
+        $_SESSION['email']=null;
+        $_SESSION['role']='visitor';
+        $_SESSION['connected']=false;
+    }
 }
