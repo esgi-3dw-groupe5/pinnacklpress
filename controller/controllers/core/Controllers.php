@@ -22,7 +22,8 @@ class Controllers extends AppController{
 		$view = $this->appView; // Class variable ?
         
         session_start();
-        $this->initUser();
+        $user = new Users();
+        $user->initUser();
 
 		// Get option for all pages
 		$options = $this->KDM->create('pp_option');
@@ -56,6 +57,10 @@ class Controllers extends AppController{
 		$html = new htmlPage($data);
 		$layout = $html->createPage();
 		$this->setRawData('page', $layout);
+        
+        $roleNeedle = $page->getPageConnected()[0];
+        $user->checkPermission($roleNeedle);
+        
 	}
 
 	public function __get($param){
@@ -66,11 +71,4 @@ class Controllers extends AppController{
 		$this->$param = $value;
 	}
     
-    
-    public function initUser(){
-        $_SESSION['pseudo']=null;
-        $_SESSION['email']=null;
-        $_SESSION['role']='visitor';
-        $_SESSION['connected']=false;
-    }
 }

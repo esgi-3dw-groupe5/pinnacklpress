@@ -12,6 +12,7 @@ class Users extends \sophwork\app\controller\AppController {
     public function __construct(){
         parent::__construct();
         $this->user = $this->KDM->create('pp_user');
+        return $this->user;
     }
     
     public function connection($POST){
@@ -54,6 +55,74 @@ class Users extends \sophwork\app\controller\AppController {
         }
         var_dump($this->user);
         
+    }
+    
+    public function initUser(){
+        $_SESSION['user']=[];
+        $_SESSION['user']['pseudo']=null;
+        $_SESSION['user']['email']=null;
+        $_SESSION['user']['role']='author';
+        $_SESSION['user']['connected']=false;
+    }
+    
+    function checkPermission($permission){
+        $roles = array(
+            "superadmin" => array(
+                0 => "superadmin",
+                1 => "administrator",
+                2 => "moderator",
+                3 => "editor",
+                4 => "author",
+                5 => "member",
+                6 => "visitor" ),
+
+            "administrator"  => array(
+                0 => "administrator",
+                1 => "moderator",
+                2 => "editor",
+                3 => "author",
+                4 => "member",
+                5 => "visitor" ),
+
+            "moderator"  => array(
+                0 => "moderator",
+                1 => "editor",
+                2 => "author",
+                3 => "member",
+                4 => "visitor" ),
+
+            "editor"  => array(
+                0 => "editor",
+                1 => "author",
+                2 => "member",
+                3 => "visitor" ),
+
+            "author"  => array(
+                0 => "author",
+                1 => "member",
+                2 => "visitor" ),
+
+            "member" => array(
+                0 => "member",
+                1 => "visitor" ),
+            
+            "visitor" => array(
+                0 => "visitor")
+        );
+        
+        if(in_array($permission,$roles[$_SESSION['user']['role']]))
+        {
+            echo "DROITS OK";
+        }
+        else
+        {
+            header("HTTP/1.0 404 Not Found");
+            echo "ERREUR DROITS";
+            die();
+            //FIXME : ADD 404.tpl
+        }
+        
+            
     }
     
     
