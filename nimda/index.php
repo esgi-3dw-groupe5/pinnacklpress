@@ -37,21 +37,7 @@ $siteurl = $options->getOptionValue()[0];
 $options->findOptionName('sitename');
 $sitename = $options->getOptionValue()[0];
 $options->findOptionName('sitedescription');
-
 $sitedescription = $options->getOptionValue()[0];
-
-
-// Header template
-
-// $loader = new SophworkTELoader();
-// $template = $loader->loadFromFile("template/header.tpl");
-// $KTE = new SophworkTEParser($template, [
-// 	'title' => 'Nimda',
-// 	'siteurl' => $siteurl,
-// 	'menu' => ['Overview','Pages'],
-// 	'active' => ['active'],
-// ]);
-// print $KTE->parseTemplate();
 
 $menu = [
 	'page_tag' => [
@@ -76,8 +62,8 @@ $controller->appView->renderView('header', 'nimda/');
 $view = $app->appView;
 
 $control = 'nimda\controller\setup\\' . ucfirst($page);
+
 $pageController = $controller->pageController = new $control($app->config);
-// var_dump($app->getParam('e', ''));
-	$pageController->renderView($page);
+$pageController->renderView($page);
 
 include('template/footer.tpl');

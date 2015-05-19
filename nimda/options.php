@@ -34,14 +34,14 @@ else{
 
 if($optionPage == 'overview'){
 	$options = [
-		'overview' => ['sitename', 'sitedescription', 'siteurl'],
+		'overview' => ['sitename', 'sitedescription', 'siteurl', 'theme'],
 	];
 	$KDM = new SophworkDM($app->config);
 	foreach ($options[$optionPage] as $key => $value) {
 		$$value = $KDM->create('pp_option');
 			// Find if this property already exist, it will determine insert or update by the auto id
 			$$value->findOne($value);
-			
+
 			$$value->setOptionName($value);
 			$$value->setOptionValue($_POST[$value]);
 			$$value->save();

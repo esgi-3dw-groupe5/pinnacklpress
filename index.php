@@ -5,11 +5,6 @@ ini_set("display_errors", 1);
  *	This file is a part of the sophwork project
  *	@Tested version : Sophwork.0.2.0
  *	@author : Syu93
- *	--
- *	This file if for exemple purpose
- *	It's show you the way to use the Sophwork framework basises
- *	feel free to edit it or recreate your own for your project.
- *	NOTE : Uncomment the exemples bellow to see it works
  */
 require_once('sophwork/autoloader.php');
 
@@ -51,7 +46,7 @@ $pageController->setRawData('layout', $layout);
 // $layout1 = $element1->createForm();
 
 // $pageController->setRawData('layout1', $layout1);
-$pageController->callView('index');
+$pageController->callThemeView('index');
 // $options = $kdm->create('pp_option');
 // echo'<pre style="background:#ffffff">';
 // $options->findOptionName("sitedescription");

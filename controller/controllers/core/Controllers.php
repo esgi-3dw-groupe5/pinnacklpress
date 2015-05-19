@@ -17,7 +17,6 @@ class Controllers extends AppController{
 
 	public function __construct(){
 		parent::__construct();
-		$view = $this->appView; // Class variable ?
 
 		// Get option for all pages
 		$options = $this->KDM->create('pp_option');
@@ -29,10 +28,18 @@ class Controllers extends AppController{
 
 		$options->findOptionName("siteurl");
 		$siteurl = $options->getOptionValue()[0];
+		
+		$options->findOptionName("theme");
+		$theme = $options->getOptionValue()[0];
 
 		$this->setViewData('sitename', $sitename);
 		$this->setViewData('sitedescription', $sitedescription);
 		$this->setViewData('siteurl', $siteurl);
+		$this->setViewData('theme', $theme);
+		
+		// set the theme. By default pure theme is used
+		$view = $this->appView; // Class variable ?
+		$view->theme = $theme;
 
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);

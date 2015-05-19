@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.2
+ *	@Tested version : Sophwork.0.2.3
  *	@author : Syu93
  *	--
  *	Main application class
@@ -114,5 +114,17 @@ class SophworkApp extends Sophwork{
 			$this->viewName = $name;
 		$this->appView
 			->renderView($this->viewName, $path);
+	}
+
+	/**
+	 * Use to render theme template of the specified page
+	 * @param  name (optional) : template name to render (using index as default. See AppView->renderThemeView)
+	 * @param  path (optional) : path to the temple (using template folder by default. See AppView->renderThemeView)
+	 */
+	public function callThemeView($name = null, $path = null){
+		if( !is_null($name) )
+			$this->viewName = $name;
+		$this->appView
+			->renderThemeView($this->viewName, $path);
 	}
 }

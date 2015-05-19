@@ -6,10 +6,6 @@ use sophwork\core\Sophwork;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
-use sophwork\modules\kte\SophworkTELoader;
-use sophwork\modules\kte\SophworkTELexer;
-use sophwork\modules\kte\SophworkTEParser;
-
 use sophwork\modules\htmlElements\htmlBuilder;
 use sophwork\modules\htmlElements\htmlElement;
 
@@ -78,7 +74,7 @@ class Pages extends \sophwork\app\controller\AppController{
 			
 			$this->callView($page, 'nimda/');
 		}
-		elseif($action == 'edit'){
+		elseif($action == 'edit'){ // FIXME : better handle blank cases
 			$pages->findPageId($edit);
 
 			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);

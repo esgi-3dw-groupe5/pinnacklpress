@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.2
+ *	@Tested version : Sophwork.0.2.3
  *	@author : Syu93
  *	--
  *	Main view class
@@ -12,7 +12,7 @@ namespace sophwork\app\view;
 use sophwork\app\app\SophworkApp;
 
 class AppView extends SophworkApp{
-
+	public $theme;
 	public $modifiers = [
 		'S' => 'htmlspecialchars',
 		'U' => 'strtoupper',
@@ -22,8 +22,8 @@ class AppView extends SophworkApp{
 	];
 	public $viewData;
 
-	public function __construct() {
-
+	public function __construct($theme = 'pure') { // default theme
+		$this->theme = $theme;
 	}
 
 	public function __set($param, $value) {
@@ -47,6 +47,16 @@ class AppView extends SophworkApp{
 			return;
 		}
 		include_once(dirname(dirname(__FILE__)) . '/..' .'/../template/'.$template.'.tpl');
+	}
+
+	public function renderThemeView($template, $path = null){
+		if(is_null($template))
+			$template = 'index';
+		if(!is_null($path)){
+			include_once(dirname(dirname(__FILE__)) . '/..' .'/../' . $path . 'template/themes/'.$this->theme.'/'.$template.'.tpl');
+			return;
+		}
+		include_once(dirname(dirname(__FILE__)) . '/..' .'/../template/themes/'.$this->theme.'/'.$template.'.tpl');
 	}
 
 	/** 

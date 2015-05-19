@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.2
+ *	@Tested version : Sophwork.0.2.3
  *	@author : Syu93
  *	--
  *	Main controller class
@@ -65,6 +65,8 @@ class AppController extends SophworkApp{
 			$this->KDM = new SophworkDM(Sophwork::getConfig());
 			if(file_exists('database/sophkdatabase.php'))
 				include('database/sophkdatabase.php');
+			if($this->page === 'config')
+				sophwork::redirect();
 		}
 		$this->KDM = new SophworkDM(Sophwork::getConfig());
 	}
