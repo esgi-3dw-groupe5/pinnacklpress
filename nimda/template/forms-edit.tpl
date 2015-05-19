@@ -12,7 +12,7 @@
     				<fieldset id="field-set-<?php echo $i?>" class="pinnackl-group">
     					<div id="container-button-<?php echo $i?>" class="container-button">
 							<input type="text" name="field-name-<?php echo $i?>" class="pinnackl-input-1-2"  value="<?php $this->show($value, 'field_name'); ?>" required>
-							<img id="<?php echo $i?>" src="/pinnacklpress/nimda/template/images/minus.png" onclick="removeField">
+							<img id="<?php echo $i?>" src="/pinnacklpress/nimda/template/images/minus.png">
 						</div>
     					<select id="field-type-<?php echo $i?>" class="pinnackl-input-1-2" style="color: gray;" name="<?php echo $i?>[field-type]" required>
 							<option <?php if($this->get($value, 'field_type') == "email"){echo "selected='selected'";}?>>email</option>
@@ -31,4 +31,4 @@
     	</form>
     </div>
 </div>
-<script src="<?php $this->show('siteurl') ?>/nimda/template/js/form.js"></script>
+<script src="../../template/js/form.js"></script>

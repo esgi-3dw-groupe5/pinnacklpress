@@ -51,20 +51,19 @@ class Forms extends \sophwork\app\controller\AppController{
 	}
 
 	public function renderView($page = null, $path = null){
-
-		// $loader = new SophworkTELoader();
-		// $template = $loader->loadFromFile("template/". $page .".tpl");
-		// $KTE = new SophworkTEParser($template, [
-		// 	'h1' => 'Formulaire',
-		// 	'h2' => 'Creation d\'un formulaire',
-			
-		// ]);
-		// print $KTE->parseTemplate();
 		$KDM = new SophworkDM($this->config);
 		$action = Sophwork::getParam('a','');
+		$edit = Sophwork::getParam('e', '');
+
+		$options = $KDM->create('pp_option');
+		$options->findOptionName('siteurl');
+		$siteurl = $options->getOptionValue()[0];
+
+		$pages = $KDM->create('pp_page');
 
 		if($action == 'edit'){
-			$page = 'form-edit';
+			$pages = 'forms-edit';
+
 			$formName = Sophwork::getParam('e','');	
 
 			$form = new Form;
@@ -76,29 +75,36 @@ class Forms extends \sophwork\app\controller\AppController{
 						$plop[$k][] = $val;					
 				}	
 			}
-			//var_dump($plop);
 
 			$this->setViewData('form_name',$formName);
 			$this->setViewData('form', $plop, 'field_id');
 			$this->setViewData('form', $plop, 'field_name');
 			$this->setViewData('form', $plop, 'field_type');
 			$this->setViewData('form', $plop, 'validator_rule');
+			$this->setViewData('siteurl', $siteurl);
 
 			$this->setViewData('h1', 'Edit form');
 
+			$this->callView($pages, 'nimda/');
+		}elseif($action == 'new'){
+			$pages->findPageId($edit);
+
+			$this->setViewData('h1', 'Formulaire');
+			$this->setViewData('h2-create', 'Create form');
+			$this->setViewData('siteurl', $siteurl);
+
+			$this->callView($page .'-new', 'nimda/');
+		}elseif($action == 'delete'){
+			$pages->find();
+
 			$this->callView($page, 'nimda/');
 		}else{
-			$options = $KDM->create('pp_option');
-			$options->findOptionName('siteurl');
-			$siteurl = $options->getOptionValue()[0];
-	
 			$this->setViewData('siteurl', $siteurl);
 	
 			$forms = $KDM->create('pp_form');
 			$forms->find();
 
 			$this->setViewData('h1', 'Formulaire');
-			$this->setViewData('h2-create', 'Create form');
 			$this->setViewData('h2-list', 'Forms list');
 			$this->setViewData('forms', $forms->getData(), 'form_id');
 			$this->setViewData('forms', $forms->getData(), 'form_name');

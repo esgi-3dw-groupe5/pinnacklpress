@@ -99,6 +99,14 @@ elseif($optionPage == 'forms'){
 		exit;
 	}
 
+	if(in_array('new', $optionPageController)){
+		$optionPageController[count($optionPageController)-1] = $page->getPageId();
+		$optionPageController[count($optionPageController)-2] = 'edit';
+		$url = implode('/', $optionPageController);
+		Sophwork::redirectFromRef($url);
+		exit;
+	}
+	
 	if(is_null($form->getData()['form_id'])){
 
 		//INSERT INTO FORM TABLE
