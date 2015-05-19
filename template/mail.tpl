@@ -87,7 +87,7 @@
                                                                             <p>
                                                                                 http://pinnackl.com/activation/<?php echo urlencode($pseudo);?>/<?php echo urlencode($cle);?>
                                                                             </p> -->
-                                                                            <?php echo $content;?>
+                                                                            <?php $this->show('mail-content'); ?>
                                                                         </div>
                                                                     </td>
                                                                 </tr>

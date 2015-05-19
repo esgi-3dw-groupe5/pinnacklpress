@@ -15,13 +15,45 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function connection($POST){
-        $user = $this->KDM->create('pp_user');
-        $user->findUserEmail($POST['name']);
-        var_dump($user);
+        $this->user = $this->KDM->create('pp_user');
+        $this->user->findUserEmail($POST['name']);
+        if($this->user->getUserId()[0]!=null)
+        {
+            if($this->user->getUserPassword()[0]==$POST['password'])
+            {
+                session_start();
+                $_SESSION['email']=$user->getUserEmail()[0];
+                $_SESSION['pseudo']=$user->getUserPseudo()[0];
+                $_SESSION['role']=$user->getUserRole()[0];
+                $_SESSION['connected']=true;
+                
+            }
+        }
+        var_dump($this->user);
     }
     
     public function inscription($POST){
         var_dump($POST);
+        $this->user = $this->KDM->create('pp_user');
+        $this->user->findUserEmail($POST['name']);
+        if($this->user->getUserId()[0]==null)
+        {
+            $this->user->setUserEmail($POST['name']);
+            $this->user->setUserPassword($POST['password']);
+            $this->user->setUserPseudo('plopPseudo');
+            $this->user->setUserGender('1');
+            $this->user->setUserFirstname('Lorem');
+            $this->user->setUserName('Ipsum');
+            $this->user->setUserBdate('1990-10-20');
+            $this->user->setUserRole('Viewer');
+            $this->user->setUserKey('azerty123');
+            $this->user->setUserActive('0');
+            $this->user->setUserUrl('Lorem-Ipsum');
+
+            $this->user->save();
+        }
+        var_dump($this->user);
+        
     }
     
     
