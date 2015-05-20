@@ -7,7 +7,7 @@
     <!-- <section> -->
         <div class="content">
             <form  class="pinnackl-form" action="options.php" method="post">
-                <legend><h1><?php $this->show('legend') ?></h1></legend>
+                <legend><h1><?php $this->show('legend1') ?></h1></legend>
                 <fieldset class="pinnackl-group">
                     <input id="<?php $this->show('label_1') ?>"
                         name="<?php $this->show('input_1') ?>"
@@ -29,7 +29,9 @@
                         class="pinnackl-input-1-2"
                         value="<?php $this->show('value_3') ?>"
                         placeholder="<?php $this->show('value_3') ?>">
-                    
+                </fieldset>
+                <legend><h1><?php $this->show('legend2') ?></h1></legend>
+                <fieldset class="pinnackl-group">
                     <input id="<?php $this->show('label_4') ?>"
                         name="<?php $this->show('input_4') ?>"
                         type="<?php $this->show('type_4') ?>"

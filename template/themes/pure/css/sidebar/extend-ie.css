@@ -100,7 +100,8 @@ html{
 }
 
 .footer-right{
-	background: #f9f9f9;
+	/*background: #f9f9f9;*/
+	background: red !important;
 	color: #777;
 	padding: 0 2em;
 	-moz-box-sizing: border-box;

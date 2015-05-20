@@ -37,8 +37,7 @@ class Users extends \sophwork\app\controller\AppController {
         var_dump($POST);
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['name']);
-        if($this->user->getUserId()[0]==null)
-        {
+        if($this->user->getUserId()[0]==null){ //FIXME : replace default data
             $this->user->setUserEmail($POST['name']);
             $this->user->setUserPassword($POST['password']);
             $this->user->setUserPseudo('plopPseudo');
@@ -58,64 +57,61 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function initUser(){
-        $_SESSION['user']=[];
-        $_SESSION['user']['pseudo']=null;
-        $_SESSION['user']['email']=null;
-        $_SESSION['user']['role']='author';
-        $_SESSION['user']['connected']=false;
+        $_SESSION['user'] = [];
+        $_SESSION['user']['pseudo']     = null;
+        $_SESSION['user']['email']      = null;
+        $_SESSION['user']['role']       = 'visitor';
+        $_SESSION['user']['connected']  = false;
     }
     
     function checkPermission($permission){
-        $roles = array(
-            "superadmin" => array(
-                0 => "superadmin",
-                1 => "administrator",
-                2 => "moderator",
-                3 => "editor",
-                4 => "author",
-                5 => "member",
-                6 => "visitor" ),
+        $roles = [
+            'superadmin' => [
+                'superadmin',
+                'administrator',
+                'moderator',
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            "administrator" => [
+                'administrator',
+                'moderator',
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            'moderator' => [
+                'moderator',
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            'editor' => [
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            'author' => [
+                'author',
+                'member',
+                'visitor',
+            ],
 
-            "administrator"  => array(
-                0 => "administrator",
-                1 => "moderator",
-                2 => "editor",
-                3 => "author",
-                4 => "member",
-                5 => "visitor" ),
-
-            "moderator"  => array(
-                0 => "moderator",
-                1 => "editor",
-                2 => "author",
-                3 => "member",
-                4 => "visitor" ),
-
-            "editor"  => array(
-                0 => "editor",
-                1 => "author",
-                2 => "member",
-                3 => "visitor" ),
-
-            "author"  => array(
-                0 => "author",
-                1 => "member",
-                2 => "visitor" ),
-
-            "member" => array(
-                0 => "member",
-                1 => "visitor" ),
-            
-            "visitor" => array(
-                0 => "visitor")
-        );
+            'member' => [
+                'member',
+                'visitor'
+            ],
+            'visitor' => [
+                'visitor'
+            ],
+        ];
         
-        if(in_array($permission,$roles[$_SESSION['user']['role']]))
-        {
-            echo "DROITS OK";
-        }
-        else
-        {
+        if(!in_array($permission,$roles[$_SESSION['user']['role']])){
             header("HTTP/1.0 404 Not Found");
             echo "ERREUR DROITS";
             die();

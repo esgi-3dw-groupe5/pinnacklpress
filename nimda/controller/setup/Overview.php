@@ -93,7 +93,8 @@ class Overview extends \sophwork\app\controller\AppController{
 
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Global configuration');
-		$this->setViewData('legend', 'Site configuation');
+		$this->setViewData('legend1', 'Site configuation');
+		$this->setViewData('legend2', 'Theme configuation');
 		// input-1
 		$this->setViewData('label_1', $nameField->getFieldPlaceholder());
 		$this->setViewData('input_1', $nameField->getFieldDomname());
