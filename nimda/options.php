@@ -62,14 +62,14 @@ elseif($optionPage == 'pages'){
 		$pageCotent->save();
 	}
 	if(!array_key_exists('pageBuilder', $_POST)
-		&& !in_array('delete', $optionPageController)){
+		&& !in_array('delete', $optionPageController)){ //handle edit and new case
 		$page->setPageTag($_POST['page_tag']);
 		$page->setPageName($_POST['page_name']);
 		$page->setPageOrder($_POST['page_order']);
 		$page->setPageDisplay($_POST['page_display']);
 		$page->setPageConnected($_POST['page_connected']);
 		$page->setPageActive($_POST['page_active']);
-		$page->setPageType($_POST['page_type']);
+		$page->setPageType('page');
 		$page->save();
 	}
 	if(in_array('new', $optionPageController)){
@@ -82,6 +82,68 @@ elseif($optionPage == 'pages'){
 	if(in_array('delete', $optionPageController)){
 		$page->erase();
 		Sophwork::redirect('nimda/pages');
+		exit;
+	}
+}
+
+elseif($optionPage == 'menus'){
+	$KDM = new SophworkDM($app->config);
+	$menu = $KDM->create('pp_menu');
+	$menu->findOne($edit);
+	if(array_key_exists('menuBuilder', $_POST)){
+		$menuRs = $KDM->create('pp_menu_rs');
+		$menuRs->findMenuId($menu->getMenuId());
+		
+		if(is_array($menuRs->getMenuRsId())){
+			$linked = $KDM->create('pp_menu_rs');
+			foreach ($menuRs->getMenuRsId() as $key => $value) {
+				$linked->findOne($value);
+
+				if(isset($_POST['pages']) && is_array($_POST['pages'])){
+					foreach ($_POST['pages'] as $key => $value) {
+						if(!in_array($linked->getPageId(), $_POST['pages'])){
+							$linked->erase();
+						}
+					}
+				}
+				else{
+					$linked->erase();
+				}
+			}
+			foreach ($_POST['pages'] as $key => $value) {
+				if(!in_array($value, $menuRs->getPageId())){
+					$added = $KDM->create('pp_menu_rs');
+					$added->setMenuId($menu->getMenuId());
+					$added->setPageId($value);
+					$added->save();
+				}
+			}
+		}
+		else{
+			foreach ($_POST['pages'] as $key => $value) {
+				$menuRs = $KDM->create('pp_menu_rs');
+				$menuRs->setMenuId($menu->getMenuId());
+				$menuRs->setPageId($value);
+				$menuRs->save();
+			}
+		}
+	}
+	if(!array_key_exists('menuBuilder', $_POST)
+		&& !in_array('delete', $optionPageController)){ //handle edit and new case
+		$menu->setMenuName($_POST['menu_name']);
+		$menu->setMenuStatus(strtolower($_POST['menu_status']));
+		$menu->save();
+	}
+	if(in_array('new', $optionPageController)){
+		$optionPageController[count($optionPageController)-1] = $menu->getMenuId();
+		$optionPageController[count($optionPageController)-2] = 'edit';
+		$url = implode('/', $optionPageController);
+		Sophwork::redirectFromRef($url);
+		exit;
+	}
+	if(in_array('delete', $optionPageController)){
+		$menu->erase();
+		Sophwork::redirect('nimda/menus');
 		exit;
 	}
 }

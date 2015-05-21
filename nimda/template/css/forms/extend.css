@@ -43,3 +43,51 @@ option { color: black; }
 .container-button input{
 	display: inline-block !important;
 }
+
+/**/
+
+.pinnackl-form select{
+	height : 35px!important;
+}
+
+/* multiselect */
+
+.multiselect{
+    max-height:8.5em;
+    border:solid thin #c0c0c0;
+    padding-left: 1px;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    overflow:auto;
+}
+ 
+.multiselect label{
+    display:block;
+    margin: 0;
+    border-bottom: solid thin #fff;
+}
+.multiselect label:last-child{
+    border: none;
+}
+.multiselect label:hover{
+    background: #eee;
+    cursor: pointer;
+}
+
+.multiselect input[type="checkbox"]{
+	float: none;
+	margin: 0;
+    border-radius: 4px;
+}
+
+.multiselect-on{
+    color:#ffffff;
+    background-color: #3399ff;
+    border-bottom: solid 1px #ccc;
+}
+.multiselect-on:last-child{
+    border: none;
+}
+.multiselect label.multiselect-on:hover{
+    background-color: #3399ff;
+}

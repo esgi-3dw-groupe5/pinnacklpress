@@ -101,15 +101,7 @@ class Pages extends \sophwork\app\controller\AppController{
 			$this->callView($page .'-edit', 'nimda/');
 		}
 		elseif($action == 'new'){
-			$pages->findPageId($edit);
-
-			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
-			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
-			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
-			$this->setViewData('page_display', ''.$pages->getPageDisplay()[0]);
-			$this->setViewData('page_connected', ''.$pages->getPageConnected()[0]);
-			$this->setViewData('page_active', ''.$pages->getPageActive()[0]);
-			$this->setViewData('page_type', ''.$pages->getPageType()[0]);
+			// $pages->findPageId($edit);
 
 			$this->callView($page .'-new', 'nimda/');
 		}

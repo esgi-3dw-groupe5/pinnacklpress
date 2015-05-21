@@ -111,26 +111,26 @@
 							</label>
 							<label><span>Page Connected As :</span>
 								<select class="pinnackl-input-1-2" name="page_connected" >
-									<option <?php echo (($this->show('page_connected') == 'visitor')? 'selected' : null) ?>>
-										visitor
+									<option <?php echo (($this->show('page_connected') == 'superadmin')? 'selected' : null) ?>>
+										superadmin
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'member')? 'selected' : null) ?>>
-										member
+									<option <?php echo (($this->show('page_connected') == 'administrator')? 'selected' : null) ?>>
+										administrator
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'author')? 'selected' : null) ?>>
-										author
+									<option <?php echo (($this->show('page_connected') == 'moderator')? 'selected' : null) ?>>
+										moderator
 									</option>
 									<option <?php echo (($this->show('page_connected') == 'editor')? 'selected' : null) ?>>
 										editor
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'modo')? 'selected' : null) ?>>
-										modo
+									<option <?php echo (($this->show('page_connected') == 'author')? 'selected' : null) ?>>
+										author
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'admin')? 'selected' : null) ?>>
-										administrator
+									<option <?php echo (($this->show('page_connected') == 'member')? 'selected' : null) ?>>
+										member
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'nimda')? 'selected' : null) ?>>
-										nimda
+									<option <?php echo (($this->show('page_connected') == 'visitor')? 'selected' : null) ?>>
+										visitor
 									</option>
 								</select>
 							</label>
