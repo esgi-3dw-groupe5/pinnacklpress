@@ -59,6 +59,7 @@ option { color: black; }
     margin-bottom: 1em;
     border-radius: 4px;
     overflow:auto;
+    box-shadow: 0 1px 3px #ddd inset;
 }
  
 .multiselect label{
@@ -90,4 +91,11 @@ option { color: black; }
 }
 .multiselect label.multiselect-on:hover{
     background-color: #3399ff;
+}
+
+/*wysiwyg*/
+
+.trumbowyg-textarea{
+    border: none !important;
+    box-shadow: none!important;
 }

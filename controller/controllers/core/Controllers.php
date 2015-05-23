@@ -55,7 +55,7 @@ class Controllers extends AppController{
 
 		$data = $pageContent->getPmetaValue()[0];
 		$html = new htmlPage($data);
-		$layout = $html->createPage();
+		$layout = $html->createPage(); // create a post method
 		$this->setRawData('page', $layout);
         
         $roleNeedle = $page->getPageConnectedAs()[0];

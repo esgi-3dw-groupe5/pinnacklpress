@@ -91,10 +91,6 @@
 					<form  class="pinnackl-form pinnackl-form-stacked" method="POST"
 						action="<?php $this->show('siteurl')?>nimda/options.php">
 						<fieldset>
-							<label><span>Page Tag :</span>
-								<input class="pinnackl-input-1-2" type="text" name="page_tag" placeholder="Page Tag"
-									value="<?php $this->show('page_tag') ?>">
-							</label>
 							<label><span>Page Name :</span>
 								<input class="pinnackl-input-1-2" type="text" name="page_name" placeholder="Page Name"
 									value="<?php $this->show('page_name') ?>">
@@ -172,20 +168,6 @@
 										?'selected': null)?> 
 										value="disable">
 										Disable
-									</option>
-								</select>
-							</label>
-							<label><span>Page Type :</span>
-								<select class="pinnackl-input-1-2" name="page_type" >
-									<option <?php echo(($this->get($this->viewData, 'page_type')=='page')
-										?'selected': null)?> 
-										value="page">
-										Page
-									</option>
-									<option <?php echo(($this->get($this->viewData, 'page_type')=='post')
-										?'selected': null)?> 
-										value="post">
-										Post
 									</option>
 								</select>
 							</label>

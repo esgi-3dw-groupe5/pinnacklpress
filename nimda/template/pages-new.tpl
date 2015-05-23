@@ -8,14 +8,11 @@
 					<form  class="pinnackl-form pinnackl-form-stacked" method="POST"
 						action="<?php $this->show('siteurl')?>nimda/options.php">
 						<fieldset>
-							<label><span>Page Tag :</span>
-								<input class="pinnackl-input-1-2" type="text" name="page_tag" placeholder="Page Tag" value="">
-							</label>
 							<label><span>Page Name :</span>
 								<input class="pinnackl-input-1-2" type="text" name="page_name" placeholder="Page Name" value="">
 							</label>
 							<label><span>Page Order :</span>
-								<input class="pinnackl-input-1-2" type="text" name="page_order" placeholder="Page Order" value="">
+								<input class="pinnackl-input-1-2" type="text" name="page_order" placeholder="Page Order" value="0">
 							</label>
 							<label><span>Page Connected As :</span>
 								<select class="pinnackl-input-1-2" name="page_connectedAs" >
@@ -60,18 +57,8 @@
 									<option value="enable">
 										Enable
 									</option>
-									<option value="disable">
+									<option selected value="disable">
 										Disable
-									</option>
-								</select>
-							</label>
-							<label><span>Page Type :</span>
-								<select class="pinnackl-input-1-2" name="page_type" >
-									<option value="page">
-										Page
-									</option>
-									<option value="post">
-										Post
 									</option>
 								</select>
 							</label>

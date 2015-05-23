@@ -43,12 +43,16 @@ $menu = [
 	'page_tag' => [
 		'overview',
 		'pages',
+		'posts',
+		'categories',
 		'menus',
 		'forms',
 	],
 	'page_name' => [
 		'Overview',
 		'Pages',
+		'Posts',
+		'Categories',
 		'Menus',
 		'Forms',
 	],

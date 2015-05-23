@@ -49,15 +49,13 @@ if($optionPage == 'overview'){
 }
 
 elseif($optionPage == 'pages'){
+	if($edit == '') $edit = 0;
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
-	echo'<pre style="background:#ffffff">';
-	var_dump($edit);
-	echo'</pre>';
-	$page->findOne($edit);
+	$page->findPageId($edit);
 
 	$pageCotent = $KDM->create('pp_pagemeta');
-	$pageCotent->findPageId($page->getPageId());
+	$pageCotent->findPageId($page->getPageId()[0]);
 	if(array_key_exists('pageBuilder', $_POST)){
 		$pageCotent->setPageId($page->getPageId());
 		$pageCotent->setPmetaName('content');
@@ -69,23 +67,66 @@ elseif($optionPage == 'pages'){
 	}
 	if(!array_key_exists('pageBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){ //handle edit and new case
-		if(in_array('new', $optionPageController)){
-			echo'<pre style="background:#ffffff">';
-			var_dump($page);
-			echo'</pre>';
-			die;
-		}
-		$page->setPageTag($_POST['page_tag']);
+
+		$page->setPageTag(Sophwork::slug($_POST['page_name']));
 		$page->setPageName($_POST['page_name']);
 		$page->setPageOrder($_POST['page_order']);
 		$page->setPageConnectedAs($_POST['page_connectedAs']);
 		$page->setPageStatus($_POST['page_status']);
 		$page->setPageCommentStatus($_POST['page_comment_status']);
-		$page->setPageType($_POST['page_type']);
+		$page->setPageType('page');
 		if(in_array('new', $optionPageController))
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
+	}
+	if(in_array('new', $optionPageController)){
+		$optionPageController[count($optionPageController)-1] = $page->getPageId();
+		$optionPageController[count($optionPageController)-2] = 'edit';
+		$url = implode('/', $optionPageController);
+		Sophwork::redirectFromRef($url);
+		exit;
+	}
+	if(in_array('delete', $optionPageController)){
+		$page->erase();
+		Sophwork::redirect('nimda/pages');
+		exit;
+	}
+}
+
+elseif($optionPage == 'posts'){
+	if($edit == '') $edit = 0;
+	$KDM = new SophworkDM($app->config);
+	$page = $KDM->create('pp_page');
+	$page->findPageId($edit);
+	
+	if(array_key_exists('postBuilder', $_POST){
+		// catergories
+	}
+	if(!array_key_exists('postBuilder', $_POST)
+		&& !in_array('delete', $optionPageController)){ //handle edit and new case
+
+		$page->setPageTag(Sophwork::slug($_POST['page_name']));
+		$page->setPageName($_POST['page_name']);
+		$page->setPageOrder($_POST['page_order']);
+		$page->setPageConnectedAs($_POST['page_connectedAs']);
+		$page->setPageStatus($_POST['page_status']);
+		$page->setPageCommentStatus($_POST['page_comment_status']);
+		$page->setPageType('post');
+		$page->setPageCommentCount(0); // check if update
+		$page->setPageParent(0);		// checkif update
+		if(in_array('new', $optionPageController))
+			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
+		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
+		$page->save();
+
+		$pageCotent = $KDM->create('pp_pagemeta');
+		$pageCotent->findPageId($page->getPageId()[0]);
+
+		$pageCotent->setPageId($page->getPageId());
+		$pageCotent->setPmetaName('content');
+		$pageCotent->setPmetaValue($_POST['wysiwyg']);
+		$pageCotent->save();
 	}
 	if(in_array('new', $optionPageController)){
 		$optionPageController[count($optionPageController)-1] = $page->getPageId();
