@@ -43,6 +43,7 @@
 											value="<?php $this->show($value, 'page_id') ?>"
 										<?php echo((in_array($this->get($value, 'page_id'),$this->viewData->linked))?'checked':null) ?> >
 										<?php $this->show($value, 'page_name') ?>
+										<span class="<?php $this->show($value, 'page_type') ?>"><?php $this->show($value, 'page_type') ?></span>
 									</label>
 								<?php endforeach; ?>
 								</div>

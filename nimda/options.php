@@ -100,7 +100,7 @@ elseif($optionPage == 'posts'){
 	$page = $KDM->create('pp_page');
 	$page->findPageId($edit);
 	
-	if(array_key_exists('postBuilder', $_POST){
+	if(array_key_exists('postBuilder', $_POST)){
 		// catergories
 	}
 	if(!array_key_exists('postBuilder', $_POST)

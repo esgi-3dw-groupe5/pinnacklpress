@@ -51,6 +51,7 @@ class Menus extends \sophwork\app\controller\AppController{
 			$pages->find();
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
+			$this->setViewData('pages', $pages->getData(), 'page_type');
 
 			$menuRs->findMenuId($edit);
 			$linkedPage = $menuRs->getPageId();
