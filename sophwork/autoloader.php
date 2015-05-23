@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.3
+ *	@Tested version : Sophwork.0.2.4
  *	@author : Syu93
  *	--
  *	Namespace autoloader

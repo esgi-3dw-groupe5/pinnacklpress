@@ -62,14 +62,13 @@ class Pages extends \sophwork\app\controller\AppController{
 		$this->setViewData('h2', 'Pages configuration');
 
 		if($action == 'delete'){
-			$pages->find();
+			$pages->findPageType('page');
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_tag');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
 			$this->setViewData('pages', $pages->getData(), 'page_order');
-			$this->setViewData('pages', $pages->getData(), 'page_display');
-			$this->setViewData('pages', $pages->getData(), 'page_connected');
-			$this->setViewData('pages', $pages->getData(), 'page_active');
+			$this->setViewData('pages', $pages->getData(), 'page_connectedAs');
+			$this->setViewData('pages', $pages->getData(), 'page_status');
 			$this->setViewData('pages', $pages->getData(), 'page_type');
 			
 			$this->callView($page, 'nimda/');
@@ -80,9 +79,9 @@ class Pages extends \sophwork\app\controller\AppController{
 			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
 			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
 			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
-			$this->setViewData('page_display', ''.$pages->getPageDisplay()[0]);
-			$this->setViewData('page_connected', ''.$pages->getPageConnected()[0]);
-			$this->setViewData('page_active', ''.$pages->getPageActive()[0]);
+			$this->setViewData('page_connectedAs', ''.$pages->getPageConnectedAs()[0]);
+			$this->setViewData('page_status', ''.$pages->getPageStatus()[0]);
+			$this->setViewData('page_comment_status', ''.$pages->getPageCommentStatus()[0]);
 			$this->setViewData('page_type', ''.$pages->getPageType()[0]);
 			
 			$contents->findPageId($pages->getPageId()[0]);
@@ -101,19 +100,16 @@ class Pages extends \sophwork\app\controller\AppController{
 			$this->callView($page .'-edit', 'nimda/');
 		}
 		elseif($action == 'new'){
-			// $pages->findPageId($edit);
-
 			$this->callView($page .'-new', 'nimda/');
 		}
 		else{
-			$pages->find();
+			$pages->findPageType('page');
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_tag');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
 			$this->setViewData('pages', $pages->getData(), 'page_order');
-			$this->setViewData('pages', $pages->getData(), 'page_display');
-			$this->setViewData('pages', $pages->getData(), 'page_connected');
-			$this->setViewData('pages', $pages->getData(), 'page_active');
+			$this->setViewData('pages', $pages->getData(), 'page_connectedAs');
+			$this->setViewData('pages', $pages->getData(), 'page_status');
 			$this->setViewData('pages', $pages->getData(), 'page_type');
 			
 			$this->callView($page, 'nimda/');

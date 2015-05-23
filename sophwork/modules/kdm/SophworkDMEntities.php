@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.3
+ *	@Tested version : Sophwork.0.2.4
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -100,7 +100,9 @@ class SophworkDMEntities extends SophworkDM{
 			$this->insert($this->table, $this->data);
 		}else{
 			// echo 'Update';
-			$pkValue = $this->__getData($this->primaryKey)[0];
+			$pkValue = $this->__getData($this->primaryKey);
+			if(is_array($this->__getData($this->primaryKey)))
+				$pkValue = $this->__getData($this->primaryKey)[0];
 			$this->update($this->table, $this->data, "$this->primaryKey = \"$pkValue\" ");
 		}
 	}

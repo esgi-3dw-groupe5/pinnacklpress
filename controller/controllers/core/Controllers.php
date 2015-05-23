@@ -58,7 +58,7 @@ class Controllers extends AppController{
 		$layout = $html->createPage();
 		$this->setRawData('page', $layout);
         
-        $roleNeedle = $page->getPageConnected()[0];
+        $roleNeedle = $page->getPageConnectedAs()[0];
         $user->checkPermission($roleNeedle);
         
 	}

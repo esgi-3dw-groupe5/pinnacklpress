@@ -9,43 +9,71 @@
 						action="<?php $this->show('siteurl')?>nimda/options.php">
 						<fieldset>
 							<label><span>Page Tag :</span>
-								<input class="pinnackl-input-1-2" type="text" name="page_tag" min="5" placeholder="Page Tag"
-									value="">
+								<input class="pinnackl-input-1-2" type="text" name="page_tag" placeholder="Page Tag" value="">
 							</label>
 							<label><span>Page Name :</span>
-								<input class="pinnackl-input-1-2" type="text" name="page_name" min="5" placeholder="Page Name"
-									value="">
+								<input class="pinnackl-input-1-2" type="text" name="page_name" placeholder="Page Name" value="">
 							</label>
 							<label><span>Page Order :</span>
-								<input class="pinnackl-input-1-2" type="text" name="page_order" min="5" placeholder="Page Order"
-									value="">
-							</label>
-							<label><span>Page Display :</span>
-								<select class="pinnackl-input-1-2" name="page_display" >
-									<option selected>Yes</option>
-									<option>No</option>
-								</select>
+								<input class="pinnackl-input-1-2" type="text" name="page_order" placeholder="Page Order" value="">
 							</label>
 							<label><span>Page Connected As :</span>
-								<select class="pinnackl-input-1-2" name="page_connected" >
-									<option>visitor</option>
-									<option>member</option>
-									<option>author</option>
-									<option>editor</option>
-									<option>moderator</option>
-									<option>administrator</option>
-									<option>superadmin</option>
+								<select class="pinnackl-input-1-2" name="page_connectedAs" >
+									<option value="superadmin">
+										superadmin
+									</option>
+									<option value="administrator">
+										administrator
+									</option>
+									<option value="moderator">
+										moderator
+									</option>
+									<option value="editor">
+										editor
+									</option>
+									<option value="author">
+										author
+									</option>
+									<option value="member">
+										member
+									</option>
+									<option selected value="visitor">
+										visitor
+									</option>
 								</select>
 							</label>
-							<label><span>Page Active :</span>
-								<select class="pinnackl-input-1-2" name="page_active" >
-									<option selected>Yes</option>
-									<option>No</option>
+							<label><span>Page Status :</span>
+								<select class="pinnackl-input-1-2" name="page_status" >
+									<option value="publish">
+										Publish
+									</option>
+									<option value="draft">
+										Draft
+									</option>
+									<option value="disable">
+										Disable
+									</option>
+								</select>
+							</label>
+							<label><span>Page Comment Status :</span>
+								<select class="pinnackl-input-1-2" name="page_comment_status" >
+									<option value="enable">
+										Enable
+									</option>
+									<option value="disable">
+										Disable
+									</option>
 								</select>
 							</label>
 							<label><span>Page Type :</span>
-								<input class="pinnackl-input-1-2" type="text"name="page_type" placeholder="Page Type"
-									value="">
+								<select class="pinnackl-input-1-2" name="page_type" >
+									<option value="page">
+										Page
+									</option>
+									<option value="post">
+										Post
+									</option>
+								</select>
 							</label>
 							<div style="text-align:right;">
 								<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>
@@ -56,11 +84,5 @@
 			</div>
 		</section>
 	</div>
-	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
-	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/trumbowyg.min.js"></script>
-	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/builder.js"></script>
-	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/grids.js"></script>
-	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/modules.js"></script>
-	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/listeners.js"></script>
 	</body>
 </html>

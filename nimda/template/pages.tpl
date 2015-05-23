@@ -17,9 +17,8 @@
                         <th>Tag</th>
                         <th>Name</th>
                         <th>Order</th>
-                        <th>Display</th>
                         <th>Connected As</th>
-                        <th>Active</th>
+                        <th>Status</th>
                         <th>Type</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -33,9 +32,8 @@
                         <td><?php $this->show($value, 'page_tag')     ?></td>
                         <td><?php $this->show($value, 'page_name')    ?></td>
                         <td><?php $this->show($value, 'page_order')   ?></td>
-                        <td><?php $this->show($value, 'page_display') ?></td>
-                        <td><?php $this->show($value, 'page_connected') ?></td>
-                        <td><?php $this->show($value, 'page_active')  ?></td>
+                        <td><?php $this->show($value, 'page_connectedAs') ?></td>
+                        <td><?php $this->show($value, 'page_status')  ?></td>
                         <td><?php $this->show($value, 'page_type')    ?></td>
                         <td>
                             <a class="pinnackl-button pinnackl-button-primary"

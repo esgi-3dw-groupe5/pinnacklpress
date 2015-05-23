@@ -66,7 +66,7 @@
 			<!-- /Gridlist -->
 			<!-- content list -->
 			<div class="content-list box">
-				<header>Chose a modules <i id="close-md"></i></header>
+				<header>Chose a module <i id="close-md"></i></header>
 				<div class="modules-list">
 					<div class='modules' data="[text]">
 						<div class="md md-text"></div>
@@ -103,46 +103,91 @@
 								<input class="pinnackl-input-1-2" type="text" name="page_order" placeholder="Page Order"
 									value="<?php $this->show('page_order') ?>">
 							</label>
-							<label><span>Page Display :</span>
-								<select class="pinnackl-input-1-2" name="page_display" >
-									<option selected>Yes</option>
-									<option>No</option>
-								</select>
-							</label>
 							<label><span>Page Connected As :</span>
-								<select class="pinnackl-input-1-2" name="page_connected" >
-									<option <?php echo (($this->show('page_connected') == 'superadmin')? 'selected' : null) ?>>
+								<select class="pinnackl-input-1-2" name="page_connectedAs" >
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='superadmin')
+										?'selected' :null)?>
+										value="superadmin">
 										superadmin
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'administrator')? 'selected' : null) ?>>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='administrator')
+										?'selected':null)?>
+										value="administrator">
 										administrator
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'moderator')? 'selected' : null) ?>>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='moderator')
+										?'selected':null)?>
+										value="moderator">
 										moderator
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'editor')? 'selected' : null) ?>>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='editor')
+										?'selected':null)?>
+										value="editor">
 										editor
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'author')? 'selected' : null) ?>>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='author')
+										?'selected':null)?>
+										value="author">
 										author
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'member')? 'selected' : null) ?>>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='member')
+										?'selected':null)?>
+										value="member">
 										member
 									</option>
-									<option <?php echo (($this->show('page_connected') == 'visitor')? 'selected' : null) ?>>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='visitor')
+										?'selected': null)?>
+										value="visitor">
 										visitor
 									</option>
 								</select>
 							</label>
-							<label><span>Page Active :</span>
-								<select class="pinnackl-input-1-2" name="page_active" >
-									<option selected>Yes</option>
-									<option>No</option>
+							<label><span>Page Status :</span>
+								<select class="pinnackl-input-1-2" name="page_status" >
+									<option <?php echo(($this->get($this->viewData, 'page_status')=='publish')
+										?'selected': null)?> 
+										value="publish">
+										Publish
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_status')=='draft')
+										?'selected': null)?> 
+										value="draft">
+										Draft
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_status')=='disable')
+										?'selected': null)?> 
+										value="disable">
+										Disable
+									</option>
+								</select>
+							</label>
+							<label><span>Page Comment Status :</span>
+								<select class="pinnackl-input-1-2" name="page_comment_status" >
+									<option <?php echo(($this->get($this->viewData, 'page_comment_status')=='enable')
+										?'selected': null)?> 
+										value="enable">
+										Enable
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_comment_status')=='disable')
+										?'selected': null)?> 
+										value="disable">
+										Disable
+									</option>
 								</select>
 							</label>
 							<label><span>Page Type :</span>
-								<input class="pinnackl-input-1-2" type="text"name="page_type" placeholder="Page Type"
-									value="<?php $this->show('page_type') ?>">
+								<select class="pinnackl-input-1-2" name="page_type" >
+									<option <?php echo(($this->get($this->viewData, 'page_type')=='page')
+										?'selected': null)?> 
+										value="page">
+										Page
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_type')=='post')
+										?'selected': null)?> 
+										value="post">
+										Post
+									</option>
+								</select>
 							</label>
 							<div style="text-align:right;">
 								<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>

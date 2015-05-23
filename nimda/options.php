@@ -51,25 +51,40 @@ if($optionPage == 'overview'){
 elseif($optionPage == 'pages'){
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
+	echo'<pre style="background:#ffffff">';
+	var_dump($edit);
+	echo'</pre>';
 	$page->findOne($edit);
-	if(array_key_exists('pageBuilder', $_POST)){
-		$pageCotent = $KDM->create('pp_pagemeta');
-		$pageCotent->findPageId($page->getPageId());
 
+	$pageCotent = $KDM->create('pp_pagemeta');
+	$pageCotent->findPageId($page->getPageId());
+	if(array_key_exists('pageBuilder', $_POST)){
 		$pageCotent->setPageId($page->getPageId());
 		$pageCotent->setPmetaName('content');
 		$pageCotent->setPmetaValue($_POST['pageBuilder']);
 		$pageCotent->save();
+
+		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
+		$page->save();
 	}
 	if(!array_key_exists('pageBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){ //handle edit and new case
+		if(in_array('new', $optionPageController)){
+			echo'<pre style="background:#ffffff">';
+			var_dump($page);
+			echo'</pre>';
+			die;
+		}
 		$page->setPageTag($_POST['page_tag']);
 		$page->setPageName($_POST['page_name']);
 		$page->setPageOrder($_POST['page_order']);
-		$page->setPageDisplay($_POST['page_display']);
-		$page->setPageConnected($_POST['page_connected']);
-		$page->setPageActive($_POST['page_active']);
-		$page->setPageType('page');
+		$page->setPageConnectedAs($_POST['page_connectedAs']);
+		$page->setPageStatus($_POST['page_status']);
+		$page->setPageCommentStatus($_POST['page_comment_status']);
+		$page->setPageType($_POST['page_type']);
+		if(in_array('new', $optionPageController))
+			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
+		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
 	}
 	if(in_array('new', $optionPageController)){
