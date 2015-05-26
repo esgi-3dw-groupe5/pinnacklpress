@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.4
+ *	@Tested version : Sophwork.0.2.5
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -19,13 +19,14 @@ class SophworkDMEntities extends SophworkDM{
 	protected $primaryKey;
 	protected $indexes;
 	protected $data;
-
+	protected $criteria;
 
 
 
 	public function __construct(){
 		$this->data = [];
 		$this->indexes = [];
+		$this->criteria = '';
 	}
 
 	public function __call($method, $args){
@@ -170,5 +171,34 @@ class SophworkDMEntities extends SophworkDM{
 		$this->$method = function() use ($key){
 			return $this->__getData($key);
 		};
+	}
+
+	public function setFilterMethod($key){
+		$filter = 'filter';
+		$method = $$filter.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
+
+		$this->$method = function($value) use ($key){
+			$this->criteria .= $key . '=' . "\"" . $value . "\"";
+			return $this;
+		};
+	}
+
+	public function __or(){
+		$this->criteria .= ' OR ';
+		return $this;
+	}
+
+	public function __and(){
+		$this->criteria .= ' AND ';
+		return $this;
+	}
+
+	public function querySelect(){
+		$result = $this->select($this->table, $this->criteria)->fetchAll();
+		foreach ($result as $key1 => $value1) {
+			foreach ($this->data as $key2 => $value2) {
+				$this->data[$key2][$key1] = $result[$key1][$key2];
+			}
+		}
 	}
 }

@@ -99,7 +99,7 @@ elseif($optionPage == 'posts'){
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
 	$page->findPageId($edit);
-	
+
 	if(array_key_exists('postBuilder', $_POST)){
 		// catergories
 	}
@@ -123,10 +123,23 @@ elseif($optionPage == 'posts'){
 		$pageCotent = $KDM->create('pp_pagemeta');
 		$pageCotent->findPageId($page->getPageId()[0]);
 
-		$pageCotent->setPageId($page->getPageId());
+		$pageCotent->setPageId($page->getPageId()[0]);
 		$pageCotent->setPmetaName('content');
-		$pageCotent->setPmetaValue($_POST['wysiwyg']);
+		$pageCotent->setPmetaValue($_POST['wysiwyg']); //create content object
 		$pageCotent->save();
+
+		foreach ($_POST['categories'] as $key => $value) {
+			$pageCategories = $KDM->create('pp_pagemeta');
+			$pageCategories
+				->filterPageId($page->getPageId()[0])
+				->__and()
+				->filterPmetaName('category')
+				->querySelect();
+			$pageCategories->setPageId($page->getPageId()[0]);
+			$pageCategories->setPmetaName('category');
+			$pageCategories->setPmetaValue($value);
+			$pageCategories->save();
+		}
 	}
 	if(in_array('new', $optionPageController)){
 		$optionPageController[count($optionPageController)-1] = $page->getPageId();
@@ -140,6 +153,10 @@ elseif($optionPage == 'posts'){
 		Sophwork::redirect('nimda/pages');
 		exit;
 	}
+}
+
+elseif($optionPage == 'catergories'){
+
 }
 
 elseif($optionPage == 'menus'){

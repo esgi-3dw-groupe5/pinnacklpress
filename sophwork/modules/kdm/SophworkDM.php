@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.4
+ *	@Tested version : Sophwork.0.2.5
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -77,6 +77,7 @@ class SophworkDM{
 		
 		foreach ($entity->indexes as $key => $value) {
 			$entity->setKeyMethod($value);
+			$entity->setFilterMethod($value);
 		}
 		return $entity;
 	}

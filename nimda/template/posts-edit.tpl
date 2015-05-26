@@ -67,6 +67,23 @@
 										</div>
 									</fieldset>
 								</div>
+								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
+									<label><span>Post Categories :</span>
+									<div class="multiselect">
+									<?php foreach ($this->viewData->category as $key => $value) : ?>
+										<label>
+											<input type="checkbox" name="categories[]"
+												value="<?php $this->show($value, 'page_id') ?>"
+											<?php echo((in_array($this->get($value, 'page_id'),$this->viewData->linked))?'checked':null) ?> >
+											<?php $this->show($value, 'page_name') ?>
+										</label>
+									<?php endforeach; ?>
+									</div>
+									</label>
+									<div style="text-align:right;">
+										<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>
+									</div>
+								</div>
 							</div>
 							<div class="grid-3_4">
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
@@ -97,6 +114,19 @@
 				semantic: true
 			});
 			$('#wysiwyg').trumbowyg('html', $('#wysiwyg').attr('data'));
+		});
+		var checkboxes = document.querySelectorAll("input[type=checkbox]");
+		[].forEach.call(checkboxes, function(checkbox) {
+			if(checkbox.checked)
+				checkbox.parentNode.classList.add('multiselect-on');
+			else
+				checkbox.parentNode.classList.remove('multiselect-on');
+			checkbox.addEventListener('click', function(){
+				if(this.checked)
+					this.parentNode.classList.add('multiselect-on');
+				else
+					this.parentNode.classList.remove('multiselect-on');
+			});
 		});
 	</script>
 	</body>

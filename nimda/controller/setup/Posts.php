@@ -56,6 +56,8 @@ class Posts extends \sophwork\app\controller\AppController{
 
 		$pages = $KDM->create('pp_page');
 		$contents = $KDM->create('pp_pagemeta');
+		$categories = $KDM->create('pp_page');
+		$categoriesRs = $KDM->create('pp_pagemeta');
 		
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
@@ -82,6 +84,24 @@ class Posts extends \sophwork\app\controller\AppController{
 			
 			$contents->findPageId($pages->getPageId()[0]);
 			$this->setViewData('page_content', ''.$contents->getPmetaValue()[0]);
+
+			$categories->findPageType('category');
+			$this->setViewData('category', $categories->getData(), 'page_id');
+			$this->setViewData('category', $categories->getData(), 'page_name');
+
+			$categoriesRs
+				->filterPageId($edit)
+				->__and()
+				->filterPmetaName('category')
+				->querySelect();
+			$linkedPage = $categoriesRs->getPmetaValue();
+			if(is_null($linkedPage)){
+				$linkedPage = [];
+			}
+			else{
+				$this->setViewData('categories', $categoriesRs->getData(), 'pmeta_id');
+			}
+			$this->setRawData('linked' ,$linkedPage);
 
 			$this->callView($page .'-edit', 'nimda/');
 		}

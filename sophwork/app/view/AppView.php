@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.4
+ *	@Tested version : Sophwork.0.2.5
  *	@author : Syu93
  *	--
  *	Main view class
