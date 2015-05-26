@@ -46,7 +46,7 @@ $pageController->setRawData('layout', $layout);
 // $layout1 = $element1->createForm();
 
 // $pageController->setRawData('layout1', $layout1);
-// $pageController->callThemeView('index');
+$pageController->callThemeView('index');
 // $options = $kdm->create('pp_option');
 // echo'<pre style="background:#ffffff">';
 // $options->findOptionName("sitedescription");

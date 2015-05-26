@@ -121,24 +121,57 @@ elseif($optionPage == 'posts'){
 		$page->save();
 
 		$pageCotent = $KDM->create('pp_pagemeta');
-		$pageCotent->findPageId($page->getPageId()[0]);
+		$pageCotent
+			->filterPageId($page->getPageId()[0])
+			->__and()
+			->filterPmetaName('content')
+			->querySelect();
 
 		$pageCotent->setPageId($page->getPageId()[0]);
 		$pageCotent->setPmetaName('content');
 		$pageCotent->setPmetaValue($_POST['wysiwyg']); //create content object
 		$pageCotent->save();
 
-		foreach ($_POST['categories'] as $key => $value) {
-			$pageCategories = $KDM->create('pp_pagemeta');
-			$pageCategories
-				->filterPageId($page->getPageId()[0])
-				->__and()
-				->filterPmetaName('category')
-				->querySelect();
-			$pageCategories->setPageId($page->getPageId()[0]);
-			$pageCategories->setPmetaName('category');
-			$pageCategories->setPmetaValue($value);
-			$pageCategories->save();
+		$pageCategories = $KDM->create('pp_pagemeta');
+		$pageCategories
+			->filterPageId($page->getPageId()[0])
+			->__and()
+			->filterPmetaName('category')
+			->querySelect();
+
+		if(is_array($pageCategories->getPageId())){
+			$linked = $KDM->create('pp_pagemeta');
+			foreach ($pageCategories->getPmetaId() as $key => $value) {
+				$linked->findOne($value);
+				if(isset($_POST['pages']) && is_array($_POST['pages'])){
+					foreach ($_POST['pages'] as $key => $value) {
+						if(!in_array($linked->getPageId(), $_POST['pages'])){
+							$linked->erase();
+						}
+					}
+				}
+				else{
+					$linked->erase();
+				}
+			}
+			foreach ($_POST['categories'] as $key => $value) {
+				if(!in_array($value, $pageCategories->getPageId())){
+					$added = $KDM->create('pp_pagemeta');
+					$added->setPageId($page->getPageId()[0]);
+					$added->setPmetaName('category');
+					$added->setPmetaValue($value);
+					$added->save();
+				}
+			}
+		}
+		else{
+			foreach ($_POST['categories'] as $key => $value) {
+				$pageCategories = $KDM->create('pp_pagemeta');
+				$pageCategories->setPageId($page->getPageId()[0]);
+				$pageCategories->setPmetaName('category');
+				$pageCategories->setPmetaValue($value);
+				$pageCategories->save();
+			}
 		}
 	}
 	if(in_array('new', $optionPageController)){

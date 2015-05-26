@@ -82,7 +82,11 @@ class Posts extends \sophwork\app\controller\AppController{
 			$this->setViewData('page_status', ''.$pages->getPageStatus()[0]);
 			$this->setViewData('page_comment_status', ''.$pages->getPageCommentStatus()[0]);;
 			
-			$contents->findPageId($pages->getPageId()[0]);
+			$contents
+				->filterPageId($pages->getPageId()[0])
+				->__and()
+				->filterPmetaName('content')
+				->querySelect();
 			$this->setViewData('page_content', ''.$contents->getPmetaValue()[0]);
 
 			$categories->findPageType('category');
