@@ -129,7 +129,19 @@ elseif($optionPage == 'posts'){
 
 		$pageCotent->setPageId($page->getPageId()[0]);
 		$pageCotent->setPmetaName('content');
-		$pageCotent->setPmetaValue($_POST['wysiwyg']); //create content object
+		// content system
+		$contentSys = [
+			(object)[
+				'line' => [
+					(object)[
+						'gridClass' => 'grid-4_4',
+						'gridModule' => 'text',
+						'gridContent' => $_POST['wysiwyg'],
+					],
+				],
+			],
+		];
+		$pageCotent->setPmetaValue(json_encode($contentSys)); //create content object
 		$pageCotent->save();
 
 		$pageCategories = $KDM->create('pp_pagemeta');

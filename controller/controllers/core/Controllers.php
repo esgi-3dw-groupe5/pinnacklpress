@@ -51,7 +51,11 @@ class Controllers extends AppController{
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);
 		$pageContent = $this->KDM->create('pp_pagemeta');
-		$pageContent->findPageId($page->getPageId()[0]);
+		$pageContent
+			->filterPageId($page->getPageId()[0])
+			->__and()
+			->filterPmetaName('content')
+			->querySelect();
 
 		$data = $pageContent->getPmetaValue()[0];
 		$html = new htmlPage($data);

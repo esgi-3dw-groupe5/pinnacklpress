@@ -11,10 +11,10 @@
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
 										<label><span>Post Order :</span>
-											<input class="pinnackl-input-1-2" type="text" name="page_order" placeholder="Page Order" value="0">
+											<input class="pinnackl-input-1" type="text" name="page_order" placeholder="Page Order" value="0">
 										</label>
 										<label><span>Post Connected As :</span>
-											<select class="pinnackl-input-1-2" name="page_connectedAs" >
+											<select class="pinnackl-input-1" name="page_connectedAs" >
 												<option value="superadmin">
 													superadmin
 												</option>
@@ -39,7 +39,7 @@
 											</select>
 										</label>
 										<label><span>Post Status :</span>
-											<select class="pinnackl-input-1-2" name="page_status" >
+											<select class="pinnackl-input-1" name="page_status" >
 												<option value="publish">
 													Publish
 												</option>
@@ -52,7 +52,7 @@
 											</select>
 										</label>
 										<label><span>Post Comment Status :</span>
-											<select class="pinnackl-input-1-2" name="page_comment_status" >
+											<select class="pinnackl-input-1" name="page_comment_status" >
 												<option selected value="enable">
 													Enable
 												</option>
@@ -66,12 +66,28 @@
 										</div>
 									</fieldset>
 								</div>
+								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
+									<label><span>Post Categories :</span>
+									<div class="multiselect">
+									<?php foreach ($this->viewData->category as $key => $value) : ?>
+										<label>
+											<input type="checkbox" name="categories[]"
+												value="<?php $this->show($value, 'page_id') ?>">
+											<?php $this->show($value, 'page_name') ?>
+										</label>
+									<?php endforeach; ?>
+									</div>
+									</label>
+									<div style="text-align:right;">
+										<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>
+									</div>
+								</div>
 							</div>
 							<div class="grid-3_4">
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
 										<label><span>Post Name :</span>
-											<input class="pinnackl-input-1-2" type="text" name="page_name" placeholder="Page Name" value="">
+											<input class="pinnackl-input-1" type="text" name="page_name" placeholder="Page Name" value="">
 										</label>
 											<div id="wysiwyg"></div>
 										<label>
@@ -93,6 +109,19 @@
 		document.addEventListener("DOMContentLoaded", function() {
 			$('#wysiwyg').trumbowyg({
 				semantic: true
+			});
+		});
+		var checkboxes = document.querySelectorAll("input[type=checkbox]");
+		[].forEach.call(checkboxes, function(checkbox) {
+			if(checkbox.checked)
+				checkbox.parentNode.classList.add('multiselect-on');
+			else
+				checkbox.parentNode.classList.remove('multiselect-on');
+			checkbox.addEventListener('click', function(){
+				if(this.checked)
+					this.parentNode.classList.add('multiselect-on');
+				else
+					this.parentNode.classList.remove('multiselect-on');
 			});
 		});
 	</script>

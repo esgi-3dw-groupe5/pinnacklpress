@@ -11,11 +11,11 @@
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
 										<label><span>Post Order :</span>
-											<input class="pinnackl-input-1-2" type="text" name="page_order" placeholder="Page Order"
+											<input class="pinnackl-input-1" type="text" name="page_order" placeholder="Page Order"
 												value="<?php $this->show('page_order')?>">
 										</label>
 										<label><span>Post Connected As :</span>
-											<select class="pinnackl-input-1-2" name="page_connectedAs" >
+											<select class="pinnackl-input-1" name="page_connectedAs" >
 												<option value="superadmin">
 													superadmin
 												</option>
@@ -40,7 +40,7 @@
 											</select>
 										</label>
 										<label><span>Post Status :</span>
-											<select class="pinnackl-input-1-2" name="page_status" >
+											<select class="pinnackl-input-1" name="page_status" >
 												<option value="publish">
 													Publish
 												</option>
@@ -53,7 +53,7 @@
 											</select>
 										</label>
 										<label><span>Post Comment Status :</span>
-											<select class="pinnackl-input-1-2" name="page_comment_status" >
+											<select class="pinnackl-input-1" name="page_comment_status" >
 												<option selected value="enable">
 													Enable
 												</option>
@@ -89,7 +89,7 @@
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
 										<label><span>Post Name :</span>
-											<input class="pinnackl-input-1-2" type="text" name="page_name" placeholder="Page Name"
+											<input class="pinnackl-input-1" type="text" name="page_name" placeholder="Page Name"
 												value="<?php $this->show('page_name')?>">
 										</label>
 											<div id="wysiwyg" data="<?php addslashes($this->show('page_content'))?>"></div>

@@ -87,7 +87,13 @@ class Posts extends \sophwork\app\controller\AppController{
 				->__and()
 				->filterPmetaName('content')
 				->querySelect();
-			$this->setViewData('page_content', ''.$contents->getPmetaValue()[0]);
+
+			$key = 0;
+			$jsonBuilder = json_decode($contents->getPmetaValue()[0]);
+			$contentSys = $jsonBuilder[$key]->line;
+			$postContent = $contentSys[0];
+
+			$this->setViewData('page_content', ''.$postContent->gridContent);
 
 			$categories->findPageType('category');
 			$this->setViewData('category', $categories->getData(), 'page_id');
@@ -110,6 +116,10 @@ class Posts extends \sophwork\app\controller\AppController{
 			$this->callView($page .'-edit', 'nimda/');
 		}
 		elseif($action == 'new'){
+			$categories->findPageType('category');
+			$this->setViewData('category', $categories->getData(), 'page_id');
+			$this->setViewData('category', $categories->getData(), 'page_name');
+
 			$this->callView($page .'-new', 'nimda/');
 		}
 		else{
