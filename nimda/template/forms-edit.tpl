@@ -20,7 +20,18 @@
 							<option <?php if($this->get($value, 'field_type') == "password"){echo "selected='selected'";}?>>password</option>
 							<option <?php if($this->get($value, 'field_type') == "date"){echo "selected='selected'";}?>>date</option>
 						</select>  
-    		        	<?php //$this->show($value,'validator_rule');//foreach($this->show($value, 'validator_rule') as $k => $val) 	:   ?>
+                        <div id="container-validator-<?php echo $i?>" class="container-validator">
+                            <label id="field-validator-email-<?php echo $i?>" for="field-validator-email-<?php echo $i?>" >
+                                is email
+                                <input id="field-validator-email-<?php echo $i?>" type="checkbox" name="<?php echo $i?>[email]" <?php if($this->get($value, 'validator_rule')[0] == "isMail")echo 'checked';?> >
+                            </label>
+                            <label id="field-validator-date-<?php echo $i?>" for="field-validator-date-<?php echo $i?>">
+                                is date
+                            </label>
+                            <label id="field-validator-password-<?php echo $i?>" for="field-validator-password-<?php echo $i?>">
+                                is password
+                            </label>
+    		        	<?php //foreach($this->show($value, 'validator_rule') as $k => $val) 	:   ?>
     		    
 						<?php //endforeach;?>
 					</fieldset>
