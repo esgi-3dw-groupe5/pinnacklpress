@@ -1,4 +1,9 @@
-//console.log(document.getElementById('field-1').length);
+aImage = document.getElementsByTagName('img');
+
+for( var x=0; x < aImage.length; x++ ) {
+	aImage[x].onclick = removeField;
+};
+
 var numberLine = document.getElementsByTagName('fieldset').length;
 
 	function removeField(){
@@ -96,6 +101,7 @@ var numberLine = document.getElementsByTagName('fieldset').length;
 
 		var container = "container-validator-" + numberLine;
 		var div       = document.getElementById(container);
-		div.appendChild(validatorField);
+		//div.appendChild(validatorField);
 		div.appendChild(label);
+		label.appendChild(validatorField);
 	}

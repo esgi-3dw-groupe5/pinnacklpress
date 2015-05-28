@@ -36,12 +36,24 @@ img{
 	padding: 0.35em 0 0;
 }
 
+.pinnackl-form label {
+    margin: 0.5em 0 0.2em;
+    min-width: 85px;
+}
+
 select:required:invalid { color: gray; }  
 option[value=""][disabled] { display: none; }  
 option { color: black; }
 
 .container-button input{
 	display: inline-block !important;
+}
+
+
+.pinnackl-form .pinnackl-group input:first-child:last-child, .pinnackl-form .pinnackl-group textarea:first-child:last-child {
+    border-radius: 4px;
+    margin: 0;
+    top: 6px;
 }
 
 /**/
