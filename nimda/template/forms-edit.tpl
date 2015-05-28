@@ -27,9 +27,11 @@
                             </label>
                             <label id="field-validator-date-<?php echo $i?>" for="field-validator-date-<?php echo $i?>">
                                 is date
+                                <input id="field-validator-date-<?php echo $i?>" type="checkbox" name="<?php echo $i?>[date]" <?php if($this->get($value, 'validator_rule')[0] == "isDate")echo 'checked';?> >
                             </label>
                             <label id="field-validator-password-<?php echo $i?>" for="field-validator-password-<?php echo $i?>">
                                 is password
+                                <input id="field-validator-password-<?php echo $i?>" type="checkbox" name="<?php echo $i?>[password]" <?php if($this->get($value, 'validator_rule')[0] == "isPassword")echo 'checked';?> >
                             </label>
     		        	<?php //foreach($this->show($value, 'validator_rule') as $k => $val) 	:   ?>
     		    
