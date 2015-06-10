@@ -1,7 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
 	$('#wysiwyg').trumbowyg({
-		semantic: true
-	});
+           btnsDef: {
+               // Customizables dropdowns
+               image: {
+                   dropdown: ['insertImage', 'upload', 'base64'],
+                   ico: 'insertImage'
+               }
+           },
+           btns: ['viewHTML',
+               '|', 'formatting',
+               '|', 'btnGrp-design',
+               '|', 'link',
+               '|', 'image',
+               '|', 'btnGrp-justify',
+               '|', 'btnGrp-lists',
+               '|', 'foreColor', 'backColor',
+               '|', 'horizontalRule']
+       });
 	listeners.addNewLineListener();
 	listeners.addGroupModalListener();
 	listeners.addSectionListener();

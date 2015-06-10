@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/module-list.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder-range.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/ui/trumbowyg.min.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/plugins/upload/trumbowyg.upload.js">
         
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/base/base.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/grids/grids-core.css">

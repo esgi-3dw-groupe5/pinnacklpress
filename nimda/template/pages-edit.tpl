@@ -195,5 +195,9 @@
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/grids.js"></script>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/modules.js"></script>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/listeners.js"></script>
+	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/trumbowyg.min.js"></script>
+	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/upload/trumbowyg.upload.js"></script>
+	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/trumbowyg.colors.js"></script>
+	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/base64/trumbowyg.base64.js"></script>
 	</body>
 </html>

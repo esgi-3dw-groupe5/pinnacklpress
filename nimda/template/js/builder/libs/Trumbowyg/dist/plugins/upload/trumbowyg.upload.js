@@ -33,7 +33,7 @@
         },
 
         upload: {
-            serverPath: './src/plugins/upload/trumbowyg.upload.php'
+            serverPath: '../../template/js/builder/libs/Trumbowyg/dist/plugins/upload/trumbowyg.upload.php'
         },
 
         opts: {
