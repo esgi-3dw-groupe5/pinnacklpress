@@ -124,10 +124,13 @@ class Posts extends \sophwork\app\controller\AppController{
 		}
 		else{
 			$pages->findPageType('post');
+
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
 			$this->setViewData('pages', $pages->getData(), 'page_udate');
-			$this->setViewData('pages', $pages->getData(), 'page_name'); //categories
+
+			$this->setViewData('pages', $categories->getData(), 'page_name'); //categories
+			
 			$this->setViewData('pages', $pages->getData(), 'page_name'); // Author
 			$this->setViewData('pages', $pages->getData(), 'page_status');
 			

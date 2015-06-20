@@ -39,10 +39,14 @@ class Controllers extends AppController{
 		$options->findOptionName("theme");
 		$theme = $options->getOptionValue()[0];
 
+		$options->findOptionName("sidebar");
+		$sidebar = $options->getOptionValue()[0];
+
 		$this->setViewData('sitename', $sitename);
 		$this->setViewData('sitedescription', $sitedescription);
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('theme', $theme);
+		$this->setViewData('sidebar', $sidebar);
 		
 		// set the theme. By default pure theme is used
 		$view = $this->appView; // Class variable ?

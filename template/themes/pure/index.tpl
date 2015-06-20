@@ -30,6 +30,7 @@
 	<body class="line">
 		<div id="layout">
 			<div class="line content">
+				<?php if($this->get('sidebar') == 'on'): ?>
 				<div class="grid-1_4 sidebar">
 					<div class="line header">
 						<div class="grid-4_4">
@@ -54,7 +55,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="grid-3_4 body">
+				<?php endif; ?>
+				<div class="<?php echo (($this->get('sidebar') == 'on')?'grid-3_4':'grid-4_4 no-sidebar') ?> body">
 					<div class="line header">
 						<div class="grid-4_4">
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">

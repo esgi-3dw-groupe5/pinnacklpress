@@ -37,6 +37,14 @@ html{
 	background: #f9f9f9;
 }
 
+.no-sidebar{
+	margin-left: 0;
+}
+
+.no-sidebar .header{
+	padding-left: 0!important;
+}
+
 /* ELEMENTS OF BODY */
 .header{
 	box-sizing: border-box;

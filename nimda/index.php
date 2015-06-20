@@ -47,6 +47,8 @@ $menu = [
 		'categories',
 		'menus',
 		'forms',
+		'themes',
+		'settings',
 	],
 	'page_name' => [
 		'Overview',
@@ -55,6 +57,8 @@ $menu = [
 		'Categories',
 		'Menus',
 		'Forms',
+		'Themes',
+		'Settings',
 	],
 ];
 

@@ -16,7 +16,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Edit Date</th>
-                        <th>Categories</th>
+                        <!-- <th>Categories</th> -->
                         <th>Author</th>
                         <th>Status</th>
                         <th>Edit</th>
@@ -30,7 +30,7 @@
                         <td><?php $this->show($value, 'page_id')      ?></td>
                         <td><?php $this->show($value, 'page_name')    ?></td>
                         <td><?php $this->show($value, 'page_udate')    ?></td>
-                        <td><?php $this->show($value, 'page_name')    ?></td>
+                        <!-- <td><?php ?></td> -->
                         <td><?php $this->show($value, 'page_name')    ?></td>
                         <td><?php $this->show($value, 'page_status')  ?></td>
                         <td>

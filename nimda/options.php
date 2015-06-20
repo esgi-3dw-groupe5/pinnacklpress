@@ -32,23 +32,7 @@ else{
 	$edit = $optionPageController[count($optionPageController)-1];
 }
 
-if($optionPage == 'overview'){
-	$options = [
-		'overview' => ['sitename', 'sitedescription', 'siteurl', 'theme'],
-	];
-	$KDM = new SophworkDM($app->config);
-	foreach ($options[$optionPage] as $key => $value) {
-		$$value = $KDM->create('pp_option');
-			// Find if this property already exist, it will determine insert or update by the auto id
-			$$value->findOne($value);
-
-			$$value->setOptionName($value);
-			$$value->setOptionValue($_POST[$value]);
-			$$value->save();
-	}	
-}
-
-elseif($optionPage == 'pages'){
+if($optionPage == 'pages'){
 	if($edit == '') $edit = 0;
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
@@ -348,6 +332,39 @@ elseif($optionPage == 'forms'){
 		echo 'echec';
 	}
 }
+
+else if($optionPage == 'settings'){
+	$options = [
+		'settings' => ['sitename', 'sitedescription', 'siteurl'],
+	];
+	$KDM = new SophworkDM($app->config);
+	foreach ($options[$optionPage] as $key => $value) {
+		$$value = $KDM->create('pp_option');
+			// Find if this property already exist, it will determine insert or update by the auto id
+			$$value->findOne($value);
+
+			$$value->setOptionName($value);
+			$$value->setOptionValue($_POST[$value]);
+			$$value->save();
+	}
+}
+
+else if($optionPage == 'themes'){
+	$options = [
+		'themes' => ['theme', 'sidebar'],
+	];
+	$KDM = new SophworkDM($app->config);
+	foreach ($options[$optionPage] as $key => $value) {
+		$$value = $KDM->create('pp_option');
+		// Find if this property already exist, it will determine insert or update by the auto id
+		$$value->findOne($value);
+
+		$$value->setOptionName($value);
+		$$value->setOptionValue($_POST[$value]);
+		$$value->save();
+	}
+}
+
 
 // Redirect to the settings page from referer
 Sophwork::redirectFromRef($_POST['pp-referer']);
