@@ -105,11 +105,29 @@
 	</div>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/trumbowyg.min.js"></script>
+	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/upload/trumbowyg.upload.js"></script>
+	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/trumbowyg.colors.js"></script>
+	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/base64/trumbowyg.base64.js"></script>
 	<script type="text/javascript">
 		document.addEventListener("DOMContentLoaded", function() {
 			$('#wysiwyg').trumbowyg({
-				semantic: true
-			});
+                btnsDef: {
+                    // Customizables dropdowns
+                    image: {
+                        dropdown: ['insertImage', 'upload', 'base64'],
+                        ico: 'insertImage'
+                    }
+                },
+                btns: ['viewHTML',
+                    '|', 'formatting',
+                    '|', 'btnGrp-design',
+                    '|', 'link',
+                    '|', 'image',
+                    '|', 'btnGrp-justify',
+                    '|', 'btnGrp-lists',
+                    '|', 'foreColor', 'backColor',
+                    '|', 'horizontalRule']
+            });
 		});
 		var checkboxes = document.querySelectorAll("input[type=checkbox]");
 		[].forEach.call(checkboxes, function(checkbox) {
