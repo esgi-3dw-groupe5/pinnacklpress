@@ -52,6 +52,24 @@ class Controllers extends AppController{
 		$view = $this->appView; // Class variable ?
 		$view->theme = $theme;
 
+		$menu = $this->KDM->create('pp_menu');
+		$menuContent = $this->KDM->create('pp_menu_rs');
+		$pageLinks = $this->KDM->create('pp_page');
+
+		$menu->findMenuStatus('primary');
+		$menuContent->findMenuId($menu->getMenuId()[0]);
+		$menuLinks = $menuContent->getData();
+		$links = [];
+		foreach ($menuLinks['page_id'] as $key => $value) {
+			$pageLinks->find($value);
+			if(isset($links[$pageLinks->getPageOrder()[0]]))
+				$links[$pageLinks->getPageOrder()[0]+1] = ['link' => $pageLinks->getPageTag()[0], 'name' => $pageLinks->getPageName()[0]];
+			else
+				$links[$pageLinks->getPageOrder()[0]] = ['link' => $pageLinks->getPageTag()[0], 'name' => $pageLinks->getPageName()[0]];
+		}
+		ksort ($links);
+		$this->setRawData('links', $links);
+
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);
 		$pageContent = $this->KDM->create('pp_pagemeta');
@@ -62,8 +80,11 @@ class Controllers extends AppController{
 			->querySelect();
 
 		$data = $pageContent->getPmetaValue()[0];
+		$slug = $page->getPageName()[0];
 		$html = new htmlPage($data);
 		$layout = $html->createPage(); // create a post method
+		if($slug != 'Index') //FIXME : create an index attribute to find here
+			$this->setViewData('sitedescription', $slug);
 		$this->setRawData('page', $layout);
         
         $roleNeedle = $page->getPageConnectedAs()[0];

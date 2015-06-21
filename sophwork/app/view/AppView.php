@@ -80,6 +80,11 @@ class AppView extends SophworkApp{
 		return $method($this->viewData->$value);
 	}
 
+	public function e($value, $modifier = 'S'){
+		$method = $this->modifiers[$modifier];
+		echo $method($value);
+	}
+
 	public function get($value, $item = null, $modifier = 'S'){
 		$method = $this->modifiers[$modifier];
 		if(!is_null($item)){

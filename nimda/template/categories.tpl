@@ -27,11 +27,11 @@
                         <td><?php $this->show($value, 'page_name')    ?></td>
                         <td>
                             <a class="pinnackl-button pinnackl-button-primary"
-                            href="<?php $this->show('siteurl')?>nimda/categories/edit/<?php $this->show($value, 'page_id')?>">Edit</a>
+                            href="<?php $this->show('siteurl')?>nimda/categories/edit/<?php $this->show($value, 'page_id')?>">Edit&nbsp;&#9998;</a>
                         </td>
                         <td>
                             <a class="pinnackl-button pinnackl-button-error"
-                            href="<?php $this->show('siteurl')?>nimda/categories/delete/<?php $this->show($value, 'page_id')?>">Delete</a>
+                            href="<?php $this->show('siteurl')?>nimda/categories/delete/<?php $this->show($value, 'page_id')?>">Delete&nbsp;&#10008;</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

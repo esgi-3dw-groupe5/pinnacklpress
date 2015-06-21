@@ -54,15 +54,13 @@
 						<div class="grid-4_4">
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
 								<ul class="pinnackl-menu-list">
+									<?php foreach ($this->viewData->links as $key => $value) : ?>
 									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link">menu 1</a>
+										<a href="<?php $this->e($value['link']) ?>" class="pinnackl-menu-link">
+											<?php $this->e($value['name']) ?>
+										</a>
 									</li>
-									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link">menu 2</a>
-									</li>
-									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link">menu 3</a>
-									</li>
+								<?php endforeach; ?>
 								</ul>
 							</nav>
 						</div>

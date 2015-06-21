@@ -29,11 +29,11 @@
                             <td><?php $this->show($value, 'menu_status')   ?></td>
                             <td>
                                 <a class="pinnackl-button pinnackl-button-primary"
-                                href="<?php $this->show('siteurl')?>nimda/menus/edit/<?php $this->show($value, 'menu_id')?>">Edit</a>
+                                href="<?php $this->show('siteurl')?>nimda/menus/edit/<?php $this->show($value, 'menu_id')?>">Edit&nbsp;&#9998;</a>
                             </td>
                             <td>
                                 <a class="pinnackl-button pinnackl-button-error"
-                                href="<?php $this->show('siteurl')?>nimda/menus/delete/<?php $this->show($value, 'menu_id')?>">Delete</a>
+                                href="<?php $this->show('siteurl')?>nimda/menus/delete/<?php $this->show($value, 'menu_id')?>">Delete&nbsp;&#10008;</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>

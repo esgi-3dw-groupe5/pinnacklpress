@@ -23,11 +23,11 @@
 		            <td><?php $this->show($value, 'form_name')    ?></td>
 		            <td>
 		                <a class="pinnackl-button pinnackl-button-primary"
-		                href="<?php $this->show('siteurl')?>nimda/forms/edit/<?php $this->show($value, 'form_name')		?>">Edit</a>
+		                href="<?php $this->show('siteurl')?>nimda/forms/edit/<?php $this->show($value, 'form_name')	?>">Edit&nbsp;&#9998;</a>
 		            </td>
 		            <td>
                         <a class="pinnackl-button pinnackl-button-error"
-                        href="<?php $this->show('siteurl')?>nimda/forms/delete/<?php $this->show($value, 'form_id')?>">Delete</a>
+                        href="<?php $this->show('siteurl')?>nimda/forms/delete/<?php $this->show($value, 'form_id')?>">Delete&nbsp;&#10008;</a>
                     </td>
 		        </tr>
 		        <?php endforeach; ?>

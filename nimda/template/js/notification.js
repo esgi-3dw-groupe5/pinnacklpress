@@ -25,5 +25,10 @@ Sophwork.ready(function(){
 				Notification.close(box);
 			});
 			Notification.close(box, 20000);
+			var url = window.location.href;
+			var hash = window.location.hash;
+			url = url.replace(hash, '');
+			var stateObj = {};
+			history.pushState(stateObj, "", url);
 		});
 });
