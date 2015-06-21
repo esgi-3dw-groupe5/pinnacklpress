@@ -9,6 +9,7 @@
     
     <title><?php $this->show('title') ?></title>
     <!-- page builder css -->
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/notification/notification.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder-grid.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/grid-resize.css">
@@ -32,6 +33,7 @@
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/tables/extend.css">
 
     <script src="<?php $this->show('siteurl')?>nimda/template/js/libs/sophwork.js"></script>
+    <script src="<?php $this->show('siteurl')?>nimda/template/js/notification.js"></script>
 </head>
 <body>
 <div id="layout">
@@ -61,4 +63,8 @@
             <?php endforeach; ?>
             </ul>
         </div>
+    </div>
+    <div id="updated" class="notification">
+        <span class="close-notification noselect">&#215;</span>
+        <span class="text-notification"></span>
     </div>

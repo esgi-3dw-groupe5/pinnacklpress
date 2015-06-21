@@ -367,4 +367,4 @@ else if($optionPage == 'themes'){
 
 
 // Redirect to the settings page from referer
-Sophwork::redirectFromRef($_POST['pp-referer']);
+Sophwork::redirectFromRef($_POST['pp-referer'].'#updated');

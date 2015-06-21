@@ -16,7 +16,7 @@
 .pinnackl-menu-heading {
 	padding: 10px;
 	text-decoration: none;
-	font-size: 110%;
+	font-size: 1.11em;
 	margin-left: -5px;
 }
 
@@ -25,8 +25,10 @@
  */
 
 .pinnackl-menu-link:hover,
+.pinnackl-menu-item:hover a,
 .pinnackl-menu-item:hover,
 .pinnackl-menu-heading:hover {
 	background-color: #8f8f8f;
 	color: #fff;
+	cursor: pointer;
 }

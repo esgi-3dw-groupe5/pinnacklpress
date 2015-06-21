@@ -6,26 +6,19 @@
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 		<title><?php $this->show('sitename'); ?> - <?php $this->show('sitedescription'); ?></title>
 		<meta name="description" content="">
-		<!--  -->
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/base/base.css">
-		<!--  -->
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/grids/grids.css">
-		<!--  -->
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/sidebar/extend.css">
 		<!--[if IE]>
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/sidebar/extend-ie.css">
 		<![endif]-->
-		<!--  -->
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/menus/menus-core.css">
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/menus/menus-horizontal.css">
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/menus/menus-skin.css">
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/menus/extend.css">
-		<!--  -->
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/buttons/buttons-core.css">
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/buttons/buttons.css">
-		<!--  -->
 		<link rel="stylesheet" type="text/css" href="template/themes/<?php $this->show('theme') ?>/css/forms/forms.css">
-		
 	</head>
 	<body class="line">
 		<div id="layout">

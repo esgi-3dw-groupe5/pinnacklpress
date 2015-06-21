@@ -61,7 +61,7 @@ class Posts extends \sophwork\app\controller\AppController{
 		
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
-		$this->setViewData('h2', 'Posts configuration');
+		$this->setViewData('h2', 'Posts');
 
 		if($action == 'delete'){
 			$pages->findPageType('post');

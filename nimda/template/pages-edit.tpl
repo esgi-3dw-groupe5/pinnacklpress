@@ -2,7 +2,7 @@
 	    <div class="header">
 	        <h2><?php $this->show('h2') ?></h2>
 	    </div>
-		<section>
+		<!-- <section> -->
 			<!-- Overlay -->
 			<div class="overlay"></div>
 			<!-- /Overlay -->
@@ -187,7 +187,7 @@
 				</div>
 				<div id="canvas"><?php $this->viewData->layout->render(); ?></div>
 			</div>
-		</section>
+		<!-- </section> -->
 	</div>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/trumbowyg.min.js"></script>

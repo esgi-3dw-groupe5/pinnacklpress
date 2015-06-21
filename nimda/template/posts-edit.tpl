@@ -2,7 +2,7 @@
     	<div class="header">
     	    <h2><?php $this->show('h2') ?></h2>
     	</div>
-		<section>	
+		<!-- <section>	 -->
 			<div class="content" style="max-width:90%">
 					<form  class="pinnackl-form pinnackl-form-stacked" method="POST"
 						action="<?php $this->show('siteurl')?>nimda/options.php">
@@ -104,7 +104,7 @@
 						</div>
 					</form>
 			</div>
-		</section>
+		<!-- </section> -->
 	</div>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/trumbowyg.min.js"></script>

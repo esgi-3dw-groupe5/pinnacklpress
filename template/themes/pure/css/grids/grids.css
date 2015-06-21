@@ -5,10 +5,11 @@
 }
 .grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9, .grid-10, .grid-11, .grid-12
 ,.grid-1_4,.grid-2_4,.grid-3_4,.grid-4_4,.grid-1_3,.grid-2_3{
+  box-sizing: border-box;
+  /*padding-left: 1%;*/
   min-height: 1px;
   float: left;
 }
-
 /* 12 based */
 
 .grid-12 {
