@@ -37,11 +37,11 @@ $controller = $app->appController;
 $pageController = new Controllers();
 
 
-$form = new Form();
-$element = new htmlForm($form->getForm('inscription'),'inscription');
-$layout = $element->createForm();
+// $form = new Form();
+// $element = new htmlForm($form->getForm('inscription'),'inscription');
+// $layout = $element->createForm();
 
-$pageController->setRawData('layout', $layout);
+// $pageController->setRawData('layout', $layout);
 // $element1 = new htmlForm($form->getForm('post'),'post');
 // $layout1 = $element1->createForm();
 
@@ -53,6 +53,6 @@ $pageController->callThemeView('index');
 // var_dump( $options->getData() );
 // echo'</pre>';
 
-$user = new Users('');
+// $user = new Users('');
 
 //var_dump($user);

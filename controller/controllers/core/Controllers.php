@@ -13,6 +13,7 @@ use sophwork\modules\htmlElements\htmlElement;
 use sophwork\modules\htmlElements\htmlPage;
 
 use controller\utils\Users;
+use controller\utils\Menu;
     
 class Controllers extends AppController{
 
@@ -24,6 +25,10 @@ class Controllers extends AppController{
         session_start();
         $user = new Users();
         $user->initUser();
+
+        $menu = new Menu();
+        $links = $menu->create('primary');
+		$this->setRawData('links', $links);
 
 		// Get option for all pages
 		$options = $this->KDM->create('pp_option');
@@ -51,24 +56,6 @@ class Controllers extends AppController{
 		// set the theme. By default pure theme is used
 		$view = $this->appView; // Class variable ?
 		$view->theme = $theme;
-
-		$menu = $this->KDM->create('pp_menu');
-		$menuContent = $this->KDM->create('pp_menu_rs');
-		$pageLinks = $this->KDM->create('pp_page');
-
-		$menu->findMenuStatus('primary');
-		$menuContent->findMenuId($menu->getMenuId()[0]);
-		$menuLinks = $menuContent->getData();
-		$links = [];
-		foreach ($menuLinks['page_id'] as $key => $value) {
-			$pageLinks->find($value);
-			if(isset($links[$pageLinks->getPageOrder()[0]]))
-				$links[$pageLinks->getPageOrder()[0]+1] = ['link' => $pageLinks->getPageTag()[0], 'name' => $pageLinks->getPageName()[0]];
-			else
-				$links[$pageLinks->getPageOrder()[0]] = ['link' => $pageLinks->getPageTag()[0], 'name' => $pageLinks->getPageName()[0]];
-		}
-		ksort ($links);
-		$this->setRawData('links', $links);
 
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);
