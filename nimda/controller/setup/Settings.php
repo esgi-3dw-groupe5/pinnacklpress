@@ -80,6 +80,11 @@ class Settings extends \sophwork\app\controller\AppController{
 				$fields->findOptionName('theme');
 			$themeField->setFieldValue($fields->getOptionValue()[0]);
 			$themeField->setFieldPlaceholder('Theme');
+
+		$fields->findOptionName('permalink');
+		$permalink = $fields->getOptionValue()[0];
+
+
 		$this->__setFields('nameField',$nameField);
 		$this->__setFields('descriptionField',$descriptionField);
 		$this->__setFields('addressField',$addressField);
@@ -94,7 +99,7 @@ class Settings extends \sophwork\app\controller\AppController{
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Global configuration');
 		$this->setViewData('legend1', 'Site configuation');
-		$this->setViewData('legend2', 'Theme configuation');
+		$this->setViewData('legend2', 'Permalink configuation');
 		// input-1
 		$this->setViewData('label_1', $nameField->getFieldPlaceholder());
 		$this->setViewData('input_1', $nameField->getFieldDomname());
@@ -110,11 +115,13 @@ class Settings extends \sophwork\app\controller\AppController{
 		$this->setViewData('input_3', $addressField->getFieldDomname());
 		$this->setViewData('type_3', $addressField->getFieldType());
 		$this->setViewData('value_3', $addressField->getFieldValue());
-		// input-3
+		// input-4
 		$this->setViewData('label_4', $themeField->getFieldPlaceholder());
 		$this->setViewData('input_4', $themeField->getFieldDomname());
 		$this->setViewData('type_4', $themeField->getFieldType());
 		$this->setViewData('value_4', $themeField->getFieldValue());
+		
+		$this->setViewData('permalink', $permalink);
 
 		$this->callView($page, 'nimda/');
 	}

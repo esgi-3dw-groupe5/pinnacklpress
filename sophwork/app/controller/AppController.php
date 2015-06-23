@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.5
+ *	@Tested version : Sophwork.0.2.6
  *	@author : Syu93
  *	--
  *	Main controller class
@@ -37,7 +37,7 @@ class AppController extends SophworkApp{
 		parent::__construct();
 		// FIXME : Get all these param dynamicaly
 		$this->page 	= Sophwork::getParam('p','index');
-		$this->article 	= Sophwork::getParam('a','');
+		$this->article 	= Sophwork::getParam('a',false);
 		
 		$this->appModel = $appModel;
 

@@ -60,6 +60,9 @@ class Controllers extends AppController{
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);
 		$pageContent = $this->KDM->create('pp_pagemeta');
+
+		$menu->permaLink($page);
+
 		$pageContent
 			->filterPageId($page->getPageId()[0])
 			->__and()

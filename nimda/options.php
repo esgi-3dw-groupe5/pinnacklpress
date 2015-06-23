@@ -335,7 +335,7 @@ elseif($optionPage == 'forms'){
 
 else if($optionPage == 'settings'){
 	$options = [
-		'settings' => ['sitename', 'sitedescription', 'siteurl'],
+		'settings' => ['sitename', 'sitedescription', 'siteurl', 'permalink'],
 	];
 	$KDM = new SophworkDM($app->config);
 	foreach ($options[$optionPage] as $key => $value) {
@@ -345,6 +345,10 @@ else if($optionPage == 'settings'){
 
 			$$value->setOptionName($value);
 			$$value->setOptionValue($_POST[$value]);
+			if($value == 'permalink'
+				&& $_POST['permalink-i'] != ""
+				&& $_POST['permalink'] == 'custom')
+				$$value->setOptionValue($_POST['permalink-i']);
 			$$value->save();
 	}
 }

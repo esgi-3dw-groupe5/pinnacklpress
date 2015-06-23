@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.5
+ *	@Tested version : Sophwork.0.2.6
  *	@author : Syu93
  *	--
  *	Sophpkwork module : Template Engine

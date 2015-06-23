@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.5
+ *	@Tested version : Sophwork.0.2.6
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -195,6 +195,7 @@ class SophworkDMEntities extends SophworkDM{
 
 	public function querySelect(){
 		$result = $this->select($this->table, $this->criteria)->fetchAll();
+		$this->criteria = '';
 		foreach ($result as $key1 => $value1) {
 			foreach ($this->data as $key2 => $value2) {
 				$this->data[$key2][$key1] = $result[$key1][$key2];
