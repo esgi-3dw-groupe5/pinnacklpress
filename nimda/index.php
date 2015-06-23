@@ -46,6 +46,7 @@ $menu = [
 		'posts',
 		'categories',
 		'menus',
+		'footer',
 		'forms',
 		'themes',
 		'settings',
@@ -56,6 +57,7 @@ $menu = [
 		'Posts',
 		'Categories',
 		'Menus',
+		'Footer',
 		'Forms',
 		'Themes',
 		'Settings',
@@ -76,4 +78,4 @@ $control = 'nimda\controller\setup\\' . ucfirst($page);
 $pageController = $controller->pageController = new $control($app->config);
 $pageController->renderView($page);
 
-include('template/footer.tpl');
+include('template/footer-admin.tpl');

@@ -250,6 +250,14 @@ elseif($optionPage == 'menus'){
 	}
 }
 
+elseif($optionPage == 'footer'){
+	echo'<pre style="background:#ffffff">';
+	var_dump($_POST);
+	echo'</pre>';
+	return;
+	die;
+}
+
 elseif($optionPage == 'forms'){
 
 	$formName = $_POST['form-name'];

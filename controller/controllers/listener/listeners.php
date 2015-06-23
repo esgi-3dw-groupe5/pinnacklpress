@@ -11,6 +11,8 @@ use controller\controllers\core\Controllers;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
+use controller\form\Form;
+use controller\form\Validator;
 use controller\utils\Users;
 use controller\posts\Post;
 
@@ -25,7 +27,6 @@ $pageController = new Controllers();
 
 $optionPageController = preg_split("#/#", $_POST['pp-referer']);
 
-//var_dump($optionPageController);
 /**
  *	Page
  */
@@ -41,19 +42,21 @@ $forms = $KDM->create('pp_form');
 $forms->findFormName($optionPage);
 
 
-if($forms->getFormId()[0]!=null)
-{
-    if($optionPage=='inscription'||$optionPage=='connection')
-    {
-        $user = new Users();
-        $user->$optionPage($_POST);
-        var_dump($_SESSION);
+if($forms->getFormId()[0]!=null){
+	if($optionPage=='inscription'|| $optionPage=='connection'){
+		$form = new Form();
+		$arrayForm = $form->getForm($optionPage);
+		$validator = new Validator();
+		$msgError = $validator->validateForm($arrayForm,$_POST);
+		$error = $msgError->msg; //FIXME : check if the msg array is >0
+	        // $user = new Users();
+	        // $user->$optionPage($_POST);
+	        // var_dump($_SESSION);
     }
-
 }
 
-if(array_key_exists('__post', $_POST)){
-	var_dump($_POST);
-	$post = new Post();
-	$post->createPost($_POST);
-}
+// if(array_key_exists('__post', $_POST)){
+// 	var_dump($_POST);
+// 	$post = new Post();
+// 	$post->createPost($_POST);
+// }

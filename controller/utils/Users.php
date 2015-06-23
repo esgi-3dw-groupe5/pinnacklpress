@@ -5,6 +5,8 @@ namespace controller\utils;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
+use Antnee\PhpPasswordLib\PhpPasswordLib;
+
 class Users extends \sophwork\app\controller\AppController {
     
     protected $user;
@@ -16,6 +18,7 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function connection($POST){
+        require_once __DIR__ . '/../../Antnee/PhpPasswordLib/PhpPasswordLib.php';
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['name']);
         if($this->user->getUserId()[0]!=null)
@@ -34,6 +37,7 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function inscription($POST){
+        require_once __DIR__ . '/../../Antnee/PhpPasswordLib/PhpPasswordLib.php';
         var_dump($POST);
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['name']);

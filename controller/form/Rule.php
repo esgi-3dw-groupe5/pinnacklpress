@@ -12,6 +12,10 @@ class Rule{
 		$this->msg = [];
 	}
 
+	public function __get($param){
+		return $this->$param;
+	}
+
 	public function isMail($value){
 		if(!filter_var($value, FILTER_VALIDATE_EMAIL)){
 				$this->msg[] = "Vous devez saisir une adresse email valide.";

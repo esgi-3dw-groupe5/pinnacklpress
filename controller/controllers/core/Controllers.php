@@ -12,8 +12,14 @@ use sophwork\modules\kte\SophworkTEParser;
 use sophwork\modules\htmlElements\htmlElement;
 use sophwork\modules\htmlElements\htmlPage;
 
+use sophwork\modules\htmlElements\htmlForm;
+
 use controller\utils\Users;
 use controller\utils\Menu;
+use controller\posts\Post;
+
+use controller\form\Form;
+use controller\form\Validator;
     
 class Controllers extends AppController{
 
@@ -76,7 +82,12 @@ class Controllers extends AppController{
 		if($slug != 'Index') //FIXME : create an index attribute to find here
 			$this->setViewData('sitedescription', $slug);
 		$this->setRawData('page', $layout);
-        
+
+		$form = new Form();
+		$element = new htmlForm($form->getForm('inscription'),'inscription');
+		$layout = $element->createForm();
+		$this->setRawData('layout', $layout);
+
         $roleNeedle = $page->getPageConnectedAs()[0];
         $user->checkPermission($roleNeedle);
         

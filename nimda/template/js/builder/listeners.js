@@ -102,7 +102,7 @@ var listeners = {
 				var link = "";
 				urls = url.split('/');
 				[].forEach.call(urls, function (url) {
-					if(url == 'pages'){
+					if(url == 'pages' || url == 'footer'){
 						stop = true;
 						return;
 					}
@@ -110,7 +110,8 @@ var listeners = {
 						link+=url+"/";
 				});
 				
-				builderHelper.AJAX(data, function(){
+				builderHelper.AJAX(data, function(data){
+					console.log(data);
 					window.location.reload();
 				}, link+'options.php');
 			});
