@@ -54,44 +54,33 @@ class Categories extends \sophwork\app\controller\AppController{
 		$options->findOptionName('siteurl');
 		$siteurl = $options->getOptionValue()[0];
 
-		$pages = $KDM->create('pp_page');
-		$contents = $KDM->create('pp_pagemeta');
+		$categories = $KDM->create('pp_category');
 		
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Categories configuration');
 
 		if($action == 'delete'){
-			$pages->findPageType('category');
-			$this->setViewData('pages', $pages->getData(), 'page_id');
-			$this->setViewData('pages', $pages->getData(), 'page_name');
-			$this->setViewData('pages', $pages->getData(), 'page_order');
-			$this->setViewData('pages', $pages->getData(), 'page_connectedAs');
+			$categories->findCategoryType('category');
+			$this->setViewData('categories', $categories->getData(), 'category_id');
+			$this->setViewData('categories', $categories->getData(), 'category_name');
 			
 			$this->callView($page, 'nimda/');
 		}
 		elseif($action == 'edit'){ // FIXME : better handle blank cases
-			$pages->findPageId($edit);
-			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
-			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
-			$this->setViewData('page_connectedAs', ''.$pages->getPageConnectedAs()[0]);
-			$this->setViewData('page_status', ''.$pages->getPageStatus()[0]);
-			$this->setViewData('page_comment_status', ''.$pages->getPageCommentStatus()[0]);;
+			$categories->findCategoryId($edit);
+			$this->setViewData('category_name', ''.$categories->getCategoryName()[0]);
 			
-			$contents->findPageId($pages->getPageId()[0]);
-			$this->setViewData('page_content', ''.$contents->getPmetaValue()[0]);
-
 			$this->callView($page .'-edit', 'nimda/');
 		}
 		elseif($action == 'new'){
 			$this->callView($page .'-new', 'nimda/');
 		}
 		else{
-			$pages->findPageType('category');
-			$this->setViewData('pages', $pages->getData(), 'page_id');
-			$this->setViewData('pages', $pages->getData(), 'page_udate');
-			$this->setViewData('pages', $pages->getData(), 'page_name'); //categories
-			$this->setViewData('pages', $pages->getData(), 'page_name'); // Author
+			$categories->find();
+
+			$this->setViewData('categories', $categories->getData(), 'category_id');
+			$this->setViewData('categories', $categories->getData(), 'category_name'); //categories
 			
 			$this->callView($page, 'nimda/');
 		}
