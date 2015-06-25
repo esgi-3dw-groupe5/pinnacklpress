@@ -13,6 +13,7 @@ use sophwork\modules\htmlElements\htmlElement;
 use sophwork\modules\htmlElements\htmlPage;
 
 use sophwork\modules\htmlElements\htmlForm;
+use sophwork\modules\htmlElements\htmlFooter;
 
 use controller\utils\Users;
 use controller\utils\Menu;
@@ -66,6 +67,7 @@ class Controllers extends AppController{
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);
 		$pageContent = $this->KDM->create('pp_pagemeta');
+		$footer = $this->KDM->create('pp_pagemeta');
 
 		$menu->permaLink($page);
 
@@ -87,6 +89,16 @@ class Controllers extends AppController{
 		$element = new htmlForm($form->getForm('inscription'),'inscription');
 		$layout = $element->createForm();
 		$this->setRawData('layout', $layout);
+
+
+		$footer
+			->filterPmetaName('footer')
+			->querySelect();
+
+		$data = $footer->getPmetaValue()[0];
+		$html = new htmlFooter($data);
+		$layout = $html->createFooter();
+		$this->setRawData('footer', $layout);
 
         $roleNeedle = $page->getPageConnectedAs()[0];
         $user->checkPermission($roleNeedle);

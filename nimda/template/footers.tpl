@@ -8,7 +8,7 @@
         <div class="content">
             <div>
                 <a class="pinnackl-button pinnackl-button-primary"
-                    href="<?php $this->show('siteurl')?>nimda/footer/new/">Add New&nbsp;&#10010;</a>
+                    href="<?php $this->show('siteurl')?>nimda/footers/new/">Add New&nbsp;&#10010;</a>
             </div>
                 <table class="table">
                     <thead>
@@ -16,27 +16,29 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Status</th>
+                            <th>Connected As</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <?php //foreach ($this->viewData->menus as $key => $value) : ?>
+                        <?php foreach ($this->viewData->footers as $key => $value) : ?>
                         <tr>          
-                            <td><?php       ?></td>
-                            <td><?php     ?></td>
-                            <td><?php    ?></td>
+                            <td><?php $this->show($value, 'page_id'); ?></td>
+                            <td><?php $this->show($value, 'page_name'); ?></td>
+                            <td><?php $this->show($value, 'page_status'); ?></td>
+                            <td><?php $this->show($value, 'page_connectedAs'); ?></td>
                             <td>
                                 <a class="pinnackl-button pinnackl-button-primary"
-                                href="<?php $this->show('siteurl')?>nimda/footer/edit/<?php $this->show($value, 'menu_id')?>">Edit&nbsp;&#9998;</a>
+                                href="<?php $this->show('siteurl')?>nimda/footers/edit/<?php $this->show($value, 'page_id')?>">Edit&nbsp;&#9998;</a>
                             </td>
                             <td>
                                 <a class="pinnackl-button pinnackl-button-error"
-                                href="<?php $this->show('siteurl')?>nimda/footer/delete/<?php $this->show($value, 'menu_id')?>">Delete&nbsp;&#10008;</a>
+                                href="<?php $this->show('siteurl')?>nimda/footers/delete/<?php $this->show($value, 'page_id')?>">Delete&nbsp;&#10008;</a>
                             </td>
                         </tr>
-                        <?php //endforeach; ?>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
         </div>
@@ -54,7 +56,7 @@ Sophwork.ready(function(){
                 window.location = Sophwork.getUrl() + "nimda/options.php";
             }
             else{
-                window.location = Sophwork.getUrl() + "nimda/footer";
+                window.location = Sophwork.getUrl() + "nimda/footers";
             }
         }
     })();

@@ -87,6 +87,78 @@
 			</div>
 			<!-- /Modules -->		
 			<div class="content">
+				<div style="background:#fff; border-radius:8px;padding:2em;margin-bottom:5%;">
+					<form  class="pinnackl-form pinnackl-form-stacked" method="POST"
+						action="<?php $this->show('siteurl')?>nimda/options.php">
+						<fieldset>
+							<label><span>Footer Name :</span>
+								<input class="pinnackl-input-1-2" type="text" name="page_name" placeholder="Footer Name"
+									value="<?php $this->show('page_name') ?>">
+							</label>
+							<label><span>Footer Connected As :</span>
+								<select class="pinnackl-input-1-2" name="page_connectedAs" >
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='superadmin')
+										?'selected' :null)?>
+										value="superadmin">
+										superadmin
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='administrator')
+										?'selected':null)?>
+										value="administrator">
+										administrator
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='moderator')
+										?'selected':null)?>
+										value="moderator">
+										moderator
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='editor')
+										?'selected':null)?>
+										value="editor">
+										editor
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='author')
+										?'selected':null)?>
+										value="author">
+										author
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='member')
+										?'selected':null)?>
+										value="member">
+										member
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='visitor')
+										?'selected': null)?>
+										value="visitor">
+										visitor
+									</option>
+								</select>
+							</label>
+							<label><span>Footer Status :</span>
+								<select class="pinnackl-input-1-2" name="page_status" >
+									<option <?php echo(($this->get($this->viewData, 'page_status')=='publish')
+										?'selected': null)?> 
+										value="publish">
+										Publish
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_status')=='draft')
+										?'selected': null)?> 
+										value="draft">
+										Draft
+									</option>
+									<option <?php echo(($this->get($this->viewData, 'page_status')=='disable')
+										?'selected': null)?> 
+										value="disable">
+										Disable
+									</option>
+								</select>
+							</label>
+							<div style="text-align:right;">
+								<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
 				<div class="validate-builder">
 						<input class="builder-range" id="add-number" type="range" min="1" max="12" step="1">
 						<input id="number" type="text">

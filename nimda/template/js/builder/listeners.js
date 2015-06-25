@@ -102,7 +102,7 @@ var listeners = {
 				var link = "";
 				urls = url.split('/');
 				[].forEach.call(urls, function (url) {
-					if(url == 'pages' || url == 'footer'){
+					if(url == 'pages' || url == 'footers'){
 						stop = true;
 						return;
 					}
