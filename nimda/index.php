@@ -74,7 +74,7 @@ $controller->appView->renderView('header', 'nimda/');
 $view = $app->appView;
 
 $control = 'nimda\controller\setup\\' . ucfirst($page);
-var_dump($page);//var_dump($controller); exit;
+
 $pageController = $controller->pageController = new $control($app->config);
 $pageController->renderView($page);
 

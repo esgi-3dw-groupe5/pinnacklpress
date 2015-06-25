@@ -60,15 +60,15 @@ class Forms extends \sophwork\app\controller\AppController{
 		$siteurl = $options->getOptionValue()[0];
 
 		$pages = $KDM->create('pp_page');
+		$forms = $KDM->create('pp_form');
 
 		if($action == 'edit'){
-			$pages = 'forms-edit';
 
 			$formName = Sophwork::getParam('e','');	
 
 			$form = new Form;
 			$arrayForm = $form->getForm($formName);
-			
+
 			$plop = [];
 			foreach ($arrayForm as $ke => $v) {
 				foreach ($arrayForm[$ke] as $k => $val) {
@@ -85,7 +85,7 @@ class Forms extends \sophwork\app\controller\AppController{
 
 			$this->setViewData('h1', 'Edit form');
 
-			$this->callView($pages, 'nimda/');
+			$this->callView($page .'-edit', 'nimda/');
 		}elseif($action == 'new'){
 			$pages->findPageId($edit);
 
@@ -95,7 +95,10 @@ class Forms extends \sophwork\app\controller\AppController{
 
 			$this->callView($page .'-new', 'nimda/');
 		}elseif($action == 'delete'){
-			$pages->find();
+			$forms->find();
+
+			$this->setViewData('forms', $forms->getData(), 'form_id');
+			$this->setViewData('forms', $forms->getData(), 'form_name');
 
 			$this->callView($page, 'nimda/');
 		}else{

@@ -329,24 +329,11 @@ elseif($optionPage == 'forms'){
 	$formName = $_POST['form-name'];
 	$KDM = new SophworkDM($app->config);
 	$form = $KDM->create('pp_form');
-	$form->findOne($formName);
+	$form->findOne($edit);
 
-	if(in_array('delete', $optionPageController)){
-		$form->erase();
-		Sophwork::redirect('nimda/forms');
-		exit;
-	}
-
-	if(in_array('new', $optionPageController)){
-		var_dump($_POST);exit;
-		$optionPageController[count($optionPageController)-1] = $form->getFormId();
-		$optionPageController[count($optionPageController)-2] = 'edit';
-		$url = implode('/', $optionPageController);
-		Sophwork::redirectFromRef($url);
-		exit;
-	}
-	
-	if(is_null($form->getData()['form_id'])){
+	if(!array_key_exists('categoryBuilder', $_POST)
+		&& !in_array('delete', $optionPageController)){
+			if(is_null($form->getData()['form_id'])){
 
 		//INSERT INTO FORM TABLE
 		$form = $KDM->create('pp_form');
@@ -362,7 +349,7 @@ elseif($optionPage == 'forms'){
 		//INSERT INTO FIELD TABLE
 		
 		foreach ($_POST as $key => $value) {
-			if(is_array($value)){
+			
 				$fieldName = $value['field-name']; 
 				$fieldType = $value['field-type']; 
 				$field = $KDM->create('pp_field');
@@ -403,8 +390,19 @@ elseif($optionPage == 'forms'){
 			}
 		}
 	}
-	else{
-		echo 'echec';
+
+	if(in_array('delete', $optionPageController)){
+		$form->erase();
+		Sophwork::redirect('nimda/forms');
+		exit;
+	}
+
+	if(in_array('new', $optionPageController)){
+		$optionPageController[count($optionPageController)-1] = $form->getFormId();
+		$optionPageController[count($optionPageController)-2] = 'edit';
+		$url = implode('/', $optionPageController);
+		Sophwork::redirectFromRef($url);
+		exit;
 	}
 }
 
