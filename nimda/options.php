@@ -333,7 +333,6 @@ elseif($optionPage == 'forms'){
 
 	if(!array_key_exists('categoryBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){
-			if(is_null($form->getData()['form_id'])){
 
 		//INSERT INTO FORM TABLE
 		$form = $KDM->create('pp_form');
@@ -349,7 +348,7 @@ elseif($optionPage == 'forms'){
 		//INSERT INTO FIELD TABLE
 		
 		foreach ($_POST as $key => $value) {
-			
+			if(is_array($value)){
 				$fieldName = $value['field-name']; 
 				$fieldType = $value['field-type']; 
 				$field = $KDM->create('pp_field');
