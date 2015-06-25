@@ -5,7 +5,7 @@
     </div>
     <div class="content">
     	 <a class="pinnackl-button pinnackl-input-1-2 pinnackl-button-primary"
-            href="<?php $this->show('siteurl')?>nimda/forms/new/">Add new form</a>
+            href="<?php $this->show('siteurl')?>nimda/forms/new/">Add new form&nbsp;&#10010;</a>
     	 
     	 <table class="table">
 		    <thead>
