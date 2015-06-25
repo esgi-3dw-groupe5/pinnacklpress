@@ -54,22 +54,22 @@ class Categories extends \sophwork\app\controller\AppController{
 		$options->findOptionName('siteurl');
 		$siteurl = $options->getOptionValue()[0];
 
-		$categories = $KDM->create('pp_category');
+		$pages = $KDM->create('pp_page');
 		
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
-		$this->setViewData('h2', 'Categories configuration');
+		$this->setViewData('h2', 'pages configuration');
 
 		if($action == 'delete'){
-			$categories->findCategoryType('category');
-			$this->setViewData('categories', $categories->getData(), 'category_id');
-			$this->setViewData('categories', $categories->getData(), 'category_name');
+			$pages->findPageType('page');
+			$this->setViewData('pages', $pages->getData(), 'page_id');
+			$this->setViewData('pages', $pages->getData(), 'page_name');
 			
 			$this->callView($page, 'nimda/');
 		}
 		elseif($action == 'edit'){ // FIXME : better handle blank cases
-			$categories->findCategoryId($edit);
-			$this->setViewData('category_name', ''.$categories->getCategoryName()[0]);
+			$pages->findPageId($edit);
+			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
 			
 			$this->callView($page .'-edit', 'nimda/');
 		}
@@ -77,10 +77,10 @@ class Categories extends \sophwork\app\controller\AppController{
 			$this->callView($page .'-new', 'nimda/');
 		}
 		else{
-			$categories->find();
+			$pages->findPageType('category');
 
-			$this->setViewData('categories', $categories->getData(), 'category_id');
-			$this->setViewData('categories', $categories->getData(), 'category_name'); //categories
+			$this->setViewData('pages', $pages->getData(), 'page_id');
+			$this->setViewData('pages', $pages->getData(), 'page_name'); //pages
 			
 			$this->callView($page, 'nimda/');
 		}

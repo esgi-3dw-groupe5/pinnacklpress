@@ -11,8 +11,8 @@
 								action="<?php $this->show('siteurl')?>nimda/options.php">
 								<fieldset>
 									<label><span>Category Name :</span>
-										<input class="pinnackl-input-1-2" type="text" name="category_name" min="5" placeholder="Category Name"
-											value="<?php $this->show('category_name') ?>">
+										<input class="pinnackl-input-1-2" type="text" name="page_name" min="5" placeholder="Category Name"
+											value="<?php $this->show('page_name') ?>">
 									</label>
 									<div style="text-align:right;">
 										<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>

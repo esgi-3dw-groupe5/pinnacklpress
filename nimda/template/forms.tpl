@@ -1,7 +1,7 @@
 <div id="main">
     <div class="header">
         <h1><?php $this->show('h1') ?></h1>
-        <h2><?php $this->show('h2-list') ?></h2>
+        <h2><?php $this->show('h2') ?></h2>
     </div>
     <div class="content">
     	 <a class="pinnackl-button pinnackl-input-1-2 pinnackl-button-primary"
