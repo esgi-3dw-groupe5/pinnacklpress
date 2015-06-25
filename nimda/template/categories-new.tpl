@@ -9,7 +9,7 @@
 						action="<?php $this->show('siteurl')?>nimda/options.php">
 						<fieldset>
 							<label><span>Category Name :</span>
-								<input class="pinnackl-input-1-2" type="text" name="category_name" min="5" placeholder="Category Name"
+								<input class="pinnackl-input-1-2" type="text" name="page_name" min="5" placeholder="Category Name"
 									value="">
 							</label>
 							<div style="text-align:right;">

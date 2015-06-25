@@ -186,20 +186,32 @@ elseif($optionPage == 'posts'){
 
 elseif($optionPage == 'categories'){
 	$KDM = new SophworkDM($app->config);
-	$category = $KDM->create('pp_category');
-	$category->findOne($edit);
-	if(array_key_exists('categoryBuilder', $_POST)){
-		$categoryRs = $KDM->create('pp_category_rs');
-		$categoryRs->findCategoryId($category->getCategoryId());
-		
-		if(is_array($menuRs->getCategoryRsId())){
-			$linked = $KDM->create('pp_category_rs');
-			foreach ($categoryRs->getCategoryRsId() as $key => $value) {
-				$linked->findOne($value);
+	$page = $KDM->create('pp_page');
+	$page->findOne($edit);
+	if(!array_key_exists('categoryBuilder', $_POST)
+		&& !in_array('delete', $optionPageController)){ //handle edit and new case
 
-				if(isset($_POST['posts']) && is_array($_POST['posts'])){
-					foreach ($_POST['posts'] as $key => $value) {
-						if(!in_array($linked->getPostId(), $_POST['posts'])){
+		$page->setPageTag(Sophwork::slug($_POST['page_name']));
+		$page->setPageName($_POST['page_name']);
+		$page->setPageType('category');
+
+		$page->save();
+
+
+		$pageCategories = $KDM->create('pp_pagemeta');
+		$pageCategories
+			->filterPageId($page->getPageId()[0])
+			->__and()
+			->filterPmetaName('category')
+			->querySelect();
+
+		if(is_array($pageCategories->getPageId())){
+			$linked = $KDM->create('pp_pagemeta');
+			foreach ($pageCategories->getPmetaId() as $key => $value) {
+				$linked->findOne($value);
+				if(isset($_POST['pages']) && is_array($_POST['pages'])){
+					foreach ($_POST['pages'] as $key => $value) {
+						if(!in_array($linked->getPageId(), $_POST['pages'])){
 							$linked->erase();
 						}
 					}
@@ -208,38 +220,35 @@ elseif($optionPage == 'categories'){
 					$linked->erase();
 				}
 			}
-			foreach ($_POST['posts'] as $key => $value) {
-				if(!in_array($value, $categoryRs->getPostId())){
-					$added = $KDM->create('pp_category_rs');
-					$added->setCategoryId($menu->getCategoryId());
-					$added->setPostId($value);
+			foreach ($_POST['categories'] as $key => $value) {
+				if(!in_array($value, $pageCategories->getPageId())){
+					$added = $KDM->create('pp_pagemeta');
+					$added->setPageId($page->getPageId()[0]);
+					$added->setPmetaName('category');
+					$added->setPmetaValue($value);
 					$added->save();
 				}
 			}
 		}
 		else{
-			foreach ($_POST['posts'] as $key => $value) {
-				$categoryRs = $KDM->create('pp_category_rs');
-				$categoryRs->setCategoryId($category->getCategoryId());
-				$categoryRs->setPostId($value);
-				$categoryRs->save();
+			foreach ($_POST['categories'] as $key => $value) {
+				$pageCategories = $KDM->create('pp_pagemeta');
+				$pageCategories->setPageId($page->getPageId()[0]);
+				$pageCategories->setPmetaName('category');
+				$pageCategories->setPmetaValue($value);
+				$pageCategories->save();
 			}
 		}
 	}
-	if(!array_key_exists('categoryBuilder', $_POST)
-		&& !in_array('delete', $optionPageController)){ //handle edit and new case
-		$category->setCategoryName($_POST['category_name']);
-		$category->save();
-	}
 	if(in_array('new', $optionPageController)){
-		$optionPageController[count($optionPageController)-1] = $category->getCategoryId();
+		$optionPageController[count($optionPageController)-1] = $page->getPageId();
 		$optionPageController[count($optionPageController)-2] = 'edit';
 		$url = implode('/', $optionPageController);
 		Sophwork::redirectFromRef($url);
 		exit;
 	}
 	if(in_array('delete', $optionPageController)){
-		$category->erase();
+		$page->erase();
 		Sophwork::redirect('nimda/categories');
 		exit;
 	}
@@ -329,7 +338,8 @@ elseif($optionPage == 'forms'){
 	}
 
 	if(in_array('new', $optionPageController)){
-		$optionPageController[count($optionPageController)-1] = $page->getPageId();
+		var_dump($_POST);exit;
+		$optionPageController[count($optionPageController)-1] = $form->getFormId();
 		$optionPageController[count($optionPageController)-2] = 'edit';
 		$url = implode('/', $optionPageController);
 		Sophwork::redirectFromRef($url);
