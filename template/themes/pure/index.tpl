@@ -82,20 +82,6 @@
 						</div>
 					</div>
 					<?php $this->viewData->footer->render(); ?>
-					<!-- <div class="line footer">
-						<div class="grid-1_4 ft-section">
-							footer 1
-						</div>
-						<div class="grid-1_4 ft-section">
-							footer 2
-						</div>
-						<div class="grid-1_4 ft-section">
-							footer 3
-						</div>
-						<div class="grid-1_4 ft-section">
-							footer 4
-						</div>
-					</div> -->
 					<div class="line footer-right">
 						<div class="grid-4_4 ft-right-section">
 							Created by PinnacklPress ©
