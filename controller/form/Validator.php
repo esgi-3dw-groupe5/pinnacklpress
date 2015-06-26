@@ -20,12 +20,12 @@ class Validator{
 		$validator = $kdm->create('pp_validator');
 
 		foreach ($idValidators as $key => $value) {
-			$idRsField = $value['field_id'];
+			$idField = $value['field_id'];
 			$rule = $value['validator_id'];
 
 			foreach ($formArray as $key1 => $value) {
-				$idField = $value['field_id'];
-				if($idRsField == $idField[0]){
+				$aIdField = $value['field_id'];
+				if($idField == $aIdField){
 					$validator->findValidatorId($rule);
 					$validators = $validator->getData();
 					$formArray[$key1]['validator_rule'][] = $validators['validator_rule'][0];

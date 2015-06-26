@@ -80,7 +80,7 @@ var numberLine = document.getElementsByTagName('fieldset').length;
 		containerBtn.appendChild(removeBtn);
 		fieldset.appendChild(typeField);
 		fieldset.appendChild(div);
-		validator('email');
+		validator('mail');
 		validator('date');
 		validator('password'); 	
 
