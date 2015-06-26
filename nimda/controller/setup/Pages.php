@@ -76,6 +76,12 @@ class Pages extends \sophwork\app\controller\AppController{
 		elseif($action == 'edit'){ // FIXME : better handle blank cases
 			$pages->findPageId($edit);
 
+			// GET FORMS NAME
+			$forms = $KDM->create('pp_form');
+			$forms->find();
+			$forms->getData();
+			$this->setViewData('forms', $forms->getData(), 'form_name');
+			
 			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
 			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
 			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);

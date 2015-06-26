@@ -188,6 +188,11 @@ header{
 .text-module>header{
 	background: #708090;
 }
+
+.form-module>header{
+	background: #708090;
+}
+
 .box header i, .box header i:before{
 	float: right;
 	margin-right: 5px;

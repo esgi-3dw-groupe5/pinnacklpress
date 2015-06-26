@@ -78,8 +78,14 @@ var listeners = {
 		var modules = document.querySelectorAll('.modules');
 		[].forEach.call(modules, function(module) {
 			module.addEventListener('click',function(){
-				document.getElementsByClassName('text-module')[0].style.display = "block";
-				textModule.addSaveListener(module);
+				if(module.getAttribute('data') == '[text]'){
+					document.getElementsByClassName('text-module')[0].style.display = "block";
+					textModule.addSaveListener(module);
+				}else if(module.getAttribute('data') == '[form]'){
+					document.getElementsByClassName('form-module')[0].style.display = "block";
+					formModule.addSaveListener(module);
+				}
+				
 			}, false );
 		});
 
@@ -88,6 +94,7 @@ var listeners = {
 			// FIXME : add if modal condition
 			// document.getElementsByClassName('overlay')[0].style.display = "none";
 			document.getElementsByClassName('text-module')[0].style.display = "none";
+			document.getElementsByClassName('form-module')[0].style.display = "none";
 		});
 	},
 	addSaveBuilderListener:function(){
