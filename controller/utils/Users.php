@@ -2,6 +2,11 @@
 
 namespace controller\utils;
 
+// -- Sophwork --
+use sophwork\core\Sophwork;
+use sophwork\app\app\SophworkApp;
+use sophwork\app\controller\AppController;
+
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
@@ -44,17 +49,23 @@ class Users extends \sophwork\app\controller\AppController {
         if($this->user->getUserId()[0]==null){ //FIXME : replace default data
             $this->user->setUserEmail($POST['name']);
             $this->user->setUserPassword($POST['password']);
-            $this->user->setUserPseudo('plopPseudo');
-            $this->user->setUserGender('1');
-            $this->user->setUserFirstname('Lorem');
-            $this->user->setUserName('Ipsum');
+            $this->user->setUserPseudo('plop2Pseudo');
+            $this->user->setUserGender('2');
+            $this->user->setUserFirstname('Lorem2');
+            $this->user->setUserName('Ipsum2');
             $this->user->setUserBdate('1990-10-20');
             $this->user->setUserRole('Viewer');
-            $this->user->setUserKey('azerty123');
+            $this->user->setUserKey('azerty1234');
             $this->user->setUserActive('0');
-            $this->user->setUserUrl('Lorem-Ipsum');
+            $this->user->setUserUrl('Lorem-Ipsum2');
 
             $this->user->save();
+        }
+        else{
+            $_SESSION['error'][]="L'utilisateur existe déjà";
+            $sophwork = new Sophwork();
+            Sophwork::redirectFromRef($_SESSION['pp-referer']);
+            exit;
         }
         var_dump($this->user);
         

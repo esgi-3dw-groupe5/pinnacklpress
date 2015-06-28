@@ -32,6 +32,8 @@ $optionPageController = preg_split("#/#", $_POST['pp-referer']);
  */
 
 $optionPage = $optionPageController[count($optionPageController)-1];//FIX ME : check if always 1st level page
+$url = implode('/', $optionPageController);
+$_SESSION['pp-referer']=$url;
 
 var_dump($optionPage);
 
@@ -41,17 +43,24 @@ $forms = $KDM->create('pp_form');
 
 $forms->findFormName($optionPage);
 
-
 if($forms->getFormId()[0]!=null){
-	if($optionPage=='inscription'|| $optionPage=='connection'){
+    if($optionPage=='inscription'|| $optionPage=='connection'){
 		$form = new Form();
 		$arrayForm = $form->getForm($optionPage);
 		$validator = new Validator();
 		$msgError = $validator->validateForm($arrayForm,$_POST);
-		$error = $msgError->msg; //FIXME : check if the msg array is >0
-	        // $user = new Users();
-	        // $user->$optionPage($_POST);
-	        // var_dump($_SESSION);
+		$error = $msgError->msg;
+        if(!empty($error)){//FIXME : check if the msg array is >0
+            $_SESSION['error'] = $error;
+            $sophwork = new Sophwork();
+            Sophwork::redirectFromRef($url);
+            exit;
+                      
+        }
+        else{
+            $user = new Users();
+            $user->$optionPage($_POST);
+        }
     }
 }
 
