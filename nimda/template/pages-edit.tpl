@@ -79,7 +79,7 @@
 			<!-- /content list -->
 			<!-- Modules -->
 			<div class="text-module box">
-				<header>Text Module<i id="close-tx"></i></header>
+				<header>Text Module<i id="close-form"></i></header>
 				<div class="box-list">
 					<div id="wysiwyg"></div>
 					<div class="validate-module">
@@ -97,7 +97,7 @@
 						<?php endforeach; ?>
 					</select>
 					<div class="validate-module">
-						<button id="save-tx-md" class="pinnackl-button">Save</button>
+						<button id="save-form-md" class="pinnackl-button">Save</button>
 					</div>
 				</div>
 			</div>

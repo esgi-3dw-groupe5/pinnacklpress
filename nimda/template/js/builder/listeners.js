@@ -90,11 +90,13 @@ var listeners = {
 		});
 
 		// Module : Text
+		document.getElementById('close-form').addEventListener('click',function(){
+			document.getElementsByClassName('form-module')[0].style.display = "none";
+		});
 		document.getElementById('close-tx').addEventListener('click',function(){
 			// FIXME : add if modal condition
 			// document.getElementsByClassName('overlay')[0].style.display = "none";
 			document.getElementsByClassName('text-module')[0].style.display = "none";
-			document.getElementsByClassName('form-module')[0].style.display = "none";
 		});
 	},
 	addSaveBuilderListener:function(){
