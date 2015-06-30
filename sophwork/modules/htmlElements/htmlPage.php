@@ -30,7 +30,7 @@ class htmlPage extends htmlElement{
 						$form = $form->getForm($val->gridContent);
 						$html = new HtmlForm($form,$val->gridContent);
 						$layout = $html->createForm();
-						$grid->set('form',$layout->attributes['text']);
+						$grid->set('text',$layout->attributes['text']);
 					}
 					$line->inject($grid);
 				}

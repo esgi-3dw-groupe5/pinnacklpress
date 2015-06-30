@@ -19,6 +19,7 @@ class htmlForm extends htmlElement{
 		$form->set('name',$this->formName);
 		$form->set('method','POST');
 		$form->set('action','controller/controllers/listener/listeners.php');
+		$form->set('class','pinnackl-form');
 
 		foreach ($this->data as $key => $value) {
 
@@ -51,6 +52,7 @@ class htmlForm extends htmlElement{
 		$submit->set('type','submit');
 		$submit->set('name','__'.$this->formName);
 		$submit->set('value','Submit');
+		$submit->set('class','pinnackl-button pinnackl-button-primary');
 		$line = new htmlElement('br');
 		$form->inject($line);
 		$form->inject($submit);
