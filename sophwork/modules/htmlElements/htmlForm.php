@@ -31,8 +31,21 @@ class htmlForm extends htmlElement{
 			$input->set('class','field');
 			$input->set('name',$this->data[$key]['field_name']);
 			$input->set('placeholder',$this->data[$key]['field_name']);
-
 			$form->inject($input);
+
+			if($this->data[$key]['field_type'] == 'password'){
+
+				$form->inject($line);
+				$inputPwd = new htmlElement('input');
+				$inputPwd->set('type','password');
+				$inputPwd->set('id','validate_password');
+				$inputPwd->set('class','field');
+				$inputPwd->set('name','validate_password');
+				$inputPwd->set('placeholder','confirm password');
+
+				$form->inject($inputPwd);
+				
+			}
 		}
 		$submit = new htmlElement('input');
 		$submit->set('type','submit');
