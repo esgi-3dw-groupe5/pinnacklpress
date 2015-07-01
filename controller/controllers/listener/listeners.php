@@ -33,7 +33,7 @@ $optionPageController = preg_split("#/#", $_POST['pp-referer']);
 
 $optionPage = $optionPageController[count($optionPageController)-1];//FIX ME : check if always 1st level page
 $url = implode('/', $optionPageController);
-$_SESSION['pp-referer']=$url;
+$_SESSION['form']['pp-referer']=$url;
 
 var_dump($optionPage);
 
@@ -51,7 +51,7 @@ if($forms->getFormId()[0]!=null){
 		$msgError = $validator->validateForm($arrayForm,$_POST);
 		$error = $msgError->msg;
         if(!empty($error)){//FIXME : check if the msg array is >0
-            $_SESSION['error'] = $error;
+            $_SESSION['form']['error'] = $error;
             $sophwork = new Sophwork();
             Sophwork::redirectFromRef($url);
             exit;

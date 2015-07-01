@@ -31,7 +31,8 @@ class Controllers extends AppController{
         
         session_start();
         $user = new Users();
-        $user->initUser();
+        if(!isset($_SESSION['user']))
+            $user->initUser();
 
         $menu = new Menu();
         $links = $menu->create('primary');
@@ -96,6 +97,10 @@ class Controllers extends AppController{
 
         $roleNeedle = $page->getPageConnectedAs()[0];
         $user->checkPermission($roleNeedle);
+        
+        if( isset($_GET['act']) && $_GET['act']=='logout' ) {
+            $user->logout();
+        }
         
         
         

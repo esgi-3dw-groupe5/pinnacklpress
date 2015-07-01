@@ -57,7 +57,13 @@
 					<div class="line content">
 						<div class="grid-4_4">
 							side bar contents<br>
-                            <?php print_r($_SESSION); ?>
+                            <?php 
+                            var_dump($_SESSION);
+                            if(!empty($_SESSION['user']['pseudo']) ){
+                                print("<div>Bienvenue ".$_SESSION['user']['pseudo']." ");
+                                printf("<a href='http://127.0.0.1/pinnacklpress/?act=logout'>Déconnexion</a></div>");
+                            } 
+                            ?>
 						</div>
 					</div>
 				</div>
@@ -83,12 +89,11 @@
 							<?php $this->viewData->page->render(); ?>
 						</div>
                         <?php 
-                        if(isset($_SESSION['error'])){
-                        foreach ($_SESSION['error'] as $value){
-                        echo "$value<br />\n";
-                        }
-                        //var_dump($_SESSION['error']);
-                        unset($_SESSION['error']);
+                        if(isset($_SESSION['form'])){
+                            foreach ($_SESSION['form']['error'] as $value){
+                                echo "$value<br />\n";
+                            }
+                            unset($_SESSION['form']);
                         }
                         ?>
 					</div>

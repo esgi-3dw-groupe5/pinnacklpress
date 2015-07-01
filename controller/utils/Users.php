@@ -36,25 +36,25 @@ class Users extends \sophwork\app\controller\AppController {
                 $_SESSION['user']['role']=$this->user->getUserRole()[0];
                 $_SESSION['user']['connected']=true;
                 
-                $_SESSION['error'][]="Vous êtes connecté";
+                $_SESSION['form']['error'][]="Vous êtes connecté";
                 $sophwork = new Sophwork();
-                Sophwork::redirectFromRef($_SESSION['pp-referer']);
+                Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
                 exit;
                 
             }
             else
             {
-                $_SESSION['error'][]="Le mot de passe est incorrect";
+                $_SESSION['form']['error'][]="Le mot de passe est incorrect";
                 $sophwork = new Sophwork();
-                Sophwork::redirectFromRef($_SESSION['pp-referer']);
+                Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
                 exit;
             }
         }
         else
         {
-            $_SESSION['error'][]="Ce pseudonyme n'existe pas";
+            $_SESSION['form']['error'][]="Ce pseudonyme n'existe pas";
             $sophwork = new Sophwork();
-            Sophwork::redirectFromRef($_SESSION['pp-referer']);
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
     }
@@ -78,22 +78,22 @@ class Users extends \sophwork\app\controller\AppController {
             $this->user->setUserFirstname($POST['firstname']);
             $this->user->setUserName($POST['lastname']);
             $this->user->setUserBdate($POST['date']);
-            $this->user->setUserRole('Viewer');
+            $this->user->setUserRole('visitor');
             $this->user->setUserKey($userkey);
             $this->user->setUserActive('0');
             $this->user->setUserUrl($POST['pseudo']);
 
             $this->user->save();
             
-            $_SESSION['error'][]="Vous êtes inscrits";
+            $_SESSION['form']['error'][]="Vous êtes inscrits";
             $sophwork = new Sophwork();
-            Sophwork::redirectFromRef($_SESSION['pp-referer']);
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
         else{
-            $_SESSION['error'][]="L'utilisateur existe déjà";
+            $_SESSION['form']['error'][]="L'utilisateur existe déjà";
             $sophwork = new Sophwork();
-            Sophwork::redirectFromRef($_SESSION['pp-referer']);
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
         var_dump($this->user);
@@ -101,14 +101,13 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function initUser(){
-        $_SESSION['user'] = [];
         $_SESSION['user']['pseudo']     = null;
         $_SESSION['user']['email']      = null;
         $_SESSION['user']['role']       = 'visitor';
         $_SESSION['user']['connected']  = false;
     }
     
-    function checkPermission($permission){
+    public function checkPermission($permission){
         $roles = [
             'superadmin' => [
                 'superadmin',
@@ -163,6 +162,13 @@ class Users extends \sophwork\app\controller\AppController {
         }
         
             
+    }
+    
+    public function logout(){
+        session_destroy();
+        $sophwork = new Sophwork();
+        Sophwork::redirectFromRef('index');
+        exit;
     }
     
     

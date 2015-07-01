@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 01 Juillet 2015 à 23:39
+-- Généré le :  Jeu 02 Juillet 2015 à 01:44
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -482,7 +482,7 @@ CREATE TABLE IF NOT EXISTS `pp_user` (
   `user_password` varchar(256) NOT NULL,
   `user_bdate` datetime DEFAULT NULL,
   `user_regdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `user_role` int(11) NOT NULL,
+  `user_role` varchar(16) NOT NULL,
   `user_key` varchar(45) NOT NULL,
   `user_active` int(11) DEFAULT '0',
   `user_url` varchar(45) NOT NULL,
@@ -497,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `pp_user` (
 --
 
 INSERT INTO `pp_user` (`user_id`, `user_gender`, `user_firstname`, `user_name`, `user_pseudo`, `user_email`, `user_password`, `user_bdate`, `user_regdate`, `user_role`, `user_key`, `user_active`, `user_url`) VALUES
-(3, 2, 'lorem', 'ipsum', 'loremipsum', 'lorem@ipsum.eu', '$2y$10$ZGcPjkxPY6PtxeaezyeLjO79GqOgy7SjlswfFQNTltXczr4qKmjrW', '1994-12-11 00:00:00', NULL, 0, 'qjVD8F8U0ukKz9RWAvYvmogfxW5mE02y', 0, 'loremipsum');
+(3, 2, 'lorem', 'ipsum', 'loremipsum', 'lorem@ipsum.eu', '$2y$10$ZGcPjkxPY6PtxeaezyeLjO79GqOgy7SjlswfFQNTltXczr4qKmjrW', '1994-12-11 00:00:00', NULL, 'visitor', 'qjVD8F8U0ukKz9RWAvYvmogfxW5mE02y', 0, 'loremipsum');
 
 -- --------------------------------------------------------
 
