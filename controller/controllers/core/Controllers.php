@@ -97,13 +97,7 @@ class Controllers extends AppController{
         $roleNeedle = $page->getPageConnectedAs()[0];
         $user->checkPermission($roleNeedle);
         
-        if(isset($_SESSION['error'])){
-            foreach ($_SESSION['error'] as $value){
-                echo "$value<br />\n";
-            }
-            //var_dump($_SESSION['error']);
-            unset($_SESSION['error']);
-        }
+        
         
 	}
 

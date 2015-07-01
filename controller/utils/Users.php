@@ -10,8 +10,8 @@ use sophwork\app\controller\AppController;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
-use Antnee\PhpPasswordLib\PhpPasswordLib;
-
+use PasswordLib\PasswordLib;
+    
 class Users extends \sophwork\app\controller\AppController {
     
     protected $user;
@@ -23,12 +23,14 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function connection($POST){
-        require_once __DIR__ . '/../../Antnee/PhpPasswordLib/PhpPasswordLib.php';
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['name']);
         if($this->user->getUserId()[0]!=null)
         {
-            if($this->user->getUserPassword()[0]==$POST['password'])
+            $password = $user->getUserPassword()[0];
+            
+            $lib = new PasswordLib();
+            if ($lib->verifyPasswordHash($password, $hash))
             {
                 session_start();
                 $_SESSION['email']=$user->getUserEmail()[0];
@@ -37,29 +39,46 @@ class Users extends \sophwork\app\controller\AppController {
                 $_SESSION['connected']=true;
                 
             }
+            else
+            {
+                $_SESSION['error'][]="Le mot de passe est incorrect";
+            }
         }
-        var_dump($this->user);
+        else
+        {
+            $_SESSION['error'][]="Ce pseudonyme n'existe pas";
+        }
     }
     
     public function inscription($POST){
-        require_once __DIR__ . '/../../Antnee/PhpPasswordLib/PhpPasswordLib.php';
         var_dump($POST);
         $this->user = $this->KDM->create('pp_user');
-        $this->user->findUserEmail($POST['name']);
+        $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]==null){ //FIXME : replace default data
-            $this->user->setUserEmail($POST['name']);
-            $this->user->setUserPassword($POST['password']);
-            $this->user->setUserPseudo('plop2Pseudo');
+            
+            $lib = new PasswordLib();
+            $passcrypt = $lib->createPasswordHash($POST['password']);
+            
+            $userkey = $lib->getRandomToken(32);
+            
+            $this->user->setUserEmail($POST['email']);
+            $this->user->setUserPassword($passcrypt);
+            $this->user->setUserPseudo($POST['pseudo']);
             $this->user->setUserGender('2');
-            $this->user->setUserFirstname('Lorem2');
-            $this->user->setUserName('Ipsum2');
-            $this->user->setUserBdate('1990-10-20');
+            $this->user->setUserFirstname($POST['firstname']);
+            $this->user->setUserName($POST['lastname']);
+            $this->user->setUserBdate($POST['date']);
             $this->user->setUserRole('Viewer');
-            $this->user->setUserKey('azerty1234');
+            $this->user->setUserKey($userkey);
             $this->user->setUserActive('0');
-            $this->user->setUserUrl('Lorem-Ipsum2');
+            $this->user->setUserUrl($POST['pseudo']);
 
             $this->user->save();
+            
+            $_SESSION['error'][]="Vous êtes inscrits";
+            $sophwork = new Sophwork();
+            Sophwork::redirectFromRef($_SESSION['pp-referer']);
+            exit;
         }
         else{
             $_SESSION['error'][]="L'utilisateur existe déjà";

@@ -81,6 +81,15 @@
 						<div class="grid-4_4 container">
 							<?php $this->viewData->page->render(); ?>
 						</div>
+                        <?php 
+                        if(isset($_SESSION['error'])){
+                        foreach ($_SESSION['error'] as $value){
+                        echo "$value<br />\n";
+                        }
+                        //var_dump($_SESSION['error']);
+                        unset($_SESSION['error']);
+                        }
+                        ?>
 					</div>
 					<?php $this->viewData->footer->render(); ?>
 					<div class="line footer-right">
