@@ -94,9 +94,7 @@ var listeners = {
 		var elementClose = document.getElementById('close-form');
 		
 		if(elementClose != null){
-			console.log(document.getElementById('close-form'));
 			document.getElementById('close-form').addEventListener('click',function(){
-				console.log('plop');
 				document.getElementsByClassName('form-module')[0].style.display = "none";
 			});
 		}
