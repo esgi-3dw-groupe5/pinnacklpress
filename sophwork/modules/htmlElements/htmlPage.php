@@ -1,6 +1,8 @@
 <?php
 
 namespace sophwork\modules\htmlElements;
+use controller\form\Form;
+use sophwork\modules\htmlElements;
 
 class htmlPage extends htmlElement{
 	
@@ -20,8 +22,16 @@ class htmlPage extends htmlElement{
 				foreach ($subValue as $key => $val) {
 					$grid = new htmlElement('div');
 					$grid->set('class', $val->gridClass);
-					if($val->gridContent != 'null')
+
+					if($val->gridContent != 'null' && $val->gridModule != '[form]')
 						$grid->set('text', $val->gridContent);
+					elseif($val->gridContent != 'null' && $val->gridModule == '[form]'){
+						$form = new Form;
+						$form = $form->getForm($val->gridContent);
+						$html = new HtmlForm($form,$val->gridContent);
+						$layout = $html->createForm();
+						$grid->set('text',$layout->attributes['text']);
+					}
 					$line->inject($grid);
 				}
 			}

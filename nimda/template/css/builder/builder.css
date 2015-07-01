@@ -32,6 +32,17 @@ section{
 	padding-top: 50px;
 	text-align: left !important;
 }
+select{
+	padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 .content{
 	max-width: 600px;
 	padding-left: 2em;
@@ -188,6 +199,11 @@ header{
 .text-module>header{
 	background: #708090;
 }
+
+.form-module>header{
+	background: #708090;
+}
+
 .box header i, .box header i:before{
 	float: right;
 	margin-right: 5px;

@@ -24,3 +24,7 @@
 .md-text:before{
 	content: "Text";
 }
+
+.md-form:before{
+	content: "Form";
+}

@@ -68,18 +68,24 @@ class Forms extends \sophwork\app\controller\AppController{
 
 		if($action == 'edit'){
 
-			$formName = Sophwork::getParam('e','');	
-
+			$forms->findFormId($edit);
 			$form = new Form;
+			$formName = $forms->data['form_name'][0];
 			$arrayForm = $form->getForm($formName);
 
 			$plop = [];
 			foreach ($arrayForm as $ke => $v) {
 				foreach ($arrayForm[$ke] as $k => $val) {
-						$plop[$k][] = $val;					
+						$plop[$k][] = $val;				
 				}	
+				if(!array_key_exists('validator_rule',$plop)){
+					$aEmpty[0] = '';
+					$plop['validator_rule'][] = $aEmpty;	
+				}elseif (count($plop['validator_rule']) != count($plop['field_id'])) {
+					$aEmpty[0] = '';
+					$plop['validator_rule'][] = $aEmpty;
+				}
 			}
-
 			$this->setViewData('form_name',$formName);
 			$this->setViewData('form', $plop, 'field_id');
 			$this->setViewData('form', $plop, 'field_name');

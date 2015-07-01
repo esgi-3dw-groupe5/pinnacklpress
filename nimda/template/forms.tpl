@@ -23,7 +23,7 @@
 		            <td><?php $this->show($value, 'form_name')    ?></td>
 		            <td>
 		                <a class="pinnackl-button pinnackl-button-primary"
-		                href="<?php $this->show('siteurl')?>nimda/forms/edit/<?php $this->show($value, 'form_name')	?>">Edit&nbsp;&#9998;</a>
+		                href="<?php $this->show('siteurl')?>nimda/forms/edit/<?php $this->show($value, 'form_id')	?>">Edit&nbsp;&#9998;</a>
 		            </td>
 		            <td>
                         <a class="pinnackl-button pinnackl-button-error"

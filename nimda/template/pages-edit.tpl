@@ -8,7 +8,7 @@
 			<!-- /Overlay -->
 			<!-- Gridlist -->
 			<div class="grid-list box">
-				<header>Chose a grid <i id="close-gl"></i></header>
+				<header>Choose a grid <i id="close-gl"></i></header>
 				<div class="layouts-list">
 					<div class='layouts' data="4_4">
 						<div class="dg dg-4_4"></div>
@@ -66,22 +66,38 @@
 			<!-- /Gridlist -->
 			<!-- content list -->
 			<div class="content-list box">
-				<header>Chose a module <i id="close-md"></i></header>
+				<header>Choose a module <i id="close-md"></i></header>
 				<div class="modules-list">
 					<div class='modules' data="[text]">
 						<div class="md md-text"></div>
+					</div>
+					<div class='modules' data="[form]">
+						<div class="md md-form"></div>
 					</div>
 				</div>
 			</div>
 			<!-- /content list -->
 			<!-- Modules -->
 			<div class="text-module box">
-				<header>Text Module<i id="close-tx"></i></header>
+				<header>Text Module<i id="close-form"></i></header>
 				<div class="box-list">
 					<div id="wysiwyg"></div>
 					<div class="validate-module">
 						<button id="clear-tx-md" class="pinnackl-button">Clear</button>
 						<button id="save-tx-md" class="pinnackl-button">Save</button>
+					</div>
+				</div>
+			</div>
+			<div class="form-module box">
+				<header>Form Module<i id="close-tx"></i></header>
+				<div class="box-list">
+					<select id="form-list">
+						<?php foreach ($this->viewData->forms as $key => $value) : ?>
+							<option><?php $this->show($value, 'form_name') ?></option>
+						<?php endforeach; ?>
+					</select>
+					<div class="validate-module">
+						<button id="save-form-md" class="pinnackl-button">Save</button>
 					</div>
 				</div>
 			</div>

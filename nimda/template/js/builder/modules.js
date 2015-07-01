@@ -35,3 +35,27 @@ var	textModule = {
 		// console.log("-------------------------------");
 	},
 };
+
+var	formModule = {
+	addSaveListener:function(e){
+
+		if(activeSection.getAttribute('data-content') != "null" && activeSection.getAttribute('data-content') != "null"){
+			document.getElementsByClassName('form-list').value = activeSection.getAttribute('data-content');
+		}
+
+		document.getElementById('save-form-md').addEventListener('click',function(){
+
+			var data = e.getAttribute('data');
+			var module = data;
+			var content = document.getElementById('form-list').value;
+
+			activeSection.setAttribute('data-module', module);
+			activeSection.setAttribute('data-content', content.replace(/"/g,'\"'));
+			activeSection.innerHTML = module;
+
+			document.getElementsByClassName('overlay')[0].style.display = "none";
+			document.getElementsByClassName('content-list')[0].style.display = "none";
+			document.getElementsByClassName('form-module')[0].style.display = "none";
+		});
+	}
+};
