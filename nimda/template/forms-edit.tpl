@@ -12,6 +12,7 @@
     				<fieldset id="field-set-<?php echo $i?>" class="pinnackl-group">
     					<div id="container-button-<?php echo $i?>" class="container-button">
 							<input type="text" name="field-name-<?php echo $i?>" class="pinnackl-input-1-2"  value="<?php $this->show($value, 'field_name'); ?>" required>
+                            <input type="hidden" name="<?php echo $i?>[field-id]" value="<?php $this->show($value, 'field_id')?>">
 							<img id="<?php echo $i?>" src="/pinnacklpress/nimda/template/images/minus.png">
 						</div>
     					<select id="field-type-<?php echo $i?>" class="pinnackl-input-1-2" style="color: gray;" name="<?php echo $i?>[field-type]" required>
@@ -33,9 +34,6 @@
                                 is password
                                 <input id="field-validator-password-<?php echo $i?>" type="checkbox" name="<?php echo $i?>[password]" <?php if($this->get($value, 'validator_rule')[0] == "isPassword")echo 'checked';?> >
                             </label>
-    		        	<?php //foreach($this->show($value, 'validator_rule') as $k => $val) 	:   ?>
-    		    
-						<?php //endforeach;?>
 					</fieldset>
     			<?php endforeach;?>
     		</div>

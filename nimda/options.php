@@ -361,7 +361,7 @@ elseif($optionPage == 'footers'){
 }
 
 elseif($optionPage == 'forms'){
-
+	if($edit == '') $edit = 0;
 	$formName = $_POST['form-name'];
 	$KDM = new SophworkDM($app->config);
 	$form = $KDM->create('pp_form');
@@ -370,24 +370,32 @@ elseif($optionPage == 'forms'){
 	if(!array_key_exists('categoryBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){
 
+
 		//INSERT INTO FORM TABLE
-		$form = $KDM->create('pp_form');
 		$form->setFormName($_POST['form-name']);
 		$form->setFormAction('');
 		$form->setFormMethod('post');
 		$form->setFormTarget('');
 		$form->setFormEnctype('');
-		
 		$form->save();
 		$idForm = $form->getData()['form_id'];
 
 		//INSERT INTO FIELD TABLE
-		
 		foreach ($_POST as $key => $value) {
 			if(is_array($value)){
+				if(array_key_exists('field-name-'.$key, $_POST)){
+					$fieldName = $_POST['field-name-'.$key];
+				    $_POST['field-name-'+$key]['field-name'] = $fieldName;
+				}				
+			}
+		}
+		foreach ($_POST as $key => $value) {
+			if(is_array($value)){
+
 				$fieldName = $value['field-name']; 
 				$fieldType = $value['field-type']; 
 				$field = $KDM->create('pp_field');
+				$field->findOne($value['field-id']);
 				$field->setFieldName($fieldName);
 				$field->setFieldType($fieldType);
 				$field->setFieldDomname($fieldName);
@@ -398,11 +406,13 @@ elseif($optionPage == 'forms'){
 				$idField = $field->getData()['field_id'];
 
 				//INSERT INTO FORM RS
-
-				$formRs = $KDM->create('pp_form_rs');
-				$formRs->setFormId($idForm);
-				$formRs->setFieldId($idField);
-				$formRs->save();
+				if($edit == 0){
+					$formRs = $KDM->create('pp_form_rs');
+					$formRs->setFormId($idForm);
+					$formRs->setFieldId($idField);
+					$formRs->save();
+				}
+				
 
 				$incr = 0;
 				foreach ($value as $keyValidator => $valueValidator) {
