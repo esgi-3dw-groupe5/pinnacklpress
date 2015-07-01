@@ -10,7 +10,7 @@ use sophwork\app\controller\AppController;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
-use PasswordLib\PasswordLib;
+
     
 class Users extends \sophwork\app\controller\AppController {
     
@@ -24,29 +24,38 @@ class Users extends \sophwork\app\controller\AppController {
     
     public function connection($POST){
         $this->user = $this->KDM->create('pp_user');
-        $this->user->findUserEmail($POST['name']);
+        $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]!=null)
         {
-            $password = $user->getUserPassword()[0];
             
-            $lib = new PasswordLib();
-            if ($lib->verifyPasswordHash($password, $hash))
+            
+            if(password_verify($POST['password'], $this->user->getUserPassword()[0]))
             {
-                session_start();
-                $_SESSION['email']=$user->getUserEmail()[0];
-                $_SESSION['pseudo']=$user->getUserPseudo()[0];
-                $_SESSION['role']=$user->getUserRole()[0];
-                $_SESSION['connected']=true;
+                $_SESSION['user']['email']=$this->user->getUserEmail()[0];
+                $_SESSION['user']['pseudo']=$this->user->getUserPseudo()[0];
+                $_SESSION['user']['role']=$this->user->getUserRole()[0];
+                $_SESSION['user']['connected']=true;
+                
+                $_SESSION['error'][]="Vous êtes connecté";
+                $sophwork = new Sophwork();
+                Sophwork::redirectFromRef($_SESSION['pp-referer']);
+                exit;
                 
             }
             else
             {
                 $_SESSION['error'][]="Le mot de passe est incorrect";
+                $sophwork = new Sophwork();
+                Sophwork::redirectFromRef($_SESSION['pp-referer']);
+                exit;
             }
         }
         else
         {
             $_SESSION['error'][]="Ce pseudonyme n'existe pas";
+            $sophwork = new Sophwork();
+            Sophwork::redirectFromRef($_SESSION['pp-referer']);
+            exit;
         }
     }
     
@@ -56,13 +65,14 @@ class Users extends \sophwork\app\controller\AppController {
         $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]==null){ //FIXME : replace default data
             
-            $lib = new PasswordLib();
-            $passcrypt = $lib->createPasswordHash($POST['password']);
+            
+            
+            $hash_psw = password_hash($POST['password'], PASSWORD_DEFAULT);
             
             $userkey = $lib->getRandomToken(32);
             
             $this->user->setUserEmail($POST['email']);
-            $this->user->setUserPassword($passcrypt);
+            $this->user->setUserPassword($hash_psw);
             $this->user->setUserPseudo($POST['pseudo']);
             $this->user->setUserGender('2');
             $this->user->setUserFirstname($POST['firstname']);

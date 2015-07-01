@@ -56,7 +56,8 @@
 					</div>
 					<div class="line content">
 						<div class="grid-4_4">
-							side bar contents
+							side bar contents<br>
+                            <?php print_r($_SESSION); ?>
 						</div>
 					</div>
 				</div>
