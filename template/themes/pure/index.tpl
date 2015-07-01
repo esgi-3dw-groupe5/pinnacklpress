@@ -80,7 +80,6 @@
 					<div class="line sub-content">
 						<div class="grid-4_4 container">
 							<?php $this->viewData->page->render(); ?>
-							<?php $this->viewData->layout->output(); ?>
 						</div>
 					</div>
 					<?php $this->viewData->footer->render(); ?>

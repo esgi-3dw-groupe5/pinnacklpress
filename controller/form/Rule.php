@@ -24,14 +24,20 @@ class Rule{
 		return true;
 	}
 
-	public function isPassword($value){
+	public function isPassword($value,$value2){
 		if (!preg_match("/.*^(?=.{8,20})(?=.*[a-z])(?=.*[0-9])(?=.*\W).*$/",$value) 
 			|| strlen($value)<8
 			|| strlen($value)>20){
-
+				if($value != $value2){
+					$this->msg[] = "Les mots de passe sont différents";
+				}
 				$this->msg[] = "Le mot de passe ne respecte pas les caractères requis";
 				return false;
 			}
+		if($value != $value2){
+					$this->msg[] = "Les mots de passe sont différents";
+					return false;
+		}	
 		return true;
 	}
 // to be tested

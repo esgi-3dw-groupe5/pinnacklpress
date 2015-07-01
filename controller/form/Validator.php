@@ -45,7 +45,12 @@ class Validator{
 					$validator_rule = $value['validator_rule'][$key1];
 					$fieldName = $value['field_name'];
 					$fieldValue = $POST[$fieldName];
-					$rule->$validator_rule($fieldValue);
+					if($validator_rule == 'isPassword'){
+						$validatePassword = $POST['validate_password'];
+						$rule->$validator_rule($fieldValue,$validatePassword);
+					}else{
+						$rule->$validator_rule($fieldValue);
+					}
 				}
 			}
 		}

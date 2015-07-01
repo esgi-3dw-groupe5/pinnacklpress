@@ -85,11 +85,6 @@ class Controllers extends AppController{
 			$this->setViewData('sitedescription', $slug);
 		$this->setRawData('page', $layout);
 
-		$form = new Form();
-		$element = new htmlForm($form->getForm('inscription'),'inscription');
-		$layout = $element->createForm();
-		$this->setRawData('layout', $layout);
-
 		$footer
 			->filterPmetaName('footer')
 			->querySelect();
