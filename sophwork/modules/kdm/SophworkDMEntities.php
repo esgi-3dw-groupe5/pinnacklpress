@@ -183,6 +183,16 @@ class SophworkDMEntities extends SophworkDM{
 		};
 	}
 
+	public function setOrderMethod($key){
+		$filter = 'orderBy';
+		$method = $$filter.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
+
+		$this->$method = function($value, $limite = false, $offset = false) use ($key){
+			$this->criteria .= ' ORDER BY ' . $key . (!$limite ? $limite : null) . (!$offset ? ','.$offset : null);
+			return $this;
+		};
+	}
+
 	public function __or(){
 		$this->criteria .= ' OR ';
 		return $this;

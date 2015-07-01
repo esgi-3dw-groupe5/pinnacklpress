@@ -32,3 +32,9 @@
 	color: #fff;
 	cursor: pointer;
 }
+
+.active, .active *{
+	background-color: #8f8f8f;
+	color: #fff;
+	cursor: pointer;
+}

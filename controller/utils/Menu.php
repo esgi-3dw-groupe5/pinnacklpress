@@ -7,6 +7,7 @@ use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
 class Menu extends \sophwork\app\controller\AppController {
+	protected $activePage;
 	protected $menu;
 	protected $menuContent;
 	protected $pageLinks;

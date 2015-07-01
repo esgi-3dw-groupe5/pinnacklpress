@@ -90,7 +90,6 @@ class Controllers extends AppController{
 		$layout = $element->createForm();
 		$this->setRawData('layout', $layout);
 
-
 		$footer
 			->filterPmetaName('footer')
 			->querySelect();

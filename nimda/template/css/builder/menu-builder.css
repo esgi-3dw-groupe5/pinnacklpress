@@ -1,0 +1,112 @@
+ Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+#mv-left, #mv-right{
+    width: 3em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.drag-container {
+	width: 100%;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+}
+
+.drag-container .drag-container{
+	margin-bottom: 0;
+}
+
+.menu-node{
+	display: block;
+	border:1px solid #aaaaaa;
+	width: 85%;
+    padding-left: .5em;
+	margin-bottom: 5px;
+    overflow: hidden;
+    border-radius: 3px 0px 0px 3px;
+}
+.menu-node:last-child, .drag-container:last-of-type{
+	margin-bottom: 0;
+}
+
+.menu-node:hover{
+    background: #eee;
+    cursor: pointer;
+}
+
+.head{
+
+}
+
+.over {
+  border: 1px dashed #000 !important;
+}
+
+.selected-node{
+	background: #778899!important;
+    color: #fff;
+}
+
+.level-1{}
+
+.level-2{
+	margin-left: 5%;
+	width: 95%;
+	border:	none;
+}
+
+.level-3{
+	margin-left: 5%;
+	width: 95%;
+	border:	none;
+}
+
+.display-none{
+	display: none;
+	border:	none;
+}
+
+.menu-builder{
+    height:8.5em;
+    border:solid thin #c0c0c0;
+    padding: .5em;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    overflow:auto;
+    box-shadow: 0 1px 3px #ddd inset;
+    background: #f5f5f5;
+    resize: vertical;
+    overflow: auto;
+    min-width: 50px;
+    min-height: 50px;
+}
+ 
+.menu-builder .page,
+.menu-builder .post,
+.menu-builder .category{
+    float: right;
+    padding: 0 1em;
+    border-radius: 4px 0 0 4px;
+    color: #fff;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.menu-builder .page{
+    background: #4169e1;
+}
+.menu-builder .post{
+    background: #800080;
+}
+.menu-builder .category{
+    background: #ff4500;
+}

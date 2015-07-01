@@ -11,6 +11,7 @@
     <!-- page builder css -->
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/notification/notification.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/menu-builder.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/builder-grid.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/grid-resize.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/builder/grid-list.css">

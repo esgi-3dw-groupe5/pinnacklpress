@@ -1,5 +1,5 @@
 	<div id="main">
-    	<div class="header">
+	    	<div class="header">
     	    <h2><?php $this->show('h2') ?></h2>
     	</div>
 		<section>
@@ -57,7 +57,29 @@
 				<div class="line">
 					<div class="gird-4_4">
 						<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
-							Hierarchy
+							<div>
+								<button id="mv-left" class="pinnackl-button pinnackl-button-secondary">&#10096;</button>
+								<button id="mv-right" class="pinnackl-button pinnackl-button-secondary">&#10097;</button>
+								<button id="save-builder" class="pinnackl-button pinnackl-button-primary">Save</button>
+							</div>
+							<div id="menu-builder" class="menu-builder" style="height:auto">
+								<?php $i = 1000; foreach ($this->viewData->pages as $key => $value) : ?>
+									<?php if(in_array($this->get($value, 'page_id'),$this->viewData->linked)) : ?>
+									<div class="drag-container level-1">
+										<div class="drag-container level-2 display-none">
+											<div class="drag-container level-3 display-none"></div>
+										</div>
+										<div id="<?php $this->show($value, 'page_id') ?>"
+												class="menu-node head" draggable="true" data-lv="1" data-order="<?=$i?>" data-parent="0">
+											<?php $this->show($value, 'page_name') ?>
+											<span class="<?php $this->show($value, 'page_type') ?>">
+												<?php $this->show($value, 'page_type') ?>
+											</span>
+										</div>
+									</div>
+									<?php endif; ?>
+								<?php $i++; endforeach; ?>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -82,3 +104,5 @@
 	});
 	// console.log(checkbox);
 </script>
+<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
+<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/menus.js"></script>
