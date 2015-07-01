@@ -90,9 +90,13 @@ var listeners = {
 		});
 
 		// Module : Text
-		document.getElementById('close-form').addEventListener('click',function(){
-			document.getElementsByClassName('form-module')[0].style.display = "none";
-		});
+		var elementClose = document.getElementById('close-form');
+		if(elementClose != null){
+			document.getElementById('close-form').addEventListener('click',function(){
+				document.getElementsByClassName('form-module')[0].style.display = "none";
+			});
+		}
+		
 		document.getElementById('close-tx').addEventListener('click',function(){
 			// FIXME : add if modal condition
 			// document.getElementsByClassName('overlay')[0].style.display = "none";
