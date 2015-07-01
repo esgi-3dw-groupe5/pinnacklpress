@@ -90,18 +90,22 @@ var listeners = {
 		});
 
 		// Module : Text
+
 		var elementClose = document.getElementById('close-form');
+		
 		if(elementClose != null){
+			console.log(document.getElementById('close-form'));
 			document.getElementById('close-form').addEventListener('click',function(){
+				console.log('plop');
 				document.getElementsByClassName('form-module')[0].style.display = "none";
 			});
 		}
-		
 		document.getElementById('close-tx').addEventListener('click',function(){
-			// FIXME : add if modal condition
-			// document.getElementsByClassName('overlay')[0].style.display = "none";
 			document.getElementsByClassName('text-module')[0].style.display = "none";
 		});
+		
+		
+		
 	},
 	addSaveBuilderListener:function(){
 		if(document.getElementById('save-builder') !== null){
