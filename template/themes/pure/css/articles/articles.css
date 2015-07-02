@@ -1,0 +1,13 @@
+.line .articles {
+	padding-left: 0.5%;
+	text-align: justify;
+	border: solid;
+}
+.auteur {
+	
+}
+img {
+	float: right;
+	margin: 0.1%;
+	border-radius: 50%;
+}

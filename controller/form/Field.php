@@ -14,6 +14,7 @@ class Field extends Validator{
 
 	public function getFields($idFields,$kdm){
 		$field = $kdm->create('pp_field');
+
 		foreach ($idFields as $key => $value) {
 			$field->findFieldId($idFields[$key]);
 			$arrayField = $field->getData();

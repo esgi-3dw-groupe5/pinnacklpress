@@ -31,7 +31,8 @@ class Controllers extends AppController{
         
         session_start();
         $user = new Users();
-        $user->initUser();
+        if(!isset($_SESSION['user']))
+            $user->initUser();
 
         $menu = new Menu();
         $links = $menu->create('primary');
@@ -85,11 +86,6 @@ class Controllers extends AppController{
 			$this->setViewData('sitedescription', $slug);
 		$this->setRawData('page', $layout);
 
-		$form = new Form();
-		$element = new htmlForm($form->getForm('inscription'),'inscription');
-		$layout = $element->createForm();
-		$this->setRawData('layout', $layout);
-
 		$footer
 			->filterPmetaName('footer')
 			->querySelect();
@@ -102,13 +98,11 @@ class Controllers extends AppController{
         $roleNeedle = $page->getPageConnectedAs()[0];
         $user->checkPermission($roleNeedle);
         
-        if(isset($_SESSION['error'])){
-            foreach ($_SESSION['error'] as $value){
-                echo "$value<br />\n";
-            }
-            //var_dump($_SESSION['error']);
-            unset($_SESSION['error']);
+        if( isset($_GET['act']) && $_GET['act']=='logout' ) {
+            $user->logout();
         }
+        
+        
         
 	}
 

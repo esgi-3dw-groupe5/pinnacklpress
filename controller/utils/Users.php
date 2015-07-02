@@ -10,8 +10,8 @@ use sophwork\app\controller\AppController;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
-use Antnee\PhpPasswordLib\PhpPasswordLib;
 
+    
 class Users extends \sophwork\app\controller\AppController {
     
     protected $user;
@@ -23,48 +23,77 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function connection($POST){
-        require_once __DIR__ . '/../../Antnee/PhpPasswordLib/PhpPasswordLib.php';
         $this->user = $this->KDM->create('pp_user');
-        $this->user->findUserEmail($POST['name']);
+        $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]!=null)
         {
-            if($this->user->getUserPassword()[0]==$POST['password'])
+            
+            
+            if(password_verify($POST['password'], $this->user->getUserPassword()[0]))
             {
-                session_start();
-                $_SESSION['email']=$user->getUserEmail()[0];
-                $_SESSION['pseudo']=$user->getUserPseudo()[0];
-                $_SESSION['role']=$user->getUserRole()[0];
-                $_SESSION['connected']=true;
+                $_SESSION['user']['email']=$this->user->getUserEmail()[0];
+                $_SESSION['user']['pseudo']=$this->user->getUserPseudo()[0];
+                $_SESSION['user']['role']=$this->user->getUserRole()[0];
+                $_SESSION['user']['connected']=true;
+                
+                $_SESSION['form']['error'][]="Vous êtes connecté";
+                $sophwork = new Sophwork();
+                Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+                exit;
                 
             }
+            else
+            {
+                $_SESSION['form']['error'][]="Le mot de passe est incorrect";
+                $sophwork = new Sophwork();
+                Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+                exit;
+            }
         }
-        var_dump($this->user);
+        else
+        {
+            $_SESSION['form']['error'][]="Ce pseudonyme n'existe pas";
+            $sophwork = new Sophwork();
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+            exit;
+        }
     }
     
     public function inscription($POST){
-        require_once __DIR__ . '/../../Antnee/PhpPasswordLib/PhpPasswordLib.php';
         var_dump($POST);
         $this->user = $this->KDM->create('pp_user');
-        $this->user->findUserEmail($POST['name']);
+        $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]==null){ //FIXME : replace default data
-            $this->user->setUserEmail($POST['name']);
-            $this->user->setUserPassword($POST['password']);
-            $this->user->setUserPseudo('plop2Pseudo');
+            
+            
+            
+            $hash_psw = password_hash($POST['password'], PASSWORD_DEFAULT);
+            
+            $userkey = $lib->getRandomToken(32);
+            
+            $this->user->setUserEmail($POST['email']);
+            $this->user->setUserPassword($hash_psw);
+            $this->user->setUserPseudo($POST['pseudo']);
             $this->user->setUserGender('2');
-            $this->user->setUserFirstname('Lorem2');
-            $this->user->setUserName('Ipsum2');
-            $this->user->setUserBdate('1990-10-20');
-            $this->user->setUserRole('Viewer');
-            $this->user->setUserKey('azerty1234');
+            $this->user->setUserFirstname($POST['firstname']);
+            $this->user->setUserName($POST['lastname']);
+            $this->user->setUserBdate($POST['date']);
+            $this->user->setUserRole('visitor');
+            $this->user->setUserKey($userkey);
             $this->user->setUserActive('0');
-            $this->user->setUserUrl('Lorem-Ipsum2');
+            $this->user->setUserUrl($POST['pseudo']);
 
             $this->user->save();
+            
+            $_SESSION['form']['error'][]="Vous êtes inscrits";
+            $sophwork = new Sophwork();
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+            exit;
         }
         else{
-            $_SESSION['error'][]="L'utilisateur existe déjà";
+            $_SESSION['form']['error'][]="L'utilisateur existe déjà";
             $sophwork = new Sophwork();
-            Sophwork::redirectFromRef($_SESSION['pp-referer']);
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
         var_dump($this->user);
@@ -72,14 +101,13 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function initUser(){
-        $_SESSION['user'] = [];
         $_SESSION['user']['pseudo']     = null;
         $_SESSION['user']['email']      = null;
         $_SESSION['user']['role']       = 'visitor';
         $_SESSION['user']['connected']  = false;
     }
     
-    function checkPermission($permission){
+    public function checkPermission($permission){
         $roles = [
             'superadmin' => [
                 'superadmin',
@@ -134,6 +162,13 @@ class Users extends \sophwork\app\controller\AppController {
         }
         
             
+    }
+    
+    public function logout(){
+        session_destroy();
+        $sophwork = new Sophwork();
+        Sophwork::redirectFromRef('index');
+        exit;
     }
     
     

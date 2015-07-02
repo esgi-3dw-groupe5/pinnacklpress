@@ -29,6 +29,8 @@
 			href="<?php $this->show('siteurl');?>/template/themes/<?php $this->show('theme') ?>/css/buttons/buttons.css">
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>/template/themes/<?php $this->show('theme') ?>/css/forms/forms.css">
+		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>/template/themes/<?php $this->show('theme') ?>/css/articles/articles.css">
 	</head>
 	<body class="line">
 		<div id="layout">
@@ -54,7 +56,14 @@
 					</div>
 					<div class="line content">
 						<div class="grid-4_4">
-							side bar contents
+							side bar contents<br>
+                            <?php 
+                            var_dump($_SESSION);
+                            if(!empty($_SESSION['user']['pseudo']) ){
+                                print("<div>Bienvenue ".$_SESSION['user']['pseudo']." ");
+                                printf("<a href='http://127.0.0.1/pinnacklpress/?act=logout'>Déconnexion</a></div>");
+                            } 
+                            ?>
 						</div>
 					</div>
 				</div>
@@ -78,8 +87,15 @@
 					<div class="line sub-content">
 						<div class="grid-4_4 container">
 							<?php $this->viewData->page->render(); ?>
-							<?php $this->viewData->layout->output(); ?>
 						</div>
+                        <?php 
+                        if(isset($_SESSION['form'])){
+                            foreach ($_SESSION['form']['error'] as $value){
+                                echo "$value<br />\n";
+                            }
+                            unset($_SESSION['form']);
+                        }
+                        ?>
 					</div>
 					<?php $this->viewData->footer->render(); ?>
 					<div class="line footer-right">

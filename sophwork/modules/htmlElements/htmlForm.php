@@ -33,8 +33,7 @@ class htmlForm extends htmlElement{
 			$input->set('name',$this->data[$key]['field_name']);
 			$input->set('placeholder',$this->data[$key]['field_name']);
 			$form->inject($input);
-
-			if($this->data[$key]['field_type'] == 'password'){
+			if($this->data[$key]['field_type'] == 'password' && array_key_exists('validator_rule', $this->data[$key])){
 
 				$form->inject($line);
 				$inputPwd = new htmlElement('input');

@@ -79,7 +79,7 @@
 			<!-- /content list -->
 			<!-- Modules -->
 			<div class="text-module box">
-				<header>Text Module<i id="close-form"></i></header>
+				<header>Text Module<i id="close-tx"></i></header>
 				<div class="box-list">
 					<div id="wysiwyg"></div>
 					<div class="validate-module">
@@ -89,7 +89,7 @@
 				</div>
 			</div>
 			<div class="form-module box">
-				<header>Form Module<i id="close-tx"></i></header>
+				<header>Form Module<i id="close-form"></i></header>
 				<div class="box-list">
 					<select id="form-list">
 						<?php foreach ($this->viewData->forms as $key => $value) : ?>
