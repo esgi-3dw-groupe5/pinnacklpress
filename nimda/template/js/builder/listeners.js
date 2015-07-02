@@ -105,24 +105,11 @@ var listeners = {
 				console.log("Save page builder");
 				var save = builderHelper.saveBuilder();
 				var data = {pageBuilder:save};
-				// get the right url
-				var url = window.location.href;
-				var stop = false;
-				var link = "";
-				urls = url.split('/');
-				[].forEach.call(urls, function (url) {
-					if(url == 'pages' || url == 'footers'){
-						stop = true;
-						return;
-					}
-					if(!stop)
-						link+=url+"/";
-				});
-				
+
 				builderHelper.AJAX(data, function(data){
-					console.log(data);
+					console.log('data');
 					window.location.reload();
-				}, link+'options.php');
+				}, Sophwork.getUrl('nimda/options.php'));
 			});
 		}
 	},

@@ -63,8 +63,8 @@ class AppController extends SophworkApp{
 		}
 		else{
 			$this->KDM = new SophworkDM(Sophwork::getConfig());
-			if(file_exists('database/pinnacklpress_db.php'))
-				include('database/pinnacklpress_db.php');
+			// if(file_exists('database/pinnacklpress_db.php'))
+			// 	include('database/pinnacklpress_db.php');
 			if($this->page === 'config')
 				sophwork::redirect();
 		}

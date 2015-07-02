@@ -131,16 +131,6 @@
                     '|', 'foreColor', 'backColor',
                     '|', 'horizontalRule']
             });
-			// $('#wysiwyg').trumbowyg({
-			// 	btnsDef: {
-   //                  // Customizables dropdowns
-   //                  image: {
-   //                      dropdown: ['insertImage', 'upload', 'base64'],
-   //                      ico: 'insertImage'
-   //                  }
-   //              },
-			// 	semantic: true
-			// });
 			$('#wysiwyg').trumbowyg('html', $('#wysiwyg').attr('data'));
 		});
 		var checkboxes = document.querySelectorAll("input[type=checkbox]");

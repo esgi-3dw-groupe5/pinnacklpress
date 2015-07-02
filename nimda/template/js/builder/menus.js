@@ -1,3 +1,7 @@
+
+Sophwork.ready(function(){
+	loadNodesBuilder();
+});
 // Drag And Drope
 var selectedNode = null;
 var dragSrcEl = null;
@@ -182,9 +186,70 @@ mvLeft.addEventListener('click', moveLeft, false);
 mvRight.addEventListener('click', moveRight, false);
 saveBtn.addEventListener('click', saveBuilder, false);
 
+// create a node menu object
+
+var MenuNode = function(id, dataLv, dataOrder, dataParent){
+	this.id = id;
+	this.dataLv = dataLv;
+	this.dataOrder = dataOrder;
+	this.dataParent = dataParent;
+}
+
+function AJAX(data, callback, URL, type){
+	callback = (typeof callback === "undefined") ? function(){} : callback;
+	URL = (typeof URL === "undefined") ? window.location.href : URL;
+	type = (typeof type === "undefined") ? "json" : type;
+	$.ajax({
+		type: "POST",
+		url: URL,
+		data: data,
+		success: function(data){callback(data)}, 
+		dataType: type
+	});
+}
+
 function saveBuilder(e){
 	e.preventDefault();
 	console.log('saving...');
+	var save = {'nodesBuilder':[]};
 
+	var nodes = document.querySelectorAll('.menu-node');
+	var nbNode = 0;
+	[].forEach.call(nodes, function(node){
+		var id = node.id;
+		var dataLv = node.getAttribute('data-lv');
+		var dataOrder = node.getAttribute('data-order');
+		var dataParent = node.getAttribute('data-parent');
+
+		var menuNode = new MenuNode(id, dataLv, dataOrder, dataParent);
+
+		save.nodesBuilder.push(menuNode);
+	});
 	
+	AJAX(save, function(data){
+		if(data == '#updated'){
+			Notification.notify('#updated', function(box){
+				var close = Sophwork('.close-notification');
+				var text = Sophwork('.text-notification');
+				text[0].innerHTML = "&#10004; Your modifications have been saved";
+				close[0].addEventListener('click', function(){
+					Notification.close(box);
+				});
+				Notification.close(box, 20000);
+			});
+		}
+	}, Sophwork.getUrl('nimda/options.php'), 'text');
+}
+
+function loadNodesBuilder(){
+	nodes = document.querySelectorAll('.menu-node');
+	[].forEach.call(nodes, function(node){
+		selectedNode = node;
+		for (var i = 1; i < Number(node.getAttribute('data-lv')); i++) {
+			
+			var nextLv = selectedNode.parentNode.children[0];
+			nextLv.classList.remove('display-none');
+			nextLv.appendChild(selectedNode);
+		};
+	});
 }

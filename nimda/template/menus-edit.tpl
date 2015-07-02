@@ -70,7 +70,10 @@
 											<div class="drag-container level-3 display-none"></div>
 										</div>
 										<div id="<?php $this->show($value, 'page_id') ?>"
-												class="menu-node head" draggable="true" data-lv="1" data-order="<?=$i?>" data-parent="0">
+												class="menu-node head" draggable="true"
+												data-lv="<?php $this->show($value, 'page_level') ?>"
+												data-order="<?=$i?>"
+												data-parent="<?php $this->show($value, 'page_parent') ?>">
 											<?php $this->show($value, 'page_name') ?>
 											<span class="<?php $this->show($value, 'page_type') ?>">
 												<?php $this->show($value, 'page_type') ?>
@@ -105,4 +108,5 @@
 	// console.log(checkbox);
 </script>
 <script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
+<script src="<?php $this->show('siteurl')?>nimda/template/js/libs/sophwork.js"></script>
 <script src="<?php $this->show('siteurl')?>nimda/template/js/builder/menus.js"></script>

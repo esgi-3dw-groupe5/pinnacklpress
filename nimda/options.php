@@ -48,6 +48,7 @@ if($optionPage == 'pages'){
 
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
+		return;
 	}
 	if(!array_key_exists('pageBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){ //handle edit and new case
@@ -258,6 +259,7 @@ elseif($optionPage == 'menus'){
 	$KDM = new SophworkDM($app->config);
 	$menu = $KDM->create('pp_menu');
 	$menu->findOne($edit);
+	$pages = $KDM->create('pp_page');
 	if(array_key_exists('menuBuilder', $_POST)){
 		$menuRs = $KDM->create('pp_menu_rs');
 		$menuRs->findMenuId($menu->getMenuId());
@@ -295,6 +297,17 @@ elseif($optionPage == 'menus'){
 				$menuRs->save();
 			}
 		}
+	}
+	if(array_key_exists('nodesBuilder', $_POST)){
+		foreach ($_POST['nodesBuilder'] as $key => $nodes) {
+			$pages->findOne($nodes['id']);
+			$pages->setPageOrder($nodes['dataOrder']);
+			$pages->setPageLevel($nodes['dataLv']);
+			$pages->setPageParent($nodes['dataParent']);
+			$pages->save();
+		}
+		echo '#updated';
+		return;
 	}
 	if(!array_key_exists('menuBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){ //handle edit and new case

@@ -48,10 +48,16 @@ class Menus extends \sophwork\app\controller\AppController{
 			$this->setViewData('menu_name', ''.$menus->getMenuName()[0]);
 			$this->setViewData('menu_status', ''.$menus->getMenuStatus()[0]);
 
-			$pages->find();
+			$pages
+				->orderByPageOrder()
+				->querySelect();
+
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
 			$this->setViewData('pages', $pages->getData(), 'page_type');
+			$this->setViewData('pages', $pages->getData(), 'page_order');
+			$this->setViewData('pages', $pages->getData(), 'page_level');
+			$this->setViewData('pages', $pages->getData(), 'page_parent');
 
 			$menuRs->findMenuId($edit);
 			$linkedPage = $menuRs->getPageId();

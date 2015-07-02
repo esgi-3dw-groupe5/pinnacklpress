@@ -78,6 +78,7 @@ class SophworkDM{
 		foreach ($entity->indexes as $key => $value) {
 			$entity->setKeyMethod($value);
 			$entity->setFilterMethod($value);
+			$entity->setOrderMethod($value);
 		}
 		return $entity;
 	}

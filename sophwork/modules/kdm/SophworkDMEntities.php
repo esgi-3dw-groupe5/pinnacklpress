@@ -20,6 +20,7 @@ class SophworkDMEntities extends SophworkDM{
 	protected $indexes;
 	protected $data;
 	protected $criteria;
+	protected $order;
 
 
 
@@ -27,6 +28,7 @@ class SophworkDMEntities extends SophworkDM{
 		$this->data = [];
 		$this->indexes = [];
 		$this->criteria = '';
+		$this->order = '';
 	}
 
 	public function __call($method, $args){
@@ -184,11 +186,11 @@ class SophworkDMEntities extends SophworkDM{
 	}
 
 	public function setOrderMethod($key){
-		$filter = 'orderBy';
-		$method = $$filter.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
+		$orderBy = 'orderBy';
+		$method = $$orderBy.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
 
-		$this->$method = function($value, $limite = false, $offset = false) use ($key){
-			$this->criteria .= ' ORDER BY ' . $key . (!$limite ? $limite : null) . (!$offset ? ','.$offset : null);
+		$this->$method = function() use ($key){
+			$this->order .= $key;
 			return $this;
 		};
 	}
@@ -204,7 +206,7 @@ class SophworkDMEntities extends SophworkDM{
 	}
 
 	public function querySelect(){
-		$result = $this->select($this->table, $this->criteria)->fetchAll();
+		$result = $this->select($this->table, $this->criteria, '*', $this->order)->fetchAll();
 		$this->criteria = '';
 		foreach ($result as $key1 => $value1) {
 			foreach ($this->data as $key2 => $value2) {
