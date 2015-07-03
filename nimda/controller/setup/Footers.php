@@ -35,8 +35,13 @@ class Footers extends \sophwork\app\controller\AppController{
 		$contents = $KDM->create('pp_pagemeta');
 
 		if($action == 'delete'){
-			// $footer->find();
-			// $this->callView($page, 'nimda/');
+			$footer->findPageType('footer');
+			$this->setViewData('footers', $footer->getData(), 'page_id');
+			$this->setViewData('footers', $footer->getData(), 'page_name');
+			$this->setViewData('footers', $footer->getData(), 'page_connectedAs');
+			$this->setViewData('footers', $footer->getData(), 'page_status');
+			
+			$this->callView($page, 'nimda/');
 		}
 		elseif($action == 'edit'){
 

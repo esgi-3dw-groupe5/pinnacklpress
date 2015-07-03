@@ -20,6 +20,8 @@
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>/template/themes/<?php $this->show('theme') ?>/css/menus/menus-horizontal.css">
 		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>/template/themes/<?php $this->show('theme') ?>/css/menus/menus-dropdown.css">
+		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>/template/themes/<?php $this->show('theme') ?>/css/menus/menus-skin.css">
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>/template/themes/<?php $this->show('theme') ?>/css/menus/extend.css">
@@ -74,10 +76,21 @@
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
 								<ul class="pinnackl-menu-list">
 									<?php foreach ($this->viewData->links as $key => $value) : ?>
-									<li class="pinnackl-menu-item">
+									<li class="pinnackl-menu-item pinnackl-menu-allow-hover">
 										<a href="<?php $this->e($value['link']) ?>" class="pinnackl-menu-link">
 											<?php $this->e($value['name']) ?>
 										</a>
+										<?php if(sizeof($value['children']) > 0) : ?>
+										<ul class="pinnackl-menu-children">
+											<?php foreach ($value['children'] as $key => $val) : ?>
+											<li class="pinnackl-menu-item">
+												<a href="<?php $this->e($val['link']) ?>" class="pinnackl-menu-link">
+													<?php $this->e($val['name']) ?>
+												</a>
+											</li>
+											<?php endforeach; ?>
+										</ul>
+										<?php endif; ?>
 									</li>
 								<?php endforeach; ?>
 								</ul>

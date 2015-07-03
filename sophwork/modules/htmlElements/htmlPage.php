@@ -17,15 +17,16 @@ class htmlPage extends htmlElement{
 	public function createPage(){
 		foreach ($this->data as $key => $value) {
 			$line = new htmlElement('div');
-			$line->set('class', 'line articles');
+			$line->set('class', 'line');
 			foreach ($value as $key => $subValue) {
-				$img = new htmlElement('img');
-				$img->set('src', 'plop.png');
-				$line->inject($img);
-				$auteur = new htmlElement('div');
-				$auteur->set('class', 'auteur');
-				$auteur->set('text', 'auteur');
-				$line->inject($auteur);
+				// $img = new htmlElement('img');
+				// $img->set('src', 'data/users/Syu93/Syu93.jpg');
+
+				// $auteur = new htmlElement('div');
+				// $auteur->set('class', 'auteur');
+				// $auteur->set('text', 'auteur');
+				// $auteur->inject($img);
+				// $line->inject($auteur);
 				foreach ($subValue as $key => $val) {
 					$grid = new htmlElement('div');
 					$grid->set('class', $val->gridClass);
@@ -41,6 +42,9 @@ class htmlPage extends htmlElement{
 					}
 					$line->inject($grid);
 				}
+
+				// $hr = new htmlElement('hr');
+				// $line->inject($hr);
 			}
 
 			$this->layout[] = $line;

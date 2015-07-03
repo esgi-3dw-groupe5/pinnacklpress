@@ -176,6 +176,8 @@ function getCurentRoot(currentNode){
 			lastRoot = pastNode;
 		}
 	});
+	if(lastRoot === null)
+		return 0;
 	return lastRoot.id;
 }
 
@@ -243,13 +245,12 @@ function saveBuilder(e){
 
 function loadNodesBuilder(){
 	nodes = document.querySelectorAll('.menu-node');
-	[].forEach.call(nodes, function(node){
+	[].forEach.call(nodes, function(node){console.log(node);
 		selectedNode = node;
 		for (var i = 1; i < Number(node.getAttribute('data-lv')); i++) {
-			
 			var nextLv = selectedNode.parentNode.children[0];
 			nextLv.classList.remove('display-none');
 			nextLv.appendChild(selectedNode);
-		};
+		}
 	});
 }

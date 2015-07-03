@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.6
+ *	@Tested version : Sophwork.0.2.7
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -111,7 +111,12 @@ class SophworkDMEntities extends SophworkDM{
 	}
 
 	public function erase(){
-		$pkValue = $this->__getData($this->primaryKey);
+		$pkValue = is_array($this->getData()[$this->primaryKey])?
+			$this->getData()[$this->primaryKey][0]:
+			$this->getData()[$this->primaryKey];
+		// echo'<pre style="background:#ffffff">';
+		// var_dump($pkValue);
+		// echo'</pre>';die;
 		$this->delete($this->table, "$this->primaryKey = \"$pkValue\" ");
 	}
 

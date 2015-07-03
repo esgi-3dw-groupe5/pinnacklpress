@@ -92,7 +92,8 @@
  
 .menu-builder .page,
 .menu-builder .post,
-.menu-builder .category{
+.menu-builder .category,
+.menu-builder .footer{
     float: right;
     padding: 0 1em;
     border-radius: 4px 0 0 4px;
@@ -109,4 +110,8 @@
 }
 .menu-builder .category{
     background: #ff4500;
+}
+
+.menu-builder .footer{
+    background: #00bfff;
 }

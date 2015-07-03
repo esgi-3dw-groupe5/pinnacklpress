@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.6
+ *	@Tested version : Sophwork.0.2.7
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -126,9 +126,6 @@ class SophworkDM{
     public function delete($table, $where = ''){	// FIXME : To test
         $query = 'DELETE FROM ' . $table
                . (($where) ? ' WHERE ' . $where : '');
-               echo'<pre style="background:#ffffff">';
-               var_dump($query);
-               echo'</pre>';
         $req = $this->link->query($query);
         return $req->rowCount();
     }

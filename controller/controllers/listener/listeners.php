@@ -44,7 +44,7 @@ $forms = $KDM->create('pp_form');
 $forms->findFormName($optionPage);
 
 if($forms->getFormId()[0]!=null){
-    if($optionPage=='inscription'|| $optionPage=='connection'){
+    if($optionPage == 'inscription' || $optionPage == 'connection'){
 		$form = new Form();
 		$arrayForm = $form->getForm($optionPage);
 		$validator = new Validator();
@@ -63,9 +63,3 @@ if($forms->getFormId()[0]!=null){
         }
     }
 }
-
-// if(array_key_exists('__post', $_POST)){
-// 	var_dump($_POST);
-// 	$post = new Post();
-// 	$post->createPost($_POST);
-// }

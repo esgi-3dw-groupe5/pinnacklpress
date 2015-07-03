@@ -53,10 +53,10 @@ Sophwork.ready(function(){
         console.log(s.indexOf('delete'));
         if(s.indexOf('delete') != -1 && s.indexOf('delete') == l-2){
             if(confirm('Are you sure ?\nYou want to delete this menu')){
-                window.location = Sophwork.getUrl() + "nimda/options.php";
+                window.location = Sophwork.getUrl("nimda/options.php");
             }
             else{
-                window.location = Sophwork.getUrl() + "nimda/footers";
+                window.location = Sophwork.getUrl("nimda/footers");
             }
         }
     })();

@@ -60,7 +60,7 @@ Sophwork.ready(function(){
                 window.location = Sophwork.getUrl() + "nimda/options.php";
             }
             else{
-                window.location = Sophwork.getUrl() + "nimda/pages";
+                window.location = Sophwork.getUrl() + "nimda/posts";
             }
         }
     })();

@@ -66,10 +66,12 @@ class Posts extends \sophwork\app\controller\AppController{
 		if($action == 'delete'){
 			$pages->findPageType('post');
 			$this->setViewData('pages', $pages->getData(), 'page_id');
-			$this->setViewData('pages', $pages->getData(), 'page_tag');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
-			$this->setViewData('pages', $pages->getData(), 'page_order');
-			$this->setViewData('pages', $pages->getData(), 'page_connectedAs');
+			$this->setViewData('pages', $pages->getData(), 'page_udate');
+
+			$this->setViewData('pages', $categories->getData(), 'page_name');
+			
+			$this->setViewData('pages', $pages->getData(), 'page_name');
 			$this->setViewData('pages', $pages->getData(), 'page_status');
 			
 			$this->callView($page, 'nimda/');

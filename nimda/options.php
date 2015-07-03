@@ -33,7 +33,7 @@ else{
 }
 
 if($optionPage == 'pages'){
-	if($edit == '') $edit = 0;
+	if($edit == '') $edit = 0; // in case of nothing to find, search for somethig that doesn't exist
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
 	$page->findPageId($edit);
@@ -41,7 +41,7 @@ if($optionPage == 'pages'){
 	$pageCotent = $KDM->create('pp_pagemeta');
 	$pageCotent->findPageId($page->getPageId()[0]);
 	if(array_key_exists('pageBuilder', $_POST)){
-		$pageCotent->setPageId($page->getPageId());
+		$pageCotent->setPageId($page->getPageId()[0]);
 		$pageCotent->setPmetaName('content');
 		$pageCotent->setPmetaValue($_POST['pageBuilder']);
 		$pageCotent->save();
@@ -180,7 +180,7 @@ elseif($optionPage == 'posts'){
 	}
 	if(in_array('delete', $optionPageController)){
 		$page->erase();
-		Sophwork::redirect('nimda/pages');
+		Sophwork::redirect('nimda/posts');
 		exit;
 	}
 }
@@ -188,7 +188,7 @@ elseif($optionPage == 'posts'){
 elseif($optionPage == 'categories'){
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
-	$page->findOne($edit);
+	$page->findPageId($edit);
 	if(!array_key_exists('categoryBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){ //handle edit and new case
 
@@ -209,7 +209,7 @@ elseif($optionPage == 'categories'){
 		if(is_array($pageCategories->getPageId())){
 			$linked = $KDM->create('pp_pagemeta');
 			foreach ($pageCategories->getPmetaId() as $key => $value) {
-				$linked->findOne($value);
+				$linked->findPageId($value);
 				if(isset($_POST['pages']) && is_array($_POST['pages'])){
 					foreach ($_POST['pages'] as $key => $value) {
 						if(!in_array($linked->getPageId(), $_POST['pages'])){
@@ -258,16 +258,17 @@ elseif($optionPage == 'categories'){
 elseif($optionPage == 'menus'){
 	$KDM = new SophworkDM($app->config);
 	$menu = $KDM->create('pp_menu');
-	$menu->findOne($edit);
+	// $menu->findOne($edit);
+	$menu->findMenuId($edit);
 	$pages = $KDM->create('pp_page');
 	if(array_key_exists('menuBuilder', $_POST)){
 		$menuRs = $KDM->create('pp_menu_rs');
-		$menuRs->findMenuId($menu->getMenuId());
-		
+		$menuRs->findMenuId($menu->getMenuId()[0]);
+
 		if(is_array($menuRs->getMenuRsId())){
 			$linked = $KDM->create('pp_menu_rs');
 			foreach ($menuRs->getMenuRsId() as $key => $value) {
-				$linked->findOne($value);
+				$linked->findOne($value); // potential error, check for table keys
 
 				if(isset($_POST['pages']) && is_array($_POST['pages'])){
 					foreach ($_POST['pages'] as $key => $value) {
@@ -283,7 +284,7 @@ elseif($optionPage == 'menus'){
 			foreach ($_POST['pages'] as $key => $value) {
 				if(!in_array($value, $menuRs->getPageId())){
 					$added = $KDM->create('pp_menu_rs');
-					$added->setMenuId($menu->getMenuId());
+					$added->setMenuId($menu->getMenuId()[0]);
 					$added->setPageId($value);
 					$added->save();
 				}
@@ -292,7 +293,7 @@ elseif($optionPage == 'menus'){
 		else{
 			foreach ($_POST['pages'] as $key => $value) {
 				$menuRs = $KDM->create('pp_menu_rs');
-				$menuRs->setMenuId($menu->getMenuId());
+				$menuRs->setMenuId($menu->getMenuId()[0]);
 				$menuRs->setPageId($value);
 				$menuRs->save();
 			}
@@ -300,7 +301,7 @@ elseif($optionPage == 'menus'){
 	}
 	if(array_key_exists('nodesBuilder', $_POST)){
 		foreach ($_POST['nodesBuilder'] as $key => $nodes) {
-			$pages->findOne($nodes['id']);
+			$pages->findPageId($nodes['id']);
 			$pages->setPageOrder($nodes['dataOrder']);
 			$pages->setPageLevel($nodes['dataLv']);
 			$pages->setPageParent($nodes['dataParent']);

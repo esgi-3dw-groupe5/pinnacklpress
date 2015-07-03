@@ -51,7 +51,7 @@
     </div>
     <div id="menu">
         <div class="pinnackl-menu">
-            <a class="pinnackl-menu-heading" href="../nimda/">Pinnackl Press</a>
+            <a class="pinnackl-menu-heading" href="<?php $this->show('siteurl')?>nimda/">Pinnackl Press</a>
             <!-- <a class="pinnackl-menu-heading" href="<?php $this->show('siteurl')?>">Your site</a> -->
             <ul class="pinnackl-menu-list">
         	<?php foreach ($this->viewData->menu as $key => $value) : ?>

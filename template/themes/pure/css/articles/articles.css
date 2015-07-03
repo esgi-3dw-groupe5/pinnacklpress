@@ -1,13 +1,36 @@
-.line .articles {
-	padding-left: 0.5%;
+.articles {
 	text-align: justify;
-	border: solid;
 }
+
+.articles .header{
+	border-bottom: 1px solid #eee;
+	color: #aaa;
+	font-size: 80%;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	padding: 0.4em 0;
+	text-transform: uppercase;
+}
+
 .auteur {
-	
+	height: 5em;
 }
-img {
+
+.auteur img {
+	width: 68px;
 	float: right;
 	margin: 0.1%;
 	border-radius: 50%;
+}
+
+.articles hr{
+	box-shadow: 0 0 10px 0 #aaa;
+    float: left;
+    margin: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    height: 1px;
+    border:none;
+    background: #888;
 }
