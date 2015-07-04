@@ -44,7 +44,7 @@ class Users extends \sophwork\app\controller\AppController {
         }
         else
         {
-            $_SESSION['form']['error'][]="Ce pseudonyme n'existe pas";
+            $_SESSION['form']['error'][]="Ce mail n'existe pas";
             $sophwork = new Sophwork();
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
@@ -61,7 +61,7 @@ class Users extends \sophwork\app\controller\AppController {
             
             $hash_psw = password_hash($POST['password'], PASSWORD_DEFAULT);
             
-            $userkey = $lib->getRandomToken(32);
+            $userkey = md5(microtime().rand());
             
             $this->user->setUserEmail($POST['email']);
             $this->user->setUserPassword($hash_psw);
