@@ -60,7 +60,6 @@
 						<div class="grid-4_4">
 							side bar contents<br>
                             <?php 
-                            var_dump($_SESSION);
                             if(!empty($_SESSION['user']['pseudo']) ){
                                 print("<div>Bienvenue ".$_SESSION['user']['pseudo']." ");
                                 printf("<a href='http://127.0.0.1/pinnacklpress/?act=logout'>Déconnexion</a></div>");
