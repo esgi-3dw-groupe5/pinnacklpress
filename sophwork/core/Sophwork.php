@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.7
+ *	@Tested version : Sophwork.0.2.8
  *	@author : Syu93
  *	--
  *	Split Object PHP Framework - Sophwork
@@ -12,7 +12,7 @@ namespace sophwork\core;
 class Sophwork {
 	private $name 		= "sophwork";
 	private $description 	= "Split Object PHP Framework - Sophwork";
-	private $version 		= "0.2.1";
+	private $version 		= "0.2.8";
 
 	public function __construct(){
 
@@ -35,7 +35,13 @@ class Sophwork {
 		$handle = fopen(dirname(__FILE__).'/../.htaccess', "w+");
 		if($path != null)
 			$handle = fopen($path . '/.htaccess', "w+");
-		$text = "Options -MultiViews\nRewriteEngine On\nRewriteBase /".$root."/\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteCond %{REQUEST_FILENAME} !-d\n#	article categorie access\nRewriteRule    ^([a-z0-9_-]+)/?([a-z0-9_-]*)/?([a-z0-9_-]*)/?$    	index.php?p=$1&a=$2&e=$3	[NC,L]\n";
+		$text = "Options -MultiViews\n
+				 RewriteEngine On\n
+				 RewriteBase /".$root."/\n
+				 RewriteCond %{REQUEST_FILENAME} !-f\n
+				 RewriteCond %{REQUEST_FILENAME} !-d\n
+				 #	article categorie access\n
+				 RewriteRule    ^([a-z0-9_-]+)\/?([a-z0-9_-]*)\/?(.*)\/?$    	index.php?p=$1&a=$2&e=$3	[NC,L]\n";
 		fwrite($handle, $text);
 		fclose($handle);
 	}

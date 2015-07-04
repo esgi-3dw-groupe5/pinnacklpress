@@ -2,9 +2,6 @@
 
 namespace controller\posts;
 
-use sophwork\modules\kdm\SophworkDM;
-use sophwork\modules\kdm\SophworkDMEntities;
-
 class Post extends \sophwork\app\controller\AppController {
     
     protected $post = [];

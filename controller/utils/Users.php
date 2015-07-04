@@ -2,15 +2,7 @@
 
 namespace controller\utils;
 
-// -- Sophwork --
 use sophwork\core\Sophwork;
-use sophwork\app\app\SophworkApp;
-use sophwork\app\controller\AppController;
-
-use sophwork\modules\kdm\SophworkDM;
-use sophwork\modules\kdm\SophworkDMEntities;
-
-
     
 class Users extends \sophwork\app\controller\AppController {
     

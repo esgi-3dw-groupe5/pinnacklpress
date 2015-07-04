@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.7
+ *	@Tested version : Sophwork.0.2.8
  *	@author : Syu93
  *	--
  *	Sophpkwork module : ORM Data mapper
@@ -42,7 +42,11 @@ class SophworkDM{
 			extract($this->config);
 			try{
 				$link = new \PDO('mysql:host='.$db_host.';dbname='.$db_name,$db_login, $db_password,
-				array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION)
+				array(
+					\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+					\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+					\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+					)
 				);
 			}
 			catch(Exeption $e){

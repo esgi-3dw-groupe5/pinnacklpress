@@ -3,8 +3,6 @@
 namespace controller\utils;
 
 use sophwork\core\Sophwork;
-use sophwork\modules\kdm\SophworkDM;
-use sophwork\modules\kdm\SophworkDMEntities;
 
 class Menu extends \sophwork\app\controller\AppController {
 	protected $activePage;
@@ -93,6 +91,7 @@ class Menu extends \sophwork\app\controller\AppController {
 		else{
 			if($this->article)
 				$page->findPageTag($this->article);
+			return $page;
 		}
 	}
 }

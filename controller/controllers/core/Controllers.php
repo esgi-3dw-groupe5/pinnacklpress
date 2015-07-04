@@ -4,10 +4,6 @@ namespace controller\controllers\core;
 
 use sophwork\core\Sophwork;
 use sophwork\app\controller\AppController;
-	// KTE
-use sophwork\modules\kte\SophworkTELoader;
-use sophwork\modules\kte\SophworkTELexer;
-use sophwork\modules\kte\SophworkTEParser;
 
 use sophwork\modules\htmlElements\htmlElement;
 use sophwork\modules\htmlElements\htmlPage;
@@ -24,21 +20,24 @@ use controller\form\Validator;
     
 class Controllers extends AppController{
 
-
 	public function __construct(){
 		parent::__construct();
-		$view = $this->appView; // Class variable ?
-        
-        session_start();
-        $user = new Users();
-        if(!isset($_SESSION['user']))
-            $user->initUser();
+		$this->initOption();
+		$menu = $this->initMenu();
+		$pageContent = $this->initPageContent($menu);
+		$this->initUser($pageContent);
+		$this->initFooter();
+	}
 
-        $menu = new Menu();
-        $links = $menu->create('primary');
-		$this->setRawData('links', $links);
+	public function __get($param){
+		return $this->$param;
+	}
 
-		// Get option for all pages
+	public function __set($param, $value){
+		$this->$param = $value;
+	}
+
+	public function initOption(){
 		$options = $this->KDM->create('pp_option');
 		$options->findOptionName("sitename");
 		$sitename = $options->getOptionValue()[0];
@@ -48,9 +47,10 @@ class Controllers extends AppController{
 
 		$options->findOptionName("siteurl");
 		$siteurl = $options->getOptionValue()[0];
-		
+
 		$options->findOptionName("theme");
 		$theme = $options->getOptionValue()[0];
+		$this->appView->theme = $theme;
 
 		$options->findOptionName("sidebar");
 		$sidebar = $options->getOptionValue()[0];
@@ -60,17 +60,14 @@ class Controllers extends AppController{
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('theme', $theme);
 		$this->setViewData('sidebar', $sidebar);
-		
-		// set the theme. By default pure theme is used
-		$view = $this->appView; // Class variable ?
-		$view->theme = $theme;
+	}
 
+	public function initPageContent($menu){
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);
 		$pageContent = $this->KDM->create('pp_pagemeta');
-		$footer = $this->KDM->create('pp_pagemeta');
 
-		$menu->permaLink($page);
+		$page = $menu->permaLink($page);
 
 		$pageContent
 			->filterPageId($page->getPageId()[0])
@@ -82,10 +79,21 @@ class Controllers extends AppController{
 		$slug = $page->getPageName()[0];
 		$html = new htmlPage($data);
 		$layout = $html->createPage(); // create a post method
-		if($slug != 'Index') //FIXME : create an index attribute to find here
+		if($slug != 'Index')
 			$this->setViewData('sitedescription', $slug);
 		$this->setRawData('page', $layout);
+		return $page;
+	}
 
+	public function initMenu(){
+		$menu = new Menu();
+		$links = $menu->create('primary');
+		$this->setRawData('links', $links);
+		return $menu;
+	}
+    
+    public function initFooter(){
+		$footer = $this->KDM->create('pp_pagemeta');
 		$footer
 			->filterPmetaName('footer')
 			->querySelect();
@@ -94,24 +102,20 @@ class Controllers extends AppController{
 		$html = new htmlFooter($data);
 		$layout = $html->createFooter();
 		$this->setRawData('footer', $layout);
+    }
 
-        $roleNeedle = $page->getPageConnectedAs()[0];
-        $user->checkPermission($roleNeedle);
-        
-        if( isset($_GET['act']) && $_GET['act']=='logout' ) {
-            $user->logout();
-        }
-        
-        
-        
-	}
+    public function initUser($page){
+		if (session_status() == PHP_SESSION_NONE) {
+			session_start();
+			$user = new Users();
+			if(!isset($_SESSION['user']))
+				$user->initUser();
+		}
+		$roleNeedle = $page->getPageConnectedAs()[0];
+		$user->checkPermission($roleNeedle);
 
-	public function __get($param){
-		return $this->$param;
-	}
-
-	public function __set($param, $value){
-		$this->$param = $value;
-	}
-    
+		if( isset($_GET['act']) && $_GET['act']=='logout' ) {
+		    $user->logout();
+		}
+    }
 }

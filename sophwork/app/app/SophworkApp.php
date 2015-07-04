@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.7
+ *	@Tested version : Sophwork.0.2.8
  *	@author : Syu93
  *	--
  *	Main application class
@@ -14,6 +14,9 @@ use sophwork\app\view\AppView;
 use sophwork\app\model\AppModel;
 use sophwork\app\controller\AppController;
 
+use sophwork\modules\kdm\SophworkDM;
+use sophwork\modules\kdm\SophworkDMEntities;
+
 class SophworkApp extends Sophwork{
 	// public $appName;
 	public $config;
@@ -21,7 +24,6 @@ class SophworkApp extends Sophwork{
 	public $appModel;
 	public $appController;
 
-	protected $viewName;
 	/**
 	 *	@param none
 	 *	instanciate all sophwork classes :
@@ -39,12 +41,10 @@ class SophworkApp extends Sophwork{
 	public function __construct(){
 		parent::__construct();
 		$this->config = Sophwork::getConfig();
-
-		$this->appName 			 = "Pinnackl";
 		$this->appView 			 = new AppView();
-		$this->appView
-			->viewData 			 = new \StdClass();
-		//$this->appModel 		 = new AppModel($this->config);
+		// $this->appModel 		 = new AppModel($this->config);
+		if(Sophwork::getConfig())
+			$this->KDM = new SophworkDM(Sophwork::getConfig());
 		if(!($this instanceof AppController))
 			$this->appController 	= new AppController($this->appModel);
 	}

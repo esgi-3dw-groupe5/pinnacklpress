@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.7
+ *	@Tested version : Sophwork.0.2.8
  *	@author : Syu93
  *	--
  *	Main view class
@@ -22,8 +22,8 @@ class AppView extends SophworkApp{
 	];
 	public $viewData;
 
-	public function __construct($theme = 'pure') { // default theme
-		$this->theme = $theme;
+	public function __construct() {
+		$this->viewData = new \StdClass();
 	}
 
 	public function __set($param, $value) {
@@ -69,15 +69,12 @@ class AppView extends SophworkApp{
 		if(!is_null($item)){
 			if(getType($value->$item) == "string"){
 				if(isset($value->$item))
-				echo $method($value->$item);
+					echo $method($value->$item);
 				return $method($value->$item);
-			}else{
-				return $value->$item;
 			}	
 		}
 		if(isset($this->viewData->$value))
 			echo $method($this->viewData->$value);
-		return $method($this->viewData->$value);
 	}
 
 	public function e($value, $modifier = 'S'){
