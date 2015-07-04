@@ -19,21 +19,21 @@
 			<h1>Pinnackl Press</h1>
 			<form  class="pinnackl-form pinnackl-form-aligned" action="" method="post">
 			<fieldset>
-		  	<legend><h3>1st Step : Database Connection</h3></legend>
+		  	<legend><h3>2nd Step : Create 1st administrator</h3></legend>
 				<div class="pinnackl-control-group">
-					<label for="db_host"><span>db_host : </span></label><input id="db_host" class="pinnackl-form" type="text" name="db_host">
+					<label for="pp_login"><span>Admin login : </span></label><input id="pp_login" class="pinnackl-form" type="text" name="pseudo">
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="db_name"><span>db_name : </span></label><input id="db_name" class="pinnackl-form" type="text" name="db_name">
+					<label for="pp_email"><span>Admin email : </span></label><input id="pp_email" class="pinnackl-form" type="email" name="email">
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="db_login"><span>db_login : </span></label><input id="db_login" class="pinnackl-form" type="text" name="db_login">
+					<label for="pp_password"><span>Admin password : </span></label><input id="pp_password" class="pinnackl-form" type="password" name="password">
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="db_password"><span>db_password : </span></label><input id="db_password" class="pinnackl-form" type="password" name="db_password">
+					<label for="pp_confirm"><span>Password confirm : </span></label><input id="pp_confirm" class="pinnackl-form" type="password" name="confirm">
 				</div>
 				<div class="pinnackl-controls">
-					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_dbConfig" value="Envoyer">
+					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Envoyer">
 				</di>
 			</fieldset>
 			</form>

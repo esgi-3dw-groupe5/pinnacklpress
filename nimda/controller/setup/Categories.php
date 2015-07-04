@@ -58,7 +58,7 @@ class Categories extends \sophwork\app\controller\AppController{
 		
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
-		$this->setViewData('h2', 'pages configuration');
+		$this->setViewData('h2', 'Categories configuration');
 
 		if($action == 'delete'){
 			$pages->findPageType('page');

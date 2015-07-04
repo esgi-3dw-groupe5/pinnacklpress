@@ -19,21 +19,21 @@
 			<h1>Pinnackl Press</h1>
 			<form  class="pinnackl-form pinnackl-form-aligned" action="" method="post">
 			<fieldset>
-		  	<legend><h3>1st Step : Database Connection</h3></legend>
+		  	<legend><h3>3rd Step : Setup Pinnackl Press options</h3></legend>
 				<div class="pinnackl-control-group">
-					<label for="db_host"><span>db_host : </span></label><input id="db_host" class="pinnackl-form" type="text" name="db_host">
+					<label for="sitename"><span>Site name : </span></label>
+					<input id="sitename" class="pinnackl-input-1-4" type="text" name="sitename" placeholder="Site name">
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="db_name"><span>db_name : </span></label><input id="db_name" class="pinnackl-form" type="text" name="db_name">
+					<label for="sitedescription"><span>Site description : </span></label>
+					<input id="sitedescription" class="pinnackl-input-1-4" type="text" name="sitedescription" placeholder="Site description">
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="db_login"><span>db_login : </span></label><input id="db_login" class="pinnackl-form" type="text" name="db_login">
-				</div>
-				<div class="pinnackl-control-group">
-					<label for="db_password"><span>db_password : </span></label><input id="db_password" class="pinnackl-form" type="password" name="db_password">
+					<label for="siteurl"><span>Site url : </span></label>
+					<input id="siteurl" class="pinnackl-input-1-4" type="text" name="siteurl" value="<?php $this->show('siteUrl')?>" placeholder="<?php $this->show('siteUrl')?>">
 				</div>
 				<div class="pinnackl-controls">
-					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_dbConfig" value="Envoyer">
+					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_settings" value="Envoyer">
 				</di>
 			</fieldset>
 			</form>

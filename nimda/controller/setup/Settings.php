@@ -98,8 +98,8 @@ class Settings extends \sophwork\app\controller\AppController{
 
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Global configuration');
-		$this->setViewData('legend1', 'Site configuation');
-		$this->setViewData('legend2', 'Permalink configuation');
+		$this->setViewData('legend1', 'Site configuration');
+		$this->setViewData('legend2', 'Permalink configuration');
 		// input-1
 		$this->setViewData('label_1', $nameField->getFieldPlaceholder());
 		$this->setViewData('input_1', $nameField->getFieldDomname());

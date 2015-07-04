@@ -1,11 +1,11 @@
 <div id="main">
     <div class="header">
-        <h1><?php $this->show('h1'); ?></h1>
+        <h2><?php $this->show('h2'); ?></h2>
     </div>
     <div class="content">
     	<form  class="pinnackl-form" action="<?php $this->show('siteurl')?>nimda/options.php" method="post">
     		<div id="field-container">
-    			<?php /*var_dump($this->viewData);*/$i = 0; ?>
+    			<?php $i = 0; ?>
     			<input type="text" name="form-name" placeholder="form name" class="pinnackl-input-1-2" id="field-<?php echo $i?>" value="<?php $this->show('form_name'); ?>" required>
     			<?php foreach ($this->viewData->form as $key => $value) : ?>  
     			<?php $i++; ?>

@@ -35,13 +35,7 @@ class Sophwork {
 		$handle = fopen(dirname(__FILE__).'/../.htaccess', "w+");
 		if($path != null)
 			$handle = fopen($path . '/.htaccess', "w+");
-		$text = "Options -MultiViews\n
-				 RewriteEngine On\n
-				 RewriteBase /".$root."/\n
-				 RewriteCond %{REQUEST_FILENAME} !-f\n
-				 RewriteCond %{REQUEST_FILENAME} !-d\n
-				 #	article categorie access\n
-				 RewriteRule    ^([a-z0-9_-]+)\/?([a-z0-9_-]*)\/?(.*)\/?$    	index.php?p=$1&a=$2&e=$3	[NC,L]\n";
+		$text = "Options -MultiViews\nRewriteEngine On\nRewriteBase /".$root."/\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteCond %{REQUEST_FILENAME} !-d\n#	article categorie access\nRewriteRule    ^([a-z0-9_-]+)\/?([a-z0-9_-]*)\/?(.*)\/?$    	index.php?p=$1&a=$2&e=$3	[NC,L]\n";
 		fwrite($handle, $text);
 		fclose($handle);
 	}
@@ -61,13 +55,8 @@ class Sophwork {
 	 * @param $POST
 	 */
 	public static function setConfig($POST){
-		$handle = fopen('config.local.php', "w+");
-		$text = "<?php\n\$config = array(\n
-		'db_host' => '".$POST['db_host']."',\n
-		'db_name' => '".strtolower($POST['db_name'])."',\n
-		'db_login' => '".$POST['db_login']."',\n
-		'db_password' => '".$POST['db_password']."',\n
-		);
+		$handle = fopen(dirname(dirname(__FILE__)) . '/../config.local.php', "w+");
+		$text = "<?php\n\$config = array(\n'db_host' => '".$POST['db_host']."',\n'db_name' => '".strtolower($POST['db_name'])."',\n'db_login' => '".$POST['db_login']."',\n'db_password' => '".$POST['db_password']."',\n);
 		 ";
 		fwrite($handle, $text);
 		fclose($handle);

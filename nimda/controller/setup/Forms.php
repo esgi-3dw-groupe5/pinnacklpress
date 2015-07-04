@@ -64,7 +64,7 @@ class Forms extends \sophwork\app\controller\AppController{
 
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
-		$this->setViewData('h2', 'Forms');
+		$this->setViewData('h2', 'Forms configuration');
 
 		if($action == 'edit'){
 
@@ -93,13 +93,10 @@ class Forms extends \sophwork\app\controller\AppController{
 			$this->setViewData('form', $plop, 'validator_rule');
 			$this->setViewData('siteurl', $siteurl);
 
-			$this->setViewData('h1', 'Edit form');
-
 			$this->callView($page .'-edit', 'nimda/');
 		}elseif($action == 'new'){
 			$pages->findPageId($edit);
 
-			$this->setViewData('h1', 'Formulaire');
 			$this->setViewData('siteurl', $siteurl);
 
 			$this->callView($page .'-new', 'nimda/');
@@ -116,7 +113,6 @@ class Forms extends \sophwork\app\controller\AppController{
 			$forms = $KDM->create('pp_form');
 			$forms->find();
 
-			$this->setViewData('h1', 'Formulaire');
 			$this->setViewData('forms', $forms->getData(), 'form_id');
 			$this->setViewData('forms', $forms->getData(), 'form_name');
 	

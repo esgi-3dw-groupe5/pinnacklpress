@@ -1,3 +1,4 @@
 config.local.php
-*.htaccess
-*.htaccess
+install/pinnacklpress.php
+install/.htaccess
+nimda/.htaccess

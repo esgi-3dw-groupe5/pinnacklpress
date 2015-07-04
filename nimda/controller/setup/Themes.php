@@ -64,7 +64,7 @@ class Themes extends \sophwork\app\controller\AppController{
 		$themeField = $this->__getFields('themeField');
 
 		$this->setViewData('h1', 'Pinnackl Press');
-		$this->setViewData('h2', 'Theme configuration');
+		$this->setViewData('h2', 'Themes configuration');
 		$this->setViewData('legend1', 'Theme name');
 		$this->setViewData('legend2', 'Theme Settings');
 		// input-1

@@ -29,7 +29,7 @@ class Footers extends \sophwork\app\controller\AppController{
 
 		$this->setViewData('siteurl', $siteurl);
 		$this->setViewData('h1', 'Pinnackl Press');
-		$this->setViewData('h2', 'Footer configuration');
+		$this->setViewData('h2', 'Footers configuration');
 		
 		$footer = $KDM->create('pp_page');
 		$contents = $KDM->create('pp_pagemeta');
