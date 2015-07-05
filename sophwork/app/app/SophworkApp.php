@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.8
+ *	@Tested version : Sophwork.0.2.9
  *	@author : Syu93
  *	--
  *	Main application class

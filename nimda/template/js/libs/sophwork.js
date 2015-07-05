@@ -1,6 +1,6 @@
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.2
+ *	@Tested version : Sophwork.0.2.9
  *	@author : Syu93
  *	--
  *	Split Object PHP Framework - Sophwork
@@ -72,3 +72,18 @@ Sophwork.redirect = function(parameters){
 		var localUrl = protocol + '//' + hostname + '/' + uri[1] + '/' + parameters;
 	window.location = localUrl;
 };
+
+// FIXME : use full XHR instead
+Sophwork.$AJAX = function(data, callback, URL, method, type){
+    callback = (typeof callback === "undefined") ? function(){} : callback;
+    URL = (typeof URL === "undefined") ? window.location.href : URL;
+    type = (typeof type === "undefined") ? "json" : type;
+    method = (typeof method === "undefined") ? "POST" : method;
+    $.ajax({
+        type: "GET",
+        url: URL,
+        data: data,
+        success: function(data){callback(data)}, 
+        dataType: type
+    });
+}

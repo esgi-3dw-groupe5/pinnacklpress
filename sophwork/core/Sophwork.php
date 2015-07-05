@@ -1,7 +1,7 @@
 <?php
 /**
  *	This file is a part of the sophwork project
- *	@Tested version : Sophwork.0.2.8
+ *	@Tested version : Sophwork.0.2.9
  *	@author : Syu93
  *	--
  *	Split Object PHP Framework - Sophwork
@@ -12,7 +12,7 @@ namespace sophwork\core;
 class Sophwork {
 	private $name 		= "sophwork";
 	private $description 	= "Split Object PHP Framework - Sophwork";
-	private $version 		= "0.2.8";
+	private $version 		= "0.2.9";
 
 	public function __construct(){
 
@@ -67,15 +67,20 @@ class Sophwork {
 		$s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
 		$protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
 		$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
-
+		$cnf = @file_get_contents( __DIR__ . '/../../sophwork.json');
+		if($cnf !== false){
+			$cnf = json_decode($cnf);
+			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $cnf->root . $parameters;
+			header("Location: " . $localUrl);
+		}
 		// correspond to this specific case
 		$URI = preg_split("/\//",$_SERVER['REQUEST_URI']);
 		$c = count($URI);
 		if($c < 3)
-			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] ."/" .$parameters;
+			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $parameters;
 		else
-			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] ."/". $URI[1] ."/" .$parameters;
-		header("Location: ".$localUrl);
+			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $URI[1] . "/" . $parameters;
+		header("Location: " . $localUrl);
 	}
 
 	public static function redirectFromRef($referer){
@@ -87,14 +92,18 @@ class Sophwork {
 		$s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
 		$protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
 		$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
-
+		$cnf = @file_get_contents( __DIR__ . '/../../sophwork.json');
+		if($cnf !== false){
+			$cnf = json_decode($cnf);
+			return $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $cnf->root . $parameters;
+		}
 		// correspond to this specific case
 		$URI = preg_split("/\//",$_SERVER['REQUEST_URI']);
 		$c = count($URI);
 		if($c < 3)
-			return $protocol . "://" . $_SERVER['SERVER_NAME'] ."/" .$parameters;
+			return $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $parameters;
 		else
-			return $protocol . "://" . $_SERVER['SERVER_NAME'] ."/". $URI[1] ."/" .$parameters;
+			return $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $URI[1] . "/" .$parameters;
 	}
 
 	public static function camelCase($str, array $noStrip = []){

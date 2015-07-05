@@ -62,17 +62,18 @@ var builderHelper = {
 			document.getElementById('canvas').removeChild(line);
 		});
 	},
-	AJAX:function (data, callback, URL, type){
-		callback = (typeof callback === "undefined") ? function(){} : callback;
-		URL = (typeof URL === "undefined") ? window.location.href : URL;
-		type = (typeof type === "undefined") ? "json" : type;
-		$.ajax({
-			type: "POST",
-			url: URL,
-			data: data,
-			success: function(data){callback(data)}, 
-			dataType: type
-		});
+	AJAX:function(data, callback, URL, method, type){
+	    callback = (typeof callback === "undefined") ? function(){} : callback;
+	    URL = (typeof URL === "undefined") ? window.location.href : URL;
+	    type = (typeof type === "undefined") ? "json" : type;
+	    method = (typeof method === "undefined") ? "POST" : method;
+	    $.ajax({
+	        type: method,
+	        url: URL,
+	        data: data,
+	        success: function(data){callback(data)}, 
+	        dataType: type
+	    });
 	},
 };
  // function randomColor(){
