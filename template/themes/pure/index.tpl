@@ -66,7 +66,7 @@
                             } 
                             ?>
 						</div>
-					</div>
+					</div
 				</div>
 				<?php endif; ?>
 				<div class="<?php echo (($this->get('sidebar') == 'on')?'grid-3_4':'grid-4_4 no-sidebar') ?> body">
@@ -74,24 +74,26 @@
 						<div class="grid-4_4">
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
 								<ul class="pinnackl-menu-list">
-									<?php foreach ($this->viewData->links as $key => $value) : ?>
-									<li class="pinnackl-menu-item pinnackl-menu-allow-hover">
-										<a href="<?php $this->e($value['link']) ?>" class="pinnackl-menu-link">
-											<?php $this->e($value['name']) ?>
-										</a>
-										<?php if(sizeof($value['children']) > 0) : ?>
-										<ul class="pinnackl-menu-children">
-											<?php foreach ($value['children'] as $key => $val) : ?>
-											<li class="pinnackl-menu-item">
-												<a href="<?php $this->e($val['link']) ?>" class="pinnackl-menu-link">
-													<?php $this->e($val['name']) ?>
-												</a>
-											</li>
-											<?php endforeach; ?>
-										</ul>
-										<?php endif; ?>
-									</li>
-								<?php endforeach; ?>
+									<?php if($this->viewData->links): ?>
+										<?php foreach ($this->viewData->links as $key => $value) : ?>
+										<li class="pinnackl-menu-item pinnackl-menu-allow-hover">
+											<a href="<?php $this->e($value['link']) ?>" class="pinnackl-menu-link">
+												<?php $this->e($value['name']) ?>
+											</a>
+											<?php if(sizeof($value['children']) > 0) : ?>
+											<ul class="pinnackl-menu-children">
+												<?php foreach ($value['children'] as $key => $val) : ?>
+												<li class="pinnackl-menu-item">
+													<a href="<?php $this->e($val['link']) ?>" class="pinnackl-menu-link">
+														<?php $this->e($val['name']) ?>
+													</a>
+												</li>
+												<?php endforeach; ?>
+											</ul>
+											<?php endif; ?>
+										</li>
+										<?php endforeach; ?>
+									<?php endif; ?>
 								</ul>
 							</nav>
 						</div>
