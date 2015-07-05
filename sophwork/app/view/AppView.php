@@ -69,12 +69,15 @@ class AppView extends SophworkApp{
 		if(!is_null($item)){
 			if(getType($value->$item) == "string"){
 				if(isset($value->$item))
-					echo $method($value->$item);
+				echo $method($value->$item);
 				return $method($value->$item);
+			}else{
+				return $value->$item;
 			}	
 		}
 		if(isset($this->viewData->$value))
 			echo $method($this->viewData->$value);
+		return $method($this->viewData->$value);
 	}
 
 	public function e($value, $modifier = 'S'){
