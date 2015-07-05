@@ -66,7 +66,7 @@
                             } 
                             ?>
 						</div>
-					</div
+					</div>
 				</div>
 				<?php endif; ?>
 				<div class="<?php echo (($this->get('sidebar') == 'on')?'grid-3_4':'grid-4_4 no-sidebar') ?> body">
