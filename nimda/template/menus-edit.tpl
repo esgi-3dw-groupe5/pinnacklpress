@@ -63,25 +63,27 @@
 								<button id="save-builder" class="pinnackl-button pinnackl-button-primary">Save</button>
 							</div>
 							<div id="menu-builder" class="menu-builder" style="height:auto">
-								<?php $i = 1000; foreach ($this->viewData->pages as $key => $value) : ?>
-									<?php if(in_array($this->get($value, 'page_id'),$this->viewData->linked)) : ?>
-									<div class="drag-container level-1">
-										<div class="drag-container level-2 display-none">
-											<div class="drag-container level-3 display-none"></div>
+								<?php if($this->viewData->pages != null) : ?>
+									<?php $i = 1000; foreach ($this->viewData->pages as $key => $value) : ?>
+										<?php if(in_array($this->get($value, 'page_id'),$this->viewData->linked)) : ?>
+										<div class="drag-container level-1">
+											<div class="drag-container level-2 display-none">
+												<div class="drag-container level-3 display-none"></div>
+											</div>
+											<div id="<?php $this->show($value, 'page_id') ?>"
+													class="menu-node head" draggable="true"
+													data-lv="<?php $this->show($value, 'page_level') ?>"
+													data-order="<?=$i?>"
+													data-parent="<?php $this->show($value, 'page_parent') ?>">
+												<?php $this->show($value, 'page_name') ?>
+												<span class="<?php $this->show($value, 'page_type') ?>">
+													<?php $this->show($value, 'page_type') ?>
+												</span>
+											</div>
 										</div>
-										<div id="<?php $this->show($value, 'page_id') ?>"
-												class="menu-node head" draggable="true"
-												data-lv="<?php $this->show($value, 'page_level') ?>"
-												data-order="<?=$i?>"
-												data-parent="<?php $this->show($value, 'page_parent') ?>">
-											<?php $this->show($value, 'page_name') ?>
-											<span class="<?php $this->show($value, 'page_type') ?>">
-												<?php $this->show($value, 'page_type') ?>
-											</span>
-										</div>
-									</div>
-									<?php endif; ?>
-								<?php $i++; endforeach; ?>
+										<?php endif; ?>
+									<?php $i++; endforeach; ?>
+								<?php  endif; ?>
 							</div>
 						</div>
 					</div>
