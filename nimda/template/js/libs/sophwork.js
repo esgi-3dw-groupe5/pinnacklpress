@@ -42,6 +42,11 @@ Sophwork.getUrl = function(parameters) {
 	var protocol = window.location.protocol;
 	var hostname = window.location.hostname;
 	var pathname = window.location.pathname;
+
+	if(window.cnf){
+		return protocol + '//' + hostname + '/' +window.cnf.root + parameters;
+	}
+
 	var uri = pathname.split('/');
 	var c = uri.length;
 
@@ -63,6 +68,12 @@ Sophwork.redirect = function(parameters){
 	var protocol = window.location.protocol;
 	var hostname = window.location.hostname;
 	var pathname = window.location.pathname;
+
+	if(window.cnf){
+		var localUrl = protocol + '//' + hostname + '/' +window.cnf.root + parameters;
+		window.location = localUrl;
+	}
+
 	var uri = pathname.split('/');
 	var c = uri.length;
 
@@ -87,3 +98,27 @@ Sophwork.$AJAX = function(data, callback, URL, method, type){
         dataType: type
     });
 }
+
+Sophwork.loadJSON = function(path, callback){
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', path, false);
+    xobj.onreadystatechange = function () {
+		if (xobj.readyState == 4 && xobj.status == "200") {
+		callback(xobj.responseText);
+		}
+    };
+    xobj.send(null);  
+ }
+
+Sophwork.ready(function(){
+	Sophwork.loadJSON('/../sophwork.json', function(data){ // FIXME : hanlde future cases
+		try{
+			window.cnf = JSON.parse(data);
+		}
+			catch(e){
+			window.cnf = false;
+			console.error("Unable to load Json config\nTry to change the loading path or contact your developper");
+		}
+	});
+});

@@ -113,9 +113,18 @@ var listeners = {
 				var data = {pageBuilder:save};
 
 				builderHelper.AJAX(data, function(data){
-					console.log('data');
-					window.location.reload();
-				}, Sophwork.getUrl('nimda/options.php'));
+					if(data == '#updated'){
+						Notification.notify('#updated', function(box){
+							var close = Sophwork('.close-notification');
+							var text = Sophwork('.text-notification');
+							text[0].innerHTML = "&#10004; Your modifications have been saved";
+							close[0].addEventListener('click', function(){
+								Notification.close(box);
+							});
+							Notification.close(box, 20000);
+						});
+					}
+				}, Sophwork.getUrl('nimda/options.php'), 'POST', 'text');
 			});
 		}
 	},

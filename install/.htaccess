@@ -1,7 +1,7 @@
 # Default htaccess
 Options -MultiViews
 RewriteEngine On
-RewriteBase /<YOUR_DOCUMENT_ROOT>/
+RewriteBase /<YOUR_DOCUMENT_ROOT>/install/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 #	article categorie access

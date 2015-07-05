@@ -72,6 +72,7 @@ class Sophwork {
 			$cnf = json_decode($cnf);
 			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $cnf->root . $parameters;
 			header("Location: " . $localUrl);
+			exit;
 		}
 		// correspond to this specific case
 		$URI = preg_split("/\//",$_SERVER['REQUEST_URI']);
@@ -81,6 +82,7 @@ class Sophwork {
 		else
 			$localUrl = $protocol . "://" . $_SERVER['SERVER_NAME'] . "/" . $URI[1] . "/" . $parameters;
 		header("Location: " . $localUrl);
+		exit;
 	}
 
 	public static function redirectFromRef($referer){

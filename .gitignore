@@ -1,5 +1,4 @@
 config.local.php
 install/pinnacklpress.php
-install/.htaccess
-nimda/.htaccess
 sophwork.json
+dist/*

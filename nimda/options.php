@@ -48,6 +48,8 @@ if($optionPage == 'pages'){
 
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
+
+		echo '#updated';
 		return;
 	}
 	if(!array_key_exists('pageBuilder', $_POST)
@@ -346,6 +348,9 @@ elseif($optionPage == 'footers'){
 
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
+
+		echo '#updated';
+		return;
 	}
 	if(!array_key_exists('pageBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){ //handle edit and new case
