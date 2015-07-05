@@ -1,0 +1,38 @@
+.custom-menu-top{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+#menu .active{
+	background: #1f8dd6;
+}
+#menu .pinnackl-menu li.active a:hover, #menu .pinnackl-menu li.active a:focus{
+	background: none;
+}
+
+#menu .active a{
+	color: #ffffff;
+}
+
+.pinnackl-menu-children{
+	display: block;
+}
+
+a:hover{
+	color: #2ea2cc;
+}
+
+/*- custom header menu -*/
+
+.pinnackl-header-menu{
+	background: #2d3e50 none repeat scroll 0 0;
+	color: #fff;
+	display: block;
+	font-size: 110%;
+	left: -155px;
+	padding: 11px 5px 11px 150px;
+	position: fixed;
+	text-align: right;
+	width: 100%;
+	z-index: 999;
+}
