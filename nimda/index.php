@@ -11,7 +11,7 @@ $controller = $app->appController;
 	$KDM = $controller->KDM;
 
 if($page == 'index')
-	Sophwork::redirect('nimda/overview');
+	Sophwork::redirect('/nimda/overview');
 
 $options = $KDM->create('pp_option');
 $options->findOptionName("siteurl");
@@ -24,6 +24,7 @@ $sitedescription = $options->getOptionValue()[0];
 $menu = [
 	'page_tag' => [
 		'overview',
+        'users',
 		'pages',
 		'posts',
 		'categories',
@@ -35,6 +36,7 @@ $menu = [
 	],
 	'page_name' => [
 		'Overview',
+        'Users',
 		'Pages',
 		'Posts',
 		'Categories',

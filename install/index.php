@@ -37,10 +37,12 @@ if(sizeof($_POST) > 0){
 		$appController->KDM = new SophworkDM(Sophwork::getConfig());
 		$user = $appController->KDM->create('pp_user');
 		if($_POST['password'] == $_POST['confirm']){
+            $hash_psw = password_hash($POST['password'], PASSWORD_DEFAULT);
+            
 			$user->setUserEmail($_POST['email']);
 			$user->setUserPseudo($_POST['pseudo']);
-			$user->setUserPassword(md5($_POST['password']));
-			$user->setUserRole('administrator');
+            $user->setUserPassword($hash_psw);
+			$user->setUserRole('superadmin');
 			$user->setUserActive('1');
 			$user->setUserUrl($_POST['pseudo']);
 			$user->setUserKey(md5(microtime().rand()));
