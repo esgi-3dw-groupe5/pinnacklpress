@@ -25,6 +25,7 @@ $sitedescription = $options->getOptionValue()[0];
 $menu = [
 	'page_tag' => [
 		'overview',
+        'users',
 		'pages',
 		'posts',
 		'categories',
@@ -36,6 +37,7 @@ $menu = [
 	],
 	'page_name' => [
 		'Overview',
+        'Users',
 		'Pages',
 		'Posts',
 		'Categories',
