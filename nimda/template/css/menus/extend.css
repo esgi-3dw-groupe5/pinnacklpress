@@ -36,3 +36,13 @@ a:hover{
 	width: 100%;
 	z-index: 999;
 }
+
+#menu .pinnackl-menu ul,
+#menu .pinnackl-menu .pages,
+#menu .pinnackl-menu .menus,
+#menu .pinnackl-menu .forms,
+#menu .pinnackl-menu .themes,
+#menu .pinnackl-menu .settings,
+#menu .pinnackl-menu .plugins{
+	border-top: 1px solid #333;
+}

@@ -112,13 +112,13 @@ Sophwork.loadJSON = function(path, callback){
  }
 
 Sophwork.ready(function(){
-	Sophwork.loadJSON('/../sophwork.json', function(data){ // FIXME : hanlde future cases
-		try{
-			window.cnf = JSON.parse(data);
-		}
-			catch(e){
-			window.cnf = false;
-			console.error("Unable to load Json config\nTry to change the loading path or contact your developper");
-		}
-	});
+	// Sophwork.loadJSON('/../sophwork.json', function(data){ // FIXME : hanlde future cases
+	// 	try{
+	// 		window.cnf = JSON.parse(data);
+	// 	}
+	// 		catch(e){
+	// 		window.cnf = false;
+	// 		console.error("Unable to load Json config\nTry to change the loading path or contact your developper");
+	// 	}
+	// });
 });

@@ -4,6 +4,7 @@ require('../sophwork/autoloader.php');
 // -- Sophwork --
 use sophwork\core\Sophwork;
 use sophwork\app\app\SophworkApp;
+use nimda\controller\util\PluginHelper;
 
 $app = new SophworkApp();
 $controller = $app->appController;
@@ -45,6 +46,12 @@ $menu = [
 		'Settings',
 	],
 ];
+
+$plugins = PluginHelper::checkPlugins();
+if(!is_null($plugins)){
+	$menu['page_tag'][] = $plugins;
+	$menu['page_name'][] = ucfirst($plugins);
+}
 
 $controller->setViewData('title', $sitename.' '.$sitedescription);
 $controller->setViewData('siteurl', $siteurl);

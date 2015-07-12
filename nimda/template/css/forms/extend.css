@@ -138,9 +138,39 @@ option { color: black; }
     background-color: #778899;
 }
 
+/*color picker*/
+.multiselect .menu-color{
+    display:inline;
+    display: inline!important;
+    margin: 0!important;
+    padding: 0!important;
+    width: 32px;
+    height: 16px;
+}
+
 /*wysiwyg*/
 
 .trumbowyg-textarea{
     border: none !important;
     box-shadow: none!important;
+}
+
+/*template part*/
+
+.plugins .plugin-header{
+    border-bottom:solid thin #333;
+    text-align: center;
+    color: #fff;
+    width:100%;
+}
+
+.plugins header.app{
+    background:#800080;
+}
+.plugins header.theme{
+    background:#1e8cd6;
+}
+
+.plugins .plugin-body{
+    padding: 1em 2em;
 }

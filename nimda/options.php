@@ -260,8 +260,10 @@ elseif($optionPage == 'categories'){
 elseif($optionPage == 'menus'){
 	$KDM = new SophworkDM($app->config);
 	$menu = $KDM->create('pp_menu');
-	// $menu->findOne($edit);
 	$menu->findMenuId($edit);
+	echo'<pre style="background:#ffffff">';
+	var_dump($_POST);
+	echo'</pre>';die;
 	$pages = $KDM->create('pp_page');
 	if(array_key_exists('menuBuilder', $_POST)){
 		$menuRs = $KDM->create('pp_menu_rs');
