@@ -27,11 +27,11 @@
                     <td><?php $this->show($value, 'user_role'); ?></td>
                     <td>
                         <a class="pinnackl-button pinnackl-button-primary"
-                           href="<?php $this->show('siteurl')?>nimda/users/edit/<?php $this->show($value, 'page_id')?>">Edit&nbsp;&#9998;</a>
+                           href="<?php $this->show('siteurl')?>nimda/users/edit/<?php $this->show($value, 'user_id')?>">Edit&nbsp;&#9998;</a>
                     </td>
                     <td>
                         <a class="pinnackl-button pinnackl-button-error"
-                           href="<?php $this->show('siteurl')?>nimda/users/delete/<?php $this->show($value, 'page_id')?>">Delete&nbsp;&#10008;</a>
+                           href="<?php $this->show('siteurl')?>nimda/users/delete/<?php $this->show($value, 'user_id')?>">Delete&nbsp;&#10008;</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
