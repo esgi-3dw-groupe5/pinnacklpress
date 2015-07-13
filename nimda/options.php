@@ -536,6 +536,7 @@ else if($optionPage == 'users'){
         }else {
         	$user->save();
         }
+    }
 	if(in_array('new', $optionPageController)){
 		$optionPageController[count($optionPageController)-1] = $user->getUserId();
 		$optionPageController[count($optionPageController)-2] = 'edit';
