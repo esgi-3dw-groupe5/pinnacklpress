@@ -83,7 +83,7 @@ class Controllers extends AppController{
 		if($pageType == 'page')
 			$layout = $html->createPage();
 		elseif($pageType == 'post')
-			$layout = $html->createPost();
+			$layout = $html->createPostList();
 		if($slug != 'Index')
 			$this->setViewData('sitedescription', $slug);
 		$this->setRawData('page', $layout);
