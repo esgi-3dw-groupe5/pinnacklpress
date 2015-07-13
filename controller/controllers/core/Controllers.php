@@ -95,6 +95,24 @@ class Controllers extends AppController{
             echo 'test';
             exit();
         }
+
+
+		$pageType = $page->getPageType()[0];
+		$idCateg = $page->getPageId()[0];
+
+		$posts = new Post();
+		$data = $posts->getPostsCateg($idCateg);
+
+		$slug = $page->getPageName()[0];
+		$html = new htmlPage($data);
+		if($pageType == 'page')
+			$layout = $html->createPage();
+		elseif($pageType == 'category')
+			$layout = $html->createPostList();
+		if($slug != 'Index')
+			$this->setViewData('sitedescription', $slug);
+		$this->setRawData('page', $layout);
+		return $page;
 	}
 
 	public function initMenu(){

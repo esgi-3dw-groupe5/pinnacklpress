@@ -2,6 +2,14 @@
 	text-align: justify;
 	background: #fff;
 	padding: 1em;
+	margin-right: .3em;
+	margin-bottom: .3em;
+	width: 32.3333%;
+}
+
+.line .articles:last-of-type{
+	margin-right: 0;
+	margin-bottom: 0;
 }
 
 .articles a:link,
@@ -44,7 +52,6 @@
 	min-height: 8em;
 	max-height: 8em;
     overflow: hidden;
-    width: 299px;
 }
 
 .articles hr{
@@ -57,4 +64,10 @@
     height: 1px;
     border:none;
     background: #888;
+}
+
+@media (max-width:765px) {
+	.articles{
+		width: 100%!important;
+	}
 }
