@@ -1,8 +1,21 @@
-.articles {
+.articles{
 	text-align: justify;
 	background: #fff;
 	padding: 1em;
 }
+
+.articles a:link,
+.articles a:visited,
+.articles a:hover,
+.articles a:active{
+	text-decoration: none;
+	color: #000;
+}
+
+.articles:hover{
+	box-shadow: 0 0 3px 0px #000;
+}
+
 
 .articles .header{
 	border-bottom: 1px solid #eee;
@@ -27,8 +40,11 @@
 }
 
 .articles .preview{
-	overflow: hidden;
-	height: 8em;
+	text-overflow: ellipsis;
+	min-height: 8em;
+	max-height: 8em;
+    overflow: hidden;
+    width: 299px;
 }
 
 .articles hr{

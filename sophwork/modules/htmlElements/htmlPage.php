@@ -21,14 +21,6 @@ class htmlPage extends htmlElement{
 				$line = new htmlElement('div');
 				$line->set('class', 'line');
 				foreach ($value as $key => $subValue) {
-					// $img = new htmlElement('img');
-					// $img->set('src', 'data/users/Syu93/Syu93.jpg');
-
-					// $auteur = new htmlElement('div');
-					// $auteur->set('class', 'auteur');
-					// $auteur->set('text', 'auteur');
-					// $auteur->inject($img);
-					// $line->inject($auteur);
 					foreach ($subValue as $key => $val) {
 						$grid = new htmlElement('div');
 						$grid->set('class', $val->gridClass);
@@ -44,11 +36,7 @@ class htmlPage extends htmlElement{
 						}
 						$line->inject($grid);
 					}
-
-					// $hr = new htmlElement('hr');
-					// $line->inject($hr);
 				}
-
 				$this->layout[] = $line;
 			}
 			return $this;
@@ -57,26 +45,37 @@ class htmlPage extends htmlElement{
 		}
 	}
 
-	public function createPost(){
+	public function createPostList(){
 		if($this->data != null) {
+			$line = new htmlElement('div');
+			$line->set('class', 'line');
 			foreach ($this->data as $key => $value) {
-				$line = new htmlElement('div');
-				$line->set('class', 'grid-1_3 articles');
+				$card = new htmlElement('div');
+				$card->set('class', 'grid-1_3 articles');
 				foreach ($value as $key => $subValue) {
+					$authorLink = new htmlElement('a');
+					$authorLink->set('href', Sophwork::getUrl('user/Syu93'));
+					
 					$img = new htmlElement('img');
 					$img->set('src', Sophwork::getUrl('data/users/Syu93/Syu93.jpg'));
+					
+					$authorLink->inject($img);
 
 					$auteur = new htmlElement('div');
 					$auteur->set('class', 'auteur');
 					$auteur->set('text', 'Syu93'); // FIXME: Get the real author
-					$auteur->inject($img);
-					$line->inject($auteur);
+					$auteur->inject($authorLink);
+					$card->inject($auteur);
+
 					foreach ($subValue as $key => $val) {
+						$articleLink = new htmlElement('a');
+						$articleLink->set('href', Sophwork::getUrl('mon-premier-article'));
+
 						$grid = new htmlElement('div');
 						$grid->set('class', $val->gridClass . ' preview');
 
 						if($val->gridContent != 'null' && $val->gridModule != '[form]')
-							$grid->set('text', $val->gridContent);
+							$grid->set('text', substr($val->gridContent, 0, 200) . ' ...');
 						elseif($val->gridContent != 'null' && $val->gridModule == '[form]'){
 							$form = new Form;
 							$form = $form->getForm($val->gridContent);
@@ -84,13 +83,12 @@ class htmlPage extends htmlElement{
 							$layout = $html->createForm();
 							$grid->set('text',$layout->attributes['text']);
 						}
-						$line->inject($grid);
+						$articleLink->inject($grid);
+						
+						$card->inject($articleLink);
 					}
-
-					// $hr = new htmlElement('hr');
-					// $line->inject($hr);
+					$line->inject($card);
 				}
-
 				$this->layout[] = $line;
 			}
 			return $this;
