@@ -27,6 +27,7 @@
  * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
  * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
  */
+
 class POP3
 {
     /**

@@ -24,6 +24,7 @@
  * @author Chris Ryan
  * @author Marcus Bointon <phpmailer@synchromedia.co.uk>
  */
+
 class SMTP
 {
     /**

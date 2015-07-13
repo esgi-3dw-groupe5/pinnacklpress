@@ -4,5 +4,10 @@ RewriteEngine On
 RewriteBase /pinnacklpress/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
 #	article categorie access
 RewriteRule    ^([a-z0-9_-]+)\/?([a-z0-9_-]*)\/?(.*)\/?$    	index.php?p=$1&a=$2&e=$3	[NC,L]
+
+
+
+

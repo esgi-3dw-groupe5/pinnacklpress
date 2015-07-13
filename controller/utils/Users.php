@@ -3,6 +3,7 @@
 namespace controller\utils;
 
 use sophwork\core\Sophwork;
+use nimda\mail\Mail;
     
 class Users extends \sophwork\app\controller\AppController {
     
@@ -75,12 +76,10 @@ class Users extends \sophwork\app\controller\AppController {
             $this->user->setUserActive('0');
             $this->user->setUserUrl($POST['pseudo']);
 
-            $this->user->save();
+            if($this->user->save()){
+                Mail::sendMail($POST['pseudo'],$POST['email'],$POST['firstname'],$userkey);
+            }
             
-            $_SESSION['form']['error'][]="Vous êtes inscrits";
-            $sophwork = new Sophwork();
-            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
-            exit;
         }
         else{
             $_SESSION['form']['error'][]="L'utilisateur existe déjà";
@@ -88,7 +87,6 @@ class Users extends \sophwork\app\controller\AppController {
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
-        var_dump($this->user);
         
     }
     

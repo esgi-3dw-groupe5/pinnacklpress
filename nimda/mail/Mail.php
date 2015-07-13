@@ -2,8 +2,12 @@
 
 namespace nimda\mail;
 
+use sophwork\core\Sophwork;
+use sophwork\app\app\SophworkApp;
+
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
+
 
 class Mail {
     
@@ -12,19 +16,14 @@ class Mail {
     protected $where;
 
 
-    public fonction sendMail($pseudo,$email,$nameEmail,$cle){
+    public function sendMail($pseudo,$email,$cle=null,$siteUrl=null){
         
-        
-        
-        $content = $this->KDM->create('pp_mail');
-        $content->findMailName($nameEmail);
-        if($content->getMailId()[0]!=null)
-        {
-            $this->setViewData('mail-content', $content->getMailContent()[0]);
-        }
         
         ob_start(); // turn on output buffering
-        include('template/mail.tpl');
+        if($cle==null)
+            include(__DIR__ . '/../template/mail-install.tpl');
+        else
+            include(__DIR__ . '/../template/mail-inscription.tpl');
         $res = ob_get_contents(); // get the contents of the output buffer
         ob_end_clean(); //  clean (erase) the output buffer and turn off output buffering
         
@@ -44,22 +43,22 @@ class Mail {
 
 
         //=====Définition du sujet.
-        $subject = $this->KDM->select('pp_mail',$where,'subject');
+        $subject = "Bienvenue sur Pinnackl ".$pseudo." !";
         //=========
 
-        require_once('nimda/mail/PHPMailerAutoload.php');
+        require_once('PHPMailerAutoload.php');
 
-        $mail = new PHPMailer;
+        $mail = new \PHPMailer;
 
         //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
         $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.pinnackl.com';                    // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'noreply@pinnackl.com';                 // SMTP username
-        $mail->Password = 'Icge0ylb!';                           // SMTP password
-        // $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+        $mail->Host = 'smtp.numericable.fr';                    // Specify main and backup SMTP servers
+        //$mail->SMTPAuth = true;                               // Enable SMTP authentication
+        //$mail->Username = 'noreply@pinnackl.com';                 // SMTP username
+        //$mail->Password = 'Icge0ylb!';                           // SMTP password
+        //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        //$mail->Port = 587;                                    // TCP port to connect to
 
         $mail->From = 'noreply@pinnackl.com';
         $mail->FromName = 'Pinnackl.com';
@@ -76,16 +75,28 @@ class Mail {
               
         $message= $passage_ligne.$message_html.$passage_ligne;
 
-        $mail->Subject = $sujet;
+        $mail->Subject = $subject;
         $mail->Body    = $message;
         $mail->AltBody = $message;
 
         if(!$mail->send()) {
-            // echo 'Message could not be sent.';
-            // echo 'Mailer Error: ' . $mail->ErrorInfo;
+             echo 'Message could not be sent.';
+             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
-            // echo 'Message has been sent';
+             echo 'Message has been sent';
         }
+        
+        if($cle==null){
+            $sophwork = new Sophwork();
+            Sophwork::redirect('install/settings');
+        }
+        else {
+            $_SESSION['form']['error'][]="Vous êtes inscrits";
+            $sophwork = new Sophwork();
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+            exit;
+        }
+        
     }
     
     
