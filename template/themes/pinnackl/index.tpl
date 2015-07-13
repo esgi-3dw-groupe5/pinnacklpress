@@ -6,7 +6,7 @@
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 		<title><?php $this->show('sitename'); ?> - <?php $this->show('sitedescription'); ?></title>
 		<meta name="description" content="">
-		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Orbitron|Nova+Square' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/base/base.css">
 		<link rel="stylesheet" type="text/css"

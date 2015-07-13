@@ -1,5 +1,7 @@
 .articles {
 	text-align: justify;
+	background: #fff;
+	padding: 1em;
 }
 
 .articles .header{
@@ -13,14 +15,20 @@
 }
 
 .auteur {
-	height: 5em;
+	margin-bottom: 2em;
 }
 
 .auteur img {
-	width: 68px;
+	width: 32px;
 	float: right;
 	margin: 0.1%;
+	border: solid 2px #eee;
 	border-radius: 50%;
+}
+
+.articles .preview{
+	overflow: hidden;
+	height: 8em;
 }
 
 .articles hr{

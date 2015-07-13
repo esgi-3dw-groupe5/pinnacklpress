@@ -65,6 +65,7 @@ class Controllers extends AppController{
 	public function initPageContent($menu){
 		$page = $this->KDM->create('pp_page');
 		$page->findPageTag($this->page);
+
 		$pageContent = $this->KDM->create('pp_pagemeta');
 
 		$page = $menu->permaLink($page);
@@ -75,10 +76,14 @@ class Controllers extends AppController{
 			->filterPmetaName('content')
 			->querySelect();
 
+		$pageType = $page->getPageType()[0];
 		$data = $pageContent->getPmetaValue()[0];
 		$slug = $page->getPageName()[0];
 		$html = new htmlPage($data);
-		$layout = $html->createPage(); // create a post method
+		if($pageType == 'page')
+			$layout = $html->createPage();
+		elseif($pageType == 'post')
+			$layout = $html->createPost();
 		if($slug != 'Index')
 			$this->setViewData('sitedescription', $slug);
 		$this->setRawData('page', $layout);
