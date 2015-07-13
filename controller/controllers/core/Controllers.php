@@ -77,12 +77,16 @@ class Controllers extends AppController{
 			->querySelect();
 
 		$pageType = $page->getPageType()[0];
-		$data = $pageContent->getPmetaValue()[0];
+		$idCateg = $page->getPageId()[0];
+
+		$posts = new Post();
+		$data = $posts->getPostsCateg($idCateg);
+
 		$slug = $page->getPageName()[0];
 		$html = new htmlPage($data);
 		if($pageType == 'page')
 			$layout = $html->createPage();
-		elseif($pageType == 'post')
+		elseif($pageType == 'category')
 			$layout = $html->createPostList();
 		if($slug != 'Index')
 			$this->setViewData('sitedescription', $slug);
