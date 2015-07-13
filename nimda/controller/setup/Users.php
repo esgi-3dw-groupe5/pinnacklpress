@@ -76,21 +76,15 @@ class Users extends \sophwork\app\controller\AppController{
             $this->setViewData('user_pseudo', ''.$user->getUserPseudo()[0]);
             $this->setViewData('user_email', ''.$user->getUserEmail()[0]);
             $this->setViewData('user_role', ''.$user->getUserRole()[0]);
-
-            $contents->findUserId($user->getUserId()[0]);
-            if(!is_null($contents->getPmetaId()[0])){
-                $data = $contents->getData()['pmeta_value'][0];
-                $html = new htmlBuilder($data);
-                $layout = $html->createBuilder();
-                $this->setRawData('layout', $layout);
-            }
-            else{
-                $html = new htmlBuilder('[]');
-                $layout = $html->createBuilder();
-                $this->setRawData('layout', $layout);
-            }
+            $this->setViewData('user_firstname', ''.$user->getUserFirstname()[0]);
+            $this->setViewData('user_name', ''.$user->getUserName()[0]);
+            $this->setViewData('user_bdate', ''.$user->getUserBdate()[0]);
+            $this->setViewData('user_gender', ''.$user->getUserGender()[0]);
 
             $this->callView($page .'-edit', 'nimda/');
+        }
+        elseif($action == 'new'){
+            $this->callView($page .'-new', 'nimda/');
         }
         else{
             $user->find();
@@ -103,3 +97,4 @@ class Users extends \sophwork\app\controller\AppController{
         }
     }
 }
+

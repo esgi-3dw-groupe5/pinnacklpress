@@ -32,6 +32,7 @@ else{
 	$edit = $optionPageController[count($optionPageController)-1];
 }
 
+
 if($optionPage == 'pages'){
 	if($edit == '') $edit = 0; // in case of nothing to find, search for somethig that doesn't exist
 	$KDM = new SophworkDM($app->config);
@@ -508,6 +509,49 @@ else if($optionPage == 'themes'){
 	}
 }
 
+
+else if($optionPage == 'users'){
+
+	if($edit == '') $edit = 0;
+	$KDM = new SophworkDM($app->config);
+	$user = $KDM->create('pp_user');
+	$user->findUserId($edit);
+
+	if(!in_array('delete', $optionPageController)){ //handle edit and new case
+		
+		//var_dump($user->filterUserPseudo($_POST['pseudo'])->querySelect());
+        $user->setUserEmail($_POST['email']);
+        $user->setUserPseudo($_POST['pseudo']);
+        
+        $user->setUserRole($_POST['role']);
+        $user->setUserUrl($_POST['pseudo']);
+        $user->setUserBdate($_POST['bdate']);
+        $user->setUserFirstname($_POST['firstname']);
+        $user->setUserName($_POST['lastname']);
+        $user->setUserGender($_POST['gender']);
+
+        if(in_array('new', $optionPageController)) {
+	        	$hash_psw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+	        	$user->setUserPassword($hash_psw);
+	        	$user->setUserUrl($_POST['pseudo']);
+		        $user->setUserKey(md5(microtime().rand()));
+		        $user->save();
+        }else {
+        	$user->save();
+        }
+	if(in_array('new', $optionPageController)){
+		$optionPageController[count($optionPageController)-1] = $user->getUserId();
+		$optionPageController[count($optionPageController)-2] = 'edit';
+		$url = implode('/', $optionPageController);
+		Sophwork::redirectFromRef($url);
+		exit;
+	}
+	if(in_array('delete', $optionPageController)){
+		$user->erase();
+		Sophwork::redirect('nimda/users');
+		exit;
+	}
+}
 
 // Redirect to the settings page from referer
 Sophwork::redirectFromRef($_POST['pp-referer'].'#updated');

@@ -6,6 +6,10 @@
 
     <!-- <section> -->
     <div class="content">
+        <div>
+            <a class="pinnackl-button pinnackl-button-primary"
+                href="<?php $this->show('siteurl')?>nimda/users/new/">Add New&nbsp;&#10010;</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
