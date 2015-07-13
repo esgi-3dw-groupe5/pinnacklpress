@@ -35,7 +35,9 @@ class AppView extends SophworkApp{
 	}
 
 	public function isActive($page, $level = 'p'){
-		if($page == $_GET[$level])
+		if(isset($_GET[$level]) && $page == $_GET[$level])
+			echo' active';
+		elseif(!isset($_GET[$level]) && $page == 'index')
 			echo' active';
 	}
 

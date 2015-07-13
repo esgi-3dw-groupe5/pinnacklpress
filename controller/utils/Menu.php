@@ -28,20 +28,21 @@ class Menu extends \sophwork\app\controller\AppController {
 		$pastNode = null;
 		$pastChildNode = null;
 		$pastLink = null;
-		if($menuLinks['page_id'] != null) {
+		if($menuLinks['page_id'] != null){
 			foreach ($menuLinks['page_id'] as $key => $value) {
 				$this->pageLinks->find($value);
 
 				if($this->pageLinks->getPageParent()[0] != '0'){ // FIXME : add the third level
 					$this->links[$pastNode]['children'][$this->pageLinks->getPageOrder()[0]] = [
 						'link' => Sophwork::getUrl($pastLink . '/' . $this->pageLinks->getPageTag()[0]),
+						'tag' => $this->pageLinks->getPageTag()[0],
 						'name' => $this->pageLinks->getPageName()[0],
 						'children' => []
 					];
 					$pastChildNode = $this->pageLinks->getPageOrder()[0];
 					continue;
 				}
-				// if($this->pageLinks->getPageParent()[0] != '0' 
+				// if($this->pageLinks->getPageParent()[0] != '0' //to do third level
 				// 	&& $this->pageLinks->getPageParent()[0] == '3'){
 				// 	$this->links[$pastNode]['children'][$pastChildNode][$this->pageLinks->getPageOrder()[0]] = [
 				// 		'link' => Sophwork::getUrl($this->pageLinks->getPageTag()[0]),
@@ -54,12 +55,14 @@ class Menu extends \sophwork\app\controller\AppController {
 				if(isset($this->links[$this->pageLinks->getPageOrder()[0]]))
 					$this->links[$this->pageLinks->getPageOrder()[0]+1] = [ // +1 to avoid conflict on already existing menu node order.
 						'link' => Sophwork::getUrl($this->pageLinks->getPageTag()[0]),
+						'tag' => $this->pageLinks->getPageTag()[0],
 						'name' => $this->pageLinks->getPageName()[0],
 						'children' => []
 					];
 				else
 					$this->links[$this->pageLinks->getPageOrder()[0]] = [
 						'link' => Sophwork::getUrl($this->pageLinks->getPageTag()[0]),
+						'tag' => $this->pageLinks->getPageTag()[0],
 						'name' => $this->pageLinks->getPageName()[0],
 						'children' => []
 					];
@@ -68,7 +71,8 @@ class Menu extends \sophwork\app\controller\AppController {
 			}
 			ksort ($this->links);
 			return $this->links;
-		} else {
+		}
+		else{
 			echo('<span style="font-size:50px;margin-left:25%;"><strong>OUPSSSS</strong></span> <br><br> Une erreur est survenue <br>');
 			return $this->links;
 		}

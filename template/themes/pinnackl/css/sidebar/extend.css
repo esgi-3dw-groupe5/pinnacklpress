@@ -14,15 +14,22 @@
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	z-index: 900;
-	border-right: solid thin #ebebeb;
 }
 
 .sidebar .header{
 	text-align: center;
+	box-sizing: border-box;
+}
+
+.sidebar .header nav{
+	max-height: 50px;
+	min-height: 50px;
+	border-bottom: thin solid #ebebeb;
 }
 
 .sidebar .content{
 	padding: 1em 2em 0 2em;
+	border-right: thin solid #ebebeb;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -48,19 +55,17 @@ html{
 /* ELEMENTS OF BODY */
 .header{
 	box-sizing: border-box;
-	max-height: 63px;
-	min-height: 63px;
+	max-height: 50px;
+	min-height: 50px;
 }
 .body .header{
-  background: #fff;
+  background: #272822;
   color: #000;
   position: fixed;
   border-bottom: solid thin #ebebeb;
   top: 0;
   left:0;
   right: 0;
-  min-height: 4em;
-  max-height: 4em;
   z-index: 800;
   padding-left: 25%;
   -moz-box-sizing: border-box;
@@ -78,7 +83,7 @@ html{
 	padding-bottom: 1%;
 }
 .sub-content{
-	margin-top: 64px;
+	margin-top: 48px;
 	margin-bottom: 13em;
 }
 
@@ -131,7 +136,5 @@ html{
 /*
  *	responsive
  */
-
-@media (max-width:840px) {
-
+@media (max-width:765px){
 }

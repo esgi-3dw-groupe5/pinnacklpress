@@ -87,7 +87,7 @@
   float: left;
 }
 .line.header{
-  height: 10%;
+  /*height: 10%;*/
 }
 .line.content{
   height: 100%;

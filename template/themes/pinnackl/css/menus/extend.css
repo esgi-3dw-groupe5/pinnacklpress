@@ -1,3 +1,9 @@
+.pinnackl-menu,
+.pinnackl-menu *{
+	font-family: 'Orbitron', serif;
+	background: #272822;
+}
+
 .pinnackl-menu-horizontal{
 	text-align: center;
 	white-space: nowrap;
@@ -12,29 +18,99 @@
 }
 
 .pinnackl-menu-link,
-.pinnackl-menu-item,
-.pinnackl-menu-heading {
-	padding: 10px;
-	text-decoration: none;
-	font-size: 1.11em;
-	margin-left: -5px;
+.pinnackl-menu-disabled,
+.pinnackl-menu-heading{
+	padding: 0em 1em;
 }
 
+.pinnackl-menu-link,
+.pinnackl-menu-item a,
+.pinnackl-menu-item,
+.pinnackl-menu-heading {
+	text-decoration: none;
+	margin-left: -5px;
+	line-height: 3em;
+}
+
+.pinnackl-menu-link{
+	font-weight: bold;
+	border-bottom: solid 2px #272822;
+}
 /**
  * hover behaviour
  */
-
+.pinnackl-menu-active > .pinnackl-menu-link,
 .pinnackl-menu-link:hover,
-/*.pinnackl-menu-item:hover a,*/
-.pinnackl-menu-item:hover,
-.pinnackl-menu-heading:hover {
-	background-color: #8f8f8f;
-	color: #fff;
-	cursor: pointer;
+.pinnackl-menu-link:focus,
+.pinnackl-menu-link.active{
+	background-color: transparent;
+	color: #3399ff;
+	border-bottom: solid 2px #3399ff;
 }
 
-.active, .active *{
-	background-color: #8f8f8f;
-	color: #fff;
+/*
+ *	responsive
+ */
+.pinnackl-responsive{
+	display: none;
+	padding: 0;
+	margin: 0;
+}
+.pinnackl-responsive li{
+	list-style: none;
+	text-align: right;
+}
+
+.pinnackl-responsive-burger{
+	width: 46px;
+	height: 46px;
+	font-size: 1.9em;
+	margin: 1px;
+	color: #777;
 	cursor: pointer;
+	box-sizing: border-box;
+	font-weight: bold;
+	border: none;
+	border: thin solid #ebebeb;
+	border-radius: 3px;
+}
+
+.pinnackl-responsive-burger:before{
+	content:'\2630';
+}
+
+@media (max-width:765px) {
+	.visible{
+		display: none!important;
+	}
+
+	.pinnackl-responsive{
+		display: block;
+	}
+
+	.btn-menu-burger:hover,
+	.btn-menu-burger:active{
+		color: #3399ff;
+	}
+	.pinnackl-menu-horizontal .pinnackl-menu-item,
+	.pinnackl-menu-horizontal .pinnackl-menu-heading,
+	.pinnackl-menu-horizontal .pinnackl-menu-separator{
+		display: block;
+	}
+
+	.sidebar{
+		position: relative;
+		width: 100%;
+		z-index: 10;
+	}
+	.body .header{
+		padding-left: 0;
+	}
+	.grid-3_4.body{
+		margin-left: 0;
+		width: 100%;
+	}
+	.sub-content{
+		margin-top: 0;
+	}
 }

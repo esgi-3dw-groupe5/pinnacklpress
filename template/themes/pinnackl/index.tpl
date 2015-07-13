@@ -6,6 +6,7 @@
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 		<title><?php $this->show('sitename'); ?> - <?php $this->show('sitedescription'); ?></title>
 		<meta name="description" content="">
+		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/base/base.css">
 		<link rel="stylesheet" type="text/css"
@@ -32,6 +33,8 @@
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/forms/forms.css">
 		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/forms/ranges.css">
+		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/articles/articles.css">
 	</head>
 	<body class="line">
@@ -44,13 +47,7 @@
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
 								<ul class="pinnackl-menu-list">
 									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link">menu 1</a>
-									</li>
-									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link">menu 2</a>
-									</li>
-									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link">menu 3</a>
+										<a href="" class="pinnackl-menu-link"></a>
 									</li>
 								</ul>
 							</nav>
@@ -58,7 +55,30 @@
 					</div>
 					<div class="line content">
 						<div class="grid-4_4">
-							side bar contents<br>
+							<form class="pinnackl-form pure-form-aligned">
+								<fieldset>
+									<div class="pure-control-group">
+            							<label for="">Username</label>
+										<input if="" type="range" min="0" max="10" step="1" name="">
+									</div>
+									<div class="pure-control-group">
+            							<label for="">Username</label>
+										<input if="" type="range" min="0" max="10" step="1" name="">
+									</div>
+									<div class="pure-control-group">
+            							<label for="">Username</label>
+										<input if="" type="range" min="0" max="10" step="1" name="">
+									</div>
+									<div class="pure-control-group">
+            							<label for="">Username</label>
+										<input if="" type="range" min="0" max="10" step="1" name="">
+									</div>
+									<div class="pure-control-group">
+            							<label for="">Username</label>
+										<input if="" type="range" min="0" max="10" step="1" name="">
+									</div>
+								</fieldset>
+							</form>
                             <?php 
                             if(!empty($_SESSION['user']['pseudo']) ){
                                 print("<div>Bienvenue ".$_SESSION['user']['pseudo']." ");
@@ -73,11 +93,17 @@
 					<div class="line header">
 						<div class="grid-4_4">
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
-								<ul class="pinnackl-menu-list">
+								<ul class="pinnackl-responsive">
+									<li><button id="burger" class="pinnackl-responsive-burger"></button></li>
+								</ul>
+								<ul id="menu" class="pinnackl-menu-list visible">
+									<!-- <li class="pinnackl-menu-item" ><img src="<?php $this->show('siteurl');?>data/logo/logo.png"></li> -->
 									<?php if($this->viewData->links): ?>
 										<?php foreach ($this->viewData->links as $key => $value) : ?>
 										<li class="pinnackl-menu-item pinnackl-menu-allow-hover">
-											<a href="<?php $this->e($value['link']) ?>" class="pinnackl-menu-link">
+											<a href="<?php $this->e($value['link']) ?>"
+												class="pinnackl-menu-link
+												<?php $this->isActive($value['tag'])?>">
 												<?php $this->e($value['name']) ?>
 											</a>
 											<?php if(sizeof($value['children']) > 0) : ?>
@@ -120,5 +146,14 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			(function(e){
+				var burger = document.getElementById('burger');
+				var menu = document.getElementById('menu');
+				burger.addEventListener('click', function(){
+					menu.classList.toggle("visible");
+				});
+			})(document);
+		</script>
 	</body>
 </html>
