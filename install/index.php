@@ -12,11 +12,15 @@ use controller\controllers\core\Controllers;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
+use nimda\mail\Mail;
+
 if(file_exists('pinnacklpress.php'))
     Sophwork::redirect('nimda');
 
 $app = new SophworkApp();
 $appController = $app->appController;
+
+$mail = new Mail();
 
 // Set global variables
 $siteUrl = Sophwork::getUrl();
@@ -37,7 +41,7 @@ if(sizeof($_POST) > 0){
         $appController->KDM = new SophworkDM(Sophwork::getConfig());
         $user = $appController->KDM->create('pp_user');
         if($_POST['password'] == $_POST['confirm']){
-            $hash_psw = password_hash($POST['password'], PASSWORD_DEFAULT);
+            $hash_psw = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
             $user->setUserEmail($_POST['email']);
             $user->setUserPseudo($_POST['pseudo']);
@@ -47,7 +51,9 @@ if(sizeof($_POST) > 0){
             $user->setUserUrl($_POST['pseudo']);
             $user->setUserKey(md5(microtime().rand()));
             $user->save();
-            Sophwork::redirect('install/settings');
+            
+            $mail->sendMail($_POST['pseudo'],$_POST['email'],$cle=null,$siteUrl);
+
         }
         else{
             echo'<div style="background:#df1f1f;color:#fff;padding:0 5px;box-sizing:border-box;">';
@@ -300,8 +306,9 @@ if(sizeof($_POST) > 0){
         $text = date("l jS \of F Y h:i:s A");
         fwrite($handle, $text);
         fclose($handle);
-
+        
         Sophwork::redirect('nimda');
+
     }
 }
 if($appController->page == 'index')

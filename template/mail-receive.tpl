@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             /* Fonts and Content */
-            body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size:14px; }
-            body { background-color: #2A374E; margin: 0; padding: 0; -webkit-text-size-adjust:none; -ms-text-size-adjust:none; }
+            /*body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size:14px; }*/
+            /*body { background-color: #2A374E; margin: 0; padding: 0; -webkit-text-size-adjust:none; -ms-text-size-adjust:none; }*/
             h2{ padding-top:12px; /* ne fonctionnera pas sous Outlook 2007+ */color:#0E7693; font-size:22px; }
 
             @media only screen and (max-width: 480px) { 
@@ -24,6 +24,8 @@
                 }    
                 td[class=w20]{ display:none; }    
             }
+
+
         </style>
 
     </head>
@@ -40,7 +42,7 @@
                                 </tr>
                                 <!-- entete -->
                                 <tr class="pagetoplogo">
-                                    <td class="w640"  width="640">
+                                    <td class="w640"  width="40">
                                         <table  class="w640"  width="640" cellpadding="0" cellspacing="0" border="0" bgcolor="#7c7c7c">
                                             <tbody>
                                                 <tr>
@@ -63,7 +65,7 @@
                                 </tr>
 
                                 <!-- contenu -->
-                                <tr class="content">
+                                <tr class="content" height="400">
                                     <td class="w640" class="w640"  width="640" bgcolor="#ffffff">
                                         <table class="w640"  width="640" cellpadding="0" cellspacing="0" border="0">
                                             <tbody>
@@ -75,20 +77,7 @@
                                                             <tbody>                                                            
                                                                 <tr>
                                                                     <td class="w580"  width="580">
-                                                                        <h2 style="color:#0E7693; font-size:22px; padding-top:12px;">
-                                                                            Bonjour <?php echo $pseudo;?> </h2>
-
-                                                                        <div align="left" class="article-content">
-                                                                            <!-- <p> Bienvenue sur Pinnackl</p>
-                                                                            <p>
-                                                                                Pour activer votre compte, veuillez cliquer sur le lien ci dessous
-                                                                                ou copier/coller dans votre navigateur internet
-                                                                            </p>
-                                                                            <p>
-                                                                                http://pinnackl.com/activation/<?php echo urlencode($pseudo);?>/<?php echo urlencode($cle);?>
-                                                                            </p> -->
-                                                                            <?php $this->show('mail-content'); ?>
-                                                                        </div>
+                                                                        <p><?php echo $message;?></p>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -96,6 +85,7 @@
                                                         <!-- fin zone -->                                                   
 
                                                     </td>
+                                                    <td class="w30" class="w30"  width="30"></td>
                                                 </tr>
                                             </tbody>
                                         </table>

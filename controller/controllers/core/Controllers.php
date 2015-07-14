@@ -75,6 +75,27 @@ class Controllers extends AppController{
 			->__and()
 			->filterPmetaName('content')
 			->querySelect();
+        
+        if(!is_null($page->getPageId()[0])) {
+            $pageType = $page->getPageType()[0];
+            $data = $pageContent->getPmetaValue()[0];
+            $slug = $page->getPageName()[0];
+            $html = new htmlPage($data);
+            if($pageType == 'page')
+                $layout = $html->createPage();
+            elseif($pageType == 'post')
+                $layout = $html->createPostList();
+            if($slug != 'Index')
+                $this->setViewData('sitedescription', $slug);
+            $this->setRawData('page', $layout);
+            return $page;
+        }
+        else {
+            header("HTTP/1.0 404 Not Found");
+            echo 'test';
+            exit();
+        }
+
 
 		$pageType = $page->getPageType()[0];
 
@@ -123,6 +144,8 @@ class Controllers extends AppController{
 				$user->initUser();
 		}
 		$roleNeedle = $page->getPageConnectedAs()[0];
+        if(is_null($roleNeedle))
+            echo 'test2';
 		$user->checkPermission($roleNeedle);
 
 		if( isset($_GET['act']) && $_GET['act']=='logout' ) {
