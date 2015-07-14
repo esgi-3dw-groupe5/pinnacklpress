@@ -51,43 +51,51 @@ class htmlPage extends htmlElement{
 		if($this->data != null) {
 			$line = new htmlElement('div');
 			$line->set('class', 'line');
-
-			$card = new htmlElement('div');
-			$card->set('class', 'grid-1_3 articles');
+			$c = "";
 			foreach ($this->data['title'] as $k => $subValue) {
+				$card = new htmlElement('div');
+				$card->set('class', 'grid-1_3 articles');
 
 				$title   = $this->data['title'][$k];
-				$content = substr($this->data['content'][$k], 0,100);
-				$author  = $this->data['author'][$k];
+				$content = substr(json_decode($this->data['content'][$k])[0]->line[0]->gridContent, 0, 200);
+				$authorName  = $this->data['author'][$k];
 				$tag     = $this->data['tag'][$k];
-				$date    = $this->data['date'][$k];
+				$date = date_format(date_create($this->data['date'][$k]), "Y/m/d");
 
+				$header = new htmlElement('div');
+				$header->set('class', 'author');
+
+				$author = new htmlElement('div');
+				$author->set('class', 'grid-3_4');
+				$author->set('text', $authorName);
+				$header->inject($author);
+
+				$author = new htmlElement('div');
+				$author->set('class', 'grid-2_4 date');
+				$author->set('text', $date);
+				$header->inject($author);
+				
 				$authorLink = new htmlElement('a');
-				$authorLink->set('href', Sophwork::getUrl('user/Syu93')); // FIXME : 'user/' . $author
+				$authorLink->set('href', Sophwork::getUrl('user/Syu93')); // FIXME : 'user/' . $authorName
 					
 				$img = new htmlElement('img');
-				$img->set('src', Sophwork::getUrl('data/users/Syu93/Syu93.jpg')); // FIXME : 'user/' . $author . '/' . $author . '.jpg'
-					
+				$img->set('src', Sophwork::getUrl('data/users/Syu93/Syu93.jpg')); // FIXME : 'data/users/' . $authorName . '/' . $authorName . '.jpg'
 				$authorLink->inject($img);
+				$header->inject($authorLink);
+				$card->inject($header);
 
-				$auteur = new htmlElement('div');
-				$auteur->set('class', 'auteur');
-				$auteur->set('text', $author); 
-				$auteur->inject($authorLink);
-				$card->inject($auteur);
+				$grid = new htmlElement('div');
+				$grid->set('class', 'preview');
 
 				$articleLink = new htmlElement('a');
 				$articleLink->set('href', Sophwork::getUrl($tag));
 
-				$grid = new htmlElement('div');
-				$grid->set('class', 'articles' . ' preview');
-				$grid->set('text', $content . ' ...');
+				$articleLink->set('text', $content . ' ...');
 
-				$articleLink->inject($grid);
+				$grid->inject($articleLink);
 						
-				$card->inject($articleLink);
-
-				$line->inject($card);
+				$card->inject($grid);
+				$line->set('text', $line->get('text').$this->closetags($card->build()));
 			}
 			$this->layout[] = $line;
 			return $this;
@@ -101,4 +109,24 @@ class htmlPage extends htmlElement{
 			$value->output();
 		}
 	}
+
+	public function closetags($html) {
+    preg_match_all('#<(?!meta|img|br|hr|input\b)\b([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
+    $openedtags = $result[1];
+    preg_match_all('#</([a-z]+)>#iU', $html, $result);
+    $closedtags = $result[1];
+    $len_opened = count($openedtags);
+    if (count($closedtags) == $len_opened) {
+        return $html;
+    }
+    $openedtags = array_reverse($openedtags);
+    for ($i=0; $i < $len_opened; $i++) {
+        if (!in_array($openedtags[$i], $closedtags)) {
+            $html .= '</'.$openedtags[$i].'>';
+        } else {
+            unset($closedtags[array_search($openedtags[$i], $closedtags)]);
+        }
+    }
+    return $html;
+} 
 }
