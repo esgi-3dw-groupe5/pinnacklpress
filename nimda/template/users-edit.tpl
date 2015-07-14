@@ -41,7 +41,7 @@
                     <div class="pinnackl-control-group">
                         <label>Role</label>
                         <select id="user_role" class="pinnackl-input-1-2" style="color: gray;" name="role" required>
-                            <option value="surperamdin">Superadmin</option>
+                            <option value="superadmin">Superadmin</option>
                             <option value="administrator">administrator</option>
                             <option value="moderator">moderator</option>
                             <option value="editor">editor</option>

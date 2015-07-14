@@ -14,7 +14,7 @@ class Users extends \sophwork\app\controller\AppController {
         return $this->user;
     }
     
-    public function connection($POST){
+    public function connection($POST, $redirectAfterConnection = true){
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]!=null)
@@ -29,15 +29,14 @@ class Users extends \sophwork\app\controller\AppController {
                 $_SESSION['user']['connected']=true;
                 
                 $_SESSION['form']['error'][]="Vous êtes connecté";
-                $sophwork = new Sophwork();
-                Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
-                exit;
-                
+                if($redirectAfterConnection) {
+                    Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+                    exit;
+                }
             }
             else
             {
                 $_SESSION['form']['error'][]="Le mot de passe est incorrect";
-                $sophwork = new Sophwork();
                 Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
                 exit;
             }
@@ -45,7 +44,6 @@ class Users extends \sophwork\app\controller\AppController {
         else
         {
             $_SESSION['form']['error'][]="Ce mail n'existe pas";
-            $sophwork = new Sophwork();
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
@@ -78,13 +76,11 @@ class Users extends \sophwork\app\controller\AppController {
             $this->user->save();
             
             $_SESSION['form']['error'][]="Vous êtes inscrits";
-            $sophwork = new Sophwork();
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
         else{
             $_SESSION['form']['error'][]="L'utilisateur existe déjà";
-            $sophwork = new Sophwork();
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
@@ -158,7 +154,6 @@ class Users extends \sophwork\app\controller\AppController {
     
     public function logout(){
         session_destroy();
-        $sophwork = new Sophwork();
         Sophwork::redirectFromRef('index');
         exit;
     }

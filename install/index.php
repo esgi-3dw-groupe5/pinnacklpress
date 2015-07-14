@@ -46,6 +46,7 @@ if(sizeof($_POST) > 0){
             $user->setUserEmail($_POST['email']);
             $user->setUserPseudo($_POST['pseudo']);
             $user->setUserPassword($hash_psw);
+            $user->setUserRegdate(date("Y-m-d h:i:s"));
             $user->setUserRole('superadmin');
             $user->setUserActive('1');
             $user->setUserUrl($_POST['pseudo']);

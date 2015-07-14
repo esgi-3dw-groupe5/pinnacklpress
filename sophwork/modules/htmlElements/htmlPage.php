@@ -111,6 +111,7 @@ class htmlPage extends htmlElement{
                     $line->set('text', $line->get('text').$this->closetags($card->build()));
                 }
                 return $this;
+            }
 		}else {
 			return $this;
 		}
