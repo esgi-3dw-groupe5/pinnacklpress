@@ -5,12 +5,14 @@ namespace controller\posts;
 class Post extends \sophwork\app\controller\AppController {
     
     protected $post = [];
+    protected $categoriesRs;
     protected $title;
     protected $content;
     
     public function __construct(){
         parent::__construct();
         $this->post = $this->KDM->create('pp_page');
+        $this->categoriesRs = $this->KDM->create('pp_pagemeta');
     }
 
     public function createPost($POST){
@@ -42,23 +44,47 @@ class Post extends \sophwork\app\controller\AppController {
                     if(!is_null($ids)){
                         $this->post->findPageId($aIds[$key]);
                         $posts = $this->post->getData();
-                        $aPosts['title'][$nbPost] = $posts['page_name'][0];
-                        $aPosts['author'][$nbPost] = $posts['page_author'][0];
-                    }else{
-                        $aPosts['title'][$nbPost] = $posts['page_name'][$key];
-                        $aPosts['author'][$nbPost] = $posts['page_author'][$key];
+
+                        $aPosts['title'][$nbPost]  = $posts['page_name'][0];
+                        $aPosts['date'][$nbPost]   = $posts['page_date'][0];
+                        $aPosts['tag'][$nbPost]    = $posts['page_tag'][0];
+                        $user->findUserId($posts['page_author'][0]);
+                        $aPosts['author'][$nbPost] = $user->getUserPseudo()[0];
+                        $aPosts['category'][$nbPost] = [];
+                        $aPosts['catLink'][$nbPost] = [];
                     }
-                    
+                    else{
+                        $aPosts['title'][$nbPost]  = $posts['page_name'][$key];
+                        $aPosts['author'][$nbPost] = $posts['page_author'][$key];
+                        $aPosts['date'][$nbPost]   = $posts['page_date'][$key];
+                        $aPosts['tag'][$nbPost]    = $posts['page_tag'][$key];
+                        $aPosts['category'][$nbPost] = [];
+                        $aPosts['catLink'][$nbPost] = [];
+                    }
                     $aPosts['content'][$nbPost] = $val;
+                    
+                    $this->categoriesRs
+                        ->filterPageId($aIds[$key])
+                        ->__and()
+                        ->filterPmetaName('category')
+                        ->querySelect();
+                    $linkedPage = $this->categoriesRs->getPmetaValue();
+                    if(is_null($linkedPage)){
+                        $linkedPage = [];
+                    }
+                    foreach ($linkedPage as $key => $value) {
+                        $this->post->findPageId($value);
+                        $aPosts['category'][$nbPost][] = $this->post->getPageName()[0];
+                        $aPosts['catLink'][$nbPost][] = $this->post->getPageTag()[0];
+                    }
                 }
             }
             $nbPost++;
         }
-
         return $aPosts;
     }
 
-    public function getPostsCateg($cat){
+    public function getPostsByCateg($cat){
         $pageMeta = $this->KDM->create('pp_pagemeta');
         $pageMeta->find();
         $posts = $pageMeta->getData();

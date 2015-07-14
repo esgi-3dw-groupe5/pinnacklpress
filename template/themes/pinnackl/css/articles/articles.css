@@ -1,7 +1,20 @@
 .articles{
+	font-family: 'Open Sans Condensed', sans-serif;
 	text-align: justify;
 	background: #fff;
 	padding: 1em;
+	margin-right: .3em;
+	margin-bottom: .3em;
+	width: 32.3333%;
+	box-sizing: border-box;
+	border-bottom: 4px solid #fff;
+	transition: border .1s;
+	transition: box-shadow .1s;
+}
+
+.line .articles:last-of-type{
+	margin-right: 0;
+	margin-bottom: 0;
 }
 
 .articles a:link,
@@ -14,8 +27,9 @@
 
 .articles:hover{
 	box-shadow: 0 0 3px 0px #000;
+	border-bottom: 4px solid #3399ff;
+	cursor: pointer;
 }
-
 
 .articles .header{
 	border-bottom: 1px solid #eee;
@@ -27,19 +41,52 @@
 	text-transform: uppercase;
 }
 
-.auteur {
-	margin-bottom: 2em;
+.header .date{
+	color: 3em;
 }
 
-.auteur img {
+.author {
+	clear: both;
+}
+
+.author img {
 	width: 32px;
 	float: right;
 	margin: 0.1%;
 	border: solid 2px #eee;
 	border-radius: 50%;
+	position: absolute;
 }
 
-.articles .preview{
+.author .date{
+	font-size: .6em;
+}
+
+.author .categories{
+	font-size: .9em;
+}
+
+.author .vignette{
+	margin-right: 2px;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	background: #3399ff;
+}
+.author a.vignette:link,
+.author a.vignette:visited,
+.author a.vignette:hover,
+.author a.vignette:active{
+	text-decoration: none;
+	color: #fff;
+}
+.author .vignette:last-of-type{
+	margin-right: 0;
+}
+
+.articles .preview,
+.articles .preview a{
+	display: block;
 	text-overflow: ellipsis;
 	min-height: 8em;
 	max-height: 8em;
