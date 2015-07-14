@@ -32,7 +32,7 @@
                     </div>
                     <div class="pinnackl-control-group">
                         <label>Last name</label>
-                        <input type="text" name="name" class="pinnackl-input-1-2" value="<?php $this->get('user_name') == 'null' ? ' ' : $this->show('user_name'); ?>" required>
+                        <input type="text" name="lastname" class="pinnackl-input-1-2" value="<?php $this->get('user_name') == 'null' ? ' ' : $this->show('user_name'); ?>" required>
                     </div>
                     <div class="pinnackl-control-group">
                         <label>Birthday</label>

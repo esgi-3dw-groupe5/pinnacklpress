@@ -9,7 +9,9 @@ use sophwork\modules\kdm\SophworkDMEntities;
 use sophwork\modules\htmlElements\htmlBuilder;
 use sophwork\modules\htmlElements\htmlElement;
 
-class Menus extends \sophwork\app\controller\AppController{
+use nimda\controller\access\Controller;
+
+class Menus extends Controller{
 	
 	public function __construct($config = null){
 		parent::__construct();

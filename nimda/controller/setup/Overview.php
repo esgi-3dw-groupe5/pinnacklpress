@@ -9,7 +9,9 @@ use sophwork\modules\kdm\SophworkDMEntities;
 use sophwork\modules\htmlElements\htmlBuilder;
 use sophwork\modules\htmlElements\htmlElement;
 
-class Overview extends \sophwork\app\controller\AppController{
+use nimda\controller\access\Controller;
+
+class Overview extends Controller{
 	public $config;
 	protected $forms;
 	protected $fields;

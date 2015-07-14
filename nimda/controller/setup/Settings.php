@@ -6,7 +6,9 @@ use sophwork\core\Sophwork;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
-class Settings extends \sophwork\app\controller\AppController{
+use nimda\controller\access\Controller;
+
+class Settings extends Controller{
 	public $config;
 	protected $forms;
 	protected $fields;

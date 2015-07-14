@@ -12,8 +12,9 @@ use sophwork\modules\kte\SophworkTEParser;
 
 use controller\form\Form;
 
+use nimda\controller\access\Controller;
 
-class Forms extends \sophwork\app\controller\AppController{
+class Forms extends Controller{
 	public $config;
 	protected $forms;
 	protected $fields;

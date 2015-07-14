@@ -11,7 +11,9 @@ use sophwork\modules\htmlElements\htmlElement;
 
 use nimda\controller\util\PluginHelper;
 
-class Plugins extends \sophwork\app\controller\AppController{
+use nimda\controller\access\Controller;
+
+class Plugins extends Controller{
 	public function __construct($config = null){
 		parent::__construct();
 		$this->config = $config;

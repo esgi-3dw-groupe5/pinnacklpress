@@ -9,7 +9,9 @@ use sophwork\modules\kdm\SophworkDMEntities;
 use sophwork\modules\htmlElements\htmlBuilder;
 use sophwork\modules\htmlElements\htmlElement;
 
-class Users extends \sophwork\app\controller\AppController{
+use nimda\controller\access\Controller;
+
+class Users extends Controller{
     public $config;
     protected $forms;
     protected $fields;

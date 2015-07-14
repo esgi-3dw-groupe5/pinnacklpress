@@ -6,7 +6,9 @@ use sophwork\core\Sophwork;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
-class Themes extends \sophwork\app\controller\AppController{
+use nimda\controller\access\Controller;
+
+class Themes extends Controller{
 	public $config;
 	protected $forms;
 	protected $fields;

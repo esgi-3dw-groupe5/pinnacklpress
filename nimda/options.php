@@ -506,7 +506,6 @@ else if($optionPage == 'themes'){
 	}
 }
 
-
 else if($optionPage == 'users'){
 
 	if($edit == '') $edit = 0;
