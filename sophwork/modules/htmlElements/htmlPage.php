@@ -63,18 +63,31 @@ class htmlPage extends htmlElement{
 				$date = date_format(date_create($this->data['date'][$k]), "Y/m/d");
 
 				$header = new htmlElement('div');
-				$header->set('class', 'author');
+				$header->set('class', 'grid-4_4 author');
 
-				$author = new htmlElement('div');
-				$author->set('class', 'grid-3_4');
-				$author->set('text', $authorName);
-				$header->inject($author);
+				$meta = new htmlElement('div');
+				$meta->set('class', 'grid-3_4');
+				$meta->set('text', $authorName);
+				$header->inject($meta);
 
-				$author = new htmlElement('div');
-				$author->set('class', 'grid-2_4 date');
-				$author->set('text', $date);
-				$header->inject($author);
+				$meta = new htmlElement('div');
+				$meta->set('class', 'grid-3_4 date');
+				$meta->set('text', $date);
+				$header->inject($meta);
 				
+				$meta = new htmlElement('div');
+				$meta->set('class', 'grid-3_4 categories');
+
+				foreach ($this->data['category'][0] as $key => $value) {
+					$category = new htmlElement('a');
+					$category->set('href', Sophwork::getUrl($this->data['catLink'][0][$key]));
+					$category->set('class', 'grid-1_4 vignette');
+					$category->set('text', $value);
+					$meta->set('text', $meta->get('text').$category->build());
+				}
+
+				$header->inject($meta);
+
 				$authorLink = new htmlElement('a');
 				$authorLink->set('href', Sophwork::getUrl('user/Syu93')); // FIXME : 'user/' . $authorName
 					
@@ -85,12 +98,12 @@ class htmlPage extends htmlElement{
 				$card->inject($header);
 
 				$grid = new htmlElement('div');
-				$grid->set('class', 'preview');
+				$grid->set('class', 'grid-4_4 preview');
 
 				$articleLink = new htmlElement('a');
 				$articleLink->set('href', Sophwork::getUrl($tag));
 
-				$articleLink->set('text', $content . ' ...');
+				$articleLink->set('text', $this->closetags($content) . ' ...');
 
 				$grid->inject($articleLink);
 						

@@ -31,7 +31,6 @@
 	cursor: pointer;
 }
 
-
 .articles .header{
 	border-bottom: 1px solid #eee;
 	color: #aaa;
@@ -47,7 +46,7 @@
 }
 
 .author {
-	margin-bottom: 3em;
+	clear: both;
 }
 
 .author img {
@@ -61,6 +60,28 @@
 
 .author .date{
 	font-size: .6em;
+}
+
+.author .categories{
+	font-size: .9em;
+}
+
+.author .vignette{
+	margin-right: 2px;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	background: #3399ff;
+}
+.author a.vignette:link,
+.author a.vignette:visited,
+.author a.vignette:hover,
+.author a.vignette:active{
+	text-decoration: none;
+	color: #fff;
+}
+.author .vignette:last-of-type{
+	margin-right: 0;
 }
 
 .articles .preview,
