@@ -22,7 +22,6 @@ class Post extends \sophwork\app\controller\AppController {
     public function getPosts($ids = null){
 
         $aIds = $ids;
-        $user = $this->KDM->create('pp_user');
 
         if(is_null($ids)){
             $this->post->findPageType('post');
@@ -43,16 +42,11 @@ class Post extends \sophwork\app\controller\AppController {
                     if(!is_null($ids)){
                         $this->post->findPageId($aIds[$key]);
                         $posts = $this->post->getData();
-                        $aPosts['title'][$nbPost]  = $posts['page_name'][0];
-                        $aPosts['date'][$nbPost]   = $posts['page_date'][0];
-                        $aPosts['tag'][$nbPost]    = $posts['page_tag'][0];
-                        $user->findUserId($posts['page_author'][0]);
-                        $aPosts['author'][$nbPost] = $user->getUserPseudo()[0];
+                        $aPosts['title'][$nbPost] = $posts['page_name'][0];
+                        $aPosts['author'][$nbPost] = $posts['page_author'][0];
                     }else{
-                        $aPosts['title'][$nbPost]  = $posts['page_name'][$key];
+                        $aPosts['title'][$nbPost] = $posts['page_name'][$key];
                         $aPosts['author'][$nbPost] = $posts['page_author'][$key];
-                        $aPosts['date'][$nbPost]   = $posts['page_date'][$key];
-                        $aPosts['tag'][$nbPost]    = $posts['page_tag'][$key];
                     }
                     
                     $aPosts['content'][$nbPost] = $val;

@@ -6,6 +6,8 @@ use sophwork\core\Sophwork;
 use sophwork\app\app\SophworkApp;
 use nimda\controller\util\PluginHelper;
 
+use controller\utils\Users;
+
 $app = new SophworkApp();
 $controller = $app->appController;
 	$page = $controller->page;
@@ -13,6 +15,9 @@ $controller = $app->appController;
 
 if($page == 'index')
 	Sophwork::redirect('nimda/overview');
+
+$user = new Users();
+$user->checkPermission('moderator');
 
 $options = $KDM->create('pp_option');
 $options->findOptionName("siteurl");

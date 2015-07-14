@@ -95,24 +95,6 @@ class Controllers extends AppController{
             echo 'test';
             exit();
         }
-
-
-		$pageType = $page->getPageType()[0];
-		$idCateg = $page->getPageId()[0];
-
-		$posts = new Post();
-		$data = $posts->getPostsCateg($idCateg);
-
-		$slug = $page->getPageName()[0];
-		$html = new htmlPage($data);
-		if($pageType == 'page')
-			$layout = $html->createPage();
-		elseif($pageType == 'category')
-			$layout = $html->createPostList();
-		if($slug != 'Index')
-			$this->setViewData('sitedescription', $slug);
-		$this->setRawData('page', $layout);
-		return $page;
 	}
 
 	public function initMenu(){
@@ -142,8 +124,11 @@ class Controllers extends AppController{
 				$user->initUser();
 		}
 		$roleNeedle = $page->getPageConnectedAs()[0];
-        if(is_null($roleNeedle))
+        if(is_null($roleNeedle)) {
+            header("HTTP/1.0 404 Not Found");
             echo 'test2';
+            exit();
+        }
 		$user->checkPermission($roleNeedle);
 
 		if( isset($_GET['act']) && $_GET['act']=='logout' ) {

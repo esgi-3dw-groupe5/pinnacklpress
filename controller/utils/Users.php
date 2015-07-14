@@ -144,11 +144,19 @@ class Users extends \sophwork\app\controller\AppController {
             ],
         ];
         
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+        
+        if(!isset($_SESSION['user']))
+            Users::logout();
+        
         if(!in_array($permission,$roles[$_SESSION['user']['role']])){
-            header("HTTP/1.0 404 Not Found");
+            /*header("HTTP/1.0 404 Not Found");
             echo "ERREUR DROITS";
-            die();
+            die();*/
             //FIXME : ADD 404.tpl
+            
+            Users::logout();
         }
         
             
@@ -157,7 +165,7 @@ class Users extends \sophwork\app\controller\AppController {
     public function logout(){
         session_destroy();
         $sophwork = new Sophwork();
-        Sophwork::redirectFromRef('index');
+        Sophwork::redirect();
         exit;
     }
     

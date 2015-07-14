@@ -11,9 +11,7 @@ class htmlPage extends htmlElement{
 	protected $layout;
 
 	public function __construct($data){
-		if(!is_array($data)){
-			$this->data = json_decode($data);
-		}else $this->data = $data;
+		$this->data = json_decode($data);
 		$this->layout = [];
 	}
 
@@ -51,45 +49,48 @@ class htmlPage extends htmlElement{
 		if($this->data != null) {
 			$line = new htmlElement('div');
 			$line->set('class', 'line');
-
-			$card = new htmlElement('div');
-			$card->set('class', 'grid-1_3 articles');
-			foreach ($this->data['title'] as $k => $subValue) {
-
-				$title   = $this->data['title'][$k];
-				$content = substr($this->data['content'][$k], 0,100);
-				$author  = $this->data['author'][$k];
-				$tag     = $this->data['tag'][$k];
-				$date    = $this->data['date'][$k];
-
-				$authorLink = new htmlElement('a');
-				$authorLink->set('href', Sophwork::getUrl('user/Syu93')); // FIXME : 'user/' . $author
+			foreach ($this->data as $key => $value) {
+				$card = new htmlElement('div');
+				$card->set('class', 'grid-1_3 articles');
+				foreach ($value as $key => $subValue) {
+					$authorLink = new htmlElement('a');
+					$authorLink->set('href', Sophwork::getUrl('user/Syu93'));
 					
-				$img = new htmlElement('img');
-				$img->set('src', Sophwork::getUrl('data/users/Syu93/Syu93.jpg')); // FIXME : 'user/' . $author . '/' . $author . '.jpg'
+					$img = new htmlElement('img');
+					$img->set('src', Sophwork::getUrl('data/users/Syu93/Syu93.jpg'));
 					
-				$authorLink->inject($img);
+					$authorLink->inject($img);
 
-				$auteur = new htmlElement('div');
-				$auteur->set('class', 'auteur');
-				$auteur->set('text', $author); 
-				$auteur->inject($authorLink);
-				$card->inject($auteur);
+					$auteur = new htmlElement('div');
+					$auteur->set('class', 'auteur');
+					$auteur->set('text', 'Syu93'); // FIXME: Get the real author
+					$auteur->inject($authorLink);
+					$card->inject($auteur);
 
-				$articleLink = new htmlElement('a');
-				$articleLink->set('href', Sophwork::getUrl($tag));
+					foreach ($subValue as $key => $val) {
+						$articleLink = new htmlElement('a');
+						$articleLink->set('href', Sophwork::getUrl('mon-premier-article'));
 
-				$grid = new htmlElement('div');
-				$grid->set('class', 'articles' . ' preview');
-				$grid->set('text', $content . ' ...');
+						$grid = new htmlElement('div');
+						$grid->set('class', $val->gridClass . ' preview');
 
-				$articleLink->inject($grid);
+						if($val->gridContent != 'null' && $val->gridModule != '[form]')
+							$grid->set('text', substr($val->gridContent, 0, 200) . ' ...');
+						elseif($val->gridContent != 'null' && $val->gridModule == '[form]'){
+							$form = new Form;
+							$form = $form->getForm($val->gridContent);
+							$html = new HtmlForm($form,$val->gridContent);
+							$layout = $html->createForm();
+							$grid->set('text',$layout->attributes['text']);
+						}
+						$articleLink->inject($grid);
 						
-				$card->inject($articleLink);
-
-				$line->inject($card);
+						$card->inject($articleLink);
+					}
+					$line->inject($card);
+				}
+				$this->layout[] = $line;
 			}
-			$this->layout[] = $line;
 			return $this;
 		}else {
 			return $this;

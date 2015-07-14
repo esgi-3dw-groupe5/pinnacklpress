@@ -123,6 +123,17 @@ if(sizeof($_POST) > 0){
         $page->setPageDate(date("Y-m-d h:i:s"));
         $page->setPageOrder(1);
         $page->save();
+        
+        $page = $appController->KDM->create('pp_page');
+        $page->setPageTag('connection');
+        $page->setPageName('Connection');
+        $page->setPageConnectedAs('visitor');
+        $page->setPageType('page');
+        $page->setPageStatus('publish');
+        $page->setPageCommentStatus('disable');
+        $page->setPageDate(date("Y-m-d h:i:s"));
+        $page->setPageOrder(2);
+        $page->save();
 
 
         $pageContent = $appController->KDM->create('pp_pagemeta');
@@ -135,6 +146,12 @@ if(sizeof($_POST) > 0){
         $pageContent->setPageId(2);
         $pageContent->setPmetaName('content');
         $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[form]","gridContent":"inscription"}]}]');
+        $pageContent->save();
+        
+        $pageContent = $appController->KDM->create('pp_pagemeta');
+        $pageContent->setPageId(3);
+        $pageContent->setPmetaName('content');
+        $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[form]","gridContent":"connection"}]}]');
         $pageContent->save();
 
         $menu = $appController->KDM->create('pp_menu');
