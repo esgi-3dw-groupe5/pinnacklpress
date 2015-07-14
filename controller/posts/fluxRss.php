@@ -1,6 +1,7 @@
 <?php
 
 use controller\posts\Post;
+use sophwork\core\Sophwork;
 
 function update_fluxRSS(){
         
@@ -32,9 +33,9 @@ function update_fluxRSS(){
                 $date    = $data['date'][$k];
 
                 $xml .= '<item>';
-                $xml .= '<title>'.stripcslashes($title).'</title>';
-                $xml .= '<link>'.'http://localhost/'.$title.'/'.$title.'</link>';
-                $xml .= '<guid isPermaLink="true">'.'http://localhost/'.$title.'/'.$title.'</guid>';
+                $xml .= '<title>'.'['.$data['category'][$k][0].']'.stripcslashes($title).'</title>';
+                $xml .= '<link>'.Sophwork::getUrl($tag).'</link>';
+                $xml .= '<guid isPermaLink="true">'.Sophwork::getUrl($tag).'</guid>';
                 $xml .= '<pubDate>'.(date("D, d M Y H:i:s O", strtotime($date))).'</pubDate>';
                 $xml .= '<author>'.stripcslashes($author).'</author>';
                 $xml .= '</item>'; 
