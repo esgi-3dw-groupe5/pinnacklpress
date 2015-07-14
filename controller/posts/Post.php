@@ -31,7 +31,10 @@ class Post extends \sophwork\app\controller\AppController {
 
             $aIds = $posts['page_id'];
         }
-
+        
+        if(is_null($aIds))
+            $aIds  =[];
+        
         $pageMeta = $this->KDM->create('pp_pagemeta');
         $nbPost = 0;
         $aPosts = [];
