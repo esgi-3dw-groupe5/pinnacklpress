@@ -9,6 +9,8 @@ use sophwork\app\controller\AppController;
 use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
+use controller\utils\Users;
+
 $_POST['pp-referer'] = $_SERVER['HTTP_REFERER'];
 
 
@@ -41,6 +43,10 @@ if($optionPage == 'pages'){
 
 	$pageCotent = $KDM->create('pp_pagemeta');
 	$pageCotent->findPageId($page->getPageId()[0]);
+
+	Users::startSession();
+	$user = new Users();
+
 	if(array_key_exists('pageBuilder', $_POST)){
 		$pageCotent->setPageId($page->getPageId()[0]);
 		$pageCotent->setPmetaName('content');
@@ -58,11 +64,14 @@ if($optionPage == 'pages'){
 
 		$page->setPageTag(Sophwork::slug($_POST['page_name']));
 		$page->setPageName($_POST['page_name']);
+		$page->setPageAuthor($user->id);
 		$page->setPageOrder($_POST['page_order']);
 		$page->setPageConnectedAs($_POST['page_connectedAs']);
 		$page->setPageStatus($_POST['page_status']);
 		$page->setPageCommentStatus($_POST['page_comment_status']);
 		$page->setPageType('page');
+        $page->setPageLevel(1);
+        $page->setPageParent(0);
 		if(in_array('new', $optionPageController))
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
@@ -88,6 +97,9 @@ elseif($optionPage == 'posts'){
 	$page = $KDM->create('pp_page');
 	$page->findPageId($edit);
 
+	Users::startSession();
+	$user = new Users();
+
 	if(array_key_exists('postBuilder', $_POST)){
 		// catergories
 	}
@@ -96,6 +108,7 @@ elseif($optionPage == 'posts'){
 
 		$page->setPageTag(Sophwork::slug($_POST['page_name']));
 		$page->setPageName($_POST['page_name']);
+		$page->setPageAuthor($user->id);
 		$page->setPageOrder($_POST['page_order']);
 		$page->setPageConnectedAs($_POST['page_connectedAs']);
 		$page->setPageStatus($_POST['page_status']);
@@ -103,6 +116,7 @@ elseif($optionPage == 'posts'){
 		$page->setPageType('post');
 		$page->setPageCommentCount(0); // check if update
 		$page->setPageParent(0);		// checkif update
+        $page->setPageLevel(1);
 		if(in_array('new', $optionPageController))
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
@@ -198,7 +212,8 @@ elseif($optionPage == 'categories'){
 		$page->setPageTag(Sophwork::slug($_POST['page_name']));
 		$page->setPageName($_POST['page_name']);
 		$page->setPageType('category');
-
+        $page->setPageLevel(1);
+        $page->setPageParent(0);
 		$page->save();
 
 

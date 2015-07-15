@@ -15,6 +15,19 @@ class Users extends \sophwork\app\controller\AppController {
         return $this->user;
     }
     
+    public function __get($param){
+        self::startSession();
+        if(isset($_SESSION['user'][$param]))
+            return $_SESSION['user'][$param];
+        else
+            return null;
+    }
+
+    public static function startSession(){
+        if(session_status() == PHP_SESSION_NONE)
+            session_start();
+    }
+
     public function connection($POST, $redirectAfterConnection = true){
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['email']);
@@ -24,6 +37,7 @@ class Users extends \sophwork\app\controller\AppController {
             
             if(password_verify($POST['password'], $this->user->getUserPassword()[0]))
             {
+                $_SESSION['user']['id']=$this->user->getUserId()[0];
                 $_SESSION['user']['email']=$this->user->getUserEmail()[0];
                 $_SESSION['user']['pseudo']=$this->user->getUserPseudo()[0];
                 $_SESSION['user']['role']=$this->user->getUserRole()[0];

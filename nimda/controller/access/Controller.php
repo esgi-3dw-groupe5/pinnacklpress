@@ -84,32 +84,36 @@ class Controller extends AppController{
 
         if(!isset($_SESSION['user']))
             Controller::logout();
-
-        if(!in_array($permission,$roles[$_SESSION['user']['role']])){
-            unset($_SERVER['PHP_AUTH_USER']);
-            if (!isset($_SERVER['PHP_AUTH_USER'])) {
-                header('WWW-Authenticate: Basic realm="My Realm"');
-                header('HTTP/1.0 401 Unauthorized');
-                echo("<h1>You have not enought rights !</h1><br><a href='".Sophwork::getUrl()."'>Return to Homepage.</a>");
-                exit;
-            } 
-            else {
+        if(!in_array($permission, $roles[$_SESSION['user']['role']])){
+            if($this->page != 'login')
+                Sophwork::redirect('nimda/login');
+            $includeUrl = Sophwork::getUrl('nimda/');
+            $siteUrl = Sophwork::getUrl();
+            $login = null;
+            $error = false;
+            if(isset($_POST['email'])){
                 $user = $this->KDM->create('pp_user');
-                $user->findUserEmail($_SERVER['PHP_AUTH_USER']);
-                if(is_null($user->getUserEmail()[0]) && !password_verify($_SERVER['PHP_AUTH_PW'], $user->getUserPassword()[0])){
-                    Controller::logout();
-                    exit;
+                $user->findUserEmail($_POST['email']);
+                if(is_null($user->getUserEmail()[0]) && !password_verify($_POST['password'], $user->getUserPassword()[0])){
+                    $error = true;
+                    $login = $_POST['email'];
+                }
+                else{
+                    $user = new Users();
+                    $user->connection($_POST, false);
+                    if(!in_array($permission, $roles[$_SESSION['user']['role']]))
+                        $error = true;
+                    else
+                        Sophwork::redirect('nimda');
                 }
             }
-            
-            $_POST['email'] = $_SERVER['PHP_AUTH_USER'];
-            $_POST['password'] = $_SERVER['PHP_AUTH_PW'];
-            
-            $user = new Users();
-            $user->connection($_POST, false);
+            require_once(__DIR__ . '/../../template/nimda-connection.tpl'); //fixme use form class to verify the form
+            exit;
         }
-
-
+       else{
+            if($this->page == 'login')
+                Sophwork::redirect('nimda');
+        }
     }
 
     public function logout(){

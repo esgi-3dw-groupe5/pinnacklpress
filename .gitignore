@@ -4,3 +4,4 @@ sophwork.json
 .htaccess
 nimda/.htaccess
 install/.htaccess
+controller/flux_rss.xml

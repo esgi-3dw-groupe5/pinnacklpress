@@ -107,9 +107,10 @@ if(sizeof($_POST) > 0){
         $page->setPageConnectedAs('visitor');
         $page->setPageType('page');
         $page->setPageStatus('publish');
+        $page->setPageAuthor(1);
         $page->setPageCommentStatus('disable');
         $page->setPageDate(date("Y-m-d h:i:s"));
-        $page->setPageOrder(0);
+        $page->setPageOrder(1);
         $page->setPageLevel(1);
         $page->setPageParent(0);
         $page->save();
@@ -120,9 +121,12 @@ if(sizeof($_POST) > 0){
         $page->setPageConnectedAs('visitor');
         $page->setPageType('page');
         $page->setPageStatus('publish');
+        $page->setPageAuthor(1);
         $page->setPageCommentStatus('disable');
         $page->setPageDate(date("Y-m-d h:i:s"));
-        $page->setPageOrder(1);
+        $page->setPageOrder(2);
+        $page->setPageLevel(1);
+        $page->setPageParent(0);
         $page->save();
         
         $page = $appController->KDM->create('pp_page');
@@ -131,9 +135,12 @@ if(sizeof($_POST) > 0){
         $page->setPageConnectedAs('visitor');
         $page->setPageType('page');
         $page->setPageStatus('publish');
+        $page->setPageAuthor(1);
         $page->setPageCommentStatus('disable');
         $page->setPageDate(date("Y-m-d h:i:s"));
-        $page->setPageOrder(2);
+        $page->setPageOrder(3);
+        $page->setPageLevel(1);
+        $page->setPageParent(0);
         $page->save();
 
 

@@ -97,7 +97,7 @@ class Controllers extends AppController{
         }
         else {
             header("HTTP/1.0 404 Not Found");
-            echo 'test';
+            echo '<h1>404 not found</h1>';
             exit();
         }
 
@@ -151,7 +151,7 @@ class Controllers extends AppController{
 		$roleNeedle = $page->getPageConnectedAs()[0];
         if(is_null($roleNeedle)) {
             header("HTTP/1.0 404 Not Found");
-            echo 'test2';
+            echo '<h1>404 not found</h1>';
             exit();
         }
 		$user->checkPermission($roleNeedle);

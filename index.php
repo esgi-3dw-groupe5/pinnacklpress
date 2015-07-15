@@ -10,7 +10,7 @@ use sophwork\app\app\SophworkApp;
 
 use controller\controllers\core\Controllers;
 
-update_fluxRSS();
+// update_fluxRSS(); // not here !!
 
 if(!file_exists('config.local.php'))
 	Sophwork::redirect('install');

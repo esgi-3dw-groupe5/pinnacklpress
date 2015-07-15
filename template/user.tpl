@@ -33,7 +33,7 @@
 					<label for="pp_confirm"><span>Password confirm : </span></label><input id="pp_confirm" class="pinnackl-form" type="password" name="confirm">
 				</div>
 				<div class="pinnackl-controls">
-					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Envoyer">
+					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Submit">
 				</di>
 			</fieldset>
 			</form>

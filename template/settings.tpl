@@ -33,7 +33,7 @@
 					<input id="siteurl" class="pinnackl-input-1-4" type="text" name="siteurl" value="<?php $this->show('siteUrl')?>" placeholder="<?php $this->show('siteUrl')?>">
 				</div>
 				<div class="pinnackl-controls">
-					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_settings" value="Envoyer">
+					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_settings" value="Submit">
 				</di>
 			</fieldset>
 			</form>

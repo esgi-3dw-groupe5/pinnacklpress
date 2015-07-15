@@ -33,7 +33,7 @@
 					<label for="db_password"><span>db_password : </span></label><input id="db_password" class="pinnackl-form" type="password" name="db_password">
 				</div>
 				<div class="pinnackl-controls">
-					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_dbConfig" value="Envoyer">
+					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_dbConfig" value="Submit">
 				</di>
 			</fieldset>
 			</form>

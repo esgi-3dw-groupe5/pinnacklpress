@@ -48,7 +48,7 @@ function update_fluxRSS(){
         $xml .= '</channel>';
         $xml .= '</rss>';
 
-        $fp = fopen($_SERVER['DOCUMENT_ROOT']."pinnacklpress/flux_rss.xml", 'w+');
+        $fp = fopen(__DIR__ . "../../flux_rss.xml", 'w+');
  
         //On écrit notre flux RSS
         fputs($fp, $xml);
