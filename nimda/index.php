@@ -14,6 +14,7 @@ $app = new SophworkApp();
 $controller = $app->appController;
 	$page = $controller->page;
 	$KDM = $controller->KDM;
+$controller->user = new Users();
 
 if($page == 'index')
 	Sophwork::redirect('nimda/overview');
@@ -64,6 +65,7 @@ if(!is_null($plugins)){
 
 $controller->setViewData('title', $sitename.' '.$sitedescription);
 $controller->setViewData('siteurl', $siteurl);
+$controller->setViewData('userPseudo', $controller->user->pseudo);
 $controller->setViewData('menu', $menu, 'page_tag');
 $controller->setViewData('menu', $menu, 'page_name');
 

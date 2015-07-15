@@ -44,7 +44,7 @@
         <span></span>
     </a>
     <div class="pinnackl-header-menu">
-        <span>Welcome, <b><?=$_SESSION['user']['pseudo'] ?></b></span>
+        <span>Welcome, <b><?php $this->show('userPseudo') ?></b></span>
         <a class="pinnackl-button pinnackl-button-white btn-70" href="<?php $this->show('siteurl')?>">
             Back to the website
         </a>
