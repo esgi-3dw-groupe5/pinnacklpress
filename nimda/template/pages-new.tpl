@@ -62,6 +62,9 @@
 									</option>
 								</select>
 							</label>
+							<label><span>List all articles :</span>
+								<input type="checkbox" name="page_articles" value="page_articles" style="float:none;margin-top:0px">
+							</label>
 							<div style="text-align:right;">
 								<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>
 							</div>

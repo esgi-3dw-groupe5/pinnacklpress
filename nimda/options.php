@@ -69,7 +69,11 @@ if($optionPage == 'pages'){
 		$page->setPageConnectedAs($_POST['page_connectedAs']);
 		$page->setPageStatus($_POST['page_status']);
 		$page->setPageCommentStatus($_POST['page_comment_status']);
-		$page->setPageType('page');
+		if(array_key_exists('page_articles', $_POST)){
+			$page->setPageType('article');
+		}else{
+			$page->setPageType('page');
+		}	
         $page->setPageLevel(1);
         $page->setPageParent(0);
 		if(in_array('new', $optionPageController))

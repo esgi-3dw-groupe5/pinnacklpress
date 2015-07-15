@@ -91,7 +91,11 @@ class Pages extends Controller{
 			$this->setViewData('page_status', ''.$pages->getPageStatus()[0]);
 			$this->setViewData('page_comment_status', ''.$pages->getPageCommentStatus()[0]);
 			$this->setViewData('page_type', ''.$pages->getPageType()[0]);
-			
+			if($pages->getPageType()[0] == 'article'){
+				$this->setViewData('page_article', 'checked');
+			}else{
+				$this->setViewData('page_article', '');
+			}
 			$contents->findPageId($pages->getPageId()[0]);
 			if(!is_null($contents->getPmetaId()[0])){
 					$data = $contents->getData()['pmeta_value'][0];
@@ -111,7 +115,10 @@ class Pages extends Controller{
 			$this->callView($page .'-new', 'nimda/');
 		}
 		else{
-			$pages->findPageType('page');
+			$pages->filterPageType('page')
+                ->__or()
+                ->filterPageType('article')
+                ->querySelect();
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_tag');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
