@@ -81,7 +81,7 @@ class Controllers extends AppController{
             $data = $pageContent->getPmetaValue()[0];
             $slug = $page->getPageName()[0];
             $html = new htmlPage($data);
-            if($pageType == 'page')
+            if($pageType == 'page' || $pageType == 'post' )
                 $layout = $html->createPage();
 			elseif($pageType == 'category'){
 				$idCateg = $page->getPageId()[0];

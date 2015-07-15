@@ -86,7 +86,7 @@ if(sizeof($_POST) > 0){
         $option = $appController->KDM->create('pp_option');
         $option->findOptionName('permalink');
         $option->setOptionName('permalink');
-        $option->setOptionValue(null);
+        $option->setOptionValue('custom');
         $option->save();
 
         $option = $appController->KDM->create('pp_option');

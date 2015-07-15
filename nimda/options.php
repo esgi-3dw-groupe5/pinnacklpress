@@ -212,6 +212,7 @@ elseif($optionPage == 'categories'){
 		$page->setPageTag(Sophwork::slug($_POST['page_name']));
 		$page->setPageName($_POST['page_name']);
 		$page->setPageType('category');
+		$page->setPageConnectedAs($_POST['page_connectedAs']);
         $page->setPageLevel(1);
         $page->setPageParent(0);
 		$page->save();

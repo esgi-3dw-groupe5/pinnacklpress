@@ -11,7 +11,10 @@ class htmlPage extends htmlElement{
 	protected $layout;
 
 	public function __construct($data){
-		$this->data = json_decode($data);
+		if(!is_array($data))
+			$this->data = json_decode($data);
+		else
+			$this->data = $data;
 		$this->layout = [];
 	}
 
@@ -49,26 +52,22 @@ class htmlPage extends htmlElement{
 		if($this->data != null) {
 			$line = new htmlElement('div');
 			$line->set('class', 'line');
-
 			$c = "";
+
 			foreach ($this->data['title'] as $k => $subValue) {
 				$card = new htmlElement('div');
 				$card->set('class', 'grid-1_3 articles');
-
 				$title   = $this->data['title'][$k];
 				$content = substr(json_decode($this->data['content'][$k])[0]->line[0]->gridContent, 0, 200);
 				$authorName  = $this->data['author'][$k];
 				$tag     = $this->data['tag'][$k];
 				$date = date_format(date_create($this->data['date'][$k]), "Y/m/d");
-
 				$header = new htmlElement('div');
 				$header->set('class', 'grid-4_4 author');
-
 				$meta = new htmlElement('div');
 				$meta->set('class', 'grid-3_4');
 				$meta->set('text', $authorName);
 				$header->inject($meta);
-
 				$meta = new htmlElement('div');
 				$meta->set('class', 'grid-3_4 date');
 				$meta->set('text', $date);
@@ -76,15 +75,18 @@ class htmlPage extends htmlElement{
 				
 				$meta = new htmlElement('div');
 				$meta->set('class', 'grid-3_4 categories');
-
-				foreach ($this->data['category'][0] as $key => $value) {
+				foreach ($this->data['category'][$k] as $key => $value) {
 					$category = new htmlElement('a');
-					$category->set('href', Sophwork::getUrl($this->data['catLink'][0][$key]));
+					$category->set('href', Sophwork::getUrl($this->data['catLink'][$k][$key]));
 					$category->set('class', 'grid-1_4 vignette');
 					$category->set('text', $value);
 					$meta->set('text', $meta->get('text').$category->build());
 				}
+				$header->inject($meta);
 
+				$meta = new htmlElement('h3');
+				$meta->set('class', 'grid-3_4 title');
+				$meta->set('text', $title);
 				$header->inject($meta);
 
 				$authorLink = new htmlElement('a');
@@ -95,23 +97,18 @@ class htmlPage extends htmlElement{
 				$authorLink->inject($img);
 				$header->inject($authorLink);
 				$card->inject($header);
-
 				$grid = new htmlElement('div');
 				$grid->set('class', 'grid-4_4 preview');
-
-                foreach ($subValue as $key => $val) {
-                    $articleLink = new htmlElement('a');
-                    $articleLink->set('href', Sophwork::getUrl('mon-premier-article'));
-
-                    $articleLink->set('text', $this->closetags($content) . ' ...');
-
-                    $grid->inject($articleLink);
-
-                    $card->inject($grid);
-                    $line->set('text', $line->get('text').$this->closetags($card->build()));
-                }
-                return $this;
-            }
+				$articleLink = new htmlElement('a');
+				$articleLink->set('href', Sophwork::getUrl($_GET['p'] . '/' .$tag)); //FIXME : maybe get the category from the KDM class ?
+				$articleLink->set('text', $this->closetags($content) . ' ...');
+				$grid->inject($articleLink);
+						
+				$card->inject($grid);
+				$line->set('text', $line->get('text').$this->closetags($card->build()));
+			}
+			$this->layout[] = $line;
+			return $this;
 		}else {
 			return $this;
 		}

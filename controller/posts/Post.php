@@ -24,6 +24,7 @@ class Post extends \sophwork\app\controller\AppController {
     public function getPosts($ids = null){
 
         $aIds = $ids;
+        $user = $this->KDM->create('pp_user');
 
         if(is_null($ids)){
             $this->post->findPageType('post');
@@ -33,7 +34,7 @@ class Post extends \sophwork\app\controller\AppController {
         }
         
         if(is_null($aIds))
-            $aIds  =[];
+            $aIds  = [];
         
         $pageMeta = $this->KDM->create('pp_pagemeta');
         $nbPost = 0;
