@@ -91,6 +91,11 @@ class Controllers extends AppController{
 				$data = $posts->getPostsByCateg($idCateg);
 				$html = new htmlPage($data);
 				$layout = $html->createPostList();
+			}elseif ($pageType == 'article') {
+				$posts = new Post();
+				$data = $posts->getPosts();
+				$html = new htmlPage($data);
+				$layout = $html->createPostList();
 			}
             if($slug != 'Index')
                 $this->setViewData('sitedescription', $slug);

@@ -187,12 +187,16 @@
 									</option>
 								</select>
 							</label>
+							<label><span>List all articles :</span>
+								<input type="checkbox" name="page_articles" value="page_articles" style="float:none;margin-top:0px" <?php echo(($this->get($this->viewData, 'page_article'))) ?>>
+							</label>
 							<div style="text-align:right;">
 								<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>
 							</div>
 						</fieldset>
 					</form>
 				</div>
+				<?php if(($this->get($this->viewData, 'page_article')) != 'checked'){ ?>
 				<div class="validate-builder">
 						<input class="builder-range" id="add-number" type="range" min="1" max="12" step="1">
 						<input id="number" type="text">
@@ -203,6 +207,7 @@
 				</div>
 				<div id="canvas"><?php $this->viewData->layout->render(); ?></div>
 			</div>
+			<?php } ?>
 		<!-- </section> -->
 	</div>
 	<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
