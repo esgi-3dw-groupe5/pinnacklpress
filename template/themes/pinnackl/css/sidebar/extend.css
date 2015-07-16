@@ -72,7 +72,7 @@ html{
 }
 
 .container{
-	padding: 1em 1em 0 1em;
+	padding: 1em 4em 0;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;

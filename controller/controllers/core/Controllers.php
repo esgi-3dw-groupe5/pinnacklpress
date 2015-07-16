@@ -112,6 +112,7 @@ class Controllers extends AppController{
 					$app->setViewData('errorNb', '403');
 					$app->setViewData('errorMsg','Forbidden');
 					$app->callThemeView('error');
+					exit;
 				});
             }
 			$app = $this;
@@ -122,10 +123,10 @@ class Controllers extends AppController{
 				$app->setViewData('errorNb', '404');
 				$app->setViewData('errorMsg','Not Found');
 				$app->callThemeView('error');
+				exit;
 			});
             exit;
         }
-
 
 		$pageType = $page->getPageType()[0];
 
@@ -174,11 +175,11 @@ class Controllers extends AppController{
 				$user->initUser();
 		}
 		$roleNeedle = $page->getPageConnectedAs()[0];
-        if(is_null($roleNeedle)){
+        // if(is_null($roleNeedle)){
             // header("HTTP/1.0 404 Not Found");
             // echo '<h1>404 not found</h1>';
             // exit();
-        }
+        // }
 		$this->checkPermission($roleNeedle);
 
 		if( isset($_GET['act']) && $_GET['act']=='logout' ) {
