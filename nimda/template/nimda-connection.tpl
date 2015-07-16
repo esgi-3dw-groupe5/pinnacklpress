@@ -56,7 +56,8 @@
 			  		</aside>
 					<div class="pinnackl-control-group">
 						<label for="login"><span>Login : </span></label>
-						<input id="login" class="pinnackl-input-1-4" type="email" name="email" required placeholder="Email" value="<?=$login?>">
+						<input id="login" class="pinnackl-input-1-4" type="email" name="email" required placeholder="Email"
+						value="<?=$login?>">
 					</div>
 					<div class="pinnackl-control-group">
 						<label for="password"><span>Password : </span></label>

@@ -5,6 +5,8 @@ namespace controller\controllers\core;
 use sophwork\core\Sophwork;
 use sophwork\app\controller\AppController;
 
+use sophwork\modules\handlers\requests\Requests;
+
 use sophwork\modules\htmlElements\htmlElement;
 use sophwork\modules\htmlElements\htmlPage;
 
@@ -96,9 +98,27 @@ class Controllers extends AppController{
             return $page;
         }
         else {
-            header("HTTP/1.0 404 Not Found");
-            echo '<h1>404 not found</h1>';
-            exit();
+            if($this->page == 'access-error'){
+				$app = $this;
+				$headers = [
+					"HTTP/1.0 403 Forbidden",
+				];
+				$requests = new Requests($headers, function() use ($app){
+					$app->setViewData('errorNb', '403');
+					$app->setViewData('errorMsg','Forbidden');
+					$app->callThemeView('error');
+				});
+            }
+			$app = $this;
+			$headers = [
+				"HTTP/1.0 404 Not Found",
+			];
+			$requests = new Requests($headers, function() use ($app){
+				$app->setViewData('errorNb', '404');
+				$app->setViewData('errorMsg','Not Found');
+				$app->callThemeView('error');
+			});
+            exit;
         }
 
 
@@ -149,15 +169,72 @@ class Controllers extends AppController{
 				$user->initUser();
 		}
 		$roleNeedle = $page->getPageConnectedAs()[0];
-        if(is_null($roleNeedle)) {
-            header("HTTP/1.0 404 Not Found");
-            echo '<h1>404 not found</h1>';
-            exit();
+        if(is_null($roleNeedle)){
+            // header("HTTP/1.0 404 Not Found");
+            // echo '<h1>404 not found</h1>';
+            // exit();
         }
-		$user->checkPermission($roleNeedle);
+		$this->checkPermission($roleNeedle);
 
 		if( isset($_GET['act']) && $_GET['act']=='logout' ) {
 		    $user->logout();
 		}
+    }
+
+   public function checkPermission($permission){
+        Users::startSession();
+        if(!isset($_SESSION['user']))
+        	Sophwork::redirect();
+
+        $roles = [
+            'superadmin' => [
+                'superadmin',
+                'administrator',
+                'moderator',
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            "administrator" => [
+                'administrator',
+                'moderator',
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            'moderator' => [
+                'moderator',
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            'editor' => [
+                'editor',
+                'author',
+                'member',
+                'visitor',
+            ],
+            'author' => [
+                'author',
+                'member',
+                'visitor',
+            ],
+
+            'member' => [
+                'member',
+                'visitor'
+            ],
+            'visitor' => [
+                'visitor'
+            ],
+        ];            	
+        
+        if(!in_array($permission, $roles[$_SESSION['user']['role']])){
+			Sophwork::redirect('access-error');
+			exit;
+        }
     }
 }

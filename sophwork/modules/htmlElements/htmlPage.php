@@ -26,8 +26,7 @@ class htmlPage extends htmlElement{
 				foreach ($value as $key => $subValue) {
 					foreach ($subValue as $key => $val) {
 						$grid = new htmlElement('div');
-						$grid->set('class', $val->gridClass);
-
+						$grid->set('class', $val->gridClass . ' page-artcile');
 						if($val->gridContent != 'null' && $val->gridModule != '[form]')
 							$grid->set('text', $val->gridContent);
 						elseif($val->gridContent != 'null' && $val->gridModule == '[form]'){

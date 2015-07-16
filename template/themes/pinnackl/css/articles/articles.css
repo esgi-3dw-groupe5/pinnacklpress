@@ -105,6 +105,12 @@
     background: #888;
 }
 
+.page-artcile{
+	background: #fff;
+	padding: 3em 2em 5em 2em;
+	text-align: justify;
+}
+
 @media (max-width:765px) {
 	.articles{
 		width: 100%;

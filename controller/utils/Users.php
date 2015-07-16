@@ -33,8 +33,7 @@ class Users extends \sophwork\app\controller\AppController {
         $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]!=null)
         {
-            
-            
+
             if(password_verify($POST['password'], $this->user->getUserPassword()[0]))
             {
                 $_SESSION['user']['id']=$this->user->getUserId()[0];
@@ -69,9 +68,6 @@ class Users extends \sophwork\app\controller\AppController {
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]==null){ //FIXME : replace default data
-            
-            
-            
             $hash_psw = password_hash($POST['password'], PASSWORD_DEFAULT);
             
             $userkey = md5(microtime().rand());
@@ -92,14 +88,12 @@ class Users extends \sophwork\app\controller\AppController {
             if($this->user->save()){
                 Mail::sendMail($POST['pseudo'],$POST['email'],$POST['firstname'],$userkey);
             }
-            
         }
         else{
             $_SESSION['form']['error'][]="L'utilisateur existe déjà";
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
-        
     }
     
     public function initUser(){
@@ -109,80 +103,11 @@ class Users extends \sophwork\app\controller\AppController {
         $_SESSION['user']['connected']  = false;
     }
     
-    public function checkPermission($permission){
-        $roles = [
-            'superadmin' => [
-                'superadmin',
-                'administrator',
-                'moderator',
-                'editor',
-                'author',
-                'member',
-                'visitor',
-            ],
-            "administrator" => [
-                'administrator',
-                'moderator',
-                'editor',
-                'author',
-                'member',
-                'visitor',
-            ],
-            'moderator' => [
-                'moderator',
-                'editor',
-                'author',
-                'member',
-                'visitor',
-            ],
-            'editor' => [
-                'editor',
-                'author',
-                'member',
-                'visitor',
-            ],
-            'author' => [
-                'author',
-                'member',
-                'visitor',
-            ],
-
-            'member' => [
-                'member',
-                'visitor'
-            ],
-            'visitor' => [
-                'visitor'
-            ],
-        ];
-        
-        if (session_status() == PHP_SESSION_NONE)
-            session_start();
-        
-        if(!isset($_SESSION['user']))
-            Users::logout();
-        
-        if(!in_array($permission,$roles[$_SESSION['user']['role']])){
-            /*header("HTTP/1.0 404 Not Found");
-            echo "ERREUR DROITS";
-            die();*/
-            //FIXME : ADD 404.tpl
-            
-            Users::logout();
-        }
-        
-            
-    }
-    
     public function logout(){
         session_destroy();
         Sophwork::redirect('connection');
         exit;
     }
-    
-    
-    
-    
-    
+
 }
 

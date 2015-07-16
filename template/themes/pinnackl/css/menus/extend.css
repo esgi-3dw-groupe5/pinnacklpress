@@ -1,3 +1,28 @@
+@font-face {
+    font-family: Mastoc_PersonalUseOnly;
+    src: url("../fonts/Mastoc_PersonalUseOnly.ttf");
+}
+a.logo{
+	font-family: Mastoc_PersonalUseOnly;
+	padding: 0;
+	display: inline;
+	font-size: 35px;
+	background: transparent;
+	border-bottom: none;
+}
+.li-logo{
+	background: transparent!important;
+	display: inline;
+}
+li.li-logo{
+	margin: -25px;
+    -ms-transform: rotate(-7deg); /* IE 9 */
+    -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
+    transform: rotate(-7deg);
+}
+li.li-logo a:hover{
+	border-bottom: none;
+}
 .pinnackl-menu,
 .pinnackl-menu *{
 	font-family: 'Orbitron', serif;
@@ -112,5 +137,9 @@
 	}
 	.sub-content{
 		margin-top: 0;
+	}
+
+	.body .header{
+		z-index: 800;
 	}
 }

@@ -79,6 +79,10 @@ class Controller extends AppController{
             ],
         ];
 
+        $this->grantAsAdmin($permission, $roles);
+    }
+
+    public function grantAsAdmin($permission, $roles){
         if (session_status() == PHP_SESSION_NONE)
             session_start();
 
@@ -94,15 +98,21 @@ class Controller extends AppController{
             if(isset($_POST['email'])){
                 $user = $this->KDM->create('pp_user');
                 $user->findUserEmail($_POST['email']);
-                if(is_null($user->getUserEmail()[0]) && !password_verify($_POST['password'], $user->getUserPassword()[0])){
+                if(is_null($user->getUserEmail()[0])){
+                    $error = true;
+                    $login = $_POST['email'];
+                }
+                elseif(!password_verify($_POST['password'], $user->getUserPassword()[0])){
                     $error = true;
                     $login = $_POST['email'];
                 }
                 else{
                     $user = new Users();
                     $user->connection($_POST, false);
-                    if(!in_array($permission, $roles[$_SESSION['user']['role']]))
+                    if(!in_array($permission, $roles[$_SESSION['user']['role']])){
                         $error = true;
+                        $login = $_POST['email'];
+                    }
                     else
                         Sophwork::redirect('nimda');
                 }

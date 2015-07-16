@@ -48,9 +48,10 @@
 					<div class="line header">
 						<div class="grid-4_4">
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
-								<ul class="pinnackl-menu-list">
-									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link"></a>
+								<ul class="pinnackl-menu-list li-logo">
+									<li class="pinnackl-menu-item li-logo">
+										<a href="<?php $this->show('siteurl');?>"
+											class="pinnackl-menu-link logo"><?php $this->show('sitename'); ?></a>
 									</li>
 								</ul>
 							</nav>

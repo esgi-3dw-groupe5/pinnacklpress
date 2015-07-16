@@ -25,7 +25,6 @@
                 td[class=w20]{ display:none; }    
             }
         </style>
-
     </head>
     <body style="margin:0px; padding:0px; -webkit-text-size-adjust:none;">
 
