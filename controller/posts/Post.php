@@ -59,8 +59,9 @@ class Post extends \sophwork\app\controller\AppController {
                     }
                     else{
                         $aPosts['title'][$nbPost]  = $posts['page_name'][$key];
-                        $aPosts['author'][$nbPost] = $posts['page_author'][$key];
                         $aPosts['date'][$nbPost]   = $posts['page_date'][$key];
+                        $user->findUserId($posts['page_author'][$key]);
+                        $aPosts['author'][$nbPost] = $user->getUserPseudo()[0];
                         $aPosts['tag'][$nbPost]    = $posts['page_tag'][$key];
                         $aPosts['category'][$nbPost] = [];
                         $aPosts['catLink'][$nbPost] = [];

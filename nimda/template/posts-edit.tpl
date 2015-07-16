@@ -16,38 +16,58 @@
 										</label>
 										<label><span>Post Connected As :</span>
 											<select class="pinnackl-input-1" name="page_connectedAs" >
-												<option value="superadmin">
+												<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='superadmin')
+													?'selected' :null)?>
+													value="superadmin">
 													superadmin
 												</option>
-												<option value="administrator">
+												<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='administrator')
+													?'selected':null)?>
+													value="administrator">
 													administrator
 												</option>
-												<option value="moderator">
+												<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='moderator')
+													?'selected':null)?>
+													value="moderator">
 													moderator
 												</option>
-												<option value="editor">
+												<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='editor')
+													?'selected':null)?>
+													value="editor">
 													editor
 												</option>
-												<option value="author">
+												<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='author')
+													?'selected':null)?>
+													value="author">
 													author
 												</option>
-												<option value="member">
+												<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='member')
+													?'selected':null)?>
+													value="member">
 													member
 												</option>
-												<option selected value="visitor">
+												<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='visitor')
+													?'selected': null)?>
+													value="visitor">
 													visitor
 												</option>
 											</select>
 										</label>
 										<label><span>Post Status :</span>
 											<select class="pinnackl-input-1" name="page_status" >
-												<option value="publish">
+												<option <?php echo(($this->get($this->viewData, 'page_status')=='publish')
+													?'selected': null)?> 
+													value="publish">
 													Publish
 												</option>
-												<option value="draft">
+												<option <?php echo(($this->get($this->viewData, 'page_status')=='draft')
+													?'selected': null)?> 
+													value="draft">
 													Draft
 												</option>
-												<option value="disable">
+												<option <?php echo(($this->get($this->viewData, 'page_status')=='disable')
+													?'selected': null)?> 
+													value="disable">
 													Disable
 												</option>
 											</select>

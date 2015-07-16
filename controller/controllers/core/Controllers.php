@@ -78,6 +78,9 @@ class Controllers extends AppController{
 			->filterPmetaName('content')
 			->querySelect();
         
+        /**
+         * Read contents
+         */
         if(!is_null($page->getPageId()[0])) {
             $pageType = $page->getPageType()[0];
             $data = $pageContent->getPmetaValue()[0];
@@ -111,6 +114,7 @@ class Controllers extends AppController{
 				$requests = new Requests($headers, function() use ($app){
 					$app->setViewData('errorNb', '403');
 					$app->setViewData('errorMsg','Forbidden');
+					$app->setViewData('url', isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:Sophwork::geturl());
 					$app->callThemeView('error');
 					exit;
 				});
@@ -122,6 +126,7 @@ class Controllers extends AppController{
 			$requests = new Requests($headers, function() use ($app){
 				$app->setViewData('errorNb', '404');
 				$app->setViewData('errorMsg','Not Found');
+				$app->setViewData('url', $_SERVER['HTTP_REFERER']);
 				$app->callThemeView('error');
 				exit;
 			});

@@ -3,7 +3,7 @@
 	<title></title>
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
-		<title><?php $this->show('sitename'); ?> - <?php $this->show('sitedescription'); ?></title>
+		<title></title>
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<style type="text/css">
 			html, body {
@@ -22,13 +22,24 @@
 			    background-size: cover;
 			    background-position: bottom right;
 			    width: 102%;
-			    height: 102%;
+			    height: 98%;
 			    position: fixed;
-			    top: 0;
 			    left: 0;
 			    right: 0;
 			    bottom: 0;
 			    z-index: 0;
+			}
+
+			.header{
+				background: #272822;
+				min-height: 2%;
+				max-height: 2%;
+				border-bottom: solid 1px #5272aa;
+				width: 102%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 1;
 			}
 
 			.content {
@@ -57,6 +68,7 @@
 		</style>
 </head>
 <body>
+<div class="header"></div>
 <div id="bg"></div>
 <div class="content">
 	<h1><?php $this->show('errorNb')?></h1>
@@ -65,7 +77,7 @@
 	<br>
 	I've eaten the page you've requested.
 	<br>
-	<a href="<?php $this->show('siteurl');?>">&#8592; Back to the website</a>
+	<a href="<?php $this->show('url');?>">&#8592; Back to the website</a>
 	</p>
 </div>
 </body>

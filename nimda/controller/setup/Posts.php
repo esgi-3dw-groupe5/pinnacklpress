@@ -78,7 +78,7 @@ class Posts extends Controller{
 			
 			$this->callView($page, 'nimda/');
 		}
-		elseif($action == 'edit'){ // FIXME : better handle blank cases
+		elseif($action == 'edit'){
 			$pages->findPageId($edit);
 			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
 			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);

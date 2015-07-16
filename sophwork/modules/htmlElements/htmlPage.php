@@ -74,12 +74,16 @@ class htmlPage extends htmlElement{
 				
 				$meta = new htmlElement('div');
 				$meta->set('class', 'grid-3_4 categories');
+				$nbCategory = 0;
+				$currentCategory = [];
 				foreach ($this->data['category'][$k] as $key => $value) {
 					$category = new htmlElement('a');
-					$category->set('href', Sophwork::getUrl($this->data['catLink'][$k][$key]));
+					$currentCategory[] = $this->data['catLink'][$k][$key];
+					$category->set('href', Sophwork::getUrl($currentCategory[$nbCategory]));
 					$category->set('class', 'grid-1_4 vignette');
 					$category->set('text', $value);
 					$meta->set('text', $meta->get('text').$category->build());
+					$nbCategory++;
 				}
 				$header->inject($meta);
 
@@ -89,17 +93,17 @@ class htmlPage extends htmlElement{
 				$header->inject($meta);
 
 				$authorLink = new htmlElement('a');
-				$authorLink->set('href', Sophwork::getUrl('user/Syu93')); // FIXME : 'user/' . $authorName
+				$authorLink->set('href', Sophwork::getUrl('user/'.$authorName)); // FIXME : 'user/' . $authorName
 					
 				$img = new htmlElement('img');
-				$img->set('src', Sophwork::getUrl('data/users/Syu93/Syu93.jpg')); // FIXME : 'data/users/' . $authorName . '/' . $authorName . '.jpg'
+				$img->set('src', Sophwork::getUrl('data/users/'.$authorName.'/'.$authorName.'.jpg')); // FIXME : 'data/users/' . $authorName . '/' . $authorName . '.jpg'
 				$authorLink->inject($img);
 				$header->inject($authorLink);
 				$card->inject($header);
 				$grid = new htmlElement('div');
 				$grid->set('class', 'grid-4_4 preview');
 				$articleLink = new htmlElement('a');
-				$articleLink->set('href', Sophwork::getUrl($tag)); //FIXME : maybe get the category from the KDM class ?
+				$articleLink->set('href', Sophwork::getUrl($currentCategory[0] . '/' . $tag));
 				$articleLink->set('text', $this->closetags($content) . ' ...');
 				$grid->inject($articleLink);
 						
