@@ -9,7 +9,7 @@
 		        <tr>
 		            <th>#</th>
 		            <th>Author</th>
-                    <th>Page</th>
+                    <th>Post</th>
                     <th>Date</th>
                     <th>Update</th>
                     <th>Active</th>
