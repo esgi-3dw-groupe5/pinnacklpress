@@ -278,6 +278,24 @@ elseif($optionPage == 'categories'){
 	}
 }
 
+elseif($optionPage == 'comments'){
+	$KDM = new SophworkDM($app->config);
+	$comment = $KDM->create('pp_comment');
+	$page->findComId($edit);
+	if(!in_array('delete', $optionPageController)){ //handle edit and new case
+
+		$comment->setComContent($_POST['com_content']);
+		$comment->setComActive($_POST['com_active']);
+		$comment->save();
+
+	}
+	if(in_array('delete', $optionPageController)){
+		$comment->erase();
+		Sophwork::redirect('nimda/comments');
+		exit;
+	}
+}
+
 elseif($optionPage == 'menus'){
 	$KDM = new SophworkDM($app->config);
 	$menu = $KDM->create('pp_menu');
