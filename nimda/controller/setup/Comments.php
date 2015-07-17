@@ -95,15 +95,19 @@ class Comments extends Controller{
 			$pageComment = $KDM->create('pp_page');
 			$infos = $comments->getData();
 
-			foreach ($infos['com_author'] as $key => $value) {
-				$author->findUserId($comments->getData()['com_author'][$key]);
-				$infos['com_author'][$key] = $author->getUserPseudo()[0];
+			if(!empty($infos['com_author'])){
+				foreach ($infos['com_author'] as $key => $value) {
+					$author->findUserId($comments->getData()['com_author'][$key]);
+					$infos['com_author'][$key] = $author->getUserPseudo()[0];
+				}
 			}
-			foreach ($infos['post_id'] as $key => $value) {
-				$pageComment->findPageId($comments->getData()['com_author'][$key]);
-				$infos['post_id'][$key] = $pageComment->getPageName()[0];
+			
+			if(!empty($infos['post_id'])){
+				foreach ($infos['post_id'] as $key => $value) {
+					$pageComment->findPageId($comments->getData()['com_author'][$key]);
+					$infos['post_id'][$key] = $pageComment->getPageName()[0];
+				}
 			}
-
 
 			$this->setViewData('comments', $infos, 'com_id');
 			$this->setViewData('comments', $infos, 'com_content');
