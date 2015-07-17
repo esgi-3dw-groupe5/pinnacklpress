@@ -96,7 +96,11 @@ class Pages extends Controller{
 			}else{
 				$this->setViewData('page_article', '');
 			}
-			$contents->findPageId($pages->getPageId()[0]);
+			$contents
+				->filterPageId($pages->getPageId()[0])
+				->__and()
+				->filterPmetaName('content')
+				->querySelect();
 			if(!is_null($contents->getPmetaId()[0])){
 					$data = $contents->getData()['pmeta_value'][0];
 					$html = new htmlBuilder($data);
@@ -108,7 +112,14 @@ class Pages extends Controller{
 				$layout = $html->createBuilder();
 				$this->setRawData('layout', $layout);
 			}
+			$contents
+				->filterPageId($pages->getPageId()[0])
+				->__and()
+				->filterPmetaName('role')
+				->querySelect();
 
+			$this->setViewData('page_role', $contents->getPmetaValue()[0]);
+			
 			$this->callView($page .'-edit', 'nimda/');
 		}
 		elseif($action == 'new'){

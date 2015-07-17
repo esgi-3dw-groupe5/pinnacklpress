@@ -23,6 +23,12 @@ class Users extends \sophwork\app\controller\AppController {
             return null;
     }
 
+    public static function sessionStarted(){
+        if(session_status() == PHP_SESSION_NONE)
+            return false;
+        return true;
+    }
+
     public static function startSession(){
         if(session_status() == PHP_SESSION_NONE)
             session_start();
@@ -31,6 +37,7 @@ class Users extends \sophwork\app\controller\AppController {
     public function connection($POST, $redirectAfterConnection = true){
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['email']);
+        $_SESSION['form']['error'] = [];
         if($this->user->getUserId()[0]!=null)
         {
 
@@ -42,7 +49,6 @@ class Users extends \sophwork\app\controller\AppController {
                 $_SESSION['user']['role']=$this->user->getUserRole()[0];
                 $_SESSION['user']['connected']=true;
                 
-                $_SESSION['form']['error'][]="Vous êtes connecté";
                 if($redirectAfterConnection) {
                     Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
                     exit;
@@ -105,7 +111,7 @@ class Users extends \sophwork\app\controller\AppController {
     
     public function logout(){
         session_destroy();
-        Sophwork::redirect('connection');
+        Sophwork::redirect();
         exit;
     }
 

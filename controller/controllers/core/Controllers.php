@@ -87,6 +87,22 @@ class Controllers extends AppController{
 		 * @var SophworkDMEntities
 		 */
 		$page = $menu->permaLink($page);
+		
+		$pageContent
+			->filterPageId($page->getPageId()[0])
+			->__and()
+			->filterPmetaName('role')
+			->querySelect();
+		Users::startSession();
+		if(!empty($_SESSION['user']['pseudo'])
+			&& ($pageContent->getPmetaValue()[0] == 'connection' || $pageContent->getPmetaValue()[0] == 'inscription'))
+			Sophwork::redirect();
+		/**
+		 * Create a page meta KDM object
+		 * @var SophworkDMEntities
+		 */
+		$pageContent = $this->KDM->create('pp_pagemeta');
+
 		/**
 		 * If not redirected, try to get the page contents from page meta table
 		 */
@@ -94,6 +110,7 @@ class Controllers extends AppController{
 			->filterPageId($page->getPageId()[0])
 			->__and()
 			->filterPmetaName('content')
+			->orderByPmetaId()
 			->querySelect();
 
 		/**
@@ -200,8 +217,8 @@ class Controllers extends AppController{
     }
 
     public function initUser($page){
-		if (session_status() == PHP_SESSION_NONE) {
-			session_start();
+		if (Users::sessionStarted()) {
+			Users::startSession();
 			$user = new Users();
 			if(!isset($_SESSION['user']))
 				$user->initUser();

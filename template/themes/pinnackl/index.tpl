@@ -43,7 +43,7 @@
 	<body class="line">
 		<div id="layout">
 			<div class="line content">
-				<?php if($this->get('sidebar') == 'on'): ?>
+				<?php if ($this->get('sidebar') == 'on'): ?>
 				<div class="grid-1_4 sidebar">
 					<div class="line header">
 						<div class="grid-4_4">
@@ -63,37 +63,43 @@
 								<fieldset>
 									<div class="pure-control-group">
             							<label for="">Username</label>
-										<input if="" type="range" min="0" max="10" step="1" name="">
+										<input id="" type="range" min="0" max="10" step="1" name="">
 									</div>
 									<div class="pure-control-group">
             							<label for="">Username</label>
-										<input if="" type="range" min="0" max="10" step="1" name="">
+										<input id="" type="range" min="0" max="10" step="1" name="">
 									</div>
 									<div class="pure-control-group">
             							<label for="">Username</label>
-										<input if="" type="range" min="0" max="10" step="1" name="">
+										<input id="" type="range" min="0" max="10" step="1" name="">
 									</div>
 									<div class="pure-control-group">
             							<label for="">Username</label>
-										<input if="" type="range" min="0" max="10" step="1" name="">
+										<input id="" type="range" min="0" max="10" step="1" name="">
 									</div>
 									<div class="pure-control-group">
             							<label for="">Username</label>
-										<input if="" type="range" min="0" max="10" step="1" name="">
+										<input id="" type="range" min="0" max="10" step="1" name="">
 									</div>
 								</fieldset>
 							</form>
-                            <?php 
-                            if(!empty($_SESSION['user']['pseudo']) ){
-                                print("<div>Bienvenue ".$_SESSION['user']['pseudo']." ");
-                                printf("<a href='http://127.0.0.1/pinnacklpress/?act=logout'>Déconnexion</a></div>");
-                            } 
-                            ?>
+							<?php if (empty($_SESSION['user']['pseudo']) && (isset($_GET['p']) && $_GET['p'] != 'connection')) : ?>
+								<?php
+									$form = new \controller\form\Form();
+									$formData = $form->getForm('connection');
+									$htmlForm = new \sophwork\modules\htmlElements\htmlForm($formData, 'connection');
+									$htmlForm->createForm()->output();
+								?>
+							<?php elseif (!empty($_SESSION['user']['pseudo'])) : ?>
+								<h4>Bienvenue : <?php echo'<pre style="background:#ffffff">';
+								var_dump($_SESSION);
+								echo'</pre>'; ?></h4>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
 				<?php endif; ?>
-				<div class="<?php echo (($this->get('sidebar') == 'on')?'grid-3_4':'grid-4_4 no-sidebar') ?> body">
+				<div class="<?= (($this->get('sidebar') == 'on')?'grid-3_4':'grid-4_4 no-sidebar') ?> body">
 					<div class="line header">
 						<div class="grid-4_4">
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
@@ -101,16 +107,19 @@
 									<li><button id="burger" class="pinnackl-responsive-burger"></button></li>
 								</ul>
 								<ul id="menu" class="pinnackl-menu-list visible">
-									<!-- <li class="pinnackl-menu-item" ><img src="<?php $this->show('siteurl');?>data/logo/logo.png"></li> -->
-									<?php if($this->viewData->links): ?>
+									<?php if ($this->viewData->links): ?>
 										<?php foreach ($this->viewData->links as $key => $value) : ?>
+										<?php if (($value['tag'] == 'connection' || $value['tag'] == 'inscription')
+												&& !empty($_SESSION['user']['pseudo']))
+												continue;
+										?>
 										<li class="pinnackl-menu-item pinnackl-menu-allow-hover">
 											<a href="<?php $this->e($value['link']) ?>"
 												class="pinnackl-menu-link
 												<?php $this->isActive($value['tag'])?>">
 												<?php $this->e($value['name']) ?>
 											</a>
-											<?php if(sizeof($value['children']) > 0) : ?>
+											<?php if (sizeof($value['children']) > 0) : ?>
 											<ul class="pinnackl-menu-children">
 												<?php foreach ($value['children'] as $key => $val) : ?>
 												<li class="pinnackl-menu-item">
@@ -133,12 +142,12 @@
 							<?php $this->viewData->page->render(); ?>
 						</div>
                         <?php 
-                        if(isset($_SESSION['form'])){
-                            foreach ($_SESSION['form']['error'] as $value){
-                                echo "$value<br />\n";
-                            }
-                            unset($_SESSION['form']);
-                        }
+                        // if(isset($_SESSION['form'])){
+                        //     foreach ($_SESSION['form']['error'] as $value){
+                        //         echo "$value<br />\n";
+                        //     }
+                        //     unset($_SESSION['form']);
+                        // }
                         ?>
 					</div>
 					<?php $this->viewData->footer->render(); ?>

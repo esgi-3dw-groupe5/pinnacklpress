@@ -174,21 +174,38 @@
 								</select>
 							</label>
 							<label><span>Page Comment Status :</span>
-								<select class="pinnackl-input-1-2" name="page_comment_status" >
-									<option <?php echo(($this->get($this->viewData, 'page_comment_status')=='enable')
+								<select class="pinnackl-input-1-2" name="page_comment_status">
+									<option <?= (($this->get($this->viewData, 'page_comment_status') == 'enable')
 										?'selected': null)?> 
 										value="enable">
 										Enable
 									</option>
-									<option <?php echo(($this->get($this->viewData, 'page_comment_status')=='disable')
+									<option <?= (($this->get($this->viewData, 'page_comment_status') == 'disable')
 										?'selected': null)?> 
 										value="disable">
 										Disable
 									</option>
 								</select>
 							</label>
+							<label><span>Page role :</span>
+								<select class="pinnackl-input-1-2" name="page_role">
+									<option value="none" <?= (($this->get($this->viewData, 'page_role') == 'none')
+										?'selected': null)?>>
+										None
+									</option>
+									<option value="inscription" <?= (($this->get($this->viewData, 'page_role') == 'inscription')
+										?'selected': null)?>>
+										Inscription
+									</option>
+									<option value="connection" <?= (($this->get($this->viewData, 'page_role') == 'connection')
+										?'selected': null)?>>
+										Connection
+									</option>
+								</select>
+							</label>
 							<label><span>List all articles :</span>
-								<input type="checkbox" name="page_articles" value="page_articles" style="float:none;margin-top:0px" <?php echo(($this->get($this->viewData, 'page_article'))) ?>>
+								<input type="checkbox" name="page_articles" value="page_articles" style="float:none;margin-top:0px"
+									<?php $this->show('page_article') ?>>
 							</label>
 							<div style="text-align:right;">
 								<button id="save-builder-txt" class="pinnackl-button pinnackl-button-primary">Save</button>

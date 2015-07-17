@@ -155,11 +155,23 @@ if(sizeof($_POST) > 0){
         $pageContent->setPmetaName('content');
         $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[form]","gridContent":"inscription"}]}]');
         $pageContent->save();
+
+        $pageContent = $appController->KDM->create('pp_pagemeta');
+        $pageContent->setPageId(2);
+        $pageContent->setPmetaName('role');
+        $pageContent->setPmetaValue('inscription');
+        $pageContent->save();
         
         $pageContent = $appController->KDM->create('pp_pagemeta');
         $pageContent->setPageId(3);
         $pageContent->setPmetaName('content');
         $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[form]","gridContent":"connection"}]}]');
+        $pageContent->save();
+        
+        $pageContent = $appController->KDM->create('pp_pagemeta');
+        $pageContent->setPageId(3);
+        $pageContent->setPmetaName('role');
+        $pageContent->setPmetaValue('connection');
         $pageContent->save();
 
         $menu = $appController->KDM->create('pp_menu');

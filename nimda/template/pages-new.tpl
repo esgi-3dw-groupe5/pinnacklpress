@@ -62,6 +62,13 @@
 									</option>
 								</select>
 							</label>
+							<label><span>Page role :</span>
+								<select class="pinnackl-input-1-2" name="page_role">
+									<option value="none">None</option>
+									<option value="inscription">Inscription</option>
+									<option value="connection">Connection</option>
+								</select>
+							</label>
 							<label><span>List all articles :</span>
 								<input type="checkbox" name="page_articles" value="page_articles" style="float:none;margin-top:0px">
 							</label>

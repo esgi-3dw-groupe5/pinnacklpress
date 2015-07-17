@@ -41,17 +41,17 @@ if($optionPage == 'pages'){
 	$page = $KDM->create('pp_page');
 	$page->findPageId($edit);
 
-	$pageCotent = $KDM->create('pp_pagemeta');
-	$pageCotent->findPageId($page->getPageId()[0]);
+	$pageContent = $KDM->create('pp_pagemeta');
+	$pageContent->findPageId($page->getPageId()[0]);
 
 	Users::startSession();
 	$user = new Users();
 
 	if(array_key_exists('pageBuilder', $_POST)){
-		$pageCotent->setPageId($page->getPageId()[0]);
-		$pageCotent->setPmetaName('content');
-		$pageCotent->setPmetaValue($_POST['pageBuilder']);
-		$pageCotent->save();
+		$pageContent->setPageId($page->getPageId()[0]);
+		$pageContent->setPmetaName('content');
+		$pageContent->setPmetaValue($_POST['pageBuilder']);
+		$pageContent->save();
 
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
@@ -80,6 +80,15 @@ if($optionPage == 'pages'){
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
+
+		$pageContent = $KDM->create('pp_pagemeta');
+		$pageContent
+			->filterPageId($page->getPageId()[0])
+			->__and()
+			->filterPmetaName('role')
+			->querySelect();
+		$pageContent->setPmetaValue($_POST['page_role']);
+		$pageContent->save();
 	}
 	if(in_array('new', $optionPageController)){
 		$optionPageController[count($optionPageController)-1] = $page->getPageId();
@@ -126,15 +135,15 @@ elseif($optionPage == 'posts'){
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
 
-		$pageCotent = $KDM->create('pp_pagemeta');
-		$pageCotent
+		$pageContent = $KDM->create('pp_pagemeta');
+		$pageContent
 			->filterPageId($page->getPageId()[0])
 			->__and()
 			->filterPmetaName('content')
 			->querySelect();
 
-		$pageCotent->setPageId($page->getPageId()[0]);
-		$pageCotent->setPmetaName('content');
+		$pageContent->setPageId($page->getPageId()[0]);
+		$pageContent->setPmetaName('content');
 		// content system
 		$contentSys = [
 			(object)[
@@ -147,8 +156,8 @@ elseif($optionPage == 'posts'){
 				],
 			],
 		];
-		$pageCotent->setPmetaValue(json_encode($contentSys)); //create content object
-		$pageCotent->save();
+		$pageContent->setPmetaValue(json_encode($contentSys)); //create content object
+		$pageContent->save();
 
 		$pageCategories = $KDM->create('pp_pagemeta');
 		$pageCategories
@@ -383,13 +392,13 @@ elseif($optionPage == 'footers'){
 	$page = $KDM->create('pp_page');
 	$page->findPageId($edit);
 
-	$pageCotent = $KDM->create('pp_pagemeta');
-	$pageCotent->findPageId($page->getPageId()[0]);
+	$pageContent = $KDM->create('pp_pagemeta');
+	$pageContent->findPageId($page->getPageId()[0]);
 	if(array_key_exists('pageBuilder', $_POST)){
-		$pageCotent->setPageId($page->getPageId());
-		$pageCotent->setPmetaName('footer');
-		$pageCotent->setPmetaValue($_POST['pageBuilder']);
-		$pageCotent->save();
+		$pageContent->setPageId($page->getPageId());
+		$pageContent->setPmetaName('footer');
+		$pageContent->setPmetaValue($_POST['pageBuilder']);
+		$pageContent->save();
 
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();

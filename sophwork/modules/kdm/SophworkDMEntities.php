@@ -213,6 +213,7 @@ class SophworkDMEntities extends SophworkDM{
 	public function querySelect(){
 		$result = $this->select($this->table, $this->criteria, '*', $this->order)->fetchAll();
 		$this->criteria = '';
+		$this->order = '';
 		foreach ($result as $key1 => $value1) {
 			foreach ($this->data as $key2 => $value2) {
 				$this->data[$key2][$key1] = $result[$key1][$key2];
