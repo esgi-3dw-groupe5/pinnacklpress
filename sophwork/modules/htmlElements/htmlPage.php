@@ -57,7 +57,7 @@ class htmlPage extends htmlElement{
 				$card = new htmlElement('div');
 				$card->set('class', 'grid-1_3 articles');
 				$title   = $this->data['title'][$k];
-				$content = substr(json_decode($this->data['content'][$k])[0]->line[0]->gridContent, 0, 200);
+				$content = substr(strip_tags(trim(json_decode($this->data['content'][$k])[0]->line[0]->gridContent)), 0, 200);
 				$authorName  = $this->data['author'][$k];
 				$tag     = $this->data['tag'][$k];
 				$date = date_format(date_create($this->data['date'][$k]), "Y/m/d");
@@ -104,7 +104,8 @@ class htmlPage extends htmlElement{
 				$grid->set('class', 'grid-4_4 preview');
 				$articleLink = new htmlElement('a');
 				$articleLink->set('href', Sophwork::getUrl($currentCategory[0] . '/' . $tag));
-				$articleLink->set('text', $this->closetags($content) . ' ...');
+				$content = preg_replace("/<img[^>]+\>/i", '', $content);
+				$articleLink->set('text', $this->closetags($content) . '...');
 				$grid->inject($articleLink);
 						
 				$card->inject($grid);

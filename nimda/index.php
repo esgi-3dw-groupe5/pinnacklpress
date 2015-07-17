@@ -16,6 +16,12 @@ $controller = $app->appController;
 	$KDM = $controller->KDM;
 $controller->user = new Users();
 
+$uri = preg_split("#/#", $_SERVER['REQUEST_URI']);
+
+if(in_array('user', $uri)){
+	echo 'welcome to user interface';
+	exit;
+}
 if($page == 'index')
 	Sophwork::redirect('nimda/overview');
 
