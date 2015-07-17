@@ -13,7 +13,6 @@
                     <th>Date</th>
                     <th>Update</th>
                     <th>Active</th>
-		            <th>Edit</th>
 		            <th>Delete</th>
 		        </tr>
 		    </thead>
@@ -25,23 +24,16 @@
                     <td><?php $this->show($value, 'post_id')    ?></td>
                     <td><?php $this->show($value, 'com_date')    ?></td>
                     <td><?php $this->show($value, 'com_update')    ?></td>
-                    <td>
-                        <form action="options.php" method="post">    
-                            <div class="onoffswitch">
-                                <input type="checkbox" name="sidebar" class="onoffswitch-checkbox" id="<?php $this->show($value, 'com_id')?>"
-                                <?php echo(($this->get($value, 'com_active')=='1')?'checked':null)?> >
-                                    <label class="onoffswitch-label" for="<?php $this->show($value, 'com_id')?>">
-                                        <span class="onoffswitch-inner"></span>
-                                        <span class="onoffswitch-switch comment"></span>
-                                    </label>
-                            </div> 
+                    <td>  
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="sidebar" class="onoffswitch-checkbox" id="<?php $this->show($value, 'com_id')?>"
+                            <?php echo(($this->get($value, 'com_active')=='1')?'checked':null)?> >
+                                <label class="onoffswitch-label" for="<?php $this->show($value, 'com_id')?>">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch comment"></span>
+                                </label>
+                        </div> 
                     </td>
-		            <td>
-                        <!--<input class="pinnackl-button pinnackl-button-primary" type="submit" value="Edit">-->
-		                <a class="pinnackl-button pinnackl-button-primary" onclick="form.submit()"
-		                href="option.php">Edit&nbsp;&#9998;</a>
-		            </td>
-                    </form>   
 		            <td>
                         <a class="pinnackl-button pinnackl-button-error"
                         href="<?php $this->show('siteurl')?>nimda/comments/delete/<?php $this->show($value, 'com_id')?>">Delete&nbsp;&#10008;</a>

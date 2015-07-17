@@ -19,6 +19,7 @@ class htmlPage extends htmlElement{
 	}
 
 	public function createPage(){
+
 		if($this->data != null) {
 			foreach ($this->data as $key => $value) {
 				$line = new htmlElement('div');
@@ -45,6 +46,112 @@ class htmlPage extends htmlElement{
 		}else {
 			return $this;
 		}
+	}
+
+	public function createComment(){
+
+	$test = [];
+	$stdArray = new \stdClass;
+	$test['0'] = $stdArray;
+	foreach ($this->data['com_id'] as $key => $value) {
+		$stdValues = new \stdClass;
+		$values[$key] = $stdValues;
+		$stdValues->gridClass = 'grid-4_4';
+		$stdValues->gridModule = 'text';
+		$stdValues->gridContent = $this->data['com_content'][$key];
+		$stdValues->gridAuthor = $this->data['com_author'][$key];
+		$stdValues->gridDate = $this->data['com_date'][$key];
+	}
+	$stdArray->line = $values;
+	$this->data = $test;
+
+	if($this->data != null) {
+		$form = new htmlElement('form');
+		$form->set('method','post');
+		$form->set('name','comment');
+		$form->set('action',Sophwork::getUrl('controllers/listener/listener.php'));
+		$form->set('class','pinnackl-form');
+
+		$line = new htmlElement('div');
+		$line->set('class', 'line');
+		$line->set('id', 'wysiwyg');
+
+		$form->inject($line);
+
+		$submit = new htmlElement('input');
+		$submit->set('type','submit');
+		$submit->set('value','Commenter');
+		$submit->set('name','Commenter');
+		$submit->set('class','pinnackl-button pinnackl-button-primary');
+
+		$form->inject($submit);
+
+		$box = new htmlElement('div');
+		$box->set('class', 'grid-4_4 page-comments');
+		$box->inject($form);
+
+		$this->layout[] = $box;
+		foreach ($this->data as $key => $value) {
+			$line = new htmlElement('div');
+			$line->set('class', 'line');
+			foreach ($value as $key => $subValue) {
+				foreach ($subValue as $key => $val) {
+					$grid = new htmlElement('div');
+					$grid->set('class', $val->gridClass . ' page-comments');
+
+					$author = $val->gridAuthor;
+					$date = date_format(date_create($val->gridDate), "Y/m/d");
+					$content = $val->gridContent;
+
+					$header = new htmlElement('div');
+					$header->set('class', 'grid-4_4 author comment');
+
+					$meta = new htmlElement('div');
+					$meta->set('class', 'grid-3_4');
+					$meta->set('text', $author);
+
+					$header->inject($meta);
+
+					$authorLink = new htmlElement('a');
+					$authorLink->set('href', Sophwork::getUrl('user/'.$author));
+
+					$img = new htmlElement('img');
+					$img->set('src', Sophwork::getUrl('data/users/'.$author.'/'.$author.'.jpg'));
+
+					$authorLink->inject($img);
+					$header->inject($authorLink);
+
+					$grid->inject($header);
+					
+
+					$comment = new htmlElement('div');
+					$comment->set('class', 'grid-4_4 preview');
+
+					$comment->set('text', $content);
+							
+					$grid->inject($comment);
+
+					$footer = new htmlElement('div');
+					$footer->set('class', 'grid-4_4 footer_comment');
+
+					$meta = new htmlElement('div');
+					$meta->set('class', 'grid-3_4 date');
+					$meta->set('text', $date);
+
+					$footer->inject($meta);
+
+					$grid->inject($footer);
+
+					$line->inject($grid);
+
+				}
+			}
+			$this->layout[] = $line;
+		}
+		return $this;
+	}else {
+		return $this;
+	}
 	}
 
 	public function createPostList(){
