@@ -65,25 +65,52 @@ class Controllers extends AppController{
 	}
 
 	public function initPageContent($menu){
+		/**
+		 * Create a page KDM object and get the current page by tag (slug)
+		 * @var SophworkDMEntities
+		 */
 		$page = $this->KDM->create('pp_page');
-		$page->findPageTag($this->page);
+		$page
+			->filterPageTag($this->page)
+			->__and()
+			->filterPageStatus('publish')
+			->querySelect();
 
+		/**
+		 * Create a page meta KDM object
+		 * @var SophworkDMEntities
+		 */
 		$pageContent = $this->KDM->create('pp_pagemeta');
-
+		/**
+		 * Redirect vers the right article if slug direcly passed without category
+		 * The permalink if defined in the database
+		 * @var SophworkDMEntities
+		 */
 		$page = $menu->permaLink($page);
-
+		/**
+		 * If not redirected, try to get the page contents from page meta table
+		 */
 		$pageContent
 			->filterPageId($page->getPageId()[0])
 			->__and()
 			->filterPmetaName('content')
 			->querySelect();
-        
-        /**
-         * Read contents
-         */
+
+		/**
+		 * Read a page/post
+		 * 
+		 * If the page id retrieve from the tag is not null (so a page correspond)
+		 * get information from the page page meta objects
+		 *
+		 * If the page id retrieve from the tag is null (so no page correspond)
+		 * redirect to error page with the rique header
+		 *
+		 * If the page is a post or page render with the content
+		 * If the page is a cetegory, get the categorie id and call Post to get all article from this category
+		 */
         if(!is_null($page->getPageId()[0])) {
             $pageType = $page->getPageType()[0];
-            $data = $pageContent->getPmetaValue()[0];
+            $data = $pageContent->getPmetaValue()[0];	// $data : the page content
             $slug = $page->getPageName()[0];
             $html = new htmlPage($data);
             if($pageType == 'page' || $pageType == 'post' )
@@ -91,7 +118,7 @@ class Controllers extends AppController{
 			elseif($pageType == 'category'){
 				$idCateg = $page->getPageId()[0];
 				$posts = new Post();
-				$data = $posts->getPostsByCateg($idCateg);
+				$data = $posts->getPostsByCateg($idCateg);	// $data : multiple pages contents
 				$html = new htmlPage($data);
 				$layout = $html->createPostList();
 			}elseif ($pageType == 'article') {
@@ -126,7 +153,7 @@ class Controllers extends AppController{
 			$requests = new Requests($headers, function() use ($app){
 				$app->setViewData('errorNb', '404');
 				$app->setViewData('errorMsg','Not Found');
-				$app->setViewData('url', $_SERVER['HTTP_REFERER']);
+				$app->setViewData('url', isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:Sophwork::geturl());
 				$app->callThemeView('error');
 				exit;
 			});

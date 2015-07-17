@@ -210,13 +210,20 @@ elseif($optionPage == 'categories'){
 	$KDM = new SophworkDM($app->config);
 	$page = $KDM->create('pp_page');
 	$page->findPageId($edit);
+
+	Users::startSession();
+	$user = new Users();
+
 	if(!array_key_exists('categoryBuilder', $_POST)
 		&& !in_array('delete', $optionPageController)){ //handle edit and new case
 
 		$page->setPageTag(Sophwork::slug($_POST['page_name']));
 		$page->setPageName($_POST['page_name']);
 		$page->setPageType('category');
+		$page->setPageAuthor($user->id);
 		$page->setPageConnectedAs($_POST['page_connectedAs']);
+        $page->setPageStatus('publish');
+        $page->setPageCommentStatus('disable');
         $page->setPageLevel(1);
         $page->setPageParent(0);
 		$page->save();

@@ -27,7 +27,11 @@ class Post extends \sophwork\app\controller\AppController {
         $user = $this->KDM->create('pp_user');
 
         if(is_null($ids)){
-            $this->post->findPageType('post');
+            $this->post
+                ->filterPageType('post')
+                ->__and()
+                ->filterPageStatus('publish')
+                ->querySelect();
             $posts = $this->post->getData();
 
             $aIds = $posts['page_id'];
@@ -39,6 +43,7 @@ class Post extends \sophwork\app\controller\AppController {
         $pageMeta = $this->KDM->create('pp_pagemeta');
         $nbPost = 0;
         $aPosts = [];
+ 
         foreach ($aIds as $key => $value) {
             $pageMeta->findPageId($aIds[$key]);
             $arrayContents = $pageMeta->getData();
@@ -47,6 +52,8 @@ class Post extends \sophwork\app\controller\AppController {
                 if($arrayContents['pmeta_name'][$k] == 'content' && $arrayContents['page_id'][$k] == $aIds[$key]){
                     if(!is_null($ids)){
                         $this->post->findPageId($aIds[$key]);
+                        if($this->post->getPageStatus()[0] != 'publish')
+                            continue;
                         $posts = $this->post->getData();
 
                         $aPosts['title'][$nbPost]  = $posts['page_name'][0];

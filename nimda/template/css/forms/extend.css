@@ -101,6 +101,7 @@ option { color: black; }
     border-radius: 4px;
 }
 
+.multiselect .article,
 .multiselect .page,
 .multiselect .post,
 .multiselect .category,
@@ -113,6 +114,9 @@ option { color: black; }
     font-style: italic;
 }
 
+.multiselect .article{
+    background: #3399ff;
+}
 .multiselect .page{
     background: #4169e1;
 }

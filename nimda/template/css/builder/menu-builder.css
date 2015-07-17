@@ -90,6 +90,7 @@
     min-height: 50px;
 }
  
+.menu-builder .article,
 .menu-builder .page,
 .menu-builder .post,
 .menu-builder .category,
@@ -102,6 +103,9 @@
     font-style: italic;
 }
 
+.menu-builder .article{
+    background: #3399ff;
+}
 .menu-builder .page{
     background: #4169e1;
 }
@@ -111,7 +115,6 @@
 .menu-builder .category{
     background: #ff4500;
 }
-
 .menu-builder .footer{
     background: #00bfff;
 }

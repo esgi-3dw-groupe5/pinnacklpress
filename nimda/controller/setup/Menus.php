@@ -51,7 +51,8 @@ class Menus extends Controller{
 			$this->setViewData('menu_status', ''.$menus->getMenuStatus()[0]);
 
 			$pages
-				->orderByPageOrder()
+				->filterPageStatus('publish')
+				// ->orderByPageOrder();
 				->querySelect();
 
 			$this->setViewData('pages', $pages->getData(), 'page_id');
