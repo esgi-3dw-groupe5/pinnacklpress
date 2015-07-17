@@ -25,6 +25,10 @@
 	height: 12px;
 }
 
+.comment{
+	top: 2px;
+}
+
 .property label {
     margin: 0.5em 0;
     min-width: 85px;

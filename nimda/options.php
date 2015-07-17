@@ -289,7 +289,7 @@ elseif($optionPage == 'comments'){
 	$KDM = new SophworkDM($app->config);
 	$comment = $KDM->create('pp_comment');
 	$comment->findComId($edit);
-	if(!in_array('delete', $optionPageController)){ //handle edit and new case
+	if(!in_array('delete', $optionPageController) && !array_key_exists('statusBuilder', $_POST)){ //handle edit and new case
 
 		$comment->setComContent($_POST['com_content']);
 		$comment->setComActive($_POST['com_active']);
@@ -300,6 +300,15 @@ elseif($optionPage == 'comments'){
 		$comment->erase();
 		Sophwork::redirect('nimda/comments');
 		exit;
+	}
+	if(array_key_exists('statusBuilder', $_POST)){
+		foreach ($_POST['statusBuilder'] as $key => $nodes) {
+			$comment->findComId($nodes['id']);
+			$comment->setComActive($nodes['status']);
+			$comment->save();
+		}
+	echo '#updated';
+	return;
 	}
 }
 
