@@ -96,7 +96,11 @@ if($page == 'index')
 /**
  * Lead by default on post of the page user
  */
-if($controller->article == "")
+// echo'<pre style="background:#ffffff">';
+// var_dump(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__))-1]);
+// echo'</pre>';die;
+if( preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__))-1] != "nimda"
+	&& $this->article == "")
 	Sophwork::redirect('user/' . $page . '/posts');
 /**
  * @var $page = $controller->article
