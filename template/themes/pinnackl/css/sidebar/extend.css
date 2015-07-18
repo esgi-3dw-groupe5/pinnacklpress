@@ -77,12 +77,12 @@ html{
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
     
-    animation-name: fadeInRight;
+    animation-name: appear;
     animation-duration: 1s;
     animation-fill-mode: both;
 }
 
-@keyframes fadeInRight {
+@keyframes appear {
 	0% {
 	    opacity: 0;
 	    transform: translateX(40px);
@@ -92,8 +92,8 @@ html{
 	    transform: translateX(0px);
 	}
 }
-.fadeInRight {
-    animation-name: fadeInRight;
+.appear {
+    animation-name: appear;
 }
 
 .container .line{

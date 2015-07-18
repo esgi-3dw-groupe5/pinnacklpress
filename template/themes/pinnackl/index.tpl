@@ -39,6 +39,24 @@
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/forms/ranges.css">
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/articles/articles.css">
+		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>nimda/template/css/animate.css">
+		<style type="text/css">
+			.error{
+			    background: rgb(202, 60, 60) none repeat scroll 0 0;
+			    border-radius: 3px;
+			    color: #fff;
+			    padding: 0.3em 1em;
+			    width: 36.333%;
+			    margin: auto;
+			    text-align: left;
+			    margin-bottom: 1em;
+			    font-weight: bold;
+			}
+			.unvisible{
+				display: none;
+			}
+		</style>
 	</head>
 	<body class="line">
 		<div id="layout">
@@ -83,7 +101,7 @@
 									</div>
 								</fieldset>
 							</form>
-							<?php if (empty($_SESSION['user']['pseudo']) && (isset($_GET['p']) && $_GET['p'] != 'connection')) : ?>
+							<?php if (empty($_SESSION['user']['pseudo']) && (isset($_GET['p']) && $_GET['p'] != 'connection') || !isset($_GET['p'])) : ?>
 								<?php
 									$form = new \controller\form\Form();
 									$formData = $form->getForm('connection');
@@ -142,12 +160,12 @@
 							<?php $this->viewData->page->render(); ?>
 						</div>
                         <?php 
-                        // if(isset($_SESSION['form'])){
-                        //     foreach ($_SESSION['form']['error'] as $value){
-                        //         echo "$value<br />\n";
-                        //     }
-                        //     unset($_SESSION['form']);
-                        // }
+                        if(isset($_SESSION['form'])){
+                            foreach ($_SESSION['form']['error'] as $value){
+                                echo "$value<br />\n";
+                            }
+                            unset($_SESSION['form']);
+                        }
                         ?>
 					</div>
 					<?php $this->viewData->footer->render(); ?>
@@ -159,6 +177,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="<?php $this->show('siteurl');?>/nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
 		<script>
 			(function(e){
 				var burger = document.getElementById('burger');
@@ -167,6 +186,58 @@
 					menu.classList.toggle("visible");
 				});
 			})(document);
+
+			
+			var forms = document.querySelectorAll('form');
+			[].forEach.call(forms, function(form){
+				var post = {};
+				var action = form.action;
+				var inputs = form.getElementsByTagName("input");
+				var error = form.getElementsByClassName("error");
+				for (var i = inputs.length - 1; i >= 0; i--) {
+					post[inputs[i].name] = "";
+				};
+				[].forEach.call(inputs, function(input){
+					input.addEventListener('change', function(){
+						post[input.name] = input.value;
+						AJAX(post, function(data){
+							if(data.length > 0){
+								form.addEventListener('submit', function(e){
+									e.preventDefault();
+								});
+								error[0].innerHTML = '';
+								error[0].classList.remove('unvisible');
+								for (var i = data.length - 1; i >= 0; i--) {
+									error[0].innerHTML += '<p>'+data[i]+'</p>';
+								};
+							}
+							else{
+								error[0].classList.add('unvisible');
+								form.addEventListener('submit', function(e){
+									this.submit();
+								});
+							}
+						}, action);
+					}, false);
+				})
+			});
+			function AJAX(data, callback, URL, type){
+				callback = (typeof callback === "undefined") ? function(){} : callback;
+				URL = (typeof URL === "undefined") ? window.location.href : URL;
+				type = (typeof type === "undefined") ? "json" : type;
+				$.ajax({
+					type: "POST",
+					url: URL,
+					data: data,
+					success: function(data){callback(data)}, 
+					dataType: type
+				});
+			}
+			function anim(element, animation) {console.log($(element));
+				$(element).removeClass().addClass('error' + animation + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+				$(this).removeClass();
+				});
+			};
 		</script>
 	</body>
 </html>

@@ -17,7 +17,7 @@ class Form extends \sophwork\app\controller\AppController{
 		parent::__construct();
 	}
 
-	public function getForm($name){
+	public function getForm($name){ // FIMXME : Define if a field is required in nimda From
 		$this->KDM = new SophworkDM($this->config);
 		$field = new Field();
 		$validator = new Validator();
