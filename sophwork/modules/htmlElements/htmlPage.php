@@ -209,10 +209,10 @@ class htmlPage extends htmlElement{
 				$header->inject($meta);
 
 				$authorLink = new htmlElement('a');
-				$authorLink->set('href', Sophwork::getUrl('user/'.$authorName)); // FIXME : 'user/' . $authorName
+				$authorLink->set('href', Sophwork::getUrl('user/'.strtolower($authorName)));
 					
 				$img = new htmlElement('img');
-				$img->set('src', Sophwork::getUrl('data/users/'.$authorName.'/'.$authorName.'.jpg')); // FIXME : 'data/users/' . $authorName . '/' . $authorName . '.jpg'
+				$img->set('src', Sophwork::getUrl('data/users/'.strtolower($authorName).'/'.strtolower($authorName).'.jpg'));
 				$authorLink->inject($img);
 				$header->inject($authorLink);
 				$card->inject($header);
@@ -220,6 +220,7 @@ class htmlPage extends htmlElement{
 				$grid->set('class', 'grid-4_4 preview');
 				$articleLink = new htmlElement('a');
 				$articleLink->set('href', Sophwork::getUrl($currentCategory[0] . '/' . $tag));
+				$articleLink->set('class', "articleLink");
 				$content = preg_replace("/<img[^>]+\>/i", '', $content);
 				$articleLink->set('text', $this->closetags($content) . '...');
 				$grid->inject($articleLink);

@@ -50,13 +50,6 @@
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/comments/comments.css">
 		<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/ui/trumbowyg.min.css">
    		<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css">
-<!--     	<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/plugins/upload/trumbowyg.upload.js"> -->
-		<style type="text/css">
-			.trumbowyg-textarea {
-/*			    border: medium none !important;
-			    box-shadow: none !important;*/
-			}
-		</style>
 	</head>
 	<body class="line">
 		<div id="layout">
@@ -180,71 +173,6 @@
 		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/upload/trumbowyg.upload.js"></script>
 		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/trumbowyg.colors.js"></script>
 		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/base64/trumbowyg.base64.js"></script>
-		<script>
-			(function(e){
-				var burger = document.getElementById('burger');
-				var menu = document.getElementById('menu');
-				burger.addEventListener('click', function(){
-					menu.classList.toggle("visible");
-				});
-			})(document);
-
-			
-			var forms = document.querySelectorAll('form');
-			[].forEach.call(forms, function(form){
-				var post = {};
-				var action = form.action;
-				var inputs = form.getElementsByTagName("input");
-				var error = form.getElementsByClassName("error");
-				for (var i = inputs.length - 1; i >= 0; i--) {
-					post[inputs[i].name] = "";
-				};
-				[].forEach.call(inputs, function(input){
-					input.addEventListener('change', function(){
-						post[input.name] = input.value;
-						AJAX(post, function(data){
-							if(data.length > 0){
-								form.addEventListener('submit', function(e){
-									e.preventDefault();
-								});
-								error[0].innerHTML = '';
-								error[0].classList.remove('unvisible');
-								for (var i = data.length - 1; i >= 0; i--) {
-									error[0].innerHTML += '<p>'+data[i]+'</p>';
-								};
-							}
-							else{
-								error[0].classList.add('unvisible');
-								form.addEventListener('submit', function(e){
-									this.submit();
-								});
-							}
-						}, action);
-					}, false);
-				})
-			});
-			function AJAX(data, callback, URL, type){
-				callback = (typeof callback === "undefined") ? function(){} : callback;
-				URL = (typeof URL === "undefined") ? window.location.href : URL;
-				type = (typeof type === "undefined") ? "json" : type;
-				$.ajax({
-					type: "POST",
-					url: URL,
-					data: data,
-					success: function(data){callback(data)}, 
-					dataType: type
-				});
-			}
-			document.addEventListener("DOMContentLoaded", function() {
-				$('#wysiwyg').trumbowyg({
-        	        btns: ['viewHTML',
-        	            '|', 'btnGrp-design',
-        	            '|', 'link',
-        	            '|', 'btnGrp-justify',
-        	            '|', 'btnGrp-lists',
-        	            '|', 'foreColor', 'backColor']
-        	    });
-			});
-		</script>
+		<script src="<?php $this->show('siteurl')?>template/themes/pinnackl/js/pinnackl.js"></script>
 	</body>
 </html>
