@@ -23,10 +23,20 @@ $user = new Users();
 $pseudo = $_GET['log'];
 $key = $_GET['cle'];
 
+$appController->KDM = new SophworkDM(Sophwork::getConfig());
+
+$options = $appController->KDM->create('pp_option');
+
+$options->findOptionName("sitename");
+$sitename = $options->getOptionValue()[0];
+
+$options->findOptionName("siteurl");
+$siteUrl = $options->getOptionValue()[0];
+
 if(!empty($pseudo)&&(!empty($key))) {
     
     // Récupération de la clé correspondant au $pseudo dans la base de données
-    $appController->KDM = new SophworkDM(Sophwork::getConfig());
+    
     $user = $appController->KDM->create('pp_user');
     $user->findUserPseudo($pseudo);
     
@@ -40,7 +50,7 @@ if(!empty($pseudo)&&(!empty($key))) {
             // On teste la valeur de la variable $active récupéré dans la BDD
             if($active == '1') { // Si le compte est déjà actif on prévient
             
-                Sophwork::redirect();
+                $message = "Votre compte est d&eacute;j&agrave; actif !";
             }
             else { // Si ce n'est pas le cas on passe aux comparaisons
             
@@ -51,6 +61,7 @@ if(!empty($pseudo)&&(!empty($key))) {
 
                     // La requête qui va passer notre champ actif de 0 à 1
                     $user->setUserActive('1');
+                    $user->setUserRole('member');
                     $user->save();
                 }
                 else { // Si les deux clés sont différentes on provoque une erreur...
@@ -74,6 +85,6 @@ else
 }
 
 
-require_once(__DIR__ . '/../template/mail/mail-confirm.tpl');
+require_once(__DIR__ . '/mail-confirm.tpl');
 
 ?>

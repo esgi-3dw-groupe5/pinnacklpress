@@ -87,7 +87,7 @@ class Users extends \sophwork\app\controller\AppController {
             $this->user->setUserName($POST['lastname']);
             $this->user->setUserBdate($POST['birthdate']);
             $this->user->setUserRegdate(date("Y-m-d h:i:s"));
-            $this->user->setUserRole('member');
+            $this->user->setUserRole('visitor');
             $this->user->setUserKey($userkey);
             $this->user->setUserActive('0');
             $this->user->setUserUrl($POST['pseudo']);
