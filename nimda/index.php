@@ -86,26 +86,32 @@ elseif (in_array('nimda', $uri)) {
 		],
 	];
 }
+if(in_array('nimda', $uri) && in_array('user', $uri)){
+	Sophwork::redirect();
+}
 
 /**
  * Lead by default on overver when connected onn nimda.
  */
-if($page == 'index')
+if(is_null($controllerPrefix) && $page == 'index')
 	Sophwork::redirect('nimda/overview');
-
+elseif(!is_null($controllerPrefix) && $controller->article === false){
+	Sophwork::redirect();
+}
 /**
  * Lead by default on post of the page user
  */
-if( preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__))-1] != "nimda"
-	&& $this->article == "")
-	Sophwork::redirect('user/' . $page . '/posts');
+else{
+	if(!is_null($controllerPrefix) && $controller->article == "")
+		Sophwork::redirect('user/' . $page . '/posts');
+}
+
 /**
  * @var $page = $controller->article
  * If it the case we not create the first level controller which is the user page name
  * but the section controller which is in this variable.
  */
-if(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__))-1] != "nimda"
-	&& $this->article != "")
+if(!is_null($controllerPrefix) && $controller->article != "")
 	$page = $controller->article;
 
 $options = $KDM->create('pp_option');
