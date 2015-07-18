@@ -48,24 +48,8 @@ class htmlPage extends htmlElement{
 		}
 	}
 
-	public function createComment(){	
-	if($this->data['com_id'] == null) return $this;
-	$test = [];
-	$stdArray = new \stdClass;
-	$test['0'] = $stdArray;
-	foreach ($this->data['com_id'] as $key => $value) {
-		$stdValues = new \stdClass;
-		$values[$key] = $stdValues;
-		$stdValues->gridClass = 'grid-4_4';
-		$stdValues->gridModule = 'text';
-		$stdValues->gridContent = $this->data['com_content'][$key];
-		$stdValues->gridAuthor = $this->data['com_author'][$key];
-		$stdValues->gridDate = $this->data['com_date'][$key];
-	}
-	$stdArray->line = $values;
-	$this->data = $test;
-
-	if($this->data != null) {
+	public function createComment(){
+		
 		$form = new htmlElement('form');
 		$form->set('method','post');
 		$form->set('name','comment');
@@ -91,7 +75,27 @@ class htmlPage extends htmlElement{
 		$box->set('class', 'grid-4_4 page-comments');
 		$box->inject($form);
 
-		$this->layout[] = $box;
+		$this->layout[] = $box;	
+
+	if($this->data['com_id'] == null) return $this;
+
+	$test = [];
+	$stdArray = new \stdClass;
+	$test['0'] = $stdArray;
+
+	foreach ($this->data['com_id'] as $key => $value) {
+		$stdValues = new \stdClass;
+		$values[$key] = $stdValues;
+		$stdValues->gridClass = 'grid-4_4';
+		$stdValues->gridModule = 'text';
+		$stdValues->gridContent = $this->data['com_content'][$key];
+		$stdValues->gridAuthor = $this->data['com_author'][$key];
+		$stdValues->gridDate = $this->data['com_date'][$key];
+	}
+	$stdArray->line = $values;
+	$this->data = $test;
+
+	if($this->data != null) {
 		foreach ($this->data as $key => $value) {
 			$line = new htmlElement('div');
 			$line->set('class', 'line');
