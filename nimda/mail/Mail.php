@@ -92,12 +92,10 @@ class Mail {
         }
         
         if($type=='install'){
-            $sophwork = new Sophwork();
             Sophwork::redirect('install/settings');
         }
         elseif($type=='inscription') {
             $_SESSION['form']['error'][]="Vous êtes inscrits";
-            $sophwork = new Sophwork();
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }
