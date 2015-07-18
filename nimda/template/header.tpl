@@ -51,13 +51,13 @@
     </div>
     <div id="menu">
         <div class="pinnackl-menu">
-            <a class="pinnackl-menu-heading" href="<?php $this->show('siteurl')?>nimda/">Pinnackl Press</a>
+            <a class="pinnackl-menu-heading" href="<?php $this->show('siteurl')?><?php $this->show('adminSection')?>/">Pinnackl Press</a>
             <ul class="pinnackl-menu-list">
         	<?php foreach ($this->viewData->menu as $key => $value) : ?>
                 <li class="pinnackl-menu-item <?php $this->isActive($this->show($value, 'page_tag'))?>">
-                    <a href="<?php $this->show('siteurl')?>nimda/<?php $this->show($value, 'page_tag');?>"
+                    <a href="<?php $this->show('siteurl')?><?php $this->show('adminSection')?>/<?php $this->show($value, 'page_tag');?>"
                         class="pinnackl-menu-link">
-                        <?php $this->show($value, 'page_name')?>
+                        <?php $this->show($value, 'page_name') ?>
                     </a>
                 </li>
             <?php endforeach; ?>

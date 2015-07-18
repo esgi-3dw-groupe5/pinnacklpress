@@ -22,11 +22,11 @@ $appController = $app->appController;
 $pageController = new Controllers();
 $pageController->callThemeView('index');
 
-//Fin du code PHP
+//End PHP code
 $timeend=microtime(true);
 $time=$timeend-$timestart;
  
-//Afficher le temps d'éxecution
+//Execution time
 $page_load_time = number_format($time, 3);
 echo "<!--Start of script: ".date("H:i:s", $timestart);
 echo "<br>End of script: ".date("H:i:s", $timeend);
