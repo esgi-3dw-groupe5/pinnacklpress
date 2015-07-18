@@ -24,7 +24,7 @@
 		            <td><?php $this->show($value, 'com_id')      ?></td>
 		            <td><?php $this->show($value, 'com_author')    ?></td>
                     <td><?php $this->show($value, 'post_id')    ?></td>
-                    <td><?php $length = strlen($this->get($value, 'com_content')); 
+                    <td style="width:100%;"><?php $length = strlen($this->get($value, 'com_content')); 
                     echo substr($this->get($value, 'com_content'),0,50); if($length>50) echo '...';?></td>
                     <td><?php $this->show($value, 'com_date')    ?></td>
                     <td><?php $this->show($value, 'com_update')    ?></td>
