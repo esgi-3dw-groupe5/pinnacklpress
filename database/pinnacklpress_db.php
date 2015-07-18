@@ -9,7 +9,7 @@ $link->exec("CREATE TABLE IF NOT EXISTS `pp_comment` (
   `com_content` varchar(45) DEFAULT NULL,
   `com_author` int(11) DEFAULT NULL COMMENT 'user table : primary key',
   `com_date` timestamp DEFAULT '0000-00-00 00:00:00',
-  `com_udate` timestamp DEFAULT '0000-00-00 00:00:00',
+  `com_update` timestamp DEFAULT '0000-00-00 00:00:00',
   `com_active` int(11) DEFAULT '1',
   PRIMARY KEY (`com_id`),
   KEY `post_id` (`post_id`),
