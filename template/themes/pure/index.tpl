@@ -34,6 +34,8 @@
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/forms/forms.css">
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/articles/articles.css">
+		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/comments/comments.css">
 	</head>
 	<body class="line">
 		<div id="layout">

@@ -194,8 +194,8 @@ class SophworkDMEntities extends SophworkDM{
 		$orderBy = 'orderBy';
 		$method = $$orderBy.preg_replace("/_/", "", implode('_', array_map('ucfirst', explode('_', $key))));
 
-		$this->$method = function() use ($key){
-			$this->order .= $key;
+		$this->$method = function($direction = 'ASC') use ($key){
+			$this->order .= $key . ' ' . $direction;
 			return $this;
 		};
 	}

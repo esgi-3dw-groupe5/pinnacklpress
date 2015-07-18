@@ -13,6 +13,9 @@ use sophwork\modules\htmlElements\htmlPage;
 use sophwork\modules\htmlElements\htmlForm;
 use sophwork\modules\htmlElements\htmlFooter;
 
+use sophwork\modules\kdm\SophworkDM;
+use sophwork\modules\kdm\SophworkDMEntities;
+
 use controller\utils\Users;
 use controller\utils\Menu;
 use controller\posts\Post;
@@ -125,6 +128,16 @@ class Controllers extends AppController{
 		 * If the page is a post or page render with the content
 		 * If the page is a cetegory, get the categorie id and call Post to get all article from this category
 		 */
+		if($page->getPageType()[0] == 'post'){
+			$comments = $this->KDM->create('pp_comment');
+			$comments
+				->filterPostId($page->getPageId()[0])
+				->__and()
+				->filterComActive(1)
+				->orderByComDate('DESC')
+				->querySelect();
+		}
+
         if(!is_null($page->getPageId()[0])) {
             $pageType = $page->getPageType()[0];
             $data = $pageContent->getPmetaValue()[0];	// $data : the page content
@@ -144,9 +157,24 @@ class Controllers extends AppController{
 				$html = new htmlPage($data);
 				$layout = $html->createPostList();
 			}
+			if( $pageType == 'post'){
+				$KDM = new SophworkDM($this->config);
+				$author = $KDM->create('pp_user');
+            	$data = $comments->getData();
+            	if(!empty($data['com_author'])){
+					foreach ($data['com_author'] as $key => $value) {
+						$author->findUserId($comments->getData()['com_author'][$key]);
+						$data['com_author'][$key] = $author->getUserPseudo()[0];
+					}
+				}
+            	$html = new htmlPage($data);
+            	$layoutComment = $html->createComment();
+            	$this->setRawData('comment', $layoutComment);
+            }
             if($slug != 'Index')
                 $this->setViewData('sitedescription', $slug);
             $this->setRawData('page', $layout);
+
             return $page;
         }
         else {

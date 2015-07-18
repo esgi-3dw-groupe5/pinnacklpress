@@ -57,6 +57,11 @@
 				display: none;
 			}
 		</style>
+		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/comments/comments.css">
+		<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/ui/trumbowyg.min.css">
+   		<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css">
+<!--     	<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/plugins/upload/trumbowyg.upload.js"> -->
 	</head>
 	<body class="line">
 		<div id="layout">
@@ -158,6 +163,7 @@
 					<div class="line sub-content">
 						<div class="grid-4_4 container">
 							<?php $this->viewData->page->render(); ?>
+							<?php if(property_exists($this->viewData, 'comment'))$this->viewData->comment->render(); ?>
 						</div>
                         <?php 
                         if(isset($_SESSION['form'])){
@@ -177,7 +183,11 @@
 				</div>
 			</div>
 		</div>
-		<script src="<?php $this->show('siteurl');?>/nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
+		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/jquery-1.11.0.min.js"></script>
+		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/trumbowyg.min.js"></script>
+		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/upload/trumbowyg.upload.js"></script>
+		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/trumbowyg.colors.js"></script>
+		<script src="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/base64/trumbowyg.base64.js"></script>
 		<script>
 			(function(e){
 				var burger = document.getElementById('burger');
@@ -233,11 +243,16 @@
 					dataType: type
 				});
 			}
-			function anim(element, animation) {console.log($(element));
-				$(element).removeClass().addClass('error' + animation + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-				$(this).removeClass();
-				});
-			};
+			document.addEventListener("DOMContentLoaded", function() {
+				$('#wysiwyg').trumbowyg({
+        	        btns: ['viewHTML',
+        	            '|', 'btnGrp-design',
+        	            '|', 'link',
+        	            '|', 'btnGrp-justify',
+        	            '|', 'btnGrp-lists',
+        	            '|', 'foreColor', 'backColor']
+        	    });
+			});
 		</script>
 	</body>
 </html>

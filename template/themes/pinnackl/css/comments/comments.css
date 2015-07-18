@@ -1,0 +1,13 @@
+.page-comments{
+	background: #fff;
+	border-color: #e7eaec;
+	border-image: none;
+	border-style: solid solid none;
+	border-width: 1px 0;
+	padding: 3em 2em 5em 2em;
+	text-align: justify;
+}
+
+.comment img{
+	position:relative;
+}
