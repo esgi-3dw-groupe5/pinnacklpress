@@ -71,7 +71,8 @@ class Users extends \sophwork\app\controller\AppController {
     }
     
     public function inscription($POST){
-        var_dump($POST);
+        $mail = new Mail();
+
         $this->user = $this->KDM->create('pp_user');
         $this->user->findUserEmail($POST['email']);
         if($this->user->getUserId()[0]==null){ //FIXME : replace default data
@@ -82,7 +83,6 @@ class Users extends \sophwork\app\controller\AppController {
             $this->user->setUserEmail($POST['email']);
             $this->user->setUserPassword($hash_psw);
             $this->user->setUserPseudo($POST['pseudo']);
-            $this->user->setUserGender('2');//FIX ME
             $this->user->setUserFirstname($POST['firstname']);
             $this->user->setUserName($POST['lastname']);
             $this->user->setUserBdate($POST['birthdate']);
@@ -91,10 +91,18 @@ class Users extends \sophwork\app\controller\AppController {
             $this->user->setUserKey($userkey);
             $this->user->setUserActive('0');
             $this->user->setUserUrl($POST['pseudo']);
+            $this->user->save();
+            
+            Users::startSession();
+            
+            $_SESSION['user']['id'] = $this->user->getUserId();
+            $_SESSION['user']['email'] = $this->user->getUserEmail();
+            $_SESSION['user']['pseudo'] = $this->user->getUserPseudo();
+            $_SESSION['user']['role'] = $this->user->getUserRole();
+            $_SESSION['user']['connected'] = true;
+            $_SESSION['user']['url'] = $this->user->getUserUrl();
 
-            if($this->user->save()){
-                Mail::sendMail($POST['pseudo'],$POST['email'],$POST['firstname'],$userkey);
-            }
+            $mail->sendMail($POST['pseudo'],$POST['email'],'inscription',$userkey);
         }
         else{
             $_SESSION['form']['error'][]="L'utilisateur existe déjà";

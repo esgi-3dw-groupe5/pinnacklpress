@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Bienvenue <?php echo $pseudo;?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             /* Fonts and Content */
@@ -46,7 +46,7 @@
                                                     <td class="w30"  width="30"></td>
                                                     <td  class="w580"  width="580" valign="middle" align="left">
                                                         <div class="pagetoplogo-content">
-                                                            <h1 style="font-size:xx-large;">Pinnackl.com</h1>
+                                                            <!--<h1 style="font-size:xx-large;">Pinnackl.com</h1>-->
                                                         </div>
                                                     </td> 
                                                     <td class="w30"  width="30"></td>
@@ -78,14 +78,7 @@
                                                                             Bonjour <?php echo $pseudo;?> </h2>
 
                                                                         <div align="left" class="article-content">
-                                                                            <p> Bienvenue sur Pinnackl</p>
-                                                                            <p>
-                                                                                Pour activer votre compte, veuillez cliquer sur le lien ci dessous
-                                                                                ou copier/coller dans votre navigateur internet
-                                                                            </p>
-                                                                            <p>
-                                                                                http://pinnackl.com/activation/<?php echo urlencode($pseudo);?>/<?php echo urlencode($cle);?>
-                                                                            </p>
+                                                                            <?php echo $content; ?>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -117,7 +110,7 @@
                                                     <td class="w30"  width="30"></td>
                                                     <td class="w580"  width="580" valign="top">
                                                         <p align="right" class="pagebottom-content-left">
-                                                            <a style="color:#255D5C;" href="http://www.pinnackl.com"><span style="color:#255D5C;">Pinnackl.com</span></a>
+                                                            <!--<a style="color:#255D5C;" href="http://www.pinnackl.com"><span style="color:#255D5C;">Pinnackl.com</span></a>-->
                                                         </p>
                                                     </td>
 

@@ -16,14 +16,23 @@ class Mail {
     protected $where;
 
 
-    public function sendMail($pseudo,$email,$cle=null,$siteUrl=null){
+    public function sendMail($pseudo,$email,$type,$key=null){
         
+        $siteUrl = Sophwork::getUrl();
         
         ob_start(); // turn on output buffering
-        if($cle==null)
+        if($type=='install') {
+            $content = "<p>Bienvenue sur votre site ".$pseudo."</p><p>Vous confirmons la bonne configuration de celui-ci. Il est disponible &agrave; cette adresse :</p><p><a href='".$siteUrl."'>".$siteUrl."</a></p>";
             include(__DIR__ . '/../template/mail-install.tpl');
-        else
+            $subject = "Bienvenue sur votre site ".$pseudo." !";
+        }
+            
+        elseif($type=='inscription') {
+            $content="<p>Bienvenue ".$pseudo."</p><p>Pour activer votre compte, veuillez cliquer sur le lien ci dessous ou copier/coller dans votre navigateur internet</p><p><a href='".$siteUrl."activation/".urlencode($pseudo)."/".urlencode($key)."/'>".$siteUrl."activation/".urlencode($pseudo)."/".urlencode($key)."/</a></p>";
             include(__DIR__ . '/../template/mail-inscription.tpl');
+            $subject = "Bienvenue ".$pseudo." !";
+        }
+            
         $res = ob_get_contents(); // get the contents of the output buffer
         ob_end_clean(); //  clean (erase) the output buffer and turn off output buffering
         
@@ -41,10 +50,6 @@ class Mail {
 
         $message_html = $res;
 
-
-        //=====Définition du sujet.
-        $subject = "Bienvenue sur Pinnackl ".$pseudo." !";
-        //=========
 
         require_once('PHPMailerAutoload.php');
 
@@ -86,11 +91,11 @@ class Mail {
              echo 'Message has been sent';
         }
         
-        if($cle==null){
+        if($type=='install'){
             $sophwork = new Sophwork();
             Sophwork::redirect('install/settings');
         }
-        else {
+        elseif($type=='inscription') {
             $_SESSION['form']['error'][]="Vous êtes inscrits";
             $sophwork = new Sophwork();
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
