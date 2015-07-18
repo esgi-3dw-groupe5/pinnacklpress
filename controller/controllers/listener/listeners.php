@@ -54,8 +54,7 @@ foreach ($_POST as $key => $value) {
  * It will create a new comment after some verifications
  */
 if($optionPage == 'comment'){
-    if(!empty(trim(html_entity_decode(strip_tags(preg_replace("/&#?[a-z0-9]{2,8};/i","",$_POST['wysiwyg']))),'<br><br/>'))){
-
+    if(!empty(trim(html_entity_decode(strip_tags(preg_replace("/&#?[a-z0-9]{2,8};/i","",$_POST['wysiwyg'])))))){
         $comment = $KDM->create('pp_comment');
         Users::startSession();
         $user = new Users();
@@ -66,9 +65,9 @@ if($optionPage == 'comment'){
         $comment->setComUpdate(date("Y-m-d H:i:s"));
         $comment->setComActive(1);
         $comment->setPostId($pageId);
-    
         $comment->save();
-    }
+        Sophwork::redirectFromRef($_POST['pp-referer']);
+    }Sophwork::redirectFromRef($_POST['pp-referer']);
 }
 
 

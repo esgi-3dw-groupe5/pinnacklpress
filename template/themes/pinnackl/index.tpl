@@ -187,7 +187,7 @@
         	            '|', 'btnGrp-lists',
         	            '|', 'foreColor', 'backColor']
         	    });
-			});
+			});			
 		</script>
 	</body>
 </html>

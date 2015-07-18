@@ -134,6 +134,7 @@ class Controllers extends AppController{
 				->filterPostId($page->getPageId()[0])
 				->__and()
 				->filterComActive(1)
+				->orderByComDate('DESC')
 				->querySelect();
 		}
 

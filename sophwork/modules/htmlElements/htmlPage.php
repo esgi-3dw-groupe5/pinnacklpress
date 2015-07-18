@@ -48,8 +48,8 @@ class htmlPage extends htmlElement{
 		}
 	}
 
-	public function createComment(){
-
+	public function createComment(){	
+	if($this->data['com_id'] == null) return $this;
 	$test = [];
 	$stdArray = new \stdClass;
 	$test['0'] = $stdArray;
@@ -75,6 +75,7 @@ class htmlPage extends htmlElement{
 		$line = new htmlElement('div');
 		$line->set('class', 'line');
 		$line->set('id', 'wysiwyg');
+		$line->set('placeholder', 'Partagez vos impressions');
 
 		$form->inject($line);
 
