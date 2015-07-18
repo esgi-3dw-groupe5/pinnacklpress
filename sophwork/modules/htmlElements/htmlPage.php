@@ -109,14 +109,14 @@ class htmlPage extends htmlElement{
 					$grid->set('class', $val->gridClass . ' page-comments');
 
 					$author = $val->gridAuthor;
-					$date = date_format(date_create($val->gridDate), "Y/m/d");
+					$date = 'Posté le : '.date_format(date_create($val->gridDate), "d/m/Y \à H:m:s");
 					$content = $val->gridContent;
 
 					$header = new htmlElement('div');
 					$header->set('class', 'grid-4_4 author comment');
 
 					$meta = new htmlElement('div');
-					$meta->set('class', 'grid-3_4');
+					$meta->set('class', 'grid-1_4');
 					$meta->set('text', $author);
 
 					$header->inject($meta);
