@@ -12,14 +12,6 @@
  *     production because it is not secure.
  */
 
-// $uri = $_SERVER['REQUEST_URI'];
-// $parts = parse_url($uri);
-
-// $root = parse_str($parts['path']);
-// var_dump($root);
-// var_dump($_SERVER['DOCUMENT_ROOT']);die;
-use sophwork\core\Sophwork;
-
 /**
  * Upload directory
  */
