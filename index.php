@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+$timestart=microtime(true);
+
 require_once('sophwork/autoloader.php');
 require_once('controller/posts/fluxRss.php');
 
@@ -19,3 +21,13 @@ $app = new SophworkApp();
 $appController = $app->appController;
 $pageController = new Controllers();
 $pageController->callThemeView('index');
+
+//Fin du code PHP
+$timeend=microtime(true);
+$time=$timeend-$timestart;
+ 
+//Afficher le temps d'éxecution
+$page_load_time = number_format($time, 3);
+echo "<!--Start of script: ".date("H:i:s", $timestart);
+echo "<br>End of script: ".date("H:i:s", $timeend);
+echo "<br>Script execute in " . $page_load_time . " sec-->";

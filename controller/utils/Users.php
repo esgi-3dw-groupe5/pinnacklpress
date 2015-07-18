@@ -43,11 +43,12 @@ class Users extends \sophwork\app\controller\AppController {
 
             if(password_verify($POST['password'], $this->user->getUserPassword()[0]))
             {
-                $_SESSION['user']['id']=$this->user->getUserId()[0];
-                $_SESSION['user']['email']=$this->user->getUserEmail()[0];
-                $_SESSION['user']['pseudo']=$this->user->getUserPseudo()[0];
-                $_SESSION['user']['role']=$this->user->getUserRole()[0];
-                $_SESSION['user']['connected']=true;
+                $_SESSION['user']['id'] = $this->user->getUserId()[0];
+                $_SESSION['user']['email'] = $this->user->getUserEmail()[0];
+                $_SESSION['user']['pseudo'] = $this->user->getUserPseudo()[0];
+                $_SESSION['user']['role'] = $this->user->getUserRole()[0];
+                $_SESSION['user']['connected'] = true;
+                $_SESSION['user']['url'] = $this->user->getUserUrl()[0];
                 
                 if($redirectAfterConnection) {
                     Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
@@ -57,7 +58,7 @@ class Users extends \sophwork\app\controller\AppController {
             else
             {
                 $_SESSION['form']['error'][]="Le mot de passe est incorrect";
-                Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+                Sophwork::redirectFromRef($_SESSION['form']['errorPage']);
                 exit;
             }
         }

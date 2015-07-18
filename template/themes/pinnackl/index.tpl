@@ -1,4 +1,4 @@
-<!-- Default Index Tempalte -->
+<!-- Default Pinnackl Theme Tempalte -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +9,10 @@
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>template/themes/pinnackl/css/pinnackl/pinnackl.css">
+		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/base/base.css">
+		
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/base/extend.css">
 		<link rel="stylesheet" type="text/css"
@@ -41,22 +44,6 @@
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/articles/articles.css">
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>nimda/template/css/animate.css">
-		<style type="text/css">
-			.error{
-			    background: rgb(202, 60, 60) none repeat scroll 0 0;
-			    border-radius: 3px;
-			    color: #fff;
-			    padding: 0.3em 1em;
-			    width: 36.333%;
-			    margin: auto;
-			    text-align: left;
-			    margin-bottom: 1em;
-			    font-weight: bold;
-			}
-			.unvisible{
-				display: none;
-			}
-		</style>
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/comments/comments.css">
 		<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/ui/trumbowyg.min.css">
@@ -106,7 +93,8 @@
 									</div>
 								</fieldset>
 							</form>
-							<?php if (empty($_SESSION['user']['pseudo']) && (isset($_GET['p']) && $_GET['p'] != 'connection') || !isset($_GET['p'])) : ?>
+							<?php if (empty($_SESSION['user']['pseudo'])
+								&& ((isset($_GET['p']) && $_GET['p'] != 'connection') || !isset($_GET['p']))) : ?>
 								<?php
 									$form = new \controller\form\Form();
 									$formData = $form->getForm('connection');
@@ -114,9 +102,13 @@
 									$htmlForm->createForm()->output();
 								?>
 							<?php elseif (!empty($_SESSION['user']['pseudo'])) : ?>
-								<h4>Bienvenue : <?php echo'<pre style="background:#ffffff">';
-								var_dump($_SESSION);
-								echo'</pre>'; ?></h4>
+								<h4>Bienvenue :
+									<a class="pinnackl-username"
+										href="<?php $this->e(sophwork\core\Sophwork::getUrl('user/'.$_SESSION['user']['url']), 'L'); ?>">
+										<?php $this->e($_SESSION['user']['pseudo']) ?>
+									</a>
+									<a class="pinnackl-logout" href="?act=logout">Déconnexion</a>
+								</h4>
 							<?php endif; ?>
 						</div>
 					</div>
@@ -163,16 +155,8 @@
 					<div class="line sub-content">
 						<div class="grid-4_4 container">
 							<?php $this->viewData->page->render(); ?>
-							<?php if(property_exists($this->viewData, 'comment'))$this->viewData->comment->render(); ?>
+							<?php if (property_exists($this->viewData, 'comment')) $this->viewData->comment->render(); ?>
 						</div>
-                        <?php 
-                        if(isset($_SESSION['form'])){
-                            foreach ($_SESSION['form']['error'] as $value){
-                                echo "$value<br />\n";
-                            }
-                            unset($_SESSION['form']);
-                        }
-                        ?>
 					</div>
 					<?php $this->viewData->footer->render(); ?>
 					<div class="line footer-right">

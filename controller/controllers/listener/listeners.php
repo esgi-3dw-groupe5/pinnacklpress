@@ -33,12 +33,6 @@ $optionPageController = preg_split("#/#", $_POST['pp-referer']);
  */
 $optionPage = $optionPageController[count($optionPageController)-1];//FIX ME : check if always 1st level page
 
-/**
- * The value of optionPage will change if if the page do have a role
- * @var String
- */
-$realPageName = $optionPage;
-
 $url = implode('/', $optionPageController);
 $_SESSION['form']['pp-referer'] = $url;
 
@@ -55,6 +49,12 @@ foreach ($_POST as $key => $value) {
         break;
     }
 }
+
+/**
+ * The value of optionPage will change if if the page do have a role
+ * @var String
+ */
+$realPageName = $optionPage;
 
 /**
  * Outside if above because this form is hardcoded
@@ -115,6 +115,10 @@ if ($forms->getFormId()[0] != null) {
             /* AJAX check  */
             if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
                 echo json_encode($_SESSION['form']['error']);
+                if(isset($_SESSION['form']['submited']))
+                    unset($_SESSION['form']['submited']);
+                if(isset($_SESSION['form']['error']))
+                    unset($_SESSION['form']['error']);
                 return;
             }
             Sophwork::redirect($realPageName);
@@ -122,8 +126,13 @@ if ($forms->getFormId()[0] != null) {
         } else {
             if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
                 echo json_encode([]);
+                if(isset($_SESSION['form']['submited']))
+                    unset($_SESSION['form']['submited']);
+                if(isset($_SESSION['form']['error']))
+                    unset($_SESSION['form']['error']);
                 return;
             }
+            $_SESSION['form']['errorPage'] = Sophwork::getUrl($realPageName);
             $user = new Users();
             $user->$optionPage($_POST);
         }

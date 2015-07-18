@@ -15,7 +15,7 @@ class htmlForm extends htmlElement{
 	}
 
 	public function createForm(){
-
+		Users::startSession();
 		$layout = new htmlElement('div');
 		$form = new htmlElement('form');
 
@@ -24,11 +24,18 @@ class htmlForm extends htmlElement{
 		$form->set('action','controller/controllers/listener/listeners.php');
 		$form->set('class','pinnackl-form pinnackl-form-stacked');
 
+		$errorBoxVisible = 'unvisible';
 		$errorBox = new htmlElement('div');
-		$errorBox->set('class', 'error animated shake unvisible');
+		if(isset($_SESSION['form']['error'])){
+			$errorBoxVisible = '';
+			foreach ($_SESSION['form']['error'] as $key => $value) {
+				$p = new htmlElement('p');
+				$p->set('text', $value);
+				$errorBox->inject($p);
+			}
+		}
+		$errorBox->set('class', 'error animated bounce ' . $errorBoxVisible);
 		$form->inject($errorBox);
-
-		Users::startSession();
 
 		if($this->data != null) {
 			foreach ($this->data as $key => $value) {
@@ -42,8 +49,10 @@ class htmlForm extends htmlElement{
 				$input->set('required','');
 				$input->set('name',$this->data[$key]['field_name']);
 				$input->set('placeholder', ucfirst($this->data[$key]['field_name']));
+
 				if(isset($_SESSION['form']['submited'][$this->data[$key]['field_name']]))
 					$input->set('value', $_SESSION['form']['submited'][$this->data[$key]['field_name']]);
+
 				$line->inject($input);
 				$form->inject($line);
 
@@ -68,6 +77,8 @@ class htmlForm extends htmlElement{
 			$layout->inject($form);
 			if(isset($_SESSION['form']['submited']))
 				unset($_SESSION['form']['submited']);
+			if(isset($_SESSION['form']['error']))
+				unset($_SESSION['form']['error']);
 			return $layout;
 		} else {
 			return $layout;

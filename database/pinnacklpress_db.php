@@ -12,6 +12,9 @@ $link->exec("CREATE TABLE IF NOT EXISTS `pp_comment` (
   `com_udate` timestamp DEFAULT '0000-00-00 00:00:00',
   `com_active` int(11) DEFAULT '1',
   PRIMARY KEY (`com_id`)
+  KEY `post_id` (`post_id`)
+  KEY `com_date` (`com_date`)
+  KEY `com_active` (`com_active`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 
 //////////////////////////////////// field
