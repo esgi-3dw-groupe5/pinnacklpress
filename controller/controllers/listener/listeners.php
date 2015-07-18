@@ -37,6 +37,10 @@ $_SESSION['form']['pp-referer'] = $url;
 
 $KDM = new SophworkDM($app->config);
 
+$page = $KDM->create('pp_page');
+$page->findPageTag($optionPage);
+$pageId = $page->getPageId()[0];
+
 $re = "/(__)(.*)/";
 foreach ($_POST as $key => $value) {
     if (preg_match($re, $key, $matches)) {
@@ -45,7 +49,31 @@ foreach ($_POST as $key => $value) {
     }
 }
 
-$page = $KDM->create('pp_page');
+/**
+ * Outside if above because this form is hardcoded
+ * It will create a new comment after some verifications
+ */
+if($optionPage == 'comment'){
+    if(!empty(trim(html_entity_decode(strip_tags(preg_replace("/&#?[a-z0-9]{2,8};/i","",$_POST['wysiwyg']))),'<br><br/>'))){
+
+        $comment = $KDM->create('pp_comment');
+        Users::startSession();
+        $user = new Users();
+    
+        $comment->setComAuthor($user->id);
+        $comment->setComContent($_POST['wysiwyg']);
+        $comment->setComDate(date("Y-m-d H:i:s"));
+        $comment->setComUpdate(date("Y-m-d H:i:s"));
+        $comment->setComActive(1);
+        $comment->setPostId($pageId);
+    
+        $comment->save();
+    }
+}
+
+
+
+
 $pageMeta = $KDM->create('pp_pagemeta');
 
 $page->findPageTag($optionPage);
@@ -82,3 +110,4 @@ if ($forms->getFormId()[0] != null) {
         }
     }
 }
+

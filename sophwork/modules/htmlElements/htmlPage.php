@@ -69,7 +69,7 @@ class htmlPage extends htmlElement{
 		$form = new htmlElement('form');
 		$form->set('method','post');
 		$form->set('name','comment');
-		$form->set('action',Sophwork::getUrl('controllers/listener/listener.php'));
+		$form->set('action',Sophwork::getUrl('controller/controllers/listener/listeners.php'));
 		$form->set('class','pinnackl-form');
 
 		$line = new htmlElement('div');
@@ -81,7 +81,7 @@ class htmlPage extends htmlElement{
 		$submit = new htmlElement('input');
 		$submit->set('type','submit');
 		$submit->set('value','Commenter');
-		$submit->set('name','Commenter');
+		$submit->set('name','__comment');
 		$submit->set('class','pinnackl-button pinnackl-button-primary');
 
 		$form->inject($submit);
