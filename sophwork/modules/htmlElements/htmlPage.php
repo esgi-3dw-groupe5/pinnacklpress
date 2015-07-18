@@ -54,14 +54,17 @@ class htmlPage extends htmlElement{
 		$form->set('method','post');
 		$form->set('name','comment');
 		$form->set('action',Sophwork::getUrl('controller/controllers/listener/listeners.php'));
-		$form->set('class','pinnackl-form');
+		$form->set('class','pinnackl-form pinnackl-form-stacked');
+		
+		$fieldset = new htmlElement('fieldset');
+		
 
 		$line = new htmlElement('div');
 		$line->set('class', 'line');
 		$line->set('id', 'wysiwyg');
 		$line->set('placeholder', 'Partagez vos impressions');
 
-		$form->inject($line);
+		$fieldset->inject($line);
 
 		$submit = new htmlElement('input');
 		$submit->set('type','submit');
@@ -69,10 +72,11 @@ class htmlPage extends htmlElement{
 		$submit->set('name','__comment');
 		$submit->set('class','pinnackl-button pinnackl-button-primary');
 
-		$form->inject($submit);
+		$fieldset->inject($submit);
 
 		$box = new htmlElement('div');
 		$box->set('class', 'grid-4_4 page-comments');
+		$form->inject($fieldset);
 		$box->inject($form);
 
 		$this->layout[] = $box;	

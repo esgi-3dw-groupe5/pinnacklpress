@@ -39,6 +39,8 @@
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/forms/forms.css">
 		<link rel="stylesheet" type="text/css"
+			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/forms/extend.css">
+		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/forms/ranges.css">
 		<link rel="stylesheet" type="text/css"
 			href="<?php $this->show('siteurl');?>template/themes/<?php $this->show('theme') ?>/css/articles/articles.css">
@@ -49,6 +51,12 @@
 		<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/ui/trumbowyg.min.css">
    		<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css">
 <!--     	<link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/js/builder/libs/Trumbowyg/plugins/upload/trumbowyg.upload.js"> -->
+		<style type="text/css">
+			.trumbowyg-textarea {
+/*			    border: medium none !important;
+			    box-shadow: none !important;*/
+			}
+		</style>
 	</head>
 	<body class="line">
 		<div id="layout">
