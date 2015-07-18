@@ -10,9 +10,11 @@
 		            <th>#</th>
 		            <th>Author</th>
                     <th>Post</th>
+                    <th>Content</th>
                     <th>Date</th>
                     <th>Update</th>
                     <th>Active</th>
+                    <th>Edit</th>
 		            <th>Delete</th>
 		        </tr>
 		    </thead>
@@ -22,6 +24,8 @@
 		            <td><?php $this->show($value, 'com_id')      ?></td>
 		            <td><?php $this->show($value, 'com_author')    ?></td>
                     <td><?php $this->show($value, 'post_id')    ?></td>
+                    <td><?php $length = strlen($this->get($value, 'com_content')); 
+                    echo substr($this->get($value, 'com_content'),0,50); if($length>50) echo '...';?></td>
                     <td><?php $this->show($value, 'com_date')    ?></td>
                     <td><?php $this->show($value, 'com_update')    ?></td>
                     <td>  
@@ -33,6 +37,10 @@
                                     <span class="onoffswitch-switch comment"></span>
                                 </label>
                         </div> 
+                    </td>
+                    <td>
+                        <a class="pinnackl-button pinnackl-button-primary"
+                        href="<?php $this->show('siteurl')?>nimda/comments/edit/<?php $this->show($value, 'com_id')?>">Edit&nbsp;&#9998;</a>
                     </td>
 		            <td>
                         <a class="pinnackl-button pinnackl-button-error"

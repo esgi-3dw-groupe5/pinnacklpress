@@ -66,29 +66,36 @@ class Comments extends Controller{
 
 		if($action == 'edit'){
 
-			$comment->findComId($edit);
+			$comments->findComId($edit);
 
-            $this->setViewData('com_content', ''.$comment->getComContent()[0]);
-            $this->setViewData('com_post', ''.$comment->getPostId()[0]);
-            $this->setViewData('com_author', ''.$comment->getComAuthor()[0]);
-            $this->setViewData('com_date', ''.$comment->getComDate()[0]);
-            $this->setViewData('com_update', ''.$comment->getComUpdate()[0]);
-            $this->setViewData('com_active', ''.$comment->getComActive()[0]);
+			$author = $KDM->create('pp_user');
+			$author->findUserId($comments->getComId()[0]);
+			
+			$this->setViewData('com_id', ''.$comments->getComId()[0]);
+            $this->setViewData('com_content', ''.$comments->getComContent()[0]);
+            $this->setViewData('com_post', ''.$comments->getPostId()[0]);
+            $this->setViewData('com_author', ''.$author->getUserPseudo()[0]);
+            $this->setViewData('com_date', ''.$comments->getComDate()[0]);
+            $this->setViewData('com_update', ''.$comments->getComUpdate()[0]);
+            $this->setViewData('com_active', ''.$comments->getComActive()[0]);
 
             $this->callView($page .'-edit', 'nimda/');
 
 		}elseif($action == 'delete'){
-			$comments->find();
+			$comments->findComId($edit);
 
-			$this->setViewData('comments', $comments->getData(), 'com_id');
-			$this->setViewData('comments', $comments->getData(), 'com_content');
-			$this->setViewData('comments', $comments->getData(), 'post_id');
-			$this->setViewData('comments', $comments->getData(), 'com_author');
-			$this->setViewData('comments', $comments->getData(), 'com_date');
-			$this->setViewData('comments', $comments->getData(), 'com_update');
-			$this->setViewData('comments', $comments->getData(), 'com_active');
+			$author = $KDM->create('pp_user');
+			$author->findUserId($comments->getComId()[0]);
+			
+			$this->setViewData('com_id', ''.$comments->getComId()[0]);
+            $this->setViewData('com_content', ''.$comments->getComContent()[0]);
+            $this->setViewData('com_post', ''.$comments->getPostId()[0]);
+            $this->setViewData('com_author', ''.$author->getUserPseudo()[0]);
+            $this->setViewData('com_date', ''.$comments->getComDate()[0]);
+            $this->setViewData('com_update', ''.$comments->getComUpdate()[0]);
+            $this->setViewData('com_active', ''.$comments->getComActive()[0]);
 
-			$this->callView($page, 'nimda/');
+            $this->callView($page .'-edit', 'nimda/');
 		}else{
 			$comments->find();
 			$author = $KDM->create('pp_user');

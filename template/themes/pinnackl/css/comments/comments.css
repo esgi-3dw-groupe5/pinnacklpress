@@ -11,3 +11,16 @@
 .comment img{
 	position:relative;
 }
+
+.comment-table{
+	border-collapse: collapse;
+    border-color: gray;
+    border-spacing: 2px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    width: 5%;
+}
+
+.comment-button{
+	margin-top: 5px;
+}
