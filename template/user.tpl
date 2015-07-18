@@ -21,16 +21,16 @@
 			<fieldset>
 		  	<legend><h3>2nd Step : Create 1st administrator</h3></legend>
 				<div class="pinnackl-control-group">
-					<label for="pp_login"><span>Admin login : </span></label><input id="pp_login" class="pinnackl-form" type="text" name="pseudo">
+					<label for="pp_login"><span>Admin login : </span></label><input id="pp_login" class="pinnackl-form" type="text" name="pseudo" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="pp_email"><span>Admin email : </span></label><input id="pp_email" class="pinnackl-form" type="email" name="email">
+					<label for="pp_email"><span>Admin email : </span></label><input id="pp_email" class="pinnackl-form" type="email" name="email" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="pp_password"><span>Admin password : </span></label><input id="pp_password" class="pinnackl-form" type="password" name="password">
+					<label for="pp_password"><span>Admin password : </span></label><input id="pp_password" class="pinnackl-form" type="password" name="password" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="pp_confirm"><span>Password confirm : </span></label><input id="pp_confirm" class="pinnackl-form" type="password" name="confirm">
+					<label for="pp_confirm"><span>Password confirm : </span></label><input id="pp_confirm" class="pinnackl-form" type="password" name="confirm" required>
 				</div>
 				<div class="pinnackl-controls">
 					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Submit">

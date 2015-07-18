@@ -22,11 +22,11 @@
 		  	<legend><h3>3rd Step : Setup Pinnackl Press options</h3></legend>
 				<div class="pinnackl-control-group">
 					<label for="sitename"><span>Site name : </span></label>
-					<input id="sitename" class="pinnackl-input-1-4" type="text" name="sitename" placeholder="Site name">
+					<input id="sitename" class="pinnackl-input-1-4" type="text" name="sitename" placeholder="Site name" required>
 				</div>
 				<div class="pinnackl-control-group">
 					<label for="sitedescription"><span>Site description : </span></label>
-					<input id="sitedescription" class="pinnackl-input-1-4" type="text" name="sitedescription" placeholder="Site description">
+					<input id="sitedescription" class="pinnackl-input-1-4" type="text" name="sitedescription" placeholder="Site description" required>
 				</div>
 				<div class="pinnackl-control-group">
 					<label for="siteurl"><span>Site url : </span></label>
