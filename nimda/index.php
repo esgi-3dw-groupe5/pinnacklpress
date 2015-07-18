@@ -96,9 +96,6 @@ if($page == 'index')
 /**
  * Lead by default on post of the page user
  */
-// echo'<pre style="background:#ffffff">';
-// var_dump(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__))-1]);
-// echo'</pre>';die;
 if( preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__))-1] != "nimda"
 	&& $this->article == "")
 	Sophwork::redirect('user/' . $page . '/posts');
@@ -107,7 +104,8 @@ if( preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DI
  * If it the case we not create the first level controller which is the user page name
  * but the section controller which is in this variable.
  */
-else
+if(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__)[count(preg_split("#\\".DIRECTORY_SEPARATOR."#", __DIR__))-1] != "nimda"
+	&& $this->article != "")
 	$page = $controller->article;
 
 $options = $KDM->create('pp_option');
