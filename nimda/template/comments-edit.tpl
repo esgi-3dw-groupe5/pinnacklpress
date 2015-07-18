@@ -3,23 +3,22 @@
     	    <h2><?php $this->show('h2') ?></h2>
     	</div>
 		<!-- <section>	 -->
-			<div class="content" style="max-width:90%">
-						<div class="line">
-							<div class="grid-3_4">
-										<div class="grid-4_4 page-comments">
-											<div class="grid-4_4 author comment">
-												<div class="grid-3_4"><?php $this->show($this->viewData, 'com_author')?></div>
-											</div>
-											<div class="grid-4_4 preview"><?php $this->show($this->viewData, 'com_content')?></div>
-											<div class="grid-4_4 footer_comment">
-												<div class="grid-3_4 date"><?php $this->show($this->viewData, 'com_date')?></div>
-												</div>
-											</div>
-
+		<div class="content">
+			<div class="line">
+				<div class="grid-4_4">
+					<div class="grid-4_4 page-comments">
+						<div class="grid-4_4 author comment">
+							<div class="grid-3_4"><?php $this->show($this->viewData, 'com_author')?></div>
+						</div>
+						<div class="grid-4_4 preview"><?php $this->show($this->viewData, 'com_content')?></div>
+						<div class="grid-4_4 footer_comment">
+							<div class="grid-3_4 date"><?php $this->show($this->viewData, 'com_date')?></div>
+						</div>
+					</div>
+				</div>
 			</div>
-
+		</div>
 		<!-- </section> -->
-	</div>
 	<div class='line' style="background:#fff; border-radius:8px;margin-top:2em;margin-bottom:5%;padding:2em;width:15%;">
 		<table class="comment-table">
 		<tr>

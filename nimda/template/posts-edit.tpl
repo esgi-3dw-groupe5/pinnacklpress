@@ -108,8 +108,12 @@
 							<div class="grid-3_4">
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
+										<label><span>Post Slug :</span>
+											<input class="pinnackl-input-1" type="text" name="page_tag" placeholder="Post Slug"
+												value="<?php $this->show('page_tag')?>">
+										</label>
 										<label><span>Post Name :</span>
-											<input class="pinnackl-input-1" type="text" name="page_name" placeholder="Page Name"
+											<input class="pinnackl-input-1" type="text" name="page_name" placeholder="Post Name"
 												value="<?php $this->show('page_name')?>">
 										</label>
 											<div id="wysiwyg" data="<?php addslashes($this->show('page_content'))?>"></div>

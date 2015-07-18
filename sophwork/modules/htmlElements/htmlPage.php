@@ -219,7 +219,7 @@ class htmlPage extends htmlElement{
 				$grid = new htmlElement('div');
 				$grid->set('class', 'grid-4_4 preview');
 				$articleLink = new htmlElement('a');
-				$articleLink->set('href', Sophwork::getUrl($currentCategory[0] . '/' . $tag));
+				$articleLink->set('href', Sophwork::getUrl(isset($currentCategory[0])?$currentCategory[0]. '/':''  . $tag));
 				$articleLink->set('class', "articleLink");
 				$content = preg_replace("/<img[^>]+\>/i", '', $content);
 				$articleLink->set('text', $this->closetags($content) . '...');

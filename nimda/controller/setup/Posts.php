@@ -80,6 +80,7 @@ class Posts extends Controller{
 		}
 		elseif($action == 'edit'){
 			$pages->findPageId($edit);
+			$this->setViewData('page_tag', ''.$pages->getPageTag()[0]);
 			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
 			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
 			$this->setViewData('page_connectedAs', ''.$pages->getPageConnectedAs()[0]);
