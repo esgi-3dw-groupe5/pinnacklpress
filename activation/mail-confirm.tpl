@@ -1,13 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Bienvenue <?php echo $pseudo;?></title>
+        <title><?php echo $sitename; ?> - Activation</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             /* Fonts and Content */
             /*body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size:14px; }*/
-            /*body { background-color: #2A374E; margin: 0; padding: 0; -webkit-text-size-adjust:none; -ms-text-size-adjust:none; }*/
+            body { background-color: #2A374E; margin: 0; padding: 0; -webkit-text-size-adjust:none; -ms-text-size-adjust:none; }
             h2{ padding-top:12px; /* ne fonctionnera pas sous Outlook 2007+ */color:#0E7693; font-size:22px; }
 
             @media only screen and (max-width: 480px) { 
@@ -49,7 +49,7 @@
                                                     <td class="w30"  width="30"></td>
                                                     <td  class="w580"  width="580" valign="middle" align="left">
                                                         <div class="pagetoplogo-content">
-                                                            <h1 style="font-size:xx-large;">Pinnackl.com</h1>
+                                                            <h1 style="font-size:xx-large;"><?php echo $sitename; ?></h1>
                                                         </div>
                                                     </td> 
                                                     <td class="w30"  width="30"></td>
@@ -77,6 +77,7 @@
                                                             <tbody>                                                            
                                                                 <tr>
                                                                     <td class="w580"  width="580">
+                                                                        <p><h2><?php echo $pseudo; ?></h2></p>
                                                                         <p><?php echo $message;?></p>
                                                                     </td>
                                                                 </tr>
@@ -109,7 +110,7 @@
                                                     <td class="w30"  width="30"></td>
                                                     <td class="w580"  width="580" valign="top">
                                                         <p align="right" class="pagebottom-content-left">
-                                                            <a style="color:#255D5C;" href="http://www.pinnackl.com"><span style="color:#255D5C;">Pinnackl.com</span></a>
+                                                            <a style="color:#255D5C;" href="<?php echo $siteUrl; ?>"><span style="color:#255D5C;"><?php echo $sitename; ?></span></a>
                                                         </p>
                                                     </td>
 

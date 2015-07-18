@@ -53,7 +53,7 @@ if(sizeof($_POST) > 0){
             $user->setUserKey(md5(microtime().rand()));
             $user->save();
             
-            $mail->sendMail($_POST['pseudo'],$_POST['email'],$cle=null,$siteUrl);
+            $mail->sendMail($_POST['pseudo'],$_POST['email'],'install',$cle=null);
 
         }
         else{

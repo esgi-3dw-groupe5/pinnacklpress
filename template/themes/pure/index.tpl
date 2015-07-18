@@ -102,7 +102,7 @@
 							<?php $this->viewData->page->render(); ?>
 						</div>
                         <?php 
-                        if(isset($_SESSION['form'])){
+                        if(isset($_SESSION['form']['error'])){
                             foreach ($_SESSION['form']['error'] as $value){
                                 echo "$value<br />\n";
                             }

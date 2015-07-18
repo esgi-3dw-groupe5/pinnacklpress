@@ -12,12 +12,10 @@
  *     production because it is not secure.
  */
 
-
-
 /**
  * Upload directory
  */
-define("UPLOADDIR", "./uploaded-files/");
+define("UPLOADDIR", Sophwork::getUrl()."data/articles");
 
 
 

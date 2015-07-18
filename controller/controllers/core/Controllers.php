@@ -167,6 +167,19 @@ class Controllers extends AppController{
 						$data['com_author'][$key] = $author->getUserPseudo()[0];
 					}
 				}
+
+				$history = $KDM->create('pp_history');
+				$history->findPostId($page->getPageId()[0]);
+
+				if($history->getData()['user_id'] != $_SESSION['user']['id']) {
+					$history->setUserId($_SESSION['user']['id']);
+					$history->setPostId($page->getPageId()[0]);
+					$history->setHistoryDate(date("Y-m-d h:i:s"));
+					$history->setHistoryStatus(1);
+					$history->save();
+				}
+
+
             	$html = new htmlPage($data);
             	$layoutComment = $html->createComment();
             	$this->setRawData('comment', $layoutComment);
