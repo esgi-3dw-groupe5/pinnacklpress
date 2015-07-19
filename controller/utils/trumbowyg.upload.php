@@ -30,6 +30,7 @@ if (!file_exists("../../data/articles/temp/".$user->id)){
 define("UPLOADDIR", "../../data/articles/temp/".$user->id.'/');
 
 function imageCreateFromAny($filepath) {
+
     $type = exif_imagetype($filepath); // [] if you don't have exif you could use getImageSize()
     $allowedTypes = array(
         1,  // [] gif
@@ -61,8 +62,9 @@ function imageCreateFromAny($filepath) {
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     $file = array_shift($_FILES);
 
-    if(move_uploaded_file($file['tmp_name'], UPLOADDIR . basename($file['name']))) {
-        $file = Sophwork::getUrl() . str_replace('//','/',str_replace('../', '/', UPLOADDIR)) . $file['name'];
+    if(move_uploaded_file($file['tmp_name'], UPLOADDIR . preg_replace('/\s+/', '', (basename($file['name']))))) {
+
+        $file = Sophwork::getUrl() . str_replace('//','/',str_replace('../', '/', UPLOADDIR)) . preg_replace('/\s+/', '', ($file['name']));
 
         $extension = explode('.', $file);
         $extension = strtolower($extension[count($extension)-1]);

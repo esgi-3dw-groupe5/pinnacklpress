@@ -11,7 +11,7 @@
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
 										<label><span>Post Order :</span>
-											<input class="pinnackl-input-1" type="text" name="page_order" placeholder="Page Order" value="0">
+											<input class="pinnackl-input-1" type="text" name="page_order" placeholder="Post Order" value="0">
 										</label>
 										<label><span>Post Connected As :</span>
 											<select class="pinnackl-input-1" name="page_connectedAs" >
@@ -87,7 +87,7 @@
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
 										<label><span>Post Name :</span>
-											<input class="pinnackl-input-1" type="text" name="page_name" placeholder="Page Name" value="">
+											<input class="pinnackl-input-1" type="text" name="page_name" placeholder="Post Name" value="">
 										</label>
 											<div id="wysiwyg"></div>
 										<label>

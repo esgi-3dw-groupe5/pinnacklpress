@@ -11,7 +11,7 @@
 								<div style="background:#fff; border-radius:8px;margin:2em;margin-bottom:5%;padding:2em;">
 									<fieldset>
 										<label><span>Post Order :</span>
-											<input class="pinnackl-input-1" type="text" name="page_order" placeholder="Page Order"
+											<input class="pinnackl-input-1" type="text" name="page_order" placeholder="Post Order"
 												value="<?php $this->show('page_order')?>">
 										</label>
 										<label><span>Post Connected As :</span>
