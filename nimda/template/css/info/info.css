@@ -1,0 +1,34 @@
+.global-info-user {
+	padding: 20px 20px;
+	background-color: #fff;
+}
+
+.global-info-user .avatar-user {
+	width: 30%;
+	vertical-align: top;
+	display: inline-block;
+}
+
+
+.global-info-user .info-user {
+	width: 60%;
+	display: inline-block;
+}
+
+.global-info-user ul {
+	list-style: none;
+	margin-top: 20px;
+}
+
+.global-info-user ul li {
+	margin-bottom: 5px;
+}
+
+.global-info-user label {
+	width: 70px;
+}
+
+.global-info-user img {
+	width: 150px;
+	height: 150px;
+}
