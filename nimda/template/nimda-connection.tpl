@@ -66,7 +66,7 @@
 					<div class="pinnackl-controls">
 						<input class="pinnackl-button pinnackl-button-primary pinnackl-input-1-4" type="submit" value="Submit">
 						<div class="pinnackl-control">
-							<a href="#">Forgot your password?</a>
+                            <a href="<?=$siteUrl?>recovery">Forgot your password?</a>
 						</div>
 					</div>
 				</fieldset>
