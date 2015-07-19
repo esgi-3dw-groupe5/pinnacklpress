@@ -6,7 +6,7 @@
     <!-- <section> -->
    <div class="content">
     <?php foreach ($this->viewData->users as $key => $value) : ?>
-        <form  class="pinnackl-form pinnackl-form-aligned" action="<?php $this->show('siteurl')?>nimda/options.php" method="post">
+        <form  class="pinnackl-form pinnackl-form-aligned" enctype="multipart/form-data" action="<?php $this->show('siteurl')?>nimda/options.php" method="post">
             <div id="field-container">
                 <fieldset>
 
@@ -40,18 +40,18 @@
                         <label>Birthday</label>
                         <input type="date" name="bdate" class="pinnackl-input-1-2" value="<?php $this->get($value, 'user_bdate') == 'null' ? ' ' : $this->show($value,'user_bdate'); ?>">
                     </div>
+                     
                     <div class="pinnackl-control-group">
                         <label>Role</label>
-                        <select id="user_role" class="pinnackl-input-1-2" style="color: gray;" name="role" required>
-                            <option value="superadmin">Superadmin</option>
-                            <option value="administrator">administrator</option>
-                            <option value="moderator">moderator</option>
-                            <option value="editor">editor</option>
-                            <option value="author">author</option>
-                            <option value="member">member</option>
-                            <option value="visitor">visitor</option>
-                        </select>  
+                         <?php $this->show($value,'user_role'); ?>
                     </div>  
+
+                    <div class="pinnackl-control-group">
+                        <label>Avatar</label>
+                        <input type="file" name="avatar">
+                        
+                    </div> 
+                    <img style="margin-left:40%;width:150px;height:150px" src="<?php $this->show('siteurl')?>nimda/data/users/<?php $this->show($value,'user_pseudo')?>/<?php $this->show($value,'user_pseudo')?>-img.png">
                  </fieldset>                
             </div>
            <div class="pinnackl-controls-group" style="margin-top:30px;text-align:center">
