@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/tables/extend.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>template/themes/pinnackl/css/comments/comments.css">
     <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/posts/posts.css">
+    <link rel="stylesheet" href="<?php $this->show('siteurl')?>nimda/template/css/info/info.css">
 
     <script src="<?php $this->show('siteurl')?>nimda/template/js/libs/sophwork.js"></script>
     <script src="<?php $this->show('siteurl')?>nimda/template/js/notification.js"></script>
