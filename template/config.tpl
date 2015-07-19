@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="<?php $this->show('siteUrl')?>template/css/forms/forms.css">
 		<link rel="stylesheet" href="<?php $this->show('siteUrl')?>template/css/buttons/buttons-core.css">
 		<link rel="stylesheet" href="<?php $this->show('siteUrl')?>template/css/buttons/buttons.css">
-        <script type="text/javascript" src="<?php $this->show('siteUrl')?>template/js/install.js"></script>
 	</head>
 	<body class="pinnackl-background-body">
 		<header>
@@ -33,30 +32,9 @@
 				<div class="pinnackl-control-group">
 					<label for="db_password"><span>db_password : </span></label><input id="db_password" class="pinnackl-form" type="password" name="db_password" required>
 				</div>
-                <legend></legend>
-                <div class="pinnackl-control-group">
-                    <label>smtp_authentification : </label> 
+                <div class="pinnackl-controls">
+                    <input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Submit">
                 </div>
-                <div class="pinnackl-control-group">
-                    <label>True
-                        <input type="radio" id="smtp_authentification_true" name="smtp_authentification" value="true" onclick="activate();">
-                    </label>
-                    <label>False
-                        <input type="radio" id="smtp_authentification_false" name="smtp_authentification" value="false" onclick="activate();">
-                    </label>
-                </div>
-                <div class="pinnackl-control-group">
-                    <label for="db_name"><span>smtp_username : </span></label><input id="smtp_username" class="pinnackl-form" type="text" name="smtp_username">
-                </div>
-                <div class="pinnackl-control-group">
-                    <label for="db_login"><span>smtp_password : </span></label><input id="smtp_password" class="pinnackl-form" type="text" name="smtp_password">
-                </div>
-                <div class="pinnackl-control-group">
-                    <label for="db_password"><span>smtp_port : </span></label><input id="smtp_port" class="pinnackl-form" type="number" name="smtp_port">
-                </div>
-				<div class="pinnackl-controls">
-					<input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_dbConfig" value="Submit">
-				</di>
 			</fieldset>
 			</form>
 		</section>
