@@ -132,8 +132,6 @@ class Controllers extends AppController{
 			$comments = $this->KDM->create('pp_comment');
 			$comments
 				->filterPostId($page->getPageId()[0])
-				->__and()
-				->filterComActive(1)
 				->orderByComDate('DESC')
 				->querySelect();
 		}
@@ -147,7 +145,7 @@ class Controllers extends AppController{
                 $layout = $html->createPage();
             elseif($pageType == 'post'){
 				// $category = $page;
-				// $author = $this->KDM->create('pp_user');
+				 $author = $this->KDM->create('pp_user');
 				// $author->findUserId($page->getUserId()[0]);
 				// $pageContent
 				// 	->filterPageId($page->getPageId()[0])

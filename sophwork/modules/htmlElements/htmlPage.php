@@ -3,6 +3,7 @@
 namespace sophwork\modules\htmlElements;
 use sophwork\core\Sophwork;
 use controller\form\Form;
+use controller\utils\Users;
 use sophwork\modules\htmlElements;
 
 class htmlPage extends htmlElement{
@@ -157,6 +158,8 @@ class htmlPage extends htmlElement{
 			$stdValues->gridContent = $this->data['com_content'][$key];
 			$stdValues->gridAuthor = $this->data['com_author'][$key];
 			$stdValues->gridDate = $this->data['com_date'][$key];
+			$stdValues->gridActive = $this->data['com_active'][$key];
+			$stdValues->gridId = $this->data['com_id'][$key];
 		}
 		$stdArray->line = $values;
 		$this->data = $test;
@@ -178,10 +181,13 @@ class htmlPage extends htmlElement{
 						$header->set('class', 'grid-4_4 author comment');
 
 						$meta = new htmlElement('div');
-						$meta->set('class', 'grid-1_4');
+						$meta->set('class', 'grid-3_4 author-name');
 						$meta->set('text', $author);
 
 						$header->inject($meta);
+
+						$meta = new htmlElement('div');
+						$meta->set('class', 'grid-1_4 avatar');
 
 						$authorLink = new htmlElement('a');
 						$authorLink->set('href', Sophwork::getUrl('user/'.$author));
@@ -190,7 +196,8 @@ class htmlPage extends htmlElement{
 						$img->set('src', Sophwork::getUrl('data/users/'.$author.'/'.$author.'.jpg'));
 
 						$authorLink->inject($img);
-						$header->inject($authorLink);
+						$meta->inject($authorLink);
+						$header->inject($meta);
 
 						$grid->inject($header);
 						
@@ -198,8 +205,13 @@ class htmlPage extends htmlElement{
 						$comment = new htmlElement('div');
 						$comment->set('class', 'grid-4_4 preview');
 
-						$comment->set('text', $content);
-								
+						if($val->gridActive == 0){
+							$comment->set('text', 'Ce commentaire a été signalé.');
+							$comment->set('class', 'reported');
+						}else{
+							$comment->set('text', $content);
+						}
+						
 						$grid->inject($comment);
 
 						$footer = new htmlElement('div');
@@ -211,6 +223,15 @@ class htmlPage extends htmlElement{
 
 						$footer->inject($meta);
 
+						if(isset($_SESSION['user']) && $val->gridActive == 1){
+							$meta = new htmlElement('div');
+							$meta->set('class', 'grid-1_4 report');
+							$meta->set('text', 'signaler');
+							$meta->set('id', $val->gridId);
+	
+							$footer->inject($meta);
+						}
+
 						$grid->inject($footer);
 
 						$line->inject($grid);
@@ -219,6 +240,19 @@ class htmlPage extends htmlElement{
 				}
 				$this->layout[] = $line;
 			}
+			
+			$js = new htmlElement('script');
+			$js->set('src',Sophwork::getUrl().'nimda/template/js/libs/sophwork.js');
+			$this->layout[] = $js;
+
+			$js = new htmlElement('script');
+			$js->set('src',Sophwork::getUrl().'nimda/template/js/builder/libs/jquery-1.11.0.min.js');
+			$this->layout[] = $js;	
+
+			$js = new htmlElement('script');
+			$js->set('src',Sophwork::getUrl().'template/js/report.js');
+			$this->layout[] = $js;
+
 			return $this;
 		}else {
 			return $this;

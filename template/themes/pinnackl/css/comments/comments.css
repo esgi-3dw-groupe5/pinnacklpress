@@ -28,3 +28,11 @@
 .preview{
 	margin-top:10px;
 }
+
+.report{
+    text-align:right;
+}
+
+.reported{
+    font-style: italic;
+}

@@ -35,7 +35,7 @@
 		</table>
     </div>
 </div>
-<script src="/pinnacklpress/nimda/template/js/form.js"></script>
+<script src="<?php $this->show('siteurl')?>nimda/template/js/form.js"></script>
 <script>
 Sophwork.ready(function(){
     (function(){
