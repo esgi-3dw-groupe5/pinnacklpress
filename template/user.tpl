@@ -35,7 +35,10 @@
 				</div>
                 <legend></legend>
                 <div class="pinnackl-control-group">
-                    <label for="db_name"><span>smtp_host : </span></label><input id="smtp_host" class="pinnackl-form" type="text" name="smtp_host" required>
+                    <label for="smtp_email"><span>smtp_email : </span></label><input id="smtp_email" class="pinnackl-form" type="email" name="smtp_email" required>
+                </div>
+                <div class="pinnackl-control-group">
+                    <label for="smtp_host"><span>smtp_host : </span></label><input id="smtp_host" class="pinnackl-form" type="text" name="smtp_host" required>
                 </div>
                 <div class="pinnackl-control-group">
                     <label>smtp_authentification : </label> 
@@ -49,13 +52,13 @@
                     </label>
                 </div>
                 <div class="pinnackl-control-group">
-                    <label for="db_name"><span>smtp_username : </span></label><input id="smtp_username" class="pinnackl-form" type="text" name="smtp_username">
+                    <label for="smtp_username"><span>smtp_username : </span></label><input id="smtp_username" class="pinnackl-form" type="text" name="smtp_username">
                 </div>
                 <div class="pinnackl-control-group">
-                    <label for="db_login"><span>smtp_password : </span></label><input id="smtp_password" class="pinnackl-form" type="text" name="smtp_password">
+                    <label for="smtp_password"><span>smtp_password : </span></label><input id="smtp_password" class="pinnackl-form" type="text" name="smtp_password">
                 </div>
                 <div class="pinnackl-control-group">
-                    <label for="db_password"><span>smtp_port : </span></label><input id="smtp_port" class="pinnackl-form" type="number" name="smtp_port">
+                    <label for="smtp_port"><span>smtp_port : </span></label><input id="smtp_port" class="pinnackl-form" type="number" name="smtp_port">
                 </div>
                 <div class="pinnackl-controls">
                     <input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Submit">

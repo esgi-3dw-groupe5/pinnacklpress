@@ -41,6 +41,11 @@ if(sizeof($_POST) > 0){
         $appController->KDM = new SophworkDM(Sophwork::getConfig());
         
         $option = $appController->KDM->create('pp_option');
+        $option->setOptionName('smtp_email');
+        $option->setOptionValue($_POST['smtp_email']);
+        $option->save();
+        
+        $option = $appController->KDM->create('pp_option');
         $option->setOptionName('smtp_host');
         $option->setOptionValue($_POST['smtp_host']);
         $option->save();

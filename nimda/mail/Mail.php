@@ -57,25 +57,29 @@ class Mail {
         
         
         $options = $KDM->create('pp_option');
+        $options->findOptionName("smtp_email");
+        $smtpEmail = $options->getOptionValue()[0];
+        
+        $options = $KDM->create('pp_option');
         $options->findOptionName("smtp_host");
-        $host = $options->getOptionValue()[0];
+        $smtpHost = $options->getOptionValue()[0];
         
         $options = $KDM->create('pp_option');
         $options->findOptionName("smtp_auth");
-        $auth = $options->getOptionValue()[0];
+        $smtpAuth = $options->getOptionValue()[0];
         
         if($auth =='true') {
             $options = $KDM->create('pp_option');
             $options->findOptionName("smtp_username");
-            $username = $options->getOptionValue()[0];
+            $smtpUsername = $options->getOptionValue()[0];
             
             $options = $KDM->create('pp_option');
             $options->findOptionName("smtp_password");
-            $password = $options->getOptionValue()[0];
+            $smtpPassword = $options->getOptionValue()[0];
             
             $options = $KDM->create('pp_option');
             $options->findOptionName("smtp_port");
-            $port = $options->getOptionValue()[0];
+            $smtpPort = $options->getOptionValue()[0];
             
         }
         
@@ -85,16 +89,16 @@ class Mail {
         $mail = new \PHPMailer;
 
         $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = $host;                    // Specify main and backup SMTP servers
+        $mail->Host = $smtpHost;                    // Specify main and backup SMTP servers
         
         if($auth =='true') {
-            $mail->SMTPAuth = $auth;                               // Enable SMTP authentication
-            $mail->Username = $username;                 // SMTP username
-            $mail->Password = $password;                           // SMTP password
-            $mail->Port = $port;                                    // TCP port to connect to
+            $mail->SMTPAuth = $smtpAuth;                               // Enable SMTP authentication
+            $mail->Username = $smtpUsername;                 // SMTP username
+            $mail->Password = $smtpPassword;                           // SMTP password
+            $mail->Port = $smtpPort;                                    // TCP port to connect to
         }
 
-        $mail->From = 'noreply@pinnackl.com';
+        $mail->From = $smtpEmail;
         $mail->FromName = $sitename;
         $mail->addAddress($email);     // Add a recipient
         $mail->isHTML(true);                                  // Set email format to HTML
