@@ -625,6 +625,72 @@ else if($optionPage == 'users' || $optionPage == 'info'){
         $user->setUserName($_POST['lastname']);
         $user->setUserGender($_POST['gender']);
 
+        $maxsize = ini_get("upload_max_filesize");
+        $maxsize_octet = 1024*2024 *str_replace("M", "", $maxsize);
+        
+	    //Création d'un tableau php avec les extensions valides
+        $extensions_valides = array( 'jpg' , 'jpeg' , 'png' );
+        //chemin en relatif d'upload
+        $upload_directory = __DIR__.'/../data/users/'.$_POST['pseudo'];
+       
+         //Est ce que le fichier avatar existe
+        if(isset($_FILES['avatar']))
+        {
+            if ($_FILES['avatar']['error'] == UPLOAD_ERR_OK)
+            {
+                if ($_FILES['avatar']['size'] > $maxsize_octet) 
+                {
+                    $erreur = "Le fichier est trop gros";
+                }else
+                {            
+	                $parse_name = explode(".", $_FILES['avatar']['name']);
+	                $extension_upload = strtolower(end($parse_name));
+
+	                if ( in_array($extension_upload,$extensions_valides) )
+	                {
+	                    if(!file_exists($upload_directory))
+	                    {	
+	                        mkdir($upload_directory);
+	                    }
+
+	                    $nom = $_POST['pseudo'].'-img.png';
+	                    if (move_uploaded_file($_FILES['avatar']['tmp_name'],$upload_directory."/".$nom))
+	                    { 	
+	                        echo "Transfert réussi";
+	                    }
+	                    else
+	                    {
+	                        echo "Transfert echec";
+	                    }
+
+	                }else
+	                {
+	                    echo "Extension incorrecte<br>";
+	                }
+                }
+            }else{
+
+                switch ($_FILES['avatar']['error']) {
+                    case UPLOAD_ERR_NO_FILE:
+                        echo "fichier manquant<br>";
+                        break;
+                    case UPLOAD_ERR_INI_SIZE:
+                        echo "fichier dépassant la taille maximale autorisée par PHP<br>";
+                        break;
+                    case UPLOAD_ERR_FORM_SIZE:
+                        echo "fichier dépassant la taille maximale autorisée par le formulaire<br>";
+                        break;
+                    case UPLOAD_ERR_PARTIAL:
+                        echo "fichier transféré partiellement<br>";
+                        break;
+                    default:
+                        echo "Erreur inconnue ... <br>";
+                        break;
+                }
+
+            }
+        }		
+
         if(in_array('new', $optionPageController)) {
 	        	$hash_psw = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	        	$user->setUserPassword($hash_psw);
