@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Article Lu</th>
+                        <th>Articles read</th>
                         <th>Categories</th>
                         <th>Author</th>
                     </tr>

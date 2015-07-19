@@ -11,10 +11,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Article</th>
-                        <th>Contenu</th>
+                        <th>Articles</th>
+                        <th>Comments</th>
                         <th>Date</th>
-                        <th>Mise a jour</th>
+                        <th>Date update</th>
                         <th>Status</th>
                     </tr>
                 </thead>

@@ -19,11 +19,11 @@
                         </li>
                         
                         <li>
-                            <label> Nom : </label> 
+                            <label> Last Name : </label> 
                             <?php $this->show($value,'user_name'); ?>
                         </li>
                         <li>
-                            <label> Prénom : </label> 
+                            <label>First name: </label> 
                             <?php $this->show($value,'user_firstname'); ?>
                         </li>
                         <li>

@@ -10,11 +10,27 @@
 
                     <div class="thumb-article-user">
                         <h2>  <?php $this->show($value, 'page_name')      ?></h2>
-
-                        <p><?php $this->show($value, 'page_udate')    ?></p>
+                        <div class="container-img">
+                            <img src="">
+                        </div>
+                        <ul>
+                            <span>Categories :</span>
+                            <?php foreach ($this->viewData->category as $key => $value) : ?>
+                                <li>
+                                    <?php $this->show($value, 'page_name') ?>,
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="container-content">
+                            <label>
+                                 <?php $this->show('page_content')      ?>
+                            </label>
+                        </div>  
+                        
                     </div>
                
                 <?php endforeach; ?>
+
             </table>
         </div>
     <!-- </section> -->
