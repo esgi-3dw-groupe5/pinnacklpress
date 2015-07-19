@@ -12,12 +12,22 @@
  *     production because it is not secure.
  */
 require(__DIR__ . '/../../sophwork/autoloader.php');
+
 use sophwork\core\Sophwork;
 
+use controller\utils\Users;
+
+
+Users::startSession();
+$user = new Users();
+
+if (!file_exists("../../data/articles/temp/".$user->id)){
+    mkdir("../../data/articles/temp/".$user->id);
+}
 /**
  * Upload directory
  */
-define("UPLOADDIR", "../../data/articles/");
+define("UPLOADDIR", "../../data/articles/temp/".$user->id.'/');
 
 function imageCreateFromAny($filepath) {
     $type = exif_imagetype($filepath); // [] if you don't have exif you could use getImageSize()
@@ -75,9 +85,10 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
         $newName1 = '350-'.time();
         $newName2 = '450-'.time();                                        
+        
 
-        imagejpeg($newImage1 , '../../data/articles/'.$newName1.'.'.$extension, 100);
-        imagejpeg($newImage2 , '../../data/articles/'.$newName2.'.'.$extension, 100);
+        imagejpeg($newImage1 , '../../data/articles/temp/'.$user->id.'/'.$newName1.'.'.$extension, 100);
+        imagejpeg($newImage2 , '../../data/articles/temp/'.$user->id.'/'.$newName2.'.'.$extension, 100);
 
         $data = array(
             'message' => 'uploadSuccess',

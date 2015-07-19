@@ -135,6 +135,29 @@ elseif($optionPage == 'posts'){
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
 
+		$pageId = $page->getData()['page_id'];
+
+		$source = '../data/articles/temp/'.$user->id.'/';
+		$files = scandir($source);
+
+		if (!file_exists("../data/articles/".$pageId)){
+		    mkdir("../data/articles/".$pageId);
+		}
+
+		$destination = '../data/articles/'.$pageId.'/';
+
+		foreach ($files as $file) {
+		  if (in_array($file, array(".",".."))) continue;
+		  // If we copied this successfully, mark it for deletion
+		  if (copy($source.$file, $destination.$file)) {
+		    $delete[] = $source.$file;
+		  }
+		}
+		// Delete all successfully-copied files
+		foreach ($delete as $file) {
+		  unlink($file);
+		}
+
 		$pageContent = $KDM->create('pp_pagemeta');
 		$pageContent
 			->filterPageId($page->getPageId()[0])
