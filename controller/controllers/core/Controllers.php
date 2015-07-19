@@ -169,9 +169,9 @@ class Controllers extends AppController{
 				}
 
 				$history = $KDM->create('pp_history');
-				$history->findPostId($page->getPageId()[0]);
+				$history->findUserId($_SESSION['user']['id']);
 
-				if($history->getData()['user_id'] != $_SESSION['user']['id']) {
+				if($history->getData()['post_id'] != $page->getPageId()[0]) {
 					$history->setUserId($_SESSION['user']['id']);
 					$history->setPostId($page->getPageId()[0]);
 					$history->setHistoryDate(date("Y-m-d h:i:s"));
