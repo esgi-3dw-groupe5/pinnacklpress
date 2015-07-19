@@ -163,7 +163,7 @@ class UserPosts extends Controller{
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
 			$this->setViewData('pages', $pages->getData(), 'page_udate');
-
+			$this->setViewData('pages', $pages->getData(), 'page_udate');
 			$this->setViewData('pages', $categories->getData(), 'page_name'); //categories
 			
 			
