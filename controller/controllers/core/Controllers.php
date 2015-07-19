@@ -146,32 +146,29 @@ class Controllers extends AppController{
             if($pageType == 'page')
                 $layout = $html->createPage();
             elseif($pageType == 'post'){
-				// $category = $page;
-				// $author = $this->KDM->create('pp_user');
-				// $author->findUserId($page->getUserId()[0]);
-				// $pageContent
-				// 	->filterPageId($page->getPageId()[0])
-				// 	->__and()
-				// 	->filterPmetaName('category')
-				// 	->querySelect();
-				// $categories = [];
-				// foreach ($pageContent->getPmetaValue() as $key => $value) {
-				// 	$category->findPageId($value);
-				// 	$categories[] = $category->getPageName()[0];
-				// }
-				// echo'<pre style="background:#ffffff">';
-				// var_dump($author);
-				// echo'</pre>';
-    //         	$header = [
-    //         		'page_name' => $page->getPageName()[0],
-    //         		'page_udate' => $page->getPageUdate()[0],
-    //         		'page_author' => $author->getUserPseudo()[0],
-    //         		'page_categories' => $categories,
-    //         	];
-    //         	echo'<pre style="background:#ffffff">';
-    //         	var_dump($header);
-    //         	echo'</pre>';die;
-            	$layout = $html->createPost();
+				$category = $this->KDM->create('pp_page');
+				$author = $this->KDM->create('pp_user');
+				$author->findUserId($page->getPageAuthor()[0]);
+				$pageContent = $this->KDM->create('pp_pagemeta'); // FIXME : need to flush
+				$pageContent
+					->filterPageId($page->getPageId()[0])
+					->__and()
+					->filterPmetaName('category')
+					->querySelect();
+				$categories = [];
+				if(!is_null($pageContent->getPmetaValue())){
+					foreach ($pageContent->getPmetaValue() as $key => $value) {
+						$category->findPageId($value);
+						$categories[] = ['name' => $category->getPageName()[0], 'link' => $category->getPageTag()[0]];
+					}
+				}
+            	$header = [
+            		'page_name' => $page->getPageName()[0],
+            		'page_udate' => $page->getPageUdate()[0],
+            		'page_author' => $author->getUserPseudo()[0],
+            		'page_categories' => $categories,
+            	];
+            	$layout = $html->createPost($header);
 
             	$data = $comments->getData();
             	if(!empty($data['com_author'])){

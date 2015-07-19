@@ -48,40 +48,51 @@ class htmlPage extends htmlElement{
 		}
 	}
 
-	public function createPost($header = []){
-		// $title   = $this->data['title'][$k];
-		// $content = substr(strip_tags(trim(json_decode($this->data['content'][$k])[0]->line[0]->gridContent)), 0, 200);
-		// $authorName  = $this->data['author'][$k];
-		// $tag     = $this->data['tag'][$k];
-		// $date = date_format(date_create($this->data['date'][$k]), "Y/m/d");
-		// $header = new htmlElement('div');
-		// $header->set('class', 'grid-4_4 author');
-		// $meta = new htmlElement('div');
-		// $meta->set('class', 'grid-3_4');
-		// $meta->set('text', $authorName);
-		// $header->inject($meta);
-		// $meta = new htmlElement('div');
-		// $meta->set('class', 'grid-3_4 date');
-		// $meta->set('text', $date);
-		// $header->inject($meta);
+	public function createPost($head = []){
+		$title   = $head['page_name'];
+		$authorName  = $head['page_author'];
+		$date = date_format(date_create($head['page_udate']), "d/m/Y");
+		// $date = date_format(date_create($head['page_udate']), "Y/m/d");
+
+		$header = new htmlElement('div');
+		$header->set('class', 'grid-4_4 author');
+		$meta = new htmlElement('div');
+		$meta->set('class', 'grid-3_4');
+		$meta->set('text', $authorName);
+		$header->inject($meta);
+		$meta = new htmlElement('div');
+		$meta->set('class', 'grid-3_4 date');
+		$meta->set('text', $date);
+		$header->inject($meta);
 		
-		// $meta = new htmlElement('div');
-		// $meta->set('class', 'grid-3_4 categories');
-		// $nbCategory = 0;
-		// $currentCategory = [];
-		// foreach ($this->data['category'][$k] as $key => $value) {
-		// 	$category = new htmlElement('a');
-		// 	$currentCategory[] = $this->data['catLink'][$k][$key];
-		// 	$category->set('href', Sophwork::getUrl($currentCategory[$nbCategory]));
-		// 	$category->set('class', 'grid-1_4 vignette');
-		// 	$category->set('text', $value);
-		// 	$meta->set('text', $meta->get('text').$category->build());
-		// 	$nbCategory++;
-		// }
-		// echo'<pre style="background:#ffffff">';
-		// var_dump($header);
-		// echo'</pre>';
-		// die;
+		$meta = new htmlElement('div');
+		$meta->set('class', 'grid-3_4 categories');
+		$nbCategory = 0;
+		$currentCategory = [];
+		foreach ($head['page_categories'] as $key => $value) {
+			$category = new htmlElement('a');
+			$currentCategory[] = $value['link'];
+			$category->set('href', Sophwork::getUrl($currentCategory[$nbCategory]));
+			$category->set('class', 'grid-1_4 vignette');
+			$category->set('text', $value['name']);
+			$meta->set('text', $meta->get('text').$category->build());
+			$nbCategory++;
+		}
+		$header->inject($meta);
+
+		$meta = new htmlElement('h3');
+		$meta->set('class', 'grid-3_4 title');
+		$meta->set('text', $title);
+		$header->inject($meta);
+
+		$authorLink = new htmlElement('a');
+		$authorLink->set('href', Sophwork::getUrl('user/'.strtolower($authorName)));
+
+		$img = new htmlElement('img');
+		$img->set('src', Sophwork::getUrl('data/users/'.strtolower($authorName).'/'.strtolower($authorName).'.png'));
+		$authorLink->inject($img);
+		$header->inject($authorLink);
+
 		if($this->data != null) {
 			foreach ($this->data as $key => $value) {
 				$line = new htmlElement('div');
@@ -89,9 +100,10 @@ class htmlPage extends htmlElement{
 				foreach ($value as $key => $subValue) {
 					foreach ($subValue as $key => $val) {
 						$grid = new htmlElement('div');
-						$grid->set('class', $val->gridClass . ' page-artcile');
+						$grid->set('class', $val->gridClass . ' read page-artcile');
+						$grid->set('text', $grid->get('text').$header->build());
 						if($val->gridContent != 'null' && $val->gridModule != '[form]')
-							$grid->set('text', $val->gridContent);
+							$grid->set('text', $grid->get('text').$val->gridContent);
 						elseif($val->gridContent != 'null' && $val->gridModule == '[form]'){
 							$form = new Form;
 							$form = $form->getForm($val->gridContent);
@@ -238,7 +250,8 @@ class htmlPage extends htmlElement{
 				$content = substr(strip_tags(trim(json_decode($this->data['content'][$k])[0]->line[0]->gridContent)), 0, 200);
 				$authorName  = $this->data['author'][$k];
 				$tag     = $this->data['tag'][$k];
-				$date = date_format(date_create($this->data['date'][$k]), "Y/m/d");
+				$date = date_format(date_create($this->data['date'][$k]), "d/m/Y");
+				// $date = date_format(date_create($this->data['date'][$k]), "Y/m/d");
 				$header = new htmlElement('div');
 				$header->set('class', 'grid-4_4 author');
 				$meta = new htmlElement('div');

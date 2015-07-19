@@ -115,6 +115,26 @@
 	text-align: justify;
 }
 
+.read .page-artcile{
+
+}
+
+.read .author img{
+	width: 80px;
+}
+
+.read .author .date{
+	font-size: 1.1em;
+}
+
+.read .author .title{
+	font-size: 2.8em;
+}
+
+.read .author .vignette{
+	font-size: 1.1em;
+}
+
 @media (max-width:765px) {
 	.articles{
 		width: 100%;
