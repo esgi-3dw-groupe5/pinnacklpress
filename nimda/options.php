@@ -87,6 +87,8 @@ if($optionPage == 'pages'){
 			->__and()
 			->filterPmetaName('role')
 			->querySelect();
+		$pageContent->setPageId($page->getPageId());
+		$pageContent->setPmetaName('role');
 		$pageContent->setPmetaValue($_POST['page_role']);
 		$pageContent->save();
 	}
