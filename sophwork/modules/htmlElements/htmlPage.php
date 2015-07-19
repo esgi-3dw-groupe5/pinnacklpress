@@ -207,7 +207,7 @@ class htmlPage extends htmlElement{
 
 						if($val->gridActive == 0){
 							$comment->set('text', 'Ce commentaire a été signalé.');
-							$comment->set('class', 'reported');
+							$comment->set('class', 'grid-4_4 preview reported');
 						}else{
 							$comment->set('text', $content);
 						}
