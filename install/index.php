@@ -55,7 +55,7 @@ if(sizeof($_POST) > 0){
         $option->setOptionValue($_POST['smtp_auth']);
         $option->save();
         
-        if($_POST['smtp_auth']=='true') {
+        if($_POST['smtp_auth']=='true'){
             $option = $appController->KDM->create('pp_option');
             $option->setOptionName('smtp_username');
             $option->setOptionValue($_POST['smtp_username']);
@@ -69,6 +69,22 @@ if(sizeof($_POST) > 0){
             $option = $appController->KDM->create('pp_option');
             $option->setOptionName('smtp_port');
             $option->setOptionValue($_POST['smtp_port']);
+            $option->save();
+        }
+        else{
+            $option = $appController->KDM->create('pp_option');
+            $option->setOptionName('smtp_username');
+            $option->setOptionValue(null);
+            $option->save();
+
+            $option = $appController->KDM->create('pp_option');
+            $option->setOptionName('smtp_password');
+            $option->setOptionValue(null);
+            $option->save();
+
+            $option = $appController->KDM->create('pp_option');
+            $option->setOptionName('smtp_port');
+            $option->setOptionValue(null);
             $option->save();
         }
         

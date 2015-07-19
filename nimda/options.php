@@ -566,7 +566,7 @@ elseif($optionPage == 'forms'){
 
 else if($optionPage == 'settings'){
 	$options = [
-		'settings' => ['sitename', 'sitedescription', 'siteurl', 'permalink'],
+		'settings' => ['sitename', 'sitedescription', 'siteurl', 'permalink', 'smtp_email', 'smtp_host'],
 	];
 	$KDM = new SophworkDM($app->config);
 	foreach ($options[$optionPage] as $key => $value) {

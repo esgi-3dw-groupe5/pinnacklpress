@@ -73,35 +73,111 @@ class Settings extends Controller{
 			$addressField->setFieldDomid('siteurl');
 			$addressField->setFieldValue(Sophwork::getUrl()); // Get the URL what ever is set in the database
 			$addressField->setFieldPlaceholder('Site address');
-		
-		$themeField = $KDM->create('pp_field');
-			$themeField->setFieldName('nimda-site-theme');
-			$themeField->setFieldType('text');
-			$themeField->setFieldDomname('theme');
-			$themeField->setFieldDomid('theme');
-				$fields->findOptionName('theme');
-			$themeField->setFieldValue($fields->getOptionValue()[0]);
-			$themeField->setFieldPlaceholder('Theme');
 
 		$fields->findOptionName('permalink');
 		$permalink = $fields->getOptionValue()[0];
+        
+        $emailField = $KDM->create('pp_field');
+            $emailField->setFieldName('nimda-smtp-email');
+            $emailField->setFieldType('email');
+            $emailField->setFieldDomname('smtp_email');
+            $emailField->setFieldDomid('smtp_email');
+                $fields->findOptionName('smtp_email');
+            $emailField->setFieldValue($fields->getOptionValue()[0]);
+            $emailField->setFieldPlaceholder('SMTP email');
+        
+        $hostField = $KDM->create('pp_field');
+            $hostField->setFieldName('nimda-smtp-host');
+            $hostField->setFieldType('text');
+            $hostField->setFieldDomname('smtp_host');
+            $hostField->setFieldDomid('smtp_host');
+                $fields->findOptionName('smtp_host');
+            $hostField->setFieldValue($fields->getOptionValue()[0]);
+            $hostField->setFieldPlaceholder('SMTP host');
+        
+        $fields->findOptionName('smtp_auth');
+        $auth = $fields->getOptionValue()[0];
+        
+        if($auth=='true'){
+        $usernameField = $KDM->create('pp_field');
+            $usernameField->setFieldName('nimda-smtp-username');
+            $usernameField->setFieldType('text');
+            $usernameField->setFieldDomname('smtp_username');
+            $usernameField->setFieldDomid('smtp_username');
+                $fields->findOptionName('smtp_username');
+            $usernameField->setFieldValue($fields->getOptionValue()[0]);
+            $usernameField->setFieldPlaceholder('SMTP username');
+        
+        $passwordField = $KDM->create('pp_field');
+            $passwordField->setFieldName('nimda-smtp-password');
+            $passwordField->setFieldType('text');
+            $passwordField->setFieldDomname('smtp_password');
+            $passwordField->setFieldDomid('smtp_password');
+                $fields->findOptionName('smtp_password');
+            $passwordField->setFieldValue($fields->getOptionValue()[0]);
+            $passwordField->setFieldPlaceholder('SMTP password');
+        
+        $portField = $KDM->create('pp_field');
+            $portField->setFieldName('nimda-smtp-port');
+            $portField->setFieldType('number');
+            $portField->setFieldDomname('smtp_port');
+            $portField->setFieldDomid('smtp_port');
+                $fields->findOptionName('smtp_port');
+            $portField->setFieldValue($fields->getOptionValue()[0]);
+            $portField->setFieldPlaceholder('SMTP port');
+        }
+        else{
+            $usernameField = $KDM->create('pp_field');
+                $usernameField->setFieldName('nimda-smtp-username');
+                $usernameField->setFieldType('text');
+                $usernameField->setFieldDomname('smtp_username');
+                $usernameField->setFieldDomid('smtp_username');
+                $usernameField->setFieldValue('');
+                $usernameField->setFieldPlaceholder('SMTP username');
 
+            $passwordField = $KDM->create('pp_field');
+                $passwordField->setFieldName('nimda-smtp-password');
+                $passwordField->setFieldType('text');
+                $passwordField->setFieldDomname('smtp_password');
+                $passwordField->setFieldDomid('smtp_password');
+                $passwordField->setFieldValue('');
+                $passwordField->setFieldPlaceholder('SMTP password');
 
+            $portField = $KDM->create('pp_field');
+                $portField->setFieldName('nimda-smtp-port');
+                $portField->setFieldType('number');
+                $portField->setFieldDomname('smtp_port');
+                $portField->setFieldDomid('smtp_port');
+                $portField->setFieldValue('');
+                $portField->setFieldPlaceholder('SMTP port');
+        }
+        
+        //Set fields
 		$this->__setFields('nameField',$nameField);
 		$this->__setFields('descriptionField',$descriptionField);
 		$this->__setFields('addressField',$addressField);
-		$this->__setFields('themeField',$themeField);
+		$this->__setFields('emailField',$emailField);
+		$this->__setFields('hostField',$hostField);
+		$this->__setFields('usernameField',$usernameField);
+		$this->__setFields('passwordField',$passwordField);
+		$this->__setFields('portField',$portField);
 
 		// Get fields
 		$nameField = $this->__getFields('nameField');
 		$descriptionField = $this->__getFields('descriptionField');
 		$addressField = $this->__getFields('addressField');
-		$themeField = $this->__getFields('themeField');
+		$emailField = $this->__getFields('emailField');
+		$hostField = $this->__getFields('hostField');
+        $usernameField = $this->__getFields('usernameField');
+        $passwordField = $this->__getFields('passwordField');
+        $portField = $this->__getFields('portField');
 
 		$this->setViewData('h1', 'Pinnackl Press');
 		$this->setViewData('h2', 'Global configuration');
 		$this->setViewData('legend1', 'Site configuration');
 		$this->setViewData('legend2', 'Permalink configuration');
+		$this->setViewData('legend3', 'SMTP configuration');
+        
 		// input-1
 		$this->setViewData('label_1', $nameField->getFieldPlaceholder());
 		$this->setViewData('input_1', $nameField->getFieldDomname());
@@ -117,14 +193,41 @@ class Settings extends Controller{
 		$this->setViewData('input_3', $addressField->getFieldDomname());
 		$this->setViewData('type_3', $addressField->getFieldType());
 		$this->setViewData('value_3', $addressField->getFieldValue());
-		// input-4
-		$this->setViewData('label_4', $themeField->getFieldPlaceholder());
-		$this->setViewData('input_4', $themeField->getFieldDomname());
-		$this->setViewData('type_4', $themeField->getFieldType());
-		$this->setViewData('value_4', $themeField->getFieldValue());
 		
 		$this->setViewData('permalink', $permalink);
-
+        
+        // input-4
+        $this->setViewData('label_4', $emailField->getFieldPlaceholder());
+        $this->setViewData('input_4', $emailField->getFieldDomname());
+        $this->setViewData('type_4', $emailField->getFieldType());
+        $this->setViewData('value_4', $emailField->getFieldValue());
+        
+        // input-5
+        $this->setViewData('label_5', $hostField->getFieldPlaceholder());
+        $this->setViewData('input_5', $hostField->getFieldDomname());
+        $this->setViewData('type_5', $hostField->getFieldType());
+        $this->setViewData('value_5', $hostField->getFieldValue());
+        
+        $this->setViewData('smtp_auth', $auth);
+        
+        // input-6
+        $this->setViewData('label_6', $usernameField->getFieldPlaceholder());
+        $this->setViewData('input_6', $usernameField->getFieldDomname());
+        $this->setViewData('type_6', $usernameField->getFieldType());
+        $this->setViewData('value_6', $usernameField->getFieldValue());
+        
+        // input-7
+        $this->setViewData('label_7', $passwordField->getFieldPlaceholder());
+        $this->setViewData('input_7', $passwordField->getFieldDomname());
+        $this->setViewData('type_7', $passwordField->getFieldType());
+        $this->setViewData('value_7', $passwordField->getFieldValue());
+        
+        // input-8
+        $this->setViewData('label_8', $portField->getFieldPlaceholder());
+        $this->setViewData('input_8', $portField->getFieldDomname());
+        $this->setViewData('type_8', $portField->getFieldType());
+        $this->setViewData('value_8', $portField->getFieldValue());
+        
 		$this->callView($page, 'nimda/');
 	}
 }

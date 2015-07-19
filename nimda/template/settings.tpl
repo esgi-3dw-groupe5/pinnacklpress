@@ -14,21 +14,21 @@
                         type="<?php $this->show('type_1') ?>"
                         class="pinnackl-input-1-2"
                         value="<?php $this->show('value_1') ?>"
-                        placeholder="<?php $this->show('value_1') ?>">
+                        placeholder="<?php $this->show('label_1') ?>">
                     
                     <input id="<?php $this->show('label_2') ?>"
                         name="<?php $this->show('input_2') ?>"
                         type="<?php $this->show('type_2') ?>"
                         class="pinnackl-input-1-2"
                         value="<?php $this->show('value_2') ?>"
-                        placeholder="<?php $this->show('value_2') ?>">
+                        placeholder="<?php $this->show('label_2') ?>">
                     
                     <input id="<?php $this->show('label_3') ?>"
                         name="<?php $this->show('input_3') ?>"
                         type="<?php $this->show('type_3') ?>"
                         class="pinnackl-input-1-2"
                         value="<?php $this->show('value_3') ?>"
-                        placeholder="<?php $this->show('value_3') ?>">
+                        placeholder="<?php $this->show('label_3') ?>">
                 </fieldset>
                 <legend><h1><?php $this->show('legend2') ?></h1></legend>
                 <fieldset class="pinnackl-form-aligned">
@@ -57,8 +57,60 @@
                         <label for="custom-r"class="auto-width">/article-name</label>
                     </div>
                 </fieldset>
+                <legend><h1><?php $this->show('legend3') ?></h1></legend>
+                <fieldset class="pinnackl-group">
+                    <input id="<?php $this->show('label_4') ?>"
+                           name="<?php $this->show('input_4') ?>"
+                           type="<?php $this->show('type_4') ?>"
+                           class="pinnackl-input-1-2"
+                           value="<?php $this->show('value_4') ?>"
+                           placeholder="<?php $this->show('label_4') ?>">
+                    
+                    <input id="<?php $this->show('label_5') ?>"
+                           name="<?php $this->show('input_5') ?>"
+                           type="<?php $this->show('type_5') ?>"
+                           class="pinnackl-input-1-2"
+                           value="<?php $this->show('value_5') ?>"
+                           placeholder="<?php $this->show('label_5') ?>">
+                </fieldset>
+                <fieldset class="pinnackl-form-aligned">
+                    <div class="pinnackl-control-group">
+                        <label>SMTP authentification :</label> 
+                    </div>
+                    <div class="pinnackl-control-group">
+                        <label>True
+                            <input type="radio" id="smtp_auth_true" name="smtp_auth" required value="true" onclick="activate();" <?php echo(($this->get('smtp_auth') == 'true')?'checked':null) ?>>
+                        </label>
+                        <label>False
+                            <input type="radio" id="smtp_auth_false" name="smtp_auth" value="false" onclick="activate();" <?php echo(($this->get('smtp_auth') == 'false')?'checked':null) ?>>
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset class="pinnackl-group">
+                    <input id="<?php $this->show('input_6') ?>"
+                           name="<?php $this->show('input_6') ?>"
+                           type="<?php $this->show('type_6') ?>"
+                           class="pinnackl-input-1-2"
+                           value="<?php $this->show('value_6') ?>"
+                           placeholder="<?php $this->show('label_6') ?>"<?php echo(($this->get('smtp_auth') == 'false')?'disabled':null) ?>>
+                    
+                    <input id="<?php $this->show('input_7') ?>"
+                           name="<?php $this->show('input_7') ?>"
+                           type="<?php $this->show('type_7') ?>"
+                           class="pinnackl-input-1-2"
+                           value="<?php $this->show('value_7') ?>"
+                           placeholder="<?php $this->show('label_7') ?>"<?php echo(($this->get('smtp_auth') == 'false')?'disabled':null) ?>>
+                    
+                    <input id="<?php $this->show('input_8') ?>"
+                           name="<?php $this->show('input_8') ?>"
+                           type="<?php $this->show('type_8') ?>"
+                           class="pinnackl-input-1-2"
+                           value="<?php $this->show('value_8') ?>"
+                           placeholder="<?php $this->show('label_8') ?>"<?php echo(($this->get('smtp_auth') == 'false')?'disabled':null) ?>>
+                </fieldset>
                 <input class="pinnackl-button pinnackl-input-1-2 pinnackl-button-primary" type="submit" name="_overview" value="Submit">
             </form>
         </div>
     <!-- </section> -->
 </div>
+<script type="text/javascript" src="<?php $this->show('value_3')?>template/js/install.js"></script>

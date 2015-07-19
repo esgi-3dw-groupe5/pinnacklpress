@@ -71,7 +71,7 @@ class Mail {
         $options->findOptionName("smtp_auth");
         $smtpAuth = $options->getOptionValue()[0];
         
-        if($auth =='true') {
+        if($smtpAuth =='true') {
             $options = $KDM->create('pp_option');
             $options->findOptionName("smtp_username");
             $smtpUsername = $options->getOptionValue()[0];
