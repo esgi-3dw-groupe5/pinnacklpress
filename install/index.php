@@ -238,13 +238,13 @@ if(sizeof($_POST) > 0){
         $pageContent->save();
         
         $pageContent = $appController->KDM->create('pp_pagemeta');
-        $pageContent->setPageId(3);
+        $pageContent->setPageId(4);
         $pageContent->setPmetaName('content');
         $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[form]","gridContent":"recovery"}]}]');
         $pageContent->save();
 
         $pageContent = $appController->KDM->create('pp_pagemeta');
-        $pageContent->setPageId(3);
+        $pageContent->setPageId(4);
         $pageContent->setPmetaName('role');
         $pageContent->setPmetaValue('recovery');
         $pageContent->save();
