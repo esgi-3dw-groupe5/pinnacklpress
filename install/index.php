@@ -131,7 +131,7 @@ if(sizeof($_POST) > 0){
         $option = $appController->KDM->create('pp_option');
         $option->findOptionName('sidebar');
         $option->setOptionName('sidebar');
-        $option->setOptionValue(null);
+        $option->setOptionValue('on');
         $option->save();
 
         $page = $appController->KDM->create('pp_page');
