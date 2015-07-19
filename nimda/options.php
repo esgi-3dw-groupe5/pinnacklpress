@@ -73,17 +73,18 @@ if($optionPage == 'pages'){
 			$page->setPageType('article');
 		}else{
 			$page->setPageType('page');
-		}	
-        $page->setPageLevel(1);
-        $page->setPageParent(0);
-		if(in_array('new', $optionPageController))
+		}
+        if(in_array('new', $optionPageController)){
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
+        	$page->setPageLevel(1);
+        	$page->setPageParent(0);
+        }
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
 
 		$pageContent = $KDM->create('pp_pagemeta');
 		$pageContent
-			->filterPageId($page->getPageId()[0])
+			->filterPageId($page->getPageId())
 			->__and()
 			->filterPmetaName('role')
 			->querySelect();
@@ -130,10 +131,11 @@ elseif($optionPage == 'posts'){
 		$page->setPageCommentStatus($_POST['page_comment_status']);
 		$page->setPageType('post');
 		$page->setPageCommentCount(0); // check if update
-		$page->setPageParent(0);		// checkif update
-        $page->setPageLevel(1);
-		if(in_array('new', $optionPageController))
+        if(in_array('new', $optionPageController)){
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
+        	$page->setPageLevel(1);
+        	$page->setPageParent(0);
+        }
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
 
@@ -169,12 +171,12 @@ elseif($optionPage == 'posts'){
 
 		$pageContent = $KDM->create('pp_pagemeta');
 		$pageContent
-			->filterPageId($page->getPageId()[0])
+			->filterPageId($pageId)
 			->__and()
 			->filterPmetaName('content')
 			->querySelect();
 
-		$pageContent->setPageId($page->getPageId()[0]);
+		$pageContent->setPageId($pageId);
 		$pageContent->setPmetaName('content');
 		// content system
 		$contentSys = [
@@ -193,7 +195,7 @@ elseif($optionPage == 'posts'){
 
 		$pageCategories = $KDM->create('pp_pagemeta');
 		$pageCategories
-			->filterPageId($page->getPageId()[0])
+			->filterPageId($pageId)
 			->__and()
 			->filterPmetaName('category')
 			->querySelect();
@@ -216,7 +218,7 @@ elseif($optionPage == 'posts'){
 			foreach ($_POST['categories'] as $key => $value) {
 				if(!in_array($value, $pageCategories->getPageId())){
 					$added = $KDM->create('pp_pagemeta');
-					$added->setPageId($page->getPageId()[0]);
+					$added->setPageId($pageId);
 					$added->setPmetaName('category');
 					$added->setPmetaValue($value);
 					$added->save();
@@ -226,7 +228,7 @@ elseif($optionPage == 'posts'){
 		else{
 			foreach ($_POST['categories'] as $key => $value) {
 				$pageCategories = $KDM->create('pp_pagemeta');
-				$pageCategories->setPageId($page->getPageId()[0]);
+				$pageCategories->setPageId($pageId);
 				$pageCategories->setPmetaName('category');
 				$pageCategories->setPmetaValue($value);
 				$pageCategories->save();
@@ -265,14 +267,16 @@ elseif($optionPage == 'categories'){
 		$page->setPageConnectedAs($_POST['page_connectedAs']);
         $page->setPageStatus('publish');
         $page->setPageCommentStatus('disable');
-        $page->setPageLevel(1);
-        $page->setPageParent(0);
+        if(in_array('new', $optionPageController)){
+        	$page->setPageLevel(1);
+        	$page->setPageParent(0);
+        }
 		$page->save();
 
 
 		$pageCategories = $KDM->create('pp_pagemeta');
 		$pageCategories
-			->filterPageId($page->getPageId()[0])
+			->filterPageId($page->getPageId())
 			->__and()
 			->filterPmetaName('category')
 			->querySelect();
@@ -295,7 +299,7 @@ elseif($optionPage == 'categories'){
 			foreach ($_POST['categories'] as $key => $value) {
 				if(!in_array($value, $pageCategories->getPageId())){
 					$added = $KDM->create('pp_pagemeta');
-					$added->setPageId($page->getPageId()[0]);
+					$added->setPageId($page->getPageId());
 					$added->setPmetaName('category');
 					$added->setPmetaValue($value);
 					$added->save();
@@ -305,7 +309,7 @@ elseif($optionPage == 'categories'){
 		else{
 			foreach ($_POST['categories'] as $key => $value) {
 				$pageCategories = $KDM->create('pp_pagemeta');
-				$pageCategories->setPageId($page->getPageId()[0]);
+				$pageCategories->setPageId($page->getPageId());
 				$pageCategories->setPmetaName('category');
 				$pageCategories->setPmetaValue($value);
 				$pageCategories->save();

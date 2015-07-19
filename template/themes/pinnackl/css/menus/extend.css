@@ -105,6 +105,9 @@ li.li-logo a:hover{
 }
 
 @media (max-width:765px) {
+	.container{
+		padding: 1em 1em 0;
+	}
 	.visible{
 		display: none!important;
 	}

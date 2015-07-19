@@ -126,7 +126,7 @@ class Controllers extends AppController{
 		 * redirect to error page with the rique header
 		 *
 		 * If the page is a post or page render with the content
-		 * If the page is a cetegory, get the categorie id and call Post to get all article from this category
+		 * If the page is a cetegory, get the category id and call Post to get all article from this category
 		 */
 		if($page->getPageType()[0] == 'post'){
 			$comments = $this->KDM->create('pp_comment');
@@ -143,23 +143,36 @@ class Controllers extends AppController{
             $data = $pageContent->getPmetaValue()[0];	// $data : the page content
             $slug = $page->getPageName()[0];
             $html = new htmlPage($data);
-            if($pageType == 'page' || $pageType == 'post' )
+            if($pageType == 'page')
                 $layout = $html->createPage();
-			elseif($pageType == 'category'){
-				$idCateg = $page->getPageId()[0];
-				$posts = new Post();
-				$data = $posts->getPostsByCateg($idCateg);	// $data : multiple pages contents
-				$html = new htmlPage($data);
-				$layout = $html->createPostList();
-			}elseif ($pageType == 'article') {
-				$posts = new Post();
-				$data = $posts->getPosts();
-				$html = new htmlPage($data);
-				$layout = $html->createPostList();
-			}
-			if( $pageType == 'post'){
-				$KDM = new SophworkDM($this->config);
-				$author = $KDM->create('pp_user');
+            elseif($pageType == 'post'){
+				// $category = $page;
+				// $author = $this->KDM->create('pp_user');
+				// $author->findUserId($page->getUserId()[0]);
+				// $pageContent
+				// 	->filterPageId($page->getPageId()[0])
+				// 	->__and()
+				// 	->filterPmetaName('category')
+				// 	->querySelect();
+				// $categories = [];
+				// foreach ($pageContent->getPmetaValue() as $key => $value) {
+				// 	$category->findPageId($value);
+				// 	$categories[] = $category->getPageName()[0];
+				// }
+				// echo'<pre style="background:#ffffff">';
+				// var_dump($author);
+				// echo'</pre>';
+    //         	$header = [
+    //         		'page_name' => $page->getPageName()[0],
+    //         		'page_udate' => $page->getPageUdate()[0],
+    //         		'page_author' => $author->getUserPseudo()[0],
+    //         		'page_categories' => $categories,
+    //         	];
+    //         	echo'<pre style="background:#ffffff">';
+    //         	var_dump($header);
+    //         	echo'</pre>';die;
+            	$layout = $html->createPost();
+
             	$data = $comments->getData();
             	if(!empty($data['com_author'])){
 					foreach ($data['com_author'] as $key => $value) {
@@ -168,7 +181,7 @@ class Controllers extends AppController{
 					}
 				}
 
-				$history = $KDM->create('pp_history');
+				$history = $this->KDM->create('pp_history');
 				$history->findUserId($_SESSION['user']['id']);
 
 				if($history->getData()['post_id'] != $page->getPageId()[0]) {
@@ -184,6 +197,19 @@ class Controllers extends AppController{
             	$layoutComment = $html->createComment();
             	$this->setRawData('comment', $layoutComment);
             }
+			elseif($pageType == 'category'){
+				$idCateg = $page->getPageId()[0];
+				$posts = new Post();
+				$data = $posts->getPostsByCateg($idCateg);	// $data : multiple pages contents
+				$html = new htmlPage($data);
+				$layout = $html->createPostList();
+			}elseif ($pageType == 'article') {
+				$posts = new Post();
+				$data = $posts->getPosts();
+				$html = new htmlPage($data);
+				$layout = $html->createPostList();
+			}
+
             if($slug != 'Index')
                 $this->setViewData('sitedescription', $slug);
             $this->setRawData('page', $layout);
