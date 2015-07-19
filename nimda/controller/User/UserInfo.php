@@ -73,42 +73,21 @@ class UserInfo extends Controller{
         $this->setViewData('h2', 'Users');
 
         $user = $KDM->create('pp_user');
+   
+        $user->find();
+        $this->setViewData('users', $user->getData(), 'user_id');
+        $this->setViewData('users', $user->getData(), 'user_pseudo');
+        $this->setViewData('users', $user->getData(), 'user_email');
+        $this->setViewData('users', $user->getData(), 'user_role');
+        $this->setViewData('users', $user->getData(), 'user_bdate');
+        $this->setViewData('users', $user->getData(), 'user_gender');
+        $this->setViewData('users', $user->getData(), 'user_firstname');
+        $this->setViewData('users', $user->getData(), 'user_name');
 
-        if($elses[0] == 'delete'){
-            $user->findUserId($elses[1]);
-            $this->setViewData('users', $user->getData(), 'user_id');
-            $this->setViewData('users', $user->getData(), 'user_pseudo');
-            $this->setViewData('users', $user->getData(), 'user_email');
-            $this->setViewData('users', $user->getData(), 'user_role');
 
-            // $this->callView('user/' . $own . $page, 'nimda/');
-        }
-        elseif($elses[0] == 'edit'){
-
-            $user->findUserId($elses[1]);
-
-            $this->setViewData('user_pseudo', ''.$user->getUserPseudo()[0]);
-            $this->setViewData('user_email', ''.$user->getUserEmail()[0]);
-            $this->setViewData('user_role', ''.$user->getUserRole()[0]);
-            $this->setViewData('user_firstname', ''.$user->getUserFirstname()[0]);
-            $this->setViewData('user_name', ''.$user->getUserName()[0]);
-            $this->setViewData('user_bdate', ''.$user->getUserBdate()[0]);
-            $this->setViewData('user_gender', ''.$user->getUserGender()[0]);
-
-            // $this->callView('user/' . $own . $page .'-edit', 'nimda/');
-        }
-        elseif($elses[0] == 'new'){
-            // $this->callView('user/' . $own . $page .'-new', 'nimda/');
-        }
-        else{
-            $user->find();
-            $this->setViewData('users', $user->getData(), 'user_id');
-            $this->setViewData('users', $user->getData(), 'user_pseudo');
-            $this->setViewData('users', $user->getData(), 'user_email');
-            $this->setViewData('users', $user->getData(), 'user_role');
-
-            // $this->callView('user/' . $own . $page, 'nimda/');
-        }
+        $this->callView('user/' . $own . $page, 'nimda/');
+            
+        
     }
 }
 
