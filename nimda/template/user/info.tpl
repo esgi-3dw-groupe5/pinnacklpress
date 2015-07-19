@@ -9,7 +9,7 @@
             <?php foreach ($this->viewData->users as $key => $value) : ?>
             <div class="global-info-user">
                 <div class="avatar-user">
-                    <img src="<?php $this->show('siteurl')?>nimda/data/users/<?php $this->show($value,'user_pseudo')?>/<?php $this->show($value,'user_pseudo')?>-img.png">
+                    <img src="<?php $this->show('siteurl')?>data/users/<?php $this->show($value,'user_pseudo')?>/<?php $this->show($value,'user_pseudo')?>.png">
                 </div>
                 <div class="info-user">
                     <ul>

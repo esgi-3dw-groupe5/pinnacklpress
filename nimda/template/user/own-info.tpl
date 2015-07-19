@@ -51,7 +51,7 @@
                         <input type="file" name="avatar">
                         
                     </div> 
-                    <img style="margin-left:40%;width:150px;height:150px" src="<?php $this->show('siteurl')?>nimda/data/users/<?php $this->show($value,'user_pseudo')?>/<?php $this->show($value,'user_pseudo')?>-img.png">
+                    <img style="margin-left:40%;width:150px;height:150px" src="<?php $this->show('siteurl')?>data/users/<?php $this->show($value,'user_pseudo')?>/<?php $this->show($value,'user_pseudo')?>.png">
                  </fieldset>                
             </div>
            <div class="pinnackl-controls-group" style="margin-top:30px;text-align:center">
