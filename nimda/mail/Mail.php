@@ -31,7 +31,7 @@ class Mail {
         ob_start(); // turn on output buffering
         
         if($type=='install') {
-            $content = "<p>Bienvenue sur votre site</p><p>Vous confirmons la bonne configuration de celui-ci. Il est disponible &agrave; cette adresse :</p><p><a href='".$siteUrl."'>".$siteUrl."</a></p>";
+            $content = "<p>Bienvenue sur votre site</p><p>Nous vous confirmons la bonne configuration de celui-ci. Il est disponible &agrave; cette adresse :</p><p><a href='".$siteUrl."'>".$siteUrl."</a></p>";
             include(__DIR__ . '/../template/mail-install.tpl');
             $subject = "Bienvenue sur votre site ".$pseudo." !";
         }   
