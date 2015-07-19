@@ -74,10 +74,14 @@
 										</label>
 										<label><span>Post Comment Status :</span>
 											<select class="pinnackl-input-1" name="page_comment_status" >
-												<option selected value="enable">
+												<option <?php echo(($this->get($this->viewData, 'page_comment_status')=='enable')
+													?'selected': null)?> 
+													value="enable">
 													Enable
 												</option>
-												<option value="disable">
+												<option <?php echo(($this->get($this->viewData, 'page_comment_status')=='disable')
+													?'selected': null)?> 
+													value="disable">
 													Disable
 												</option>
 											</select>
