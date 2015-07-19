@@ -190,10 +190,11 @@ class Controllers extends AppController{
 					$history->save();
 				}
 
-
             	$html = new htmlPage($data);
-            	$layoutComment = $html->createComment();
-            	$this->setRawData('comment', $layoutComment);
+            	if($page->getData()['page_comment_status'][0] == 'enable'){
+            		$layoutComment = $html->createComment();
+            		$this->setRawData('comment', $layoutComment);
+            	}    	
             }
 			elseif($pageType == 'category'){
 				$idCateg = $page->getPageId()[0];
