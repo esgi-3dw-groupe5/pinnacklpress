@@ -175,6 +175,20 @@ if(sizeof($_POST) > 0){
         $page->setPageLevel(1);
         $page->setPageParent(0);
         $page->save();
+        
+        $page = $appController->KDM->create('pp_page');
+        $page->setPageTag('recovery');
+        $page->setPageName('Recovery');
+        $page->setPageConnectedAs('visitor');
+        $page->setPageType('page');
+        $page->setPageStatus('publish');
+        $page->setPageAuthor(1);
+        $page->setPageCommentStatus('disable');
+        $page->setPageDate(date("Y-m-d h:i:s"));
+        $page->setPageOrder(4);
+        $page->setPageLevel(1);
+        $page->setPageParent(0);
+        $page->save();
 
 
         $pageContent = $appController->KDM->create('pp_pagemeta');
@@ -205,6 +219,18 @@ if(sizeof($_POST) > 0){
         $pageContent->setPageId(3);
         $pageContent->setPmetaName('role');
         $pageContent->setPmetaValue('connection');
+        $pageContent->save();
+        
+        $pageContent = $appController->KDM->create('pp_pagemeta');
+        $pageContent->setPageId(3);
+        $pageContent->setPmetaName('content');
+        $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[form]","gridContent":"recovery"}]}]');
+        $pageContent->save();
+
+        $pageContent = $appController->KDM->create('pp_pagemeta');
+        $pageContent->setPageId(3);
+        $pageContent->setPmetaName('role');
+        $pageContent->setPmetaValue('recovery');
         $pageContent->save();
 
         $menu = $appController->KDM->create('pp_menu');
@@ -288,6 +314,15 @@ if(sizeof($_POST) > 0){
         $field->setFieldValue('');
         $field->setFieldPlaceholder('');
         $field->save();
+        
+        $field = $appController->KDM->create('pp_field');
+        $field->setFieldName('email');
+        $field->setFieldType('email');
+        $field->setFieldDomname('email');
+        $field->setFieldDomid('email');
+        $field->setFieldValue('');
+        $field->setFieldPlaceholder('');
+        $field->save();
 
         $fieldRs = $field = $appController->KDM->create('pp_field_rs');
         $fieldRs->setFieldId(3);
@@ -303,6 +338,11 @@ if(sizeof($_POST) > 0){
         $fieldRs->setFieldId(8);
         $fieldRs->setValidatorId(3);
         $fieldRs->save();
+        
+        $fieldRs = $appController->KDM->create('pp_field_rs');
+        $fieldRs->setFieldId(9);
+        $fieldRs->setValidatorId(4);
+        $fieldRs->save();
 
         $form = $appController->KDM->create('pp_form');
         $form->setFormName('connection');
@@ -314,6 +354,14 @@ if(sizeof($_POST) > 0){
 
         $form = $appController->KDM->create('pp_form');
         $form->setFormName('inscription');
+        $form->setFormAction('');
+        $form->setFormMethod('post');
+        $form->setFormTarget('');
+        $form->setFormEnctype('');
+        $form->save();
+        
+        $form = $appController->KDM->create('pp_form');
+        $form->setFormName('recovery');
         $form->setFormAction('');
         $form->setFormMethod('post');
         $form->setFormTarget('');
@@ -359,6 +407,11 @@ if(sizeof($_POST) > 0){
         $formRs->setFormId(2);
         $formRs->setFieldId(8);
         $formRs->save();
+        
+        $formRs = $appController->KDM->create('pp_form_rs');
+        $formRs->setFormId(3);
+        $formRs->setFieldId(9);
+        $formRs->save();
 
         $validator = $appController->KDM->create('pp_validator');
         $validator->setValidatorRule('isMail');
@@ -370,6 +423,10 @@ if(sizeof($_POST) > 0){
 
         $validator = $appController->KDM->create('pp_validator');
         $validator->setValidatorRule('isDate');
+        $validator->save();
+        
+        $validator = $appController->KDM->create('pp_validator');
+        $validator->setValidatorRule('isMail');
         $validator->save();
 
         $handle = fopen('pinnacklpress.php', "w+");

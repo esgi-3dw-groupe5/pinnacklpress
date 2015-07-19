@@ -201,6 +201,10 @@
 										?'selected': null)?>>
 										Connection
 									</option>
+                                    <option value="recovery" <?= (($this->get($this->viewData, 'page_role') == 'recovery')
+                                        ?'selected': null)?>>
+                                        Recovery
+                                    </option>
 								</select>
 							</label>
 							<label><span>List all articles :</span>

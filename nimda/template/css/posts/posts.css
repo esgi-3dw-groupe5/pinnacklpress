@@ -6,3 +6,42 @@
 	margin-bottom:20px;
 	padding:0px 10px;
 }
+
+.thumb-article-user h2{
+	
+	font-size: 35px;
+	margin-bottom: 20px;
+	color: rgb(0, 120, 231);
+	
+}
+
+.thumb-article-user ul{
+	list-style: none;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 40px;
+}
+
+.thumb-article-user ul li{
+	display: inline-block;
+}
+
+
+.thumb-article-user .container-img{
+	width: 80%;
+	padding: 0 40px;
+}
+
+.thumb-article-user .container-content{
+	width: 80%;
+	padding: 0 30px;
+	margin-bottom: 20px;
+}
+
+.thumb-article-user img{
+	text-align: center;
+	width: 250px;
+	height: 200px;
+	
+
+}

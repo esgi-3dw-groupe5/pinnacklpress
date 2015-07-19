@@ -14,14 +14,17 @@ use sophwork\modules\kdm\SophworkDMEntities;
 
 use controller\utils\Users;
 
+use controller\form\Rule;
+
 $app = new SophworkApp();
 $appController = $app->appController;
 
 $user = new Users();
 
 // Récupération des variables nécessaires à l'activation
+$action = $_GET['part'];
 $pseudo = $_GET['log'];
-$key = $_GET['cle'];
+$key = $_GET['key'];
 
 $appController->KDM = new SophworkDM(Sophwork::getConfig());
 
@@ -33,58 +36,110 @@ $sitename = $options->getOptionValue()[0];
 $options->findOptionName("siteurl");
 $siteUrl = $options->getOptionValue()[0];
 
-if(!empty($pseudo)&&(!empty($key))) {
+if(!empty($action)&&(!empty($pseudo))&&(!empty($key))) {
     
-    // Récupération de la clé correspondant au $pseudo dans la base de données
-    
-    $user = $appController->KDM->create('pp_user');
-    $user->findUserPseudo($pseudo);
-    
-    if($user->getUserId()[0]!=null) {
-        
-        if($key == $user->getUserKey()[0]) {
-        
-            $keybdd = $user->getUserKey()[0];	// Récupération de la clé
-            $active = $user->getUserActive()[0]; // $active contiendra alors 0 ou 1
+    if($action=='acn') {
+        $form=false;
+        // Récupération de la clé correspondant au $pseudo dans la base de données
+        $user = $appController->KDM->create('pp_user');
+        $user->findUserPseudo($pseudo);
 
-            // On teste la valeur de la variable $active récupéré dans la BDD
-            if($active == '1') { // Si le compte est déjà actif on prévient
-            
-                $message = "Votre compte est d&eacute;j&agrave; actif !";
+        if($user->getUserId()[0]!=null) {
+
+            if($key == $user->getUserKey()[0]) {
+
+                $keybdd = $user->getUserKey()[0];	// Récupération de la clé
+                $active = $user->getUserActive()[0]; // $active contiendra alors 0 ou 1
+
+                // On teste la valeur de la variable $active récupéré dans la BDD
+                if($active == '1') { // Si le compte est déjà actif on prévient
+
+                    $message = "Votre compte est d&eacute;j&agrave; actif !";
+                }
+                else { // Si ce n'est pas le cas on passe aux comparaisons
+
+                    if($key == $keybdd) { // On compare nos deux clés	
+
+                        // Si elles correspondent on active le compte !	
+                        $message = "Votre compte a bien &eacute;t&eacute; activ&eacute; !";
+
+                        // La requête qui va passer notre champ actif de 0 à 1
+                        $user->setUserActive('1');
+                        $user->setUserRole('member');
+                        $user->save();
+                    }
+                    else { // Si les deux clés sont différentes on provoque une erreur...
+
+                        $message = "Erreur ! Votre compte ne peut &ecirc;tre activ&eacute;...";
+                    }
+                }
             }
-            else { // Si ce n'est pas le cas on passe aux comparaisons
-            
-                if($key == $keybdd) { // On compare nos deux clés	
-                
-                    // Si elles correspondent on active le compte !	
-                    $message = "Votre compte a bien &eacute;t&eacute; activ&eacute; !";
 
-                    // La requête qui va passer notre champ actif de 0 à 1
-                    $user->setUserActive('1');
-                    $user->setUserRole('member');
-                    $user->save();
-                }
-                else { // Si les deux clés sont différentes on provoque une erreur...
+
+
+        }
+        else { // Si les deux clés sont différentes on provoque une erreur...
+
+            $message = "Erreur ! Votre compte ne peut &ecirc;tre activ&eacute;...";
+        }
+        
+    }
+    
+    
+    elseif ($action=='pwd') {
+        // Récupération de la clé correspondant au $pseudo dans la base de données
+        $user = $appController->KDM->create('pp_user');
+        $user->findUserPseudo($pseudo);
+
+        if($user->getUserId()[0]!=null) {
+
+            if($key == $user->getUserKey()[0]) {
                 
-                    $message = "Erreur ! Votre compte ne peut &ecirc;tre activ&eacute;...";
+                if(isset($_POST['submit'])) {
+                    if(isset($_POST['password'])&&isset($_POST['confirm-password'])) {
+                        $rule = new Rule();
+                        if($rule->isPassword($_POST['password'],$_POST['confirm-password'])) {
+                            $hash_psw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                            $userkey = md5(microtime().rand());
+
+                            $user->setUserPassword($hash_psw);
+                            $user->setUserKey($userkey);
+                            $user->save();
+                            
+                            $message = "Votre mot de passe a bien été modifié !";
+                            $form = false;
+                        }
+                        else{
+                            $message = "Erreur dans les mots de passe";
+                            $form = true;
+                        }
+                    }
                 }
+                else {
+                    $message = "Veuillez modifier votre mot de passe";
+                    $form = true;
+                }
+                
+            }
+            else { // Si les deux clés sont différentes on provoque une erreur...
+
+                $message = "Ce lien n'est plus valide";
+                $form = false;
             }
         }
+        
+        else { // Si les deux clés sont différentes on provoque une erreur...
 
-
-
-    }
-    else { // Si les deux clés sont différentes on provoque une erreur...
-    
-        $message = "Erreur ! Votre compte ne peut &ecirc;tre activ&eacute;...";
+            $message = "Ce lien n'est plus valide";
+            $form = false;
+        }
     }
 }
 else
 {
     Sophwork::redirect();
 }
-
-
 require_once(__DIR__ . '/mail-confirm.tpl');
+
 
 ?>

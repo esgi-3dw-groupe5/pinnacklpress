@@ -34,7 +34,6 @@ else{
 	$edit = $optionPageController[count($optionPageController)-1];
 }
 
-
 if($optionPage == 'pages'){
 	if($edit == '') $edit = 0; // in case of nothing to find, search for somethig that doesn't exist
 	$KDM = new SophworkDM($app->config);
@@ -73,18 +72,17 @@ if($optionPage == 'pages'){
 			$page->setPageType('article');
 		}else{
 			$page->setPageType('page');
-		}
-        if(in_array('new', $optionPageController)){
+		}	
+        $page->setPageLevel(1);
+        $page->setPageParent(0);
+		if(in_array('new', $optionPageController))
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
-        	$page->setPageLevel(1);
-        	$page->setPageParent(0);
-        }
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
 
 		$pageContent = $KDM->create('pp_pagemeta');
 		$pageContent
-			->filterPageId($page->getPageId())
+			->filterPageId($page->getPageId()[0])
 			->__and()
 			->filterPmetaName('role')
 			->querySelect();
@@ -131,11 +129,10 @@ elseif($optionPage == 'posts'){
 		$page->setPageCommentStatus($_POST['page_comment_status']);
 		$page->setPageType('post');
 		$page->setPageCommentCount(0); // check if update
-        if(in_array('new', $optionPageController)){
+		$page->setPageParent(0);		// checkif update
+        $page->setPageLevel(1);
+		if(in_array('new', $optionPageController))
 			$page->setPageDate(date('Y-m-d H:i:s', strtotime("now")));
-        	$page->setPageLevel(1);
-        	$page->setPageParent(0);
-        }
 		$page->setPageUdate(date('Y-m-d H:i:s', strtotime("now")));
 		$page->save();
 
@@ -144,7 +141,7 @@ elseif($optionPage == 'posts'){
 		
 		if (file_exists("../data/articles/temp/".$user->id.'/')){
 			$source = '../data/articles/temp/'.$user->id.'/';
-			var_dump(count(glob($source)));
+
 			if (count(glob($source)) <= 0 ){
 
 				$files = scandir($source);
@@ -171,12 +168,12 @@ elseif($optionPage == 'posts'){
 
 		$pageContent = $KDM->create('pp_pagemeta');
 		$pageContent
-			->filterPageId($pageId)
+			->filterPageId($page->getPageId()[0])
 			->__and()
 			->filterPmetaName('content')
 			->querySelect();
 
-		$pageContent->setPageId($pageId);
+		$pageContent->setPageId($page->getPageId()[0]);
 		$pageContent->setPmetaName('content');
 		// content system
 		$contentSys = [
@@ -195,7 +192,7 @@ elseif($optionPage == 'posts'){
 
 		$pageCategories = $KDM->create('pp_pagemeta');
 		$pageCategories
-			->filterPageId($pageId)
+			->filterPageId($page->getPageId()[0])
 			->__and()
 			->filterPmetaName('category')
 			->querySelect();
@@ -218,7 +215,7 @@ elseif($optionPage == 'posts'){
 			foreach ($_POST['categories'] as $key => $value) {
 				if(!in_array($value, $pageCategories->getPageId())){
 					$added = $KDM->create('pp_pagemeta');
-					$added->setPageId($pageId);
+					$added->setPageId($page->getPageId()[0]);
 					$added->setPmetaName('category');
 					$added->setPmetaValue($value);
 					$added->save();
@@ -228,7 +225,7 @@ elseif($optionPage == 'posts'){
 		else{
 			foreach ($_POST['categories'] as $key => $value) {
 				$pageCategories = $KDM->create('pp_pagemeta');
-				$pageCategories->setPageId($pageId);
+				$pageCategories->setPageId($page->getPageId()[0]);
 				$pageCategories->setPmetaName('category');
 				$pageCategories->setPmetaValue($value);
 				$pageCategories->save();
@@ -267,16 +264,14 @@ elseif($optionPage == 'categories'){
 		$page->setPageConnectedAs($_POST['page_connectedAs']);
         $page->setPageStatus('publish');
         $page->setPageCommentStatus('disable');
-        if(in_array('new', $optionPageController)){
-        	$page->setPageLevel(1);
-        	$page->setPageParent(0);
-        }
+        $page->setPageLevel(1);
+        $page->setPageParent(0);
 		$page->save();
 
 
 		$pageCategories = $KDM->create('pp_pagemeta');
 		$pageCategories
-			->filterPageId($page->getPageId())
+			->filterPageId($page->getPageId()[0])
 			->__and()
 			->filterPmetaName('category')
 			->querySelect();
@@ -299,7 +294,7 @@ elseif($optionPage == 'categories'){
 			foreach ($_POST['categories'] as $key => $value) {
 				if(!in_array($value, $pageCategories->getPageId())){
 					$added = $KDM->create('pp_pagemeta');
-					$added->setPageId($page->getPageId());
+					$added->setPageId($page->getPageId()[0]);
 					$added->setPmetaName('category');
 					$added->setPmetaValue($value);
 					$added->save();
@@ -309,7 +304,7 @@ elseif($optionPage == 'categories'){
 		else{
 			foreach ($_POST['categories'] as $key => $value) {
 				$pageCategories = $KDM->create('pp_pagemeta');
-				$pageCategories->setPageId($page->getPageId());
+				$pageCategories->setPageId($page->getPageId()[0]);
 				$pageCategories->setPmetaName('category');
 				$pageCategories->setPmetaValue($value);
 				$pageCategories->save();
@@ -630,6 +625,72 @@ else if($optionPage == 'users' || $optionPage == 'info'){
         $user->setUserName($_POST['lastname']);
         $user->setUserGender($_POST['gender']);
 
+        $maxsize = ini_get("upload_max_filesize");
+        $maxsize_octet = 1024*2024 *str_replace("M", "", $maxsize);
+        
+	    //Création d'un tableau php avec les extensions valides
+        $extensions_valides = array( 'jpg' , 'jpeg' , 'png' );
+        //chemin en relatif d'upload
+        $upload_directory = __DIR__.'/../data/users/'.$_POST['pseudo'];
+       
+         //Est ce que le fichier avatar existe
+        if(isset($_FILES['avatar']))
+        {
+            if ($_FILES['avatar']['error'] == UPLOAD_ERR_OK)
+            {
+                if ($_FILES['avatar']['size'] > $maxsize_octet) 
+                {
+                    $erreur = "Le fichier est trop gros";
+                }else
+                {            
+	                $parse_name = explode(".", $_FILES['avatar']['name']);
+	                $extension_upload = strtolower(end($parse_name));
+
+	                if ( in_array($extension_upload,$extensions_valides) )
+	                {
+	                    if(!file_exists($upload_directory))
+	                    {	
+	                        mkdir($upload_directory);
+	                    }
+
+	                    $nom = $_POST['pseudo'].'-img.png';
+	                    if (move_uploaded_file($_FILES['avatar']['tmp_name'],$upload_directory."/".$nom))
+	                    { 	
+	                        echo "Transfert réussi";
+	                    }
+	                    else
+	                    {
+	                        echo "Transfert echec";
+	                    }
+
+	                }else
+	                {
+	                    echo "Extension incorrecte<br>";
+	                }
+                }
+            }else{
+
+                switch ($_FILES['avatar']['error']) {
+                    case UPLOAD_ERR_NO_FILE:
+                        echo "fichier manquant<br>";
+                        break;
+                    case UPLOAD_ERR_INI_SIZE:
+                        echo "fichier dépassant la taille maximale autorisée par PHP<br>";
+                        break;
+                    case UPLOAD_ERR_FORM_SIZE:
+                        echo "fichier dépassant la taille maximale autorisée par le formulaire<br>";
+                        break;
+                    case UPLOAD_ERR_PARTIAL:
+                        echo "fichier transféré partiellement<br>";
+                        break;
+                    default:
+                        echo "Erreur inconnue ... <br>";
+                        break;
+                }
+
+            }
+        }		
+
         if(in_array('new', $optionPageController)) {
 	        	$hash_psw = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	        	$user->setUserPassword($hash_psw);
@@ -652,7 +713,18 @@ else if($optionPage == 'users' || $optionPage == 'info'){
 		Sophwork::redirect('nimda/users');
 		exit;
 	}
-}
+}elseif(array_key_exists('statusBuilder', $_POST)){
+	$KDM = new SophworkDM($app->config);
+	$comment = $KDM->create('pp_comment');
+		foreach ($_POST['statusBuilder'] as $key => $nodes) {
+			$comment->findComId($nodes['id']);
+			$comment->setComActive($nodes['status']);
+			$comment->save();
+		}
+	echo '#updated';
+	return;
+	}
+
 
 // Redirect to the settings page from referer
 Sophwork::redirectFromRef($_POST['pp-referer'].'#updated');

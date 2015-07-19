@@ -9,7 +9,7 @@
             <?php foreach ($this->viewData->users as $key => $value) : ?>
             <div class="global-info-user">
                 <div class="avatar-user">
-                    <img src="">
+                    <img src="<?php $this->show('siteurl')?>nimda/data/users/<?php $this->show($value,'user_pseudo')?>/<?php $this->show($value,'user_pseudo')?>-img.png">
                 </div>
                 <div class="info-user">
                     <ul>
@@ -19,11 +19,11 @@
                         </li>
                         
                         <li>
-                            <label> Nom : </label> 
+                            <label> Last Name : </label> 
                             <?php $this->show($value,'user_name'); ?>
                         </li>
                         <li>
-                            <label> Prénom : </label> 
+                            <label>First name: </label> 
                             <?php $this->show($value,'user_firstname'); ?>
                         </li>
                         <li>

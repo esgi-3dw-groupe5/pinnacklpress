@@ -111,6 +111,27 @@ class Users extends \sophwork\app\controller\AppController {
         }
     }
     
+    public function recovery($POST){
+        $mail = new Mail();
+
+        $this->user = $this->KDM->create('pp_user');
+        $this->user->findUserEmail($POST['email']);
+        if($this->user->getUserId()[0]!=null){
+            $userkey = md5(microtime().rand());
+            $this->user->setUserKey($userkey)[0];
+            $this->user->save();
+
+            $pseudo = $this->user->getUserPseudo()[0];
+            
+            $mail->sendMail($pseudo,$POST['email'],'recovery',$userkey);
+        }
+        else{
+            $_SESSION['form']['error'][]="Il n'y a aucun compte associé à ce mail.";
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+            exit;
+        }
+    }
+    
     public function initUser(){
         $_SESSION['user']['pseudo']     = null;
         $_SESSION['user']['email']      = null;

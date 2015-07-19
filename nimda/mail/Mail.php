@@ -32,15 +32,18 @@ class Mail {
         
         if($type=='install') {
             $content = "<p>Bienvenue sur votre site</p><p>Nous vous confirmons la bonne configuration de celui-ci. Il est disponible &agrave; cette adresse :</p><p><a href='".$siteUrl."'>".$siteUrl."</a></p>";
-            include(__DIR__ . '/../template/mail-install.tpl');
             $subject = "Bienvenue sur votre site ".$pseudo." !";
         }   
         elseif($type=='inscription') {
-            $content="<p>Bienvenue sur ".$sitename."</p><p>Pour activer votre compte, veuillez cliquer sur le lien ci dessous ou copier/coller dans votre navigateur internet</p><p><a href='".$siteUrl."activation/".urlencode($pseudo)."/".urlencode($key)."/'>".$siteUrl."activation/".urlencode($pseudo)."/".urlencode($key)."/</a></p>";
-            include(__DIR__ . '/../template/mail-inscription.tpl');
+            $content="<p>Bienvenue sur ".$sitename."</p><p>Pour activer votre compte, veuillez cliquer sur le lien ci dessous ou copier/coller dans votre navigateur internet</p><p><a href='".$siteUrl."activation/acn/".urlencode($pseudo)."/".urlencode($key)."/'>".$siteUrl."activation/acn/".urlencode($pseudo)."/".urlencode($key)."/</a></p>";
             $subject = "Bienvenue sur ".$sitename." ".$pseudo." !";
         }
-            
+        elseif($type=='recovery') {
+            $content="<p>Bienvenue sur ".$sitename."</p><p>Pour modifier votre mot de passe, veuillez cliquer sur le lien ci dessous ou copier/coller dans votre navigateur internet</p><p><a href='".$siteUrl."activation/pwd/".urlencode($pseudo)."/".urlencode($key)."/'>".$siteUrl."activation/pwd/".urlencode($pseudo)."/".urlencode($key)."/</a></p>";
+            $subject = "".$pseudo.", votre nouveau mot de passe sur ".$sitename."  !";
+        }
+        
+        include(__DIR__ . '/../template/mail.tpl');
         $res = ob_get_contents(); // get the contents of the output buffer
         ob_end_clean(); //  clean (erase) the output buffer and turn off output buffering
         $mail = $email; // Déclaration de l'adresse de destination.
@@ -91,7 +94,7 @@ class Mail {
         $mail->isSMTP();                                      // Set mailer to use SMTP
         $mail->Host = $smtpHost;                    // Specify main and backup SMTP servers
         
-        if($auth =='true') {
+        if($smtpAuth =='true') {
             $mail->SMTPAuth = $smtpAuth;                               // Enable SMTP authentication
             $mail->Username = $smtpUsername;                 // SMTP username
             $mail->Password = $smtpPassword;                           // SMTP password
@@ -118,7 +121,12 @@ class Mail {
             Sophwork::redirect('install/settings');
         }
         elseif($type=='inscription') {
-            $_SESSION['form']['error'][]="Vous êtes inscrits";
+            $_SESSION['form']['error'][]="Vous êtes inscrits. Vous allez recevoir un mail d'activation de compte.";
+            Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
+            exit;
+        }
+        elseif($type=='recovery') {
+            $_SESSION['form']['error'][]="Vous allez recevoir un mail pour changer de mot de passe.";
             Sophwork::redirectFromRef($_SESSION['form']['pp-referer']);
             exit;
         }

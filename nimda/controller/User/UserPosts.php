@@ -141,6 +141,24 @@ class UserPosts extends Controller{
 		}
 		else{
 			$pages->findPageType('post');
+			$pages->getPageId();
+			var_dump($pages->getPageId()[0]);
+			$contents
+				->filterPageId($pages->getPageId()[0])
+				->__and()
+				->filterPmetaName('content')
+				->querySelect();
+
+			$key = 0;
+			$jsonBuilder = json_decode($contents->getPmetaValue()[0]);
+			$contentSys = $jsonBuilder[$key]->line;
+			$postContent = $contentSys[0];
+
+			$this->setViewData('page_content', ''.$postContent->gridContent);
+
+			$categories->findPageType('category');
+			$this->setViewData('category', $categories->getData(), 'page_id');
+			$this->setViewData('category', $categories->getData(), 'page_name');			
 
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
@@ -148,8 +166,6 @@ class UserPosts extends Controller{
 
 			$this->setViewData('pages', $categories->getData(), 'page_name'); //categories
 			
-			$this->setViewData('pages', $pages->getData(), 'page_name'); // Author
-			$this->setViewData('pages', $pages->getData(), 'page_status');
 			
 			$this->callView('user/' . $own . $page, 'nimda/');
 		}

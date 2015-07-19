@@ -102,13 +102,14 @@
 									$htmlForm = new \sophwork\modules\htmlElements\htmlForm($formData, 'connection');
 									$htmlForm->createForm()->output();
 								?>
+                            <a href="<?php $this->show('siteurl')?>recovery">Forgot your password?</a>
 							<?php elseif (!empty($_SESSION['user']['pseudo'])) : ?>
 								<h4>Bienvenue :
 									<a class="pinnackl-username"
 										href="<?php $this->e(sophwork\core\Sophwork::getUrl('user/'.$_SESSION['user']['url']), 'L'); ?>">
 										<?php $this->e($_SESSION['user']['pseudo']) ?>
 									</a>
-									<a class="pinnackl-logout" href="?act=logout">Déconnexion</a>
+                                    <a class="pinnackl-logout" href="<?php $this->show('siteurl')?>?act=logout">Déconnexion</a>
 								</h4>
 							<?php endif; ?>
 						</div>
