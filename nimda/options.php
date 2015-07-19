@@ -139,25 +139,32 @@ elseif($optionPage == 'posts'){
 
 		$pageId = $page->getData()['page_id'];
 
-		$source = '../data/articles/temp/'.$user->id.'/';
-		$files = scandir($source);
+		
+		if (file_exists("../data/articles/temp/".$user->id.'/')){
+			$source = '../data/articles/temp/'.$user->id.'/';
+			var_dump(count(glob($source)));
+			if (count(glob($source)) <= 0 ){
 
-		if (!file_exists("../data/articles/".$pageId)){
-		    mkdir("../data/articles/".$pageId);
-		}
-
-		$destination = '../data/articles/'.$pageId.'/';
-
-		foreach ($files as $file) {
-		  if (in_array($file, array(".",".."))) continue;
-		  // If we copied this successfully, mark it for deletion
-		  if (copy($source.$file, $destination.$file)) {
-		    $delete[] = $source.$file;
-		  }
-		}
-		// Delete all successfully-copied files
-		foreach ($delete as $file) {
-		  unlink($file);
+				$files = scandir($source);
+	
+				if (!file_exists("../data/articles/".$pageId)){
+				    mkdir("../data/articles/".$pageId);
+				}
+		
+				$destination = '../data/articles/'.$pageId.'/';
+		
+				foreach ($files as $file) {
+				  if (in_array($file, array(".",".."))) continue;
+				  // If we copied this successfully, mark it for deletion
+				  if (copy($source.$file, $destination.$file)) {
+				    $delete[] = $source.$file;
+				  }
+				}
+				// Delete all successfully-copied files
+				foreach ($delete as $file) {
+				  unlink($file);
+				}
+			}
 		}
 
 		$pageContent = $KDM->create('pp_pagemeta');
