@@ -37,18 +37,20 @@ if (in_array('user', $uri)) {
 	$menu = [
 		'page_tag' => [
 			'posts',
-			'comments',
-			'history',
+		
 		],
 		'page_name' => [
 			'Posts',
-			'Comments',
-			'History',
+			
 		],
 	];
 	if($controller->user->pseudo){
 		$menu['page_tag'][] = 'info';
 		$menu['page_name'][] = 'Info';
+		$menu['page_tag'][] = 'comments';
+		$menu['page_name'][] = 'Comments';
+		$menu['page_tag'][] = 'history';
+		$menu['page_name'][] = 'History';	
 	}
 } 
 /**

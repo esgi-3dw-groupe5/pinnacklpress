@@ -7,9 +7,13 @@
     <!-- <section> -->
         <div class="content">
                 <?php foreach ($this->viewData->pages as $key => $value) : ?>
-                <?php echo'<pre style="background:#ffffff">';
-                var_dump($value);
-                echo'</pre>';?>
+
+                    <div class="thumb-article-user">
+                        <h2>  <?php $this->show($value, 'page_name')      ?></h2>
+
+                        <p><?php $this->show($value, 'page_udate')    ?></p>
+                    </div>
+               
                 <?php endforeach; ?>
             </table>
         </div>
