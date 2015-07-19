@@ -58,7 +58,7 @@
                     <label for="db_password"><span>smtp_port : </span></label><input id="smtp_port" class="pinnackl-form" type="number" name="smtp_port">
                 </div>
                 <div class="pinnackl-controls">
-                    <input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_dbConfig" value="Submit">
+                    <input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Submit">
                 </div>
 			</fieldset>
 			</form>
