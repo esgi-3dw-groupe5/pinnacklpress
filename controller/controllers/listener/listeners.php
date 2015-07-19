@@ -96,7 +96,7 @@ $forms->findFormName($optionPage);
 $optionPage = $pageMeta->getPmetaValue()[0];
 
 if ($forms->getFormId()[0] != null) {
-    if ($optionPage == 'inscription' || $optionPage == 'connection') {
+    if ($optionPage == 'inscription' || $optionPage == 'connection' || $optionPage == 'recovery') {
         $form = new Form();
         $arrayForm = $form->getForm($optionPage);
 		$validator = new Validator();

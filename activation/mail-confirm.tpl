@@ -79,6 +79,15 @@
                                                                     <td class="w580"  width="580">
                                                                         <p><h2><?php echo $pseudo; ?></h2></p>
                                                                         <p><?php echo $message;?></p>
+                                                                        
+                                                                        <?php if($form){ ?>
+                                                                            <form method="post" action="">
+                                                                                <input type="password" name="password">
+                                                                                <input type="password" name="confirm-password">
+                                                                                <input type="submit" name="submit" value="Modifier">
+                                                                            </form>
+                                                                        <?php } ?>
+                                                                
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

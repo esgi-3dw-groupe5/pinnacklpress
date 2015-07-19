@@ -67,6 +67,7 @@
 									<option value="none">None</option>
 									<option value="inscription">Inscription</option>
 									<option value="connection">Connection</option>
+									<option value="recovery">Recovery</option>
 								</select>
 							</label>
 							<label><span>List all articles :</span>
