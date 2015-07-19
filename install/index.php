@@ -39,6 +39,34 @@ if(sizeof($_POST) > 0){
     }
     elseif(isset($_POST['pp_adConfig'])){
         $appController->KDM = new SophworkDM(Sophwork::getConfig());
+        
+        $option = $appController->KDM->create('pp_option');
+        $option->setOptionName('smtp_host');
+        $option->setOptionValue($_POST['smtp_host']);
+        $option->save();
+        
+        $option = $appController->KDM->create('pp_option');
+        $option->setOptionName('smtp_auth');
+        $option->setOptionValue($_POST['smtp_auth']);
+        $option->save();
+        
+        if($_POST['smtp_auth']=='true') {
+            $option = $appController->KDM->create('pp_option');
+            $option->setOptionName('smtp_username');
+            $option->setOptionValue($_POST['smtp_username']);
+            $option->save();
+            
+            $option = $appController->KDM->create('pp_option');
+            $option->setOptionName('smtp_password');
+            $option->setOptionValue($_POST['smtp_password']);
+            $option->save();
+            
+            $option = $appController->KDM->create('pp_option');
+            $option->setOptionName('smtp_port');
+            $option->setOptionValue($_POST['smtp_port']);
+            $option->save();
+        }
+        
         $user = $appController->KDM->create('pp_user');
         if($_POST['password'] == $_POST['confirm']){
             $hash_psw = password_hash($_POST['password'], PASSWORD_DEFAULT);

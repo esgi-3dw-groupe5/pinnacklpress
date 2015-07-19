@@ -593,12 +593,16 @@ else if($optionPage == 'themes'){
 }
 
 
-else if($optionPage == 'users'){
-
+else if($optionPage == 'users' || $optionPage == 'info'){
 	if($edit == '') $edit = 0;
 	$KDM = new SophworkDM($app->config);
 	$user = $KDM->create('pp_user');
 	$user->findUserId($edit);
+
+	if($edit == 'info'){
+		$pseudo = $optionPageController[count($optionPageController)-2];
+		$user->findUserPseudo($pseudo);
+	}
 
 	if(!in_array('delete', $optionPageController)){ //handle edit and new case
 		
