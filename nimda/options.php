@@ -618,7 +618,7 @@ else if($optionPage == 'users' || $optionPage == 'info'){
         $user->setUserEmail($_POST['email']);
         $user->setUserPseudo($_POST['pseudo']);
         
-        $user->setUserRole($_POST['role']);
+        if($edit != 'info') $user->setUserRole($_POST['role']);
         $user->setUserUrl($_POST['pseudo']);
         $user->setUserBdate($_POST['bdate']);
         $user->setUserFirstname($_POST['firstname']);
