@@ -42,10 +42,10 @@
                 </div>
                 <div class="pinnackl-control-group">
                     <label>True
-                        <input type="radio" id="smtp_authentification_true" name="smtp_authentification" value="true" onclick="activate();">
+                        <input type="radio" id="smtp_auth_true" name="smtp_auth" required value="true" onclick="activate();">
                     </label>
                     <label>False
-                        <input type="radio" id="smtp_authentification_false" name="smtp_authentification" value="false" onclick="activate();">
+                        <input type="radio" id="smtp_auth_false" name="smtp_auth" value="false" onclick="activate();">
                     </label>
                 </div>
                 <div class="pinnackl-control-group">
