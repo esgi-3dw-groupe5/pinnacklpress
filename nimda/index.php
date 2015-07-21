@@ -65,7 +65,7 @@ elseif (in_array('nimda', $uri)) {
 	$controllerPrefix = null;
 	$menu = [
 		'page_tag' => [
-			'overview',
+			/*'overview',*/
 			'users',
 			'pages',
 			'posts',
@@ -78,7 +78,7 @@ elseif (in_array('nimda', $uri)) {
 			'settings',
 		],
 		'page_name' => [
-			'Overview',
+			/*'Overview',*/
 			'Users',
 			'Pages',
 			'Posts',
@@ -100,7 +100,7 @@ if(in_array('nimda', $uri) && in_array('user', $uri)){
  * Lead by default on overver when connected onn nimda.
  */
 if(is_null($controllerPrefix) && $page == 'index')
-	Sophwork::redirect('nimda/overview');
+	Sophwork::redirect('nimda/pages');
 elseif(!is_null($controllerPrefix) && $controller->article === false){
 	Sophwork::redirect();
 }
