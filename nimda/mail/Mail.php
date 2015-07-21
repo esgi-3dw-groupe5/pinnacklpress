@@ -42,6 +42,10 @@ class Mail {
             $content="<p>Bienvenue sur ".$sitename."</p><p>Pour modifier votre mot de passe, veuillez cliquer sur le lien ci dessous ou copier/coller dans votre navigateur internet</p><p><a href='".$siteUrl."activation/pwd/".urlencode($pseudo)."/".urlencode($key)."/'>".$siteUrl."activation/pwd/".urlencode($pseudo)."/".urlencode($key)."/</a></p>";
             $subject = "".$pseudo.", votre nouveau mot de passe sur ".$sitename."  !";
         }
+        elseif($type=='test') {
+            $content = "<p>".$sitename."</p><p>".$pseudo.", le site est bien configuré. Il est disponible &agrave; cette adresse :</p><p><a href='".$siteUrl."'>".$siteUrl."</a></p>";
+            $subject = "Test de configuration de ".$sitename." !";
+        }
         
         include(__DIR__ . '/../template/mail.tpl');
         $res = ob_get_contents(); // get the contents of the output buffer

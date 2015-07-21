@@ -107,6 +107,7 @@
                            class="pinnackl-input-1-2"
                            value="<?php $this->show('value_8') ?>"
                            placeholder="<?php $this->show('label_8') ?>"<?php echo(($this->get('smtp_auth') == 'false')?'disabled':null) ?>>
+                    <label><input type="checkbox" name="smtp_mailtest" value="true">Mail test</label>
                 </fieldset>
                 <input class="pinnackl-button pinnackl-input-1-2 pinnackl-button-primary" type="submit" name="_overview" value="Submit">
             </form>
