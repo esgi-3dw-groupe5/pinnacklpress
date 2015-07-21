@@ -97,7 +97,8 @@ class Controllers extends AppController{
 			->filterPmetaName('role')
 			->querySelect();
 		Users::startSession();
-		if(!empty($_SESSION['user']['pseudo'])
+		$user = new Users();
+		if(!is_null($user->pseudo)
 			&& ($pageContent->getPmetaValue()[0] == 'connection' || $pageContent->getPmetaValue()[0] == 'inscription'))
 			Sophwork::redirect();
 		/**
@@ -176,15 +177,17 @@ class Controllers extends AppController{
 					}
 				}
 
-				$history = $this->KDM->create('pp_history');
-				$history->findUserId($_SESSION['user']['id']);
+				if(!is_null($user->id)){
+					$history = $this->KDM->create('pp_history');
+					$history->findUserId($user->id);
 
-				if($history->getData()['post_id'] != $page->getPageId()[0]) {
-					$history->setUserId($_SESSION['user']['id']);
-					$history->setPostId($page->getPageId()[0]);
-					$history->setHistoryDate(date("Y-m-d h:i:s"));
-					$history->setHistoryStatus(1);
-					$history->save();
+					if($history->getData()['post_id'] != $page->getPageId()[0]) {
+						$history->setUserId($user->id);
+						$history->setPostId($page->getPageId()[0]);
+						$history->setHistoryDate(date("Y-m-d h:i:s"));
+						$history->setHistoryStatus(1);
+						$history->save();
+					}
 				}
 
             	$html = new htmlPage($data);
