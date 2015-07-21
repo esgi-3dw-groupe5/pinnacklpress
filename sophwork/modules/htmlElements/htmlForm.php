@@ -9,7 +9,7 @@ class htmlForm extends htmlElement{
 	protected $formName;
 	protected $layout;
 	
-	public function __construct($data, $formName,$formAction){
+	public function __construct($data, $formName, $formAction){
 		$this->data = $data;
 		$this->formName = $formName; 
 		$this->formAction = $formAction; 
