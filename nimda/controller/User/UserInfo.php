@@ -75,18 +75,22 @@ class UserInfo extends Controller{
         $user = $KDM->create('pp_user');
    
         $user->find();
-        $this->setViewData('users', $user->getData(), 'user_id');
-        $this->setViewData('users', $user->getData(), 'user_pseudo');
-        $this->setViewData('users', $user->getData(), 'user_email');
-        $this->setViewData('users', $user->getData(), 'user_role');
-        $this->setViewData('users', $user->getData(), 'user_bdate');
-        $this->setViewData('users', $user->getData(), 'user_gender');
-        $this->setViewData('users', $user->getData(), 'user_firstname');
-        $this->setViewData('users', $user->getData(), 'user_name');
+        
+        $d = date_create($user->getBdate()[0]);
+        $perma = date_format($d,"Y-m-d") ;
 
+        $user->setUserBdate($perma);
+
+        $this->setViewData('user_id', $user->getUserId()[0]);
+        $this->setViewData('user_pseudo', $user->getUserPseudo()[0]);
+        $this->setViewData('user_email', $user->getUserEmail()[0]);
+        $this->setViewData('user_role', $user->getUserRole()[0]);
+        $this->setViewData('user_bdate', $user->getUserBdate());
+        $this->setViewData('user_gender', $user->getUserGender()[0]);
+        $this->setViewData('user_firstname', $user->getUserFirstname()[0]);
+        $this->setViewData('user_name', $user->getUserName()[0]);
 
         $this->callView('user/' . $own . $page, 'nimda/');
-            
         
     }
 }
