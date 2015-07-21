@@ -21,15 +21,15 @@
 			<fieldset>
 		  	<legend><h3>3rd Step : Setup Pinnackl Press options</h3></legend>
 				<div class="pinnackl-control-group">
-					<label for="sitename"><span>Site name : </span></label>
+					<label for="sitename"><span>Site Name : </span></label>
 					<input id="sitename" class="pinnackl-input-1-4" type="text" name="sitename" placeholder="Site name" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="sitedescription"><span>Site description : </span></label>
+					<label for="sitedescription"><span>Site Description : </span></label>
 					<input id="sitedescription" class="pinnackl-input-1-4" type="text" name="sitedescription" placeholder="Site description" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="siteurl"><span>Site url : </span></label>
+					<label for="siteurl"><span>Site URL : </span></label>
 					<input id="siteurl" class="pinnackl-input-1-4" type="text" name="siteurl" value="<?php $this->show('siteUrl')?>" placeholder="<?php $this->show('siteUrl')?>">
 				</div>
 				<div class="pinnackl-controls">

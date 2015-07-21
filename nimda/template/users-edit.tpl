@@ -42,12 +42,12 @@
                         <label>Role</label>
                         <select id="user_role" class="pinnackl-input-1-2" style="color: gray;" name="role" required>
                             <option value="superadmin">Superadmin</option>
-                            <option value="administrator">administrator</option>
-                            <option value="moderator">moderator</option>
-                            <option value="editor">editor</option>
-                            <option value="author">author</option>
-                            <option value="member">member</option>
-                            <option value="visitor">visitor</option>
+                            <option value="administrator">Administrator</option>
+                            <option value="moderator">Moderator</option>
+                            <option value="editor">Editor</option>
+                            <option value="author">Author</option>
+                            <option value="member">Member</option>
+                            <option value="visitor">Visitor</option>
                         </select>  
                     </div>  
                  </fieldset>                

@@ -31,7 +31,7 @@ class Rule{
 				if($value != $value2){
 					$this->msg[] = "Les mots de passe sont différents";
 				}
-				$this->msg[] = "Le mot de passe ne respecte pas les caractères requis";
+				$this->msg[] = "Le mot de passe doit comporter 8 à 20 caractères, avec au moins un chiffre";
 				return false;
 			}
 		if($value != $value2){

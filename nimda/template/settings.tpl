@@ -75,7 +75,7 @@
                 </fieldset>
                 <fieldset class="pinnackl-form-aligned">
                     <div class="pinnackl-control-group">
-                        <label>SMTP authentification :</label> 
+                        <label>SMTP Authentification :</label> 
                     </div>
                     <div class="pinnackl-control-group">
                         <label>True

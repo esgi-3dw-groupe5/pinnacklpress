@@ -39,15 +39,15 @@
                         <input type="date" name="bdate" class="pinnackl-input-1-2" >
                     </div>
                     <div class="pinnackl-control-group">
-                        <label>Rôle</label>
+                        <label>Role</label>
                         <select id="user_role" class="pinnackl-input-1-2" style="color: gray;" name="role" required>
                             <option value="superadmin">Superadmin</option>
-                            <option value="administrator">administrator</option>
-                            <option value="moderator">moderator</option>
-                            <option value="editor">editor</option>
-                            <option value="author">author</option>
-                            <option value="member">member</option>
-                            <option value="visitor">visitor</option>
+                            <option value="administrator">Administrator</option>
+                            <option value="moderator">Moderator</option>
+                            <option value="editor">Editor</option>
+                            <option value="author">Author</option>
+                            <option value="member">Member</option>
+                            <option value="visitor">Visitor</option>
                         </select>  
                     </div>  
                  </fieldset>                
@@ -57,7 +57,7 @@
                 <input type="password" name="password" class="pinnackl-input-1-2" required>
             </div>
             <div class="pinnackl-control-group">
-                <label>Confirm passwd</label>
+                <label>Confirm password</label>
                 <input type="password" name="confirm" class="pinnackl-input-1-2" required>
             </div>
             <div class="pinnackl-controls-group" style="margin-top:30px;text-align:center">

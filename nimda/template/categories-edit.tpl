@@ -15,25 +15,25 @@
 							<label><span>Post Connected As :</span>
 								<select class="pinnackl-input-1" name="page_connectedAs" >
 									<option value="superadmin">
-										superadmin
+										Superadmin
 									</option>
 									<option value="administrator">
-										administrator
+										Administrator
 									</option>
 									<option value="moderator">
-										moderator
+										Moderator
 									</option>
 									<option value="editor">
 										editor
 									</option>
 									<option value="author">
-										author
+										Author
 									</option>
 									<option value="member">
-										member
+										Member
 									</option>
 									<option selected value="visitor">
-										visitor
+										Visitor
 									</option>
 								</select>
 							</label>

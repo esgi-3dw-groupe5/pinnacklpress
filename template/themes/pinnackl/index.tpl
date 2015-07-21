@@ -70,30 +70,6 @@
 					</div>
 					<div class="line content">
 						<div class="grid-4_4">
-							<form class="pinnackl-form pure-form-aligned">
-								<fieldset>
-									<div class="pure-control-group">
-            							<label for="">Username</label>
-										<input id="" type="range" min="0" max="10" step="1" name="">
-									</div>
-									<div class="pure-control-group">
-            							<label for="">Username</label>
-										<input id="" type="range" min="0" max="10" step="1" name="">
-									</div>
-									<div class="pure-control-group">
-            							<label for="">Username</label>
-										<input id="" type="range" min="0" max="10" step="1" name="">
-									</div>
-									<div class="pure-control-group">
-            							<label for="">Username</label>
-										<input id="" type="range" min="0" max="10" step="1" name="">
-									</div>
-									<div class="pure-control-group">
-            							<label for="">Username</label>
-										<input id="" type="range" min="0" max="10" step="1" name="">
-									</div>
-								</fieldset>
-							</form>
 							<?php if (empty($_SESSION['user']['pseudo'])
 								&& ((isset($_GET['p']) && $_GET['p'] != 'connection') || !isset($_GET['p']))) : ?>
 								<?php
@@ -102,14 +78,14 @@
 									$htmlForm = new \sophwork\modules\htmlElements\htmlForm($formData, 'connection', $this->get('siteurl').'controller/controllers/listener/listeners.php');
 									$htmlForm->createForm()->output();
 								?>
-                            <a href="<?php $this->show('siteurl')?>recovery">Forgot your password?</a>
+                            <a href="<?php $this->show('siteurl')?>recovery">Mot de passe oublié ?</a>
 							<?php elseif (!empty($_SESSION['user']['pseudo'])) : ?>
 								<h4>Bienvenue :
 									<a class="pinnackl-username"
 										href="<?php $this->e(sophwork\core\Sophwork::getUrl('user/'.$_SESSION['user']['url']), 'L'); ?>">
 										<?php $this->e($_SESSION['user']['pseudo']) ?>
 									</a>
-                                    <a class="pinnackl-logout" href="<?php $this->show('siteurl')?>?act=logout">Déconnexion</a>
+                                    <p><a class="pinnackl-logout" href="<?php $this->show('siteurl')?>?act=logout">Déconnexion</a></p>
 								</h4>
 							<?php endif; ?>
 						</div>
