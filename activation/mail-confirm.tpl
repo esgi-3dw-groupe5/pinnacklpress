@@ -82,8 +82,8 @@
                                                                         
                                                                         <?php if($form){ ?>
                                                                             <form method="post" action="">
-                                                                                <input type="password" name="password">
-                                                                                <input type="password" name="confirm-password">
+                                                                                <input type="password" name="password" placeholder="Nouveau Mot de passe">
+                                                                                <input type="password" name="confirm-password" placeholder="Confirmer mot de passe">
                                                                                 <input type="submit" name="submit" value="Modifier">
                                                                             </form>
                                                                         <?php } ?>

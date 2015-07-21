@@ -362,7 +362,7 @@ if(sizeof($_POST) > 0){
 
         $form = $appController->KDM->create('pp_form');
         $form->setFormName('connection');
-        $form->setFormAction('');
+        $form->setFormAction($_POST['siteurl'].'controller/controllers/listener/listeners.php');
         $form->setFormMethod('post');
         $form->setFormTarget('');
         $form->setFormEnctype('');
@@ -370,7 +370,7 @@ if(sizeof($_POST) > 0){
 
         $form = $appController->KDM->create('pp_form');
         $form->setFormName('inscription');
-        $form->setFormAction('');
+        $form->setFormAction($_POST['siteurl'].'controller/controllers/listener/listeners.php');
         $form->setFormMethod('post');
         $form->setFormTarget('');
         $form->setFormEnctype('');
@@ -378,7 +378,7 @@ if(sizeof($_POST) > 0){
         
         $form = $appController->KDM->create('pp_form');
         $form->setFormName('recovery');
-        $form->setFormAction('');
+        $form->setFormAction($_POST['siteurl'].'controller/controllers/listener/listeners.php');
         $form->setFormMethod('post');
         $form->setFormTarget('');
         $form->setFormEnctype('');
