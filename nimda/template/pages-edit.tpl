@@ -120,37 +120,37 @@
 									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='superadmin')
 										?'selected' :null)?>
 										value="superadmin">
-										superadmin
+										Superadmin
 									</option>
 									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='administrator')
 										?'selected':null)?>
 										value="administrator">
-										administrator
+										Administrator
 									</option>
 									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='moderator')
 										?'selected':null)?>
 										value="moderator">
-										moderator
+										Moderator
 									</option>
 									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='editor')
 										?'selected':null)?>
 										value="editor">
-										editor
+										Editor
 									</option>
 									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='author')
 										?'selected':null)?>
 										value="author">
-										author
+										Author
 									</option>
 									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='member')
 										?'selected':null)?>
 										value="member">
-										member
+										Member
 									</option>
 									<option <?php echo(($this->get($this->viewData, 'page_connectedAs')=='visitor')
 										?'selected': null)?>
 										value="visitor">
-										visitor
+										Visitor
 									</option>
 								</select>
 							</label>
@@ -187,7 +187,7 @@
 									</option>
 								</select>
 							</label>
-							<label><span>Page role :</span>
+							<label><span>Page Role :</span>
 								<select class="pinnackl-input-1-2" name="page_role">
 									<option value="none" <?= (($this->get($this->viewData, 'page_role') == 'none')
 										?'selected': null)?>>

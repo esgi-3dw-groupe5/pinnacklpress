@@ -10,6 +10,7 @@ use sophwork\modules\kdm\SophworkDM;
 use sophwork\modules\kdm\SophworkDMEntities;
 
 use controller\utils\Users;
+use nimda\mail\Mail;
 
 $_POST['pp-referer'] = $_SERVER['HTTP_REFERER'];
 
@@ -582,6 +583,13 @@ else if($optionPage == 'settings'){
 				$$value->setOptionValue($_POST['permalink-i']);
 			$$value->save();
 	}
+    if($_POST['smtp_mailtest']){
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+        $mail = new Mail();
+        $mail->sendMail($_SESSION['user']['pseudo'],$_SESSION['user']['email'],'test',null);
+    }
+        
 }
 
 else if($optionPage == 'themes'){

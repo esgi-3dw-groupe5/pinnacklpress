@@ -20,28 +20,28 @@
 			<h1>Pinnackl Press</h1>
 			<form  class="pinnackl-form pinnackl-form-aligned" action="" method="post">
 			<fieldset>
-		  	<legend><h3>2nd Step : Create 1st administrator</h3></legend>
+		  	<legend><h3>2nd Step : Create Superadministrator and SMTP</h3></legend>
 				<div class="pinnackl-control-group">
-					<label for="pp_login"><span>Admin login : </span></label><input id="pp_login" class="pinnackl-form" type="text" name="pseudo" required>
+					<label for="pp_login"><span>Admin Login : </span></label><input id="pp_login" class="pinnackl-form" type="text" name="pseudo" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="pp_email"><span>Admin email : </span></label><input id="pp_email" class="pinnackl-form" type="email" name="email" required>
+					<label for="pp_email"><span>Admin Email : </span></label><input id="pp_email" class="pinnackl-form" type="email" name="email" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="pp_password"><span>Admin password : </span></label><input id="pp_password" class="pinnackl-form" type="password" name="password" required>
+					<label for="pp_password"><span>Admin Password : </span></label><input id="pp_password" class="pinnackl-form" type="password" name="password" required>
 				</div>
 				<div class="pinnackl-control-group">
-					<label for="pp_confirm"><span>Password confirm : </span></label><input id="pp_confirm" class="pinnackl-form" type="password" name="confirm" required>
+					<label for="pp_confirm"><span>Password Confirm : </span></label><input id="pp_confirm" class="pinnackl-form" type="password" name="confirm" required>
 				</div>
                 <legend></legend>
                 <div class="pinnackl-control-group">
-                    <label for="smtp_email"><span>smtp_email : </span></label><input id="smtp_email" class="pinnackl-form" type="email" name="smtp_email" required>
+                    <label for="smtp_email"><span>SMTP Email : </span></label><input id="smtp_email" class="pinnackl-form" type="email" name="smtp_email" required>
                 </div>
                 <div class="pinnackl-control-group">
-                    <label for="smtp_host"><span>smtp_host : </span></label><input id="smtp_host" class="pinnackl-form" type="text" name="smtp_host" required>
+                    <label for="smtp_host"><span>SMTP Host : </span></label><input id="smtp_host" class="pinnackl-form" type="text" name="smtp_host" required>
                 </div>
                 <div class="pinnackl-control-group">
-                    <label>smtp_authentification : </label> 
+                    <label>SMTP Authentification : </label> 
                 </div>
                 <div class="pinnackl-control-group">
                     <label>True
@@ -52,13 +52,13 @@
                     </label>
                 </div>
                 <div class="pinnackl-control-group">
-                    <label for="smtp_username"><span>smtp_username : </span></label><input id="smtp_username" class="pinnackl-form" type="text" name="smtp_username">
+                    <label for="smtp_username"><span>SMTP Username : </span></label><input id="smtp_username" class="pinnackl-form" type="text" name="smtp_username">
                 </div>
                 <div class="pinnackl-control-group">
-                    <label for="smtp_password"><span>smtp_password : </span></label><input id="smtp_password" class="pinnackl-form" type="text" name="smtp_password">
+                    <label for="smtp_password"><span>SMTP Password : </span></label><input id="smtp_password" class="pinnackl-form" type="text" name="smtp_password">
                 </div>
                 <div class="pinnackl-control-group">
-                    <label for="smtp_port"><span>smtp_port : </span></label><input id="smtp_port" class="pinnackl-form" type="number" name="smtp_port">
+                    <label for="smtp_port"><span>SMTP Port : </span></label><input id="smtp_port" class="pinnackl-form" type="number" name="smtp_port">
                 </div>
                 <div class="pinnackl-controls">
                     <input class="pinnackl-button pinnackl-button-primary" type="submit" name="pp_adConfig" value="Submit">

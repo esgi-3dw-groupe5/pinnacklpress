@@ -106,11 +106,11 @@ if(!empty($action)&&(!empty($pseudo))&&(!empty($key))) {
                             $user->setUserKey($userkey);
                             $user->save();
                             
-                            $message = "Votre mot de passe a bien été modifié !";
+                            $message = "Votre mot de passe a bien &eacute;t&eacute; modifi&eacute; !";
                             $form = false;
                         }
                         else{
-                            $message = "Erreur dans les mots de passe";
+                            $message = "Les mots de passe doivent &ecirc;tre identiques, comporter 8 &agrave; 20 caract&egrave;res avec au moins un chiffre";
                             $form = true;
                         }
                     }

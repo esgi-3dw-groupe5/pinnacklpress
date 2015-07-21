@@ -17,25 +17,25 @@
 							<label><span>Page Connected As :</span>
 								<select class="pinnackl-input-1-2" name="page_connectedAs" >
 									<option value="superadmin">
-										superadmin
+										Superadmin
 									</option>
 									<option value="administrator">
-										administrator
+										Administrator
 									</option>
 									<option value="moderator">
-										moderator
+										Moderator
 									</option>
 									<option value="editor">
-										editor
+										Editor
 									</option>
 									<option value="author">
-										author
+										Author
 									</option>
 									<option value="member">
-										member
+										Member
 									</option>
 									<option selected value="visitor">
-										visitor
+										Visitor
 									</option>
 								</select>
 							</label>
@@ -62,7 +62,7 @@
 									</option>
 								</select>
 							</label>
-							<label><span>Page role :</span>
+							<label><span>Page Role :</span>
 								<select class="pinnackl-input-1-2" name="page_role">
 									<option value="none">None</option>
 									<option value="inscription">Inscription</option>
@@ -70,7 +70,7 @@
 									<option value="recovery">Recovery</option>
 								</select>
 							</label>
-							<label><span>List all articles :</span>
+							<label><span>List All Articles :</span>
 								<input type="checkbox" name="page_articles" value="page_articles" style="float:none;margin-top:0px">
 							</label>
 							<div style="text-align:right;">

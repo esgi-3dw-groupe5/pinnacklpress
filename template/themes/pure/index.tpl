@@ -47,7 +47,8 @@
 							<nav class="pinnackl-menu pinnackl-menu-horizontal">
 								<ul class="pinnackl-menu-list">
 									<li class="pinnackl-menu-item">
-										<a href="" class="pinnackl-menu-link">menu</a>
+                                        <a href="<?php $this->show('siteurl');?>"
+                                           class="pinnackl-menu-link logo"><?php $this->show('sitename'); ?></a>
 									</li>
 								</ul>
 							</nav>
@@ -62,7 +63,7 @@
                             $htmlForm = new \sophwork\modules\htmlElements\htmlForm($formData, 'connection', $this->get('siteurl').'controller/controllers/listener/listeners.php');
                             $htmlForm->createForm()->output();
                         ?>
-                        <a href="<?php $this->show('siteurl')?>recovery">Forgot your password?</a>
+                        <a href="<?php $this->show('siteurl')?>recovery">Mot de passe oublié ?</a>
                         <?php elseif (!empty($_SESSION['user']['pseudo'])) : ?>
                         <h4>Bienvenue :
                             <a class="pinnackl-username"

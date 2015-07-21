@@ -25,13 +25,13 @@ class Rule{
 	}
 
 	public function isPassword($value,$value2){
-		if (!preg_match("/.*^(?=.{8,20})(?=.*[a-z])(?=.*[0-9])(?=.*\W).*$/",$value) 
+		if (!preg_match("/.*^(?=.{8,20})(?=.*[a-z])(?=.*[0-9]).*$/",$value) 
 			|| strlen($value)<8
 			|| strlen($value)>20){
 				if($value != $value2){
 					$this->msg[] = "Les mots de passe sont différents";
 				}
-				$this->msg[] = "Le mot de passe ne respecte pas les caractères requis";
+				$this->msg[] = "Le mot de passe doit comporter 8 à 20 caractères, avec au moins un chiffre";
 				return false;
 			}
 		if($value != $value2){
@@ -55,6 +55,11 @@ class Rule{
 				return false;
 			}	
 		}
+        $date = date_diff(date_create($value), date_create('today'))->y;
+        if($check==1 && $date<7){
+            $this->msg[] = "Vous n'avez pas encore l'âge de raison";
+            return false;
+        }
 		return true;
 	}
 }
