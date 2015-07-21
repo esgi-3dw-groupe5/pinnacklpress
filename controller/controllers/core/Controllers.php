@@ -189,8 +189,7 @@ class Controllers extends AppController{
 						$history->save();
 					}
 					$html = new htmlPage($data);
-
-            		if($page->getPageStatus()[0] == 'enable'){
+            		if($page->getPageCommentStatus()[0] == 'enable'){
             			$layoutComment = $html->createComment();
             			$this->setRawData('comment', $layoutComment);
             		}    
