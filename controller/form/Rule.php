@@ -25,7 +25,7 @@ class Rule{
 	}
 
 	public function isPassword($value,$value2){
-		if (!preg_match("/.*^(?=.{8,20})(?=.*[a-z])(?=.*[0-9])(?=.*\W).*$/",$value) 
+		if (!preg_match("/.*^(?=.{8,20})(?=.*[a-z])(?=.*[0-9]).*$/",$value) 
 			|| strlen($value)<8
 			|| strlen($value)>20){
 				if($value != $value2){
