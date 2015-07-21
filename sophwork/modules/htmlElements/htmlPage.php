@@ -34,7 +34,7 @@ class htmlPage extends htmlElement{
 						elseif($val->gridContent != 'null' && $val->gridModule == '[form]'){
 							$form = new Form;
 							$form = $form->getForm($val->gridContent);
-							$html = new HtmlForm($form,$val->gridContent);
+							$html = new HtmlForm($form,$val->gridContent,Sophwork::getUrl().'controller/controllers/listener/listeners.php');
 							$layout = $html->createForm();
 							$grid->set('text',$layout->attributes['text']);
 						}
