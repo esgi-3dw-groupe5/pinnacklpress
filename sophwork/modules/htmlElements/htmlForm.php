@@ -9,9 +9,10 @@ class htmlForm extends htmlElement{
 	protected $formName;
 	protected $layout;
 	
-	public function __construct($data, $formName){
+	public function __construct($data, $formName,$formAction){
 		$this->data = $data;
 		$this->formName = $formName; 
+		$this->formAction = $formAction; 
 	}
 
 	public function createForm(){
@@ -21,7 +22,7 @@ class htmlForm extends htmlElement{
 
 		$form->set('name',$this->formName);
 		$form->set('method','POST');
-		$form->set('action','controller/controllers/listener/listeners.php');
+		$form->set('action',$this->formAction);
 		$form->set('class','pinnackl-form pinnackl-form-stacked');
 
 		$errorBoxVisible = 'unvisible';
