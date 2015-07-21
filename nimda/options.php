@@ -486,7 +486,7 @@ elseif($optionPage == 'forms'){
 
 		//INSERT INTO FORM TABLE
 		$form->setFormName($_POST['form-name']);
-		$form->setFormAction('');
+		$form->setFormAction(Sophwork::getUrl().'controller/controllers/listener/listeners.php');
 		$form->setFormMethod('post');
 		$form->setFormTarget('');
 		$form->setFormEnctype('');
