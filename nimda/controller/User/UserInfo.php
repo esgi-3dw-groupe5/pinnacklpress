@@ -87,8 +87,8 @@ class UserInfo extends Controller{
         $this->setViewData('user_role', $user->getUserRole()[0]);
         $this->setViewData('user_bdate', $user->getUserBdate());
         $this->setViewData('user_gender', $user->getUserGender()[0]);
-        $this->setViewData('user_firstname', $user->getUserFirstname()[0]);
-        $this->setViewData('user_name', $user->getUserName()[0]);
+        $this->setViewData('user_firstname', ''.$user->getUserFirstname()[0]);
+        $this->setViewData('user_name', ''.$user->getUserName()[0]);
 
         $this->callView('user/' . $own . $page, 'nimda/');
         

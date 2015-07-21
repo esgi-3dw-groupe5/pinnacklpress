@@ -11,6 +11,7 @@ use sophwork\core\Sophwork;
 use sophwork\app\app\SophworkApp;
 use nimda\controller\util\PluginHelper;
 
+use sophwork\modules\handlers\requests\Requests;
 use nimda\controller\access\Controller;
 
 use controller\utils\Users;
@@ -46,11 +47,12 @@ if (in_array('user', $uri)) {
 			
 		],
 	];
-	if($controller->user->pseudo){
+	if(strtolower($controller->user->pseudo) == $controller->page){
 		$menu['page_tag'][] = 'comments';
 		$menu['page_name'][] = 'Comments';
+
 		$menu['page_tag'][] = 'history';
-		$menu['page_name'][] = 'History';	
+		$menu['page_name'][] = 'History';
 	}
 } 
 /**
@@ -92,6 +94,7 @@ elseif (in_array('nimda', $uri)) {
 		],
 	];
 }
+
 if(in_array('nimda', $uri) && in_array('user', $uri)){
 	Sophwork::redirect();
 }
@@ -111,6 +114,23 @@ else{
 	if(!is_null($controllerPrefix) && $controller->article == "")
 		Sophwork::redirect('user/' . $page . '/posts');
 }
+
+if(!in_array('nimda', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])){
+	$app = $controller;
+	$headers = [
+		"HTTP/1.0 404 Not Found",
+	];
+	$requests = new Requests($headers, function() use ($app){
+		$app->setViewData('siteurl', Sophwork::getUrl('nimda/'));
+		$app->setViewData('errorNb', '404');
+		$app->setViewData('errorMsg','Not Found');
+		$app->setViewData('url', isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:Sophwork::geturl());
+		$app->appView->renderView('error', 'nimda/');
+		exit;
+	});
+    exit;
+}
+
 
 /**
  * @var $page = $controller->article

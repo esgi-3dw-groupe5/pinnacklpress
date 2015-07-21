@@ -41,13 +41,13 @@
                     <div class="pinnackl-control-group">
                         <label>Role</label>
                         <select id="user_role" class="pinnackl-input-1-2" style="color: gray;" name="role" required>
-                            <option value="superadmin">Superadmin</option>
-                            <option value="administrator">administrator</option>
-                            <option value="moderator">moderator</option>
-                            <option value="editor">editor</option>
-                            <option value="author">author</option>
-                            <option value="member">member</option>
-                            <option value="visitor">visitor</option>
+                            <option value="superadmin"<?php echo(($this->get($this->viewData, 'user_role')=='superadmin')?'selected' :null)?>>Superadmin</option>
+                            <option value="administrator" <?php echo(($this->get($this->viewData, 'user_role')=='administrator')?'selected' :null)?>>administrator</option>
+                            <option value="moderator"<?php echo(($this->get($this->viewData, 'user_role')=='moderator')?'selected' :null)?>>moderator</option>
+                            <option value="editor"<?php echo(($this->get($this->viewData, 'user_role')=='editor')?'selected' :null)?>>editor</option>
+                            <option value="author"<?php echo(($this->get($this->viewData, 'user_role')=='author')?'selected' :null)?>>author</option>
+                            <option value="member"<?php echo(($this->get($this->viewData, 'user_role')=='member')?'selected' :null)?>>member</option>
+                            <option value="visitor"<?php echo(($this->get($this->viewData, 'user_role')=='visitor')?'selected' :null)?>>visitor</option>
                         </select>  
                     </div>  
                  </fieldset>                

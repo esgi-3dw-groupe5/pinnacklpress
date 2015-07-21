@@ -59,6 +59,9 @@ class UserPosts extends Controller{
 		
 		Users::startSession();
 		$user = new Users();
+		// User owener of the current page
+		$u = $KDM->create('pp_user');
+		$u->findUserPseudo($this->page);
 		
 		$own = '';
 		if(strtolower($user->url) == $userPage)
@@ -92,6 +95,10 @@ class UserPosts extends Controller{
 			$this->callView('user/' . $own . $page, 'nimda/');
 		}
 		elseif($elses[0] == 'edit'){
+			if(!$this->checkPermission('author', false) || !(strtolower($user->pseudo) == $this->page)){
+				Sophwork::redirect();
+			}
+
 			$pages->findPageId($elses[1]);
 			$this->setViewData('page_name', ''.$pages->getPageName()[0]);
 			$this->setViewData('page_order', ''.$pages->getPageOrder()[0]);
@@ -133,6 +140,13 @@ class UserPosts extends Controller{
 			$this->callView('user/' . $own . $page .'-edit', 'nimda/');
 		}
 		elseif($elses[0] == 'new'){
+			if(!$this->checkPermission('author', false) || !(strtolower($user->pseudo) == $this->page)){
+				Sophwork::redirect();
+			}
+			elseif($this->checkPermission('author', false)){
+				Sophwork::redirect();
+			}
+
 			$categories->findPageType('category');
 			$this->setViewData('category', $categories->getData(), 'page_id');
 			$this->setViewData('category', $categories->getData(), 'page_name');
@@ -140,22 +154,32 @@ class UserPosts extends Controller{
 			$this->callView('user/' . $own . $page .'-new', 'nimda/');
 		}
 		else{
-			$pages->findPageType('post');
-			$pages->getPageId();
-			var_dump($pages->getPageId()[0]);
-			$contents
-				->filterPageId($pages->getPageId()[0])
+			$pages
+				->filterPageType('post')
 				->__and()
-				->filterPmetaName('content')
+				->filterPageAuthor($u->getUserId()[0])
 				->querySelect();
 
-			$key = 0;
-			$jsonBuilder = json_decode($contents->getPmetaValue()[0]);
-			$contentSys = $jsonBuilder[$key]->line;
-			$postContent = $contentSys[0];
+			if(strtolower($user->pseudo) != $this->page){
+				$contents
+					->filterPageId($pages->getPageId()[0])
+					->__and()
+					->filterPmetaName('content')
+					->querySelect();
 
-			$this->setViewData('page_content', ''.$postContent->gridContent);
+				$key = 0;
+				$jsonBuilder = json_decode($contents->getPmetaValue()[0]);
+				$contentSys = $jsonBuilder[$key]->line;
+				$postContent = $contentSys[0];
 
+				$this->setViewData('page_content', ''.$postContent->gridContent);
+			}
+
+			if($this->checkPermission('author', false))
+				$this->setViewData('allow', 'true');
+			else
+				$this->setViewData('allow', 'false');
+			
 			$categories->findPageType('category');
 			$this->setViewData('category', $categories->getData(), 'page_id');
 			$this->setViewData('category', $categories->getData(), 'page_name');			

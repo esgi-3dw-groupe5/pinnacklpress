@@ -47,7 +47,9 @@
         <span></span>
     </a>
     <div class="pinnackl-header-menu">
-        <span>Welcome, <b><?php $this->show('userPseudo') ?></b></span>
+        <?php if(!empty($this->get('userPseudo'))) : ?>
+            <span>Welcome, <b><?php $this->show('userPseudo') ?></b></span>
+        <?php endif; ?>
         <a class="pinnackl-button pinnackl-button-white btn-70" href="<?php $this->show('siteurl')?>">
             Back to the website
         </a>

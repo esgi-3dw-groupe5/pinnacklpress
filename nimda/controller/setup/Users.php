@@ -72,7 +72,6 @@ class Users extends Controller{
             $this->callView($page, 'nimda/');
         }
         elseif($action == 'edit'){
-
             $user->findUserId($edit);
 
             $this->setViewData('user_pseudo', ''.$user->getUserPseudo()[0]);

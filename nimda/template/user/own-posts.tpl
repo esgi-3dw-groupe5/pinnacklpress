@@ -7,8 +7,10 @@
     <!-- <section> -->
         <div class="content">
             <div>
+            <?php if($this->get('allow') == 'true') : ?>
                 <a class="pinnackl-button pinnackl-button-primary"
                     href="<?php $this->show('siteurl')?>user/<?php $this->show('userPage')?>/posts/new/">Add New&nbsp;&#10010;</a>
+            <?php endif; ?>
             </div>
             <table class="table">
                 <thead>

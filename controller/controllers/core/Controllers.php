@@ -193,7 +193,7 @@ class Controllers extends AppController{
             		if($page->getPageStatus()[0] == 'enable'){
             			$layoutComment = $html->createComment();
             			$this->setRawData('comment', $layoutComment);
-            		}    
+            		}   
 				}		
             }
 			elseif($pageType == 'category'){

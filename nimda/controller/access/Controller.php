@@ -32,7 +32,7 @@ class Controller extends AppController{
         $this->$param = $value;
     }
     
-    public function checkPermission($permission){
+    public function checkPermission($permission, $grant = true){
         $roles = [
             'superadmin' => [
                 'superadmin',
@@ -79,7 +79,16 @@ class Controller extends AppController{
             ],
         ];
 
-        $this->grantAsAdmin($permission, $roles);
+        if($grant)
+            $this->grantAsAdmin($permission, $roles);
+        else {
+            if (session_status() == PHP_SESSION_NONE)
+                session_start();
+            if(!in_array($permission, $roles[$_SESSION['user']['role']])){
+                return false;
+            }
+            return true;
+        }
     }
 
     public function grantAsAdmin($permission, $roles){
