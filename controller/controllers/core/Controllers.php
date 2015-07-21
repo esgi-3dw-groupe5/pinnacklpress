@@ -188,13 +188,13 @@ class Controllers extends AppController{
 						$history->setHistoryStatus(1);
 						$history->save();
 					}
-				}
+					$html = new htmlPage($data);
 
-            	$html = new htmlPage($data);
-            	if($page->getData()['page_comment_status'][0] == 'enable'){
-            		$layoutComment = $html->createComment();
-            		$this->setRawData('comment', $layoutComment);
-            	}    	
+            		if($page->getPageStatus()[0] == 'enable'){
+            			$layoutComment = $html->createComment();
+            			$this->setRawData('comment', $layoutComment);
+            		}    
+				}		
             }
 			elseif($pageType == 'category'){
 				$idCateg = $page->getPageId()[0];

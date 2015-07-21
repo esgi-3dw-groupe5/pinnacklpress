@@ -235,14 +235,14 @@ class htmlPage extends htmlElement{
 
 						$footer->inject($meta);
 
-						if(isset($_SESSION['user']) && $val->gridActive == 1){
-							$meta = new htmlElement('div');
-							$meta->set('class', 'grid-1_4 report');
-							$meta->set('text', 'signaler');
-							$meta->set('id', $val->gridId);
-	
-							$footer->inject($meta);
-						}
+
+						$meta = new htmlElement('div');
+						$meta->set('class', 'grid-1_4 report');
+						$meta->set('text', 'signaler');
+						$meta->set('id', $val->gridId);
+
+						$footer->inject($meta);
+						
 
 						$grid->inject($footer);
 
