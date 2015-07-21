@@ -55,6 +55,11 @@ class Rule{
 				return false;
 			}	
 		}
+        $date = date_diff(date_create($value), date_create('today'))->y;
+        if($check==1 && $date<7){
+            $this->msg[] = "Vous n'avez pas encore l'âge de raison";
+            return false;
+        }
 		return true;
 	}
 }
