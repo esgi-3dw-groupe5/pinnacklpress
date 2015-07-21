@@ -54,15 +54,25 @@
 						</div>
 					</div>
 					<div class="line content">
-						<div class="grid-4_4">
-							side bar contents<br>
-                            <?php 
-                            if(!empty($_SESSION['user']['pseudo']) ){
-                                print("<div>Bienvenue ".$_SESSION['user']['pseudo']." ");
-                                printf("<a href='http://127.0.0.1/pinnacklpress/?act=logout'>Déconnexion</a></div>");
-                            } 
-                            ?>
-						</div>
+                        <?php if (empty($_SESSION['user']['pseudo'])
+                            && ((isset($_GET['p']) && $_GET['p'] != 'connection') || !isset($_GET['p']))) : ?>
+                                                    <?php
+                            $form = new \controller\form\Form();
+                            $formData = $form->getForm('connection');
+                            $htmlForm = new \sophwork\modules\htmlElements\htmlForm($formData, 'connection', $this->get('siteurl').'controller/controllers/listener/listeners.php');
+                            $htmlForm->createForm()->output();
+                        ?>
+                        <a href="<?php $this->show('siteurl')?>recovery">Forgot your password?</a>
+                        <?php elseif (!empty($_SESSION['user']['pseudo'])) : ?>
+                        <h4>Bienvenue :
+                            <a class="pinnackl-username"
+                               href="<?php $this->e(sophwork\core\Sophwork::getUrl('user/'.$_SESSION['user']['url']), 'L'); ?>">
+                                <?php $this->e($_SESSION['user']['pseudo']) ?>
+                            </a>
+                                
+                            <p><a class="pinnackl-logout" href="<?php $this->show('siteurl')?>?act=logout">Déconnexion</a></p>
+                        </h4>
+                        <?php endif; ?>
 					</div>
 				</div>
 				<?php endif; ?>
