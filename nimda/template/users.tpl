@@ -34,8 +34,10 @@
                            href="<?php $this->show('siteurl')?>nimda/users/edit/<?php $this->show($value, 'user_id')?>">Edit&nbsp;&#9998;</a>
                     </td>
                     <td>
+                        <?php if($this->get($value, 'user_role') != "superadmin") : ?>
                         <a class="pinnackl-button pinnackl-button-error"
                            href="<?php $this->show('siteurl')?>nimda/users/delete/<?php $this->show($value, 'user_id')?>">Delete&nbsp;&#10008;</a>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -40,7 +40,8 @@
                     </div>
                     <div class="pinnackl-control-group">
                         <label>Role</label>
-                        <select id="user_role" class="pinnackl-input-1-2" style="color: gray;" name="role" required>
+                        <select id="user_role" class="pinnackl-input-1-2" style="color: gray;" name="role" required
+                        <?php echo(($this->get($this->viewData, 'user_role')=='superadmin')?'disabled' :null)?>>
                             <option value="superadmin"<?php echo(($this->get($this->viewData, 'user_role')=='superadmin')?'selected' :null)?>>Superadmin</option>
                             <option value="administrator" <?php echo(($this->get($this->viewData, 'user_role')=='administrator')?'selected' :null)?>>administrator</option>
                             <option value="moderator"<?php echo(($this->get($this->viewData, 'user_role')=='moderator')?'selected' :null)?>>moderator</option>
