@@ -177,7 +177,7 @@ class UserPosts extends Controller{
 						$postContent = $contentSys[0];
 	
 						$content = substr(strip_tags(trim(html_entity_decode($postContent->gridContent))),0,500).'...';
-	
+						
 						$pages_info['content'][] = $content;
 						$pages_info['url'][] = Sophwork::getUrl();
 					}
