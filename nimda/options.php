@@ -660,7 +660,7 @@ else if($optionPage == 'users' || $optionPage == 'info'){
 	                        mkdir($upload_directory);
 	                    }
 
-	                    $nom = $_POST['pseudo'].'.png';
+	                    $nom = $_POST['pseudo'].'.jpg';
 	                    if (move_uploaded_file($_FILES['avatar']['tmp_name'],$upload_directory."/".$nom))
 	                    { 	
 	                        echo "Transfert réussi";
