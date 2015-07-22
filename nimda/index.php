@@ -115,7 +115,7 @@ else{
 		Sophwork::redirect('user/' . $page . '/posts');
 }
 
-if(!in_array('nimda', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])){
+if(!in_array('user', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])){
 	$app = $controller;
 	$headers = [
 		"HTTP/1.0 404 Not Found",
@@ -131,6 +131,21 @@ if(!in_array('nimda', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])
     exit;
 }
 
+// if(!in_array('nimda', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])){
+// 	$app = $controller;
+// 	$headers = [
+// 		"HTTP/1.0 404 Not Found",
+// 	];
+// 	$requests = new Requests($headers, function() use ($app){
+// 		$app->setViewData('siteurl', Sophwork::getUrl('nimda/'));
+// 		$app->setViewData('errorNb', '404');
+// 		$app->setViewData('errorMsg','Not Found');
+// 		$app->setViewData('url', isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:Sophwork::geturl());
+// 		$app->appView->renderView('error', 'nimda/');
+// 		exit;
+// 	});
+//     exit;
+// }
 
 /**
  * @var $page = $controller->article
@@ -161,7 +176,7 @@ $controller->setViewData('userPseudo', !is_null($controller->user->pseudo)?$cont
 $controller->setViewData('menu', $menu, 'page_tag');
 $controller->setViewData('menu', $menu, 'page_name');
 
-$controller->appView->renderView('header', 'nimda/');
+// $controller->appView->renderView('header', 'nimda/');
 
 if(is_null($controllerPrefix))
 	$control = 'nimda\controller\setup\\' . ucfirst($page);

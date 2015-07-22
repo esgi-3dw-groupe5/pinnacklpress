@@ -157,7 +157,7 @@ class UserPosts extends Controller{
 			$pages
 				->filterPageType('post')
 				->__and()
-				->filterPageAuthor($u->getUserId()[0])
+				->filterPageAuthor($this->page)
 				->querySelect();
 
 			if(strtolower($user->pseudo) != $this->page){
@@ -179,7 +179,7 @@ class UserPosts extends Controller{
 				$this->setViewData('allow', 'true');
 			else
 				$this->setViewData('allow', 'false');
-			
+
 			$categories->findPageType('category');
 			$this->setViewData('category', $categories->getData(), 'page_id');
 			$this->setViewData('category', $categories->getData(), 'page_name');			

@@ -23,6 +23,8 @@ a.pinnackl-username:active{
 	color: #777777;
 	padding: 0 .3em;
 	text-decoration: none;
+	box-sizing: border-box;
+	border-radius: 1em;
 }
 .pinnackl-username:hover{
 	color: #FFFFFF!important;
