@@ -215,7 +215,7 @@ if(sizeof($_POST) > 0){
         $pageContent = $appController->KDM->create('pp_pagemeta');
         $pageContent->setPageId(1);
         $pageContent->setPmetaName('content');
-        $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[text]","gridContent":"<h1>Welcome to Pinnackl Press.</h1><p><br></p><p>Thanks you for using our CMS.</p><p>We build this tool to let you manange easily your contents and create a powerful web site.<br></p>"}]}]');
+        $pageContent->setPmetaValue('[{"line":[{"gridClass":"grid-4_4","gridModule":"[text]","gridContent":"<h1>Welcome to Pinnackl Press.</h1><p><br></p><p>Thanks you for using our CMS.</p><p>We build this tool to let you manage easily your contents and create a powerful website.<br></p>"}]}]');
         $pageContent->save();
 
         $pageContent = $appController->KDM->create('pp_pagemeta');
