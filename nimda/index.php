@@ -115,21 +115,21 @@ else{
 		Sophwork::redirect('user/' . $page . '/posts');
 }
 
-if(!in_array('user', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])){
-	$app = $controller;
-	$headers = [
-		"HTTP/1.0 404 Not Found",
-	];
-	$requests = new Requests($headers, function() use ($app){
-		$app->setViewData('siteurl', Sophwork::getUrl('nimda/'));
-		$app->setViewData('errorNb', '404');
-		$app->setViewData('errorMsg','Not Found');
-		$app->setViewData('url', isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:Sophwork::geturl());
-		$app->appView->renderView('error', 'nimda/');
-		exit;
-	});
-    exit;
-}
+// if(!in_array('user', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])){
+// 	$app = $controller;
+// 	$headers = [
+// 		"HTTP/1.0 404 Not Found",
+// 	];
+// 	$requests = new Requests($headers, function() use ($app){
+// 		$app->setViewData('siteurl', Sophwork::getUrl('nimda/'));
+// 		$app->setViewData('errorNb', '404');
+// 		$app->setViewData('errorMsg','Not Found');
+// 		$app->setViewData('url', isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:Sophwork::geturl());
+// 		$app->appView->renderView('error', 'nimda/');
+// 		exit;
+// 	});
+//     exit;
+// }
 
 // if(!in_array('nimda', $uri) && !in_array($uri[count($uri)-1], $menu['page_tag'])){
 // 	$app = $controller;

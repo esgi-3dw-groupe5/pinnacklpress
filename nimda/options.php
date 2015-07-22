@@ -622,25 +622,30 @@ else if($optionPage == 'users' || $optionPage == 'info'){
 
 	if(!in_array('delete', $optionPageController)){ //handle edit and new case
 		
-		//var_dump($user->filterUserPseudo($_POST['pseudo'])->querySelect());
-        $user->setUserEmail($_POST['email']);
-        
-        
-        if($edit != 'info') {
-        	$user->setUserRole($_POST['role']);
-        	$user->setUserPseudo($_POST['pseudo']);
-        }
-        $user->setUserUrl($_POST['pseudo']);
-        $user->setUserBdate($_POST['bdate']);
-        $user->setUserFirstname($_POST['firstname']);
-        $user->setUserName($_POST['lastname']);
-        $user->setUserGender($_POST['gender']);
+		if($optionPage == 'info'){
+			$user->setUserEmail($_POST['email']);
+	        $user->setUserBdate($_POST['bdate']);
+	        $user->setUserFirstname($_POST['firstname']);
+	        $user->setUserName($_POST['lastname']);
+	        $user->setUserGender($_POST['gender']);
+			//var_dump($user->filterUserPseudo($_POST['pseudo'])->querySelect());       
+       	}else if($optionPage == 'users'){ 
+       		$user->setUserRole($_POST['role']);
+	       	$user->setUserPseudo($_POST['pseudo']);
+	       	$user->setUserUrl($_POST['pseudo']);
+	       	$user->setUserEmail($_POST['email']);
+	        $user->setUserBdate($_POST['bdate']);
+	        $user->setUserFirstname($_POST['firstname']);
+	        $user->setUserName($_POST['lastname']);
+	        $user->setUserGender($_POST['gender']);
+       	}
+      	 
 
         $maxsize = ini_get("upload_max_filesize");
         $maxsize_octet = 1024*2024 *str_replace("M", "", $maxsize);
         
 	    //Création d'un tableau php avec les extensions valides
-        $extensions_valides = array( 'jpg' , 'jpeg' , 'png' );
+        $extensions_valides = array( 'jpg' , 'jpeg');
         //chemin en relatif d'upload
         $upload_directory = __DIR__.'/../data/users/'.$_POST['pseudo'];
        
@@ -664,7 +669,7 @@ else if($optionPage == 'users' || $optionPage == 'info'){
 	                        mkdir($upload_directory);
 	                    }
 
-	                    $nom = $_POST['pseudo'].'.png';
+	                    $nom = $_POST['pseudo'].'.jpg';
 	                    if (move_uploaded_file($_FILES['avatar']['tmp_name'],$upload_directory."/".$nom))
 	                    { 	
 	                        echo "Transfert réussi";

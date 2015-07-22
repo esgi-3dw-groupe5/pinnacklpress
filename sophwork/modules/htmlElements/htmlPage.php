@@ -90,7 +90,7 @@ class htmlPage extends htmlElement{
 		$authorLink->set('href', Sophwork::getUrl('user/'.strtolower($authorName)));
 
 		$img = new htmlElement('img');
-		$img->set('src', Sophwork::getUrl('data/users/'.strtolower($authorName).'/'.strtolower($authorName).'.png'));
+		$img->set('src', Sophwork::getUrl('data/users/'.strtolower($authorName).'/'.strtolower($authorName).'.jpg'));
 		$authorLink->inject($img);
 		$header->inject($authorLink);
 

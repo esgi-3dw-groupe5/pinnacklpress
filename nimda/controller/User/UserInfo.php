@@ -73,7 +73,7 @@ class UserInfo extends Controller{
         $this->setViewData('h2', 'Users');
 
         $user = $KDM->create('pp_user');
-
+   
         $user->findUserPseudo($this->page);
         
         $d = date_create($user->getBdate()[0]);

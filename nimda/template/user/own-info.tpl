@@ -36,7 +36,6 @@
                         <label>Last name</label>
                         <input type="text" name="lastname" class="pinnackl-input-1-2" value="<?php $this->get('user_name') == 'null' ? ' ' : $this->show('user_name'); ?>">
                     </div>
-                    <?php $this->show('user_bdate');?>
                     <div class="pinnackl-control-group">
                         <label>Birthday</label>
                         <input type="date" name="bdate" class="pinnackl-input-1-2" value="<?php $this->show('user_bdate') ?>">
@@ -44,7 +43,7 @@
                      
                     <div class="pinnackl-control-group">
                         <label>Role</label>
-                         <?php $this->show('user_role'); ?>
+                         <input type="text" name="role" class="pinnackl-input-1-2"  value="<?php $this->show('user_role'); ?>" disabled="disabled">
                     </div>  
 
                     <div class="pinnackl-control-group">
@@ -52,7 +51,7 @@
                         <input type="file" name="avatar">
                         
                     </div> 
-                    <img style="margin-left:40%;width:150px;height:150px" src="<?php $this->show('siteurl')?>data/users/<?php $this->show('user_pseudo')?>/<?php $this->show('user_pseudo')?>.png">
+                    <img style="margin-left:40%;width:150px;height:150px" src="<?php $this->show('siteurl')?>data/users/<?php $this->show('user_pseudo')?>/<?php $this->show('user_pseudo')?>.jpg">
                  </fieldset>                
             </div>
            <div class="pinnackl-controls-group" style="margin-top:30px;text-align:center">

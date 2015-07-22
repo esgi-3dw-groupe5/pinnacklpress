@@ -77,7 +77,11 @@ $link->exec("CREATE TABLE IF NOT EXISTS `pp_history` (
   `post_id` int(11) NOT NULL,
   `history_date` varchar(45) DEFAULT NULL,
   `history_status` int(11) DEFAULT NULL,
-  PRIMARY KEY (`history_id`)
+  PRIMARY KEY (`history_id`),
+  KEY `user_id` (`user_id`),
+  KEY `post_id` (`post_id`),
+  KEY `history_date` (`history_date`),
+  KEY `history_status` (`history_status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 
 //////////////////////////////////// linkmeta

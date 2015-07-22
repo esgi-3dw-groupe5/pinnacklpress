@@ -93,6 +93,13 @@ class Users extends \sophwork\app\controller\AppController {
             $this->user->setUserUrl($POST['pseudo']);
             $this->user->save();
             
+
+            $upload_directory = __DIR__.'/../../data/users/'.$_POST['pseudo'];
+            mkdir($upload_directory);
+            $avatar = __DIR__.'/../../data/users/avatar.jpg';
+            copy($avatar, $upload_directory.'/'.$_POST['pseudo'].'.jpg');
+            
+            
             Users::startSession();
             
             $_SESSION['user']['id'] = $this->user->getUserId();

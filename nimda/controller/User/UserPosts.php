@@ -143,7 +143,7 @@ class UserPosts extends Controller{
 			if(!$this->checkPermission('author', false) || !(strtolower($user->pseudo) == $this->page)){
 				Sophwork::redirect();
 			}
-			elseif($this->checkPermission('author', false)){
+			elseif(!$this->checkPermission('author', false)){
 				Sophwork::redirect();
 			}
 
@@ -161,18 +161,35 @@ class UserPosts extends Controller{
 				->querySelect();
 
 			if(strtolower($user->pseudo) != $this->page){
-				$contents
-					->filterPageId($pages->getPageId()[0])
-					->__and()
-					->filterPmetaName('content')
-					->querySelect();
+				$pages_info = $pages->getData();
 
-				$key = 0;
-				$jsonBuilder = json_decode($contents->getPmetaValue()[0]);
-				$contentSys = $jsonBuilder[$key]->line;
-				$postContent = $contentSys[0];
-
-				$this->setViewData('page_content', ''.$postContent->gridContent);
+				if(!is_null($pages->getPageId())){
+					foreach ($pages->getPageId() as $key => $value) {
+						$contents
+						->filterPageId($pages->getPageId()[$key])
+						->__and()
+						->filterPmetaName('content')
+						->querySelect();
+	
+						$key = 0;
+						$jsonBuilder = json_decode($contents->getPmetaValue()[0]);
+						$contentSys = $jsonBuilder[$key]->line;
+						$postContent = $contentSys[0];
+	
+						$content = substr(strip_tags(trim(html_entity_decode($postContent->gridContent))),0,500).'...';
+	
+						$pages_info['content'][] = $content;
+						$pages_info['url'][] = Sophwork::getUrl();
+					}
+					$this->setViewData('pages_info', $pages_info,'url');
+					$this->setViewData('pages_info', $pages_info,'content');
+	
+					$this->setViewData('pages_info', $pages_info, 'page_id');
+					$this->setViewData('pages_info', $pages_info, 'page_name');
+					$this->setViewData('pages_info', $pages_info, 'page_udate');
+					$this->setViewData('pages_info', $pages_info, 'page_status');
+					$this->setViewData('pages_info', $pages_info, 'page_tag');
+				}
 			}
 
 			if($this->checkPermission('author', false))
@@ -180,15 +197,11 @@ class UserPosts extends Controller{
 			else
 				$this->setViewData('allow', 'false');
 
-			$categories->findPageType('category');
-			$this->setViewData('category', $categories->getData(), 'page_id');
-			$this->setViewData('category', $categories->getData(), 'page_name');			
-
 			$this->setViewData('pages', $pages->getData(), 'page_id');
 			$this->setViewData('pages', $pages->getData(), 'page_name');
 			$this->setViewData('pages', $pages->getData(), 'page_udate');
 			$this->setViewData('pages', $pages->getData(), 'page_status');
-			$this->setViewData('pages', $categories->getData(), 'page_name'); //categories
+			$this->setViewData('pages', $pages->getData(), 'page_tag');
 			
 			
 			$this->callView('user/' . $own . $page, 'nimda/');

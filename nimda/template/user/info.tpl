@@ -8,7 +8,7 @@
         <div class="content">
             <div class="global-info-user">
                 <div class="avatar-user">
-                    <img src="<?php $this->show('siteurl')?>data/users/<?php $this->show('user_pseudo')?>/<?php $this->show('user_pseudo')?>.png">
+                    <img src="<?php $this->show('siteurl')?>data/users/<?php $this->show('user_pseudo')?>/<?php $this->show('user_pseudo')?>.jpg">
                 </div>
                 <div class="info-user">
                     <ul>
