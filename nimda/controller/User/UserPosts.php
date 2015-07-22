@@ -157,7 +157,7 @@ class UserPosts extends Controller{
 			$pages
 				->filterPageType('post')
 				->__and()
-				->filterPageAuthor($this->page)
+				->filterPageAuthor($u->getUserId()[0])
 				->querySelect();
 
 			if(strtolower($user->pseudo) != $this->page){

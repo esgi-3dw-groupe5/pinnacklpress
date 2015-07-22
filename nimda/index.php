@@ -176,7 +176,7 @@ $controller->setViewData('userPseudo', !is_null($controller->user->pseudo)?$cont
 $controller->setViewData('menu', $menu, 'page_tag');
 $controller->setViewData('menu', $menu, 'page_name');
 
-// $controller->appView->renderView('header', 'nimda/');
+$controller->appView->renderView('header', 'nimda/');
 
 if(is_null($controllerPrefix))
 	$control = 'nimda\controller\setup\\' . ucfirst($page);
