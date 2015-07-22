@@ -102,6 +102,11 @@ if(sizeof($_POST) > 0){
             $user->setUserKey(md5(microtime().rand()));
             $user->save();
             
+            $upload_directory = __DIR__.'/../data/users/'.$_POST['pseudo'];
+            mkdir($upload_directory);
+            $avatar = __DIR__.'/../data/users/avatar.jpg';
+            copy($avatar, $upload_directory.'/'.$_POST['pseudo'].'.jpg');
+            
             $mail->sendMail($_POST['pseudo'],$_POST['email'],'install',$cle=null);
 
         }
