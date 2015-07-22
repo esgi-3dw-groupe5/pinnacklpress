@@ -36,7 +36,6 @@
                         <label>Last name</label>
                         <input type="text" name="lastname" class="pinnackl-input-1-2" value="<?php $this->get('user_name') == 'null' ? ' ' : $this->show('user_name'); ?>">
                     </div>
-                    <?php $this->show('user_bdate');?>
                     <div class="pinnackl-control-group">
                         <label>Birthday</label>
                         <input type="date" name="bdate" class="pinnackl-input-1-2" value="<?php $this->show('user_bdate') ?>">
