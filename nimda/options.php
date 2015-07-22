@@ -647,7 +647,7 @@ else if($optionPage == 'users' || $optionPage == 'info'){
 	    //Création d'un tableau php avec les extensions valides
         $extensions_valides = array( 'jpg' , 'jpeg');
         //chemin en relatif d'upload
-        $upload_directory = __DIR__.'/../data/users/'.$_POST['pseudo'];
+        $upload_directory = __DIR__.'/../data/users/'.$user->getUserPseudo()[0];
        
          //Est ce que le fichier avatar existe
         if(isset($_FILES['avatar']))
@@ -669,7 +669,7 @@ else if($optionPage == 'users' || $optionPage == 'info'){
 	                        mkdir($upload_directory);
 	                    }
 
-	                    $nom = $_POST['pseudo'].'.jpg';
+	                    $nom = $user->getUserPseudo()[0].'.jpg';
 	                    if (move_uploaded_file($_FILES['avatar']['tmp_name'],$upload_directory."/".$nom))
 	                    { 	
 	                        echo "Transfert réussi";
@@ -705,7 +705,7 @@ else if($optionPage == 'users' || $optionPage == 'info'){
                 }
 
             }
-        }		
+        }
 
         if(in_array('new', $optionPageController)) {
 	        	$hash_psw = password_hash($_POST['password'], PASSWORD_DEFAULT);

@@ -43,7 +43,7 @@ class Mail {
             $subject = "".$pseudo.", votre nouveau mot de passe sur ".$sitename."  !";
         }
         elseif($type=='test') {
-            $content = "<p>".$sitename."</p><p>".$pseudo.", le site est bien configuré. Il est disponible &agrave; cette adresse :</p><p><a href='".$siteUrl."'>".$siteUrl."</a></p>";
+            $content = "<p>".$sitename."</p><p>".$pseudo.", le site est bien configur&eacute;. Il est disponible &agrave; cette adresse :</p><p><a href='".$siteUrl."'>".$siteUrl."</a></p>";
             $subject = "Test de configuration de ".$sitename." !";
         }
         
