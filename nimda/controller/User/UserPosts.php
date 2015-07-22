@@ -160,8 +160,6 @@ class UserPosts extends Controller{
 				->filterPageAuthor($u->getUserId()[0])
 				->querySelect();
 
-				//$pages->data['test'][] = '';
-				//var_dump($pages->getData());
 			if(strtolower($user->pseudo) != $this->page){
 				$pages_info = $pages->getData();
 				foreach ($pages->getPageId() as $key => $value) {
@@ -183,6 +181,13 @@ class UserPosts extends Controller{
 				}
 				$this->setViewData('pages_info', $pages_info,'url');
 				$this->setViewData('pages_info', $pages_info,'content');
+
+				$this->setViewData('pages_info', $pages_info, 'page_id');
+				$this->setViewData('pages_info', $pages_info, 'page_name');
+				$this->setViewData('pages_info', $pages_info, 'page_udate');
+				$this->setViewData('pages_info', $pages_info, 'page_status');
+				$this->setViewData('pages_info', $pages_info, 'page_tag');
+			
 			}
 
 			if($this->checkPermission('author', false))
@@ -190,12 +195,11 @@ class UserPosts extends Controller{
 			else
 				$this->setViewData('allow', 'false');
 						
-
-			$this->setViewData('pages_info', $pages_info, 'page_id');
-			$this->setViewData('pages_info', $pages_info, 'page_name');
-			$this->setViewData('pages_info', $pages_info, 'page_udate');
-			$this->setViewData('pages_info', $pages_info, 'page_status');
-			$this->setViewData('pages_info', $pages_info, 'page_tag');
+			$this->setViewData('pages', $pages->getData(), 'page_id');
+			$this->setViewData('pages', $pages->getData(), 'page_name');
+			$this->setViewData('pages', $pages->getData(), 'page_udate');
+			$this->setViewData('pages', $pages->getData(), 'page_status');
+			$this->setViewData('pages', $pages->getData(), 'page_tag');
 			
 			
 			$this->callView('user/' . $own . $page, 'nimda/');
