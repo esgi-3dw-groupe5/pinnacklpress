@@ -80,7 +80,7 @@
 								?>
                             <a href="<?php $this->show('siteurl')?>recovery">Mot de passe oublié ?</a>
 							<?php elseif (!empty($_SESSION['user']['pseudo'])) : ?>
-								<h4>Bienvenue :
+								<h4>Bienvenue 
 									<a class="pinnackl-username"
 										href="<?php $this->e(sophwork\core\Sophwork::getUrl('user/'.$_SESSION['user']['url']), 'L'); ?>">
 										<?php $this->e($_SESSION['user']['pseudo']) ?>
