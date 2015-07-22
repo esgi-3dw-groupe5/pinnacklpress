@@ -6,3 +6,4 @@ nimda/.htaccess
 install/.htaccess
 controller/flux_rss.xml
 *.sublime-project
+data/users/
