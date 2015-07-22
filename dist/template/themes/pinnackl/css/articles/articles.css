@@ -1,0 +1,142 @@
+.articles{
+	font-family: 'Open Sans Condensed', sans-serif;
+	text-align: justify;
+	background: #fff;
+	padding: 1em;
+	margin-right: .3em;
+	margin-bottom: .3em;
+	width: 32.3333%;
+	box-sizing: border-box;
+	border-bottom: 4px solid #fff;
+	transition: border .1s;
+	transition: box-shadow .1s;
+}
+
+.line .articles:last-of-type{
+	margin-right: 0;
+	margin-bottom: 0;
+}
+
+.articles a:link,
+.articles a:visited,
+.articles a:hover,
+.articles a:active{
+	text-decoration: none;
+	color: #000;
+}
+
+.articles:hover{
+	box-shadow: 0 0 3px 0px #000;
+	border-bottom: 4px solid #3399ff;
+	cursor: pointer;
+}
+
+.articles .header{
+	border-bottom: 1px solid #eee;
+	color: #aaa;
+	font-size: 80%;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	padding: 0.4em 0;
+	text-transform: uppercase;
+}
+
+.header .date{
+	color: 3em;
+}
+
+.author {
+	clear: both;
+}
+
+.author img {
+	width: 32px;
+	float: right;
+	margin: 0.1%;
+	border: solid 2px #eee;
+	border-radius: 50%;
+	position: absolute;
+}
+
+.author .date{
+	font-size: .6em;
+}
+
+.author .categories{
+	font-size: .9em;
+}
+
+.author .vignette{
+	margin-right: 2px;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	background: #3399ff;
+}
+.author a.vignette:link,
+.author a.vignette:visited,
+.author a.vignette:hover,
+.author a.vignette:active{
+	text-decoration: none;
+	color: #fff;
+}
+.author .vignette:last-of-type{
+	margin-right: 0;
+}
+
+.articles .preview,
+.articles .preview a{
+	display: block;
+	text-overflow: ellipsis;
+	min-height: 8em;
+	max-height: 8em;
+    overflow: hidden;
+}
+
+.articles hr{
+	box-shadow: 0 0 10px 0 #aaa;
+    float: left;
+    margin: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    height: 1px;
+    border:none;
+    background: #888;
+}
+
+.page-artcile{
+	background: #fff;
+	border-color: #e7eaec;
+	border-image: none;
+	border-style: solid solid none;
+	border-width: 1px 0;
+	padding: 3em 2em 5em 2em;
+	text-align: justify;
+}
+
+.read .page-artcile{
+
+}
+
+.read .author img{
+	width: 80px;
+}
+
+.read .author .date{
+	font-size: 1.1em;
+}
+
+.read .author .title{
+	font-size: 2.8em;
+}
+
+.read .author .vignette{
+	font-size: 1.1em;
+}
+
+@media (max-width:765px) {
+	.articles{
+		width: 100%;
+	}
+}

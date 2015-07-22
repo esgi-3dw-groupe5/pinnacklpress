@@ -1,0 +1,40 @@
+.pinnackl-menu-horizontal{
+	text-align: center;
+	white-space: nowrap;
+}
+
+.pinnackl-menu-horizontal .pinnackl-menu-item,
+.pinnackl-menu-horizontal .pinnackl-menu-heading,
+.pinnackl-menu-horizontal .pinnackl-menu-separator {
+	display: inline-block;
+	zoom: 1;
+	vertical-align: middle;
+}
+
+.pinnackl-menu-link,
+.pinnackl-menu-item,
+.pinnackl-menu-heading {
+	padding: 10px;
+	text-decoration: none;
+	font-size: 1.11em;
+	margin-left: -5px;
+}
+
+/**
+ * hover behaviour
+ */
+
+.pinnackl-menu-link:hover,
+/*.pinnackl-menu-item:hover a,*/
+.pinnackl-menu-item:hover,
+.pinnackl-menu-heading:hover {
+	background-color: #8f8f8f;
+	color: #fff;
+	cursor: pointer;
+}
+
+.active, .active *{
+	background-color: #8f8f8f;
+	color: #fff;
+	cursor: pointer;
+}

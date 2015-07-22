@@ -1,0 +1,137 @@
+/*
+ * Side bar layout css file
+ * Control the main layout of the page
+ */
+
+/* SIDE BAR CONTAINER */
+.sidebar{
+	position: fixed;
+	left: 0;
+	color: #777;
+	background: #ffffff;
+	height: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	z-index: 900;
+	border-right: solid thin #ebebeb;
+}
+
+.sidebar .header{
+	text-align: center;
+}
+
+.sidebar .content{
+	padding: 1em 2em 0 2em;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* BODY CONTAINER */
+.body{
+	height: 100%;
+	margin-left: 25%;
+}
+html{
+	background: #f9f9f9;
+}
+
+.no-sidebar{
+	margin-left: 0;
+}
+
+.no-sidebar .header{
+	padding-left: 0!important;
+}
+
+/* ELEMENTS OF BODY */
+.header{
+	box-sizing: border-box;
+	max-height: 63px;
+	min-height: 63px;
+}
+.body .header{
+  background: #fff;
+  color: #000;
+  position: fixed;
+  border-bottom: solid thin #ebebeb;
+  top: 0;
+  left:0;
+  right: 0;
+  min-height: 4em;
+  max-height: 4em;
+  z-index: 800;
+  padding-left: 25%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container{
+	padding: 1em 1em 0 1em;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.container .line{
+	padding-bottom: 1%;
+}
+.sub-content{
+	margin-top: 64px;
+	margin-bottom: 13em;
+}
+
+.footer{
+	background: #373737;
+	color: #fff;
+	padding: 1em 2em;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
+	z-index: 950;
+	height: 12em;
+	position: absolute;
+	bottom: 1em;
+	left: 0;
+	right: 0;
+}
+
+.footer .ft-section{
+	border-right: solid thin #eee;
+	min-height: 95%;
+	margin-left: -5px;
+	margin-bottom: 5px;
+}
+
+.footer .ft-section:last-child{
+	border: none;
+}
+
+.footer-right{
+	background: #f9f9f9;
+	color: #777;
+	padding: 0 2em;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
+	z-index: 950;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.footer-right-section{
+}
+
+
+
+/*
+ *	responsive
+ */
+
+@media (max-width:840px) {
+
+}

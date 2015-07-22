@@ -1,0 +1,36 @@
+.pinnackl-button-white{
+	text-align: center;
+	background: #fff;
+	color: #1f8dd6;
+}
+
+.btn-70{
+	font-size: 70%;
+}
+
+.property::before, .property::after {
+    content: "";
+    display: table;
+}
+.property::after {
+    clear: both;
+}
+
+.property .onoffswitch{
+	display: inline-block;
+}
+
+.onoffswitch-switch{
+	top: 10px;
+	height: 12px;
+}
+
+.comment{
+	top: 2px;
+}
+
+.property label {
+    margin: 0.5em 0;
+    min-width: 85px;
+    width: 35%;
+}

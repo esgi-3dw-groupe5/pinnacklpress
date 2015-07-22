@@ -1,0 +1,44 @@
+/*
+	PinnacklPress : Pinnnack Theme
+ */
+.error{
+    background: rgb(202, 60, 60) none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #fff;
+    padding: 0.3em 1em;
+    width: 36.333%;
+    margin: auto;
+    text-align: left;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+.unvisible{
+	display: none;
+}
+
+a.pinnackl-username:link,
+a.pinnackl-username:visited,
+a.pinnackl-username:hover,
+a.pinnackl-username:active{
+	color: #777777;
+	padding: 0 .3em;
+	text-decoration: none;
+	box-sizing: border-box;
+	border-radius: 1em;
+}
+.pinnackl-username:hover{
+	color: #FFFFFF!important;
+	background: #3399ff;
+}
+
+a.pinnackl-logout:link,
+a.pinnackl-logout:visited,
+a.pinnackl-logout:hover,
+a.pinnackl-logout:active{
+	color: #3399ff;
+	padding: 0 .3em;
+	text-decoration: none;
+}
+.pinnackl-logout:hover{
+	text-decoration: underline!important;
+}

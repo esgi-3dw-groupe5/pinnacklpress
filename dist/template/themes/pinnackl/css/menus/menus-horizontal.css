@@ -1,0 +1,19 @@
+/* HORIZONTAL MENU */
+.pinnackl-menu-horizontal {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.pinnackl-menu-horizontal .pinnackl-menu-list {
+    display: inline-block;
+}
+
+/* Initial menus should be inline-block so that they are horizontal */
+.pinnackl-menu-horizontal .pinnackl-menu-item,
+.pinnackl-menu-horizontal .pinnackl-menu-heading,
+.pinnackl-menu-horizontal .pinnackl-menu-separator {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: middle;
+}

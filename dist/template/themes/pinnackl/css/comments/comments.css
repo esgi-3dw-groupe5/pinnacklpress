@@ -1,0 +1,39 @@
+.page-comments {
+    background: #fff none repeat scroll 0 0;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+    padding: 1em 2em;
+    text-align: justify;
+}
+
+.comment img{
+	position:relative;
+}
+
+.comment-table{
+	border-collapse: collapse;
+    border-color: gray;
+    border-spacing: 2px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    width: 5%;
+}
+
+.footer_comment {
+    margin-top: 30px;
+}
+
+.preview{
+	margin-top:10px;
+}
+
+.report{
+    text-align:right;
+    cursor: pointer;
+}
+
+.reported{
+    font-style: italic;
+}
