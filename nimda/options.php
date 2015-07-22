@@ -624,12 +624,8 @@ else if($optionPage == 'users' || $optionPage == 'info'){
 		
 		//var_dump($user->filterUserPseudo($_POST['pseudo'])->querySelect());
         $user->setUserEmail($_POST['email']);
-        
-        
-        if($edit != 'info') {
-        	$user->setUserRole($_POST['role']);
-        	$user->setUserPseudo($_POST['pseudo']);
-        }
+    	$user->setUserRole($_POST['role']);
+    	$user->setUserPseudo($_POST['pseudo']);
         $user->setUserUrl($_POST['pseudo']);
         $user->setUserBdate($_POST['bdate']);
         $user->setUserFirstname($_POST['firstname']);

@@ -44,7 +44,7 @@
                      
                     <div class="pinnackl-control-group">
                         <label>Role</label>
-                         <?php $this->show('user_role'); ?>
+                         <input type="text" name="role" class="pinnackl-input-1-2"  value="<?php $this->show('user_role'); ?>" disabled="disabled">
                     </div>  
 
                     <div class="pinnackl-control-group">
