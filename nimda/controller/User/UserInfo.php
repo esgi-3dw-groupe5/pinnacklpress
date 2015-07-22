@@ -74,7 +74,7 @@ class UserInfo extends Controller{
 
         $user = $KDM->create('pp_user');
    
-        $user->find();
+        $user->findUserPseudo($this->page);
         
         $d = date_create($user->getBdate()[0]);
         $perma = date_format($d,"Y-m-d") ;

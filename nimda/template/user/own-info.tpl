@@ -52,7 +52,7 @@
                         <input type="file" name="avatar">
                         
                     </div> 
-                    <img style="margin-left:40%;width:150px;height:150px" src="<?php $this->show('siteurl')?>data/users/<?php $this->show('user_pseudo')?>/<?php $this->show('user_pseudo')?>.png">
+                    <img style="margin-left:40%;width:150px;height:150px" src="<?php $this->show('siteurl')?>data/users/<?php $this->show('user_pseudo')?>/<?php $this->show('user_pseudo')?>.jpg">
                  </fieldset>                
             </div>
            <div class="pinnackl-controls-group" style="margin-top:30px;text-align:center">
